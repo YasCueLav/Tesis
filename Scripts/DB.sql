@@ -54,7 +54,7 @@ create table Tp_Alumnos
 	id_tp_alumno int identity(1,1),
 	id_tp int not null,
 	id_alumno int not null,
-	presentado char not null,
+	presentado bit not null,
 	visible bit not null 
 	constraint pk_tp_alumno primary key (id_tp_alumno),
 	constraint fk_tp foreign key (id_tp)
@@ -67,8 +67,8 @@ create table Asistencias
 	id_asistencia int identity(1,1),
 	id_alumno int not null,
 	fecha_registro date not null,
-	esta_Precente char not null,
-	obligatoria char,
+	esta_Precente bit not null,
+	obligatoria bit,
 	visible bit not null 
 	constraint pk_asistencia primary key (id_asistencia),
 	constraint fk_alumno_asistencias foreign key (id_alumno)
