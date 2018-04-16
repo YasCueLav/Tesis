@@ -1,23 +1,26 @@
-create database Reguistro_Alumnos_para_Profesores
-use Reguistro_Alumnos_para_Profesores
+create database Gestus
+use Gestus
 
 create table Cursos
 (
 	id_curso int identity(1,1),
 	nombre varchar(100) not null,
-	seccion varchar(5)
+	seccion varchar(5),
+	visible bit not null 
 	constraint pk_curso primary key(id_curso)
 )
 create table Trabajos_Practicos
 (
 	id_tp int identity(1,1),
-	nombre varchar(50) not null
+	nombre varchar(50) not null,
+	visible bit not null
 	constraint pk_tp primary key (id_tp)
 )
 create table Condiciones
 (
 	id_condicion int identity(1,1),
-	condicion varchar(50) not null
+	condicion varchar(50) not null,
+	visible bit not null 
 	constraint pk_condicion primary key (id_condicion)
 )
 create table Alumnos
@@ -28,7 +31,8 @@ create table Alumnos
 	apellido varchar (50) not null,
 	id_curso int not null,
 	id_condicion int not null,
-	grupo int
+	grupo int,
+	visible bit not null 
 	constraint pk_alumno primary key(id_alumno),
 	constraint fk_curso foreign key (id_curso)
 	references Cursos (id_curso),
@@ -39,7 +43,8 @@ create table Notas
 (
 	id_nota int identity(1,1),
 	nota decimal (7,2)not null,
-	id_alumno int not null
+	id_alumno int not null,
+	visible bit not null 
 	constraint pk_nota primary key (id_nota),
 	constraint fk_alumno foreign key (id_alumno)
 	references Alumnos (id_alumno)
@@ -49,7 +54,8 @@ create table Tp_Alumnos
 	id_tp_alumno int identity(1,1),
 	id_tp int not null,
 	id_alumno int not null,
-	presentado char not null
+	presentado char not null,
+	visible bit not null 
 	constraint pk_tp_alumno primary key (id_tp_alumno),
 	constraint fk_tp foreign key (id_tp)
 	references Trabajos_Practicos (id_tp),
@@ -62,7 +68,8 @@ create table Asistencias
 	id_alumno int not null,
 	fecha_registro date not null,
 	esta_Precente char not null,
-	obligatoria char
+	obligatoria char,
+	visible bit not null 
 	constraint pk_asistencia primary key (id_asistencia),
 	constraint fk_alumno_asistencias foreign key (id_alumno)
 	references Alumnos (id_alumno)
