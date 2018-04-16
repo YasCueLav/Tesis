@@ -20,7 +20,7 @@ public class AccesoDatos {
 
     public AccesoDatos() {
         
-        conn_string = "jdbc:sqlserver://LAPTOP-PA76RMSN\\SQLEXPRESS:1433;databaseName=Reguistro_Alumnos_para_Profesores";
+        conn_string = "jdbc:sqlserver://LAPTOP-PA76RMSN\\SQLEXPRESS:1433;databaseName=Gestuss";
         driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
         user = "prueba";
         pass = "sa1234";
