@@ -5,10 +5,28 @@
  */
 package Controladores;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+
 /**
  *
  * @author Yasmin
  */
 public class GestorNotas {
+    private Connection conn;
+    
+    public GestorNotas (){
+        AccesoDatos ad = new AccesoDatos();
+        try {
+            conn = DriverManager.getConnection(ad.getConn_string(), ad.getUser(), ad.getPass());
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
     
 }

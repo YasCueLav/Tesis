@@ -9,6 +9,9 @@ public class Condiciones {
     String condicion;
     boolean visible;
 
+    public Condiciones() {
+    }
+
     public Condiciones(int idCondicion, String condicion) {
         this.idCondicion = idCondicion;
         this.condicion = condicion;

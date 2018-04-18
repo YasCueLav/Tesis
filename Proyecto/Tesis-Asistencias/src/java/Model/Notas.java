@@ -10,6 +10,10 @@ public class Notas {
     int idAlumno;
     boolean visible;
 
+    public Notas() {
+    }
+
+    
     public Notas(int idNota, double nota, int idAlumno) {
         this.idNota = idNota;
         this.nota = nota;

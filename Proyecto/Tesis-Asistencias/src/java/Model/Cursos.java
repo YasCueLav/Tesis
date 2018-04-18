@@ -10,6 +10,9 @@ public class Cursos {
     String seccionCurso;
     boolean visible;
 
+    public Cursos() {
+    }
+
     public Cursos(int idCursos, String nombreCurso, String seccionCurso) {
         this.idCursos = idCursos;
         this.nombreCurso = nombreCurso;

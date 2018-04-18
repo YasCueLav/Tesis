@@ -39,15 +39,38 @@ create table Alumnos
 	constraint fk_condicion foreign key (id_condicion)
 	references Condiciones (id_condicion)
 )
+create table Tipos_Examenes
+(
+	id_tipo_examen int identity(1,1),
+	tipo_examen varchar(50) not null,
+	visible bit not null
+	constraint pk_tipo_examen primary key (id_tipo_examen)
+)
+create table Examenes
+(
+	id_examen int identity(1,1),
+	id_tipo_examen int not null,
+	examen varchar(50) not null,
+	visible bit not null
+	constraint pk_examen primary key (id_examen),
+	constraint fk_tipo_examen foreign key (id_tipo_examen)
+	references Tipos_Examenes (id_tipo_examen)
+)
 create table Notas
 (
 	id_nota int identity(1,1),
 	nota decimal (7,2)not null,
 	id_alumno int not null,
+	id_examen int,
+	id_tp int,
 	visible bit not null 
 	constraint pk_nota primary key (id_nota),
 	constraint fk_alumno foreign key (id_alumno)
-	references Alumnos (id_alumno)
+	references Alumnos (id_alumno),
+	constraint fk_examen foreign key (id_examen)
+	references Examenes (id_examen),
+	constraint fk_tp_notas foreign key (id_tp)
+	references Trabajos_Practicos (id_tp)
 )
 create table Tp_Alumnos
 (

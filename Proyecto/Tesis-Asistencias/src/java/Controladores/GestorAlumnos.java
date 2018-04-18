@@ -54,7 +54,7 @@ public class GestorAlumnos {
     public Alumno obtenerAlumno (int id) {
         Alumno a = new Alumno();
         try {
-            PreparedStatement stmt = conn.prepareStatement("select * from Alumnos where id_alumno = ?");
+            PreparedStatement stmt = conn.prepareStatement("select * from Alumnos where id_alumno = ? and visible = 0");
             stmt.setInt(1, id);
             ResultSet query = stmt.executeQuery();
             if (query.next()) {
