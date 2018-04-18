@@ -5,15 +5,24 @@
  */
 package Controladores;
 
+import Model.TpsAlumnos;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+
 /**
  *
  * @author Yasmin
  */
 public class GestorTPsAlumnos {
-    /*
+
     private Connection conn;
     
-    public GestorAlumnos (){
+    public GestorTPsAlumnos (){
         AccesoDatos ad = new AccesoDatos();
         try {
             conn = DriverManager.getConnection(ad.getConn_string(), ad.getUser(), ad.getPass());
@@ -22,21 +31,18 @@ public class GestorTPsAlumnos {
         }
     }
     
-    public ArrayList<Alumno> obtenerAlumnos (){
-        ArrayList<Alumno> lista = new ArrayList<>();
+    public ArrayList<TpsAlumnos> obtenerTPsAlumnos (){
+        ArrayList<TpsAlumnos> lista = new ArrayList<>();
         try {
             Statement stmt = conn.createStatement();
-            ResultSet query = stmt.executeQuery("Select * from Alumnos where visible = 0");
+            ResultSet query = stmt.executeQuery("Select * from Tp_Alumnos where visible = 0");
             while (query.next()){
-                Alumno a = new Alumno();
-                a.setIdAlumno(query.getInt("id_alumno"));
-                a.setLegajo(query.getInt("legajo"));
-                a.setNombre(query.getString("nombre"));
-                a.setApellido(query.getString("apellido"));
-                a.setIdCurso(query.getInt("id_curso"));
-                a.setIdCondicion(query.getInt("id_condicion"));
-                a.setGrupo(query.getInt("grupo"));
-                lista.add(a);
+                TpsAlumnos ta = new TpsAlumnos();
+                ta.setIdTpAlumno(query.getInt("id_tp_alumno"));
+                ta.setIdTp(query.getInt("id_tp"));
+                ta.setIdAlumno(query.getInt("id_alumno"));
+                ta.setPresentado(query.getBoolean("presentado"));
+                lista.add(ta);
             }
             query.close();
             stmt.close();
@@ -47,20 +53,17 @@ public class GestorTPsAlumnos {
         return lista;
     }
     
-    public Alumno obtenerAlumno (int id) {
-        Alumno a = new Alumno();
+    public TpsAlumnos obtenerTPsAlumnos (int id) {
+        TpsAlumnos ta = new TpsAlumnos();
         try {
-            PreparedStatement stmt = conn.prepareStatement("select * from Alumnos where id_alumno = ? and visible = 0");
+            PreparedStatement stmt = conn.prepareStatement("select * from Alumnos where id_tp_alumno = ? and visible = 0");
             stmt.setInt(1, id);
             ResultSet query = stmt.executeQuery();
             if (query.next()) {
-                a.setIdAlumno(query.getInt("id_alumno"));
-                a.setLegajo(query.getInt("legajo"));
-                a.setNombre(query.getString("nombre"));
-                a.setApellido(query.getString("apellido"));
-                a.setIdCurso(query.getInt("id_curso"));
-                a.setIdCondicion(query.getInt("id_condicion"));
-                a.setGrupo(query.getInt("grupo"));
+                ta.setIdTpAlumno(query.getInt("id_tp_alumno"));
+                ta.setIdTp(query.getInt("id_tp"));
+                ta.setIdAlumno(query.getInt("id_alumno"));
+                ta.setPresentado(query.getBoolean("presentado"));
             }
             query.close();
             stmt.close();
@@ -68,19 +71,17 @@ public class GestorTPsAlumnos {
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-        return a;
+        return ta;
     }
     //TERMINAR
-    public boolean modificarAlumno (Alumno a) {
+    public boolean modificarTPsAlumnos (TpsAlumnos ta) {
         boolean modifico = true;
         try {
             PreparedStatement stmt = conn.prepareStatement("");
-            stmt.setInt(1, a.getIdAlumno());
-            stmt.setInt(2, a.getLegajo());
-            stmt.setString(3, a.getNombre());
-            stmt.setString(4, a.getApellido());
-            stmt.setInt(5, a.getIdCondicion());
-            stmt.setInt(6, a.getGrupo());
+            stmt.setInt(1, ta.getIdTpAlumno());
+            stmt.setInt(2, ta.getIdTp());
+            stmt.setInt(3, ta.getIdAlumno());
+            stmt.setBoolean(4, ta.isPresentado());
             stmt.executeUpdate();
             stmt.close();
             conn.close();
@@ -91,31 +92,13 @@ public class GestorTPsAlumnos {
         return modifico;
     }
     //TERMINAR
-    public boolean elimniarAlumno (Alumno a, int id) {
-        boolean modifico = true;
-        try {
-            PreparedStatement stmt = conn.prepareStatement("");
-            stmt.setBoolean(1, a.isVisible());
-            stmt.executeUpdate();
-            stmt.close();
-            conn.close();
-        } catch (SQLException ex) {
-            System.out.println(ex);
-            modifico = false;
-        }
-        return modifico;
-    }
-    //TERMINAR
-    public boolean agregarAlumno (Alumno a) {
+    public boolean agregarTPsAlumnos (TpsAlumnos ta) {
         boolean inserto = true;
         try {
             PreparedStatement stmt = conn.prepareStatement("");
-            stmt.setInt(1, a.getIdAlumno());
-            stmt.setInt(2, a.getLegajo());
-            stmt.setString(3, a.getNombre());
-            stmt.setString(4, a.getApellido());
-            stmt.setInt(5, a.getIdCondicion());
-            stmt.setInt(6, a.getGrupo());
+            stmt.setInt(1, ta.getIdTp());
+            stmt.setInt(2, ta.getIdAlumno());
+            stmt.setBoolean(3, ta.isPresentado());
             stmt.executeUpdate();
             stmt.close();
             conn.close();
@@ -125,5 +108,4 @@ public class GestorTPsAlumnos {
         }
         return inserto;
     }
-    */
 }

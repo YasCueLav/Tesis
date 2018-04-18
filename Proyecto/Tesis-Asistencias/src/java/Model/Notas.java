@@ -23,6 +23,14 @@ public class Notas {
         this.idTp = idTp;
     }
 
+    public int getIdExamen() {
+        return idExamen;
+    }
+
+    public int getIdTp() {
+        return idTp;
+    }
+
     public int getIdNota() {
         return idNota;
     }
@@ -53,6 +61,14 @@ public class Notas {
 
     public void setVisible(boolean visible) {
         this.visible = visible;
+    }
+
+    public void setIdExamen(int idExamen) {
+        this.idExamen = idExamen;
+    }
+
+    public void setIdTp(int idTp) {
+        this.idTp = idTp;
     }
     
     

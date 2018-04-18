@@ -5,6 +5,7 @@
  */
 package Controladores;
 
+import Model.Notas;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -28,22 +29,20 @@ public class GestorNotas {
             System.out.println(e);
         }
     }
-    /*
-    public ArrayList<Alumno> obtenerAlumnos (){
-        ArrayList<Alumno> lista = new ArrayList<>();
+
+    public ArrayList<Notas> obtenerNotas (){
+        ArrayList<Notas> lista = new ArrayList<>();
         try {
             Statement stmt = conn.createStatement();
-            ResultSet query = stmt.executeQuery("Select * from Alumnos where visible = 0");
+            ResultSet query = stmt.executeQuery("Select * from Notas where visible = 0");
             while (query.next()){
-                Alumno a = new Alumno();
-                a.setIdAlumno(query.getInt("id_alumno"));
-                a.setLegajo(query.getInt("legajo"));
-                a.setNombre(query.getString("nombre"));
-                a.setApellido(query.getString("apellido"));
-                a.setIdCurso(query.getInt("id_curso"));
-                a.setIdCondicion(query.getInt("id_condicion"));
-                a.setGrupo(query.getInt("grupo"));
-                lista.add(a);
+                Notas n = new Notas();
+                n.setIdNota(query.getInt("id_nota"));
+                n.setIdAlumno(query.getInt("id_alumno"));
+                n.setIdExamen(query.getInt("id_examen"));
+                n.setIdTp(query.getInt("id_tp"));
+                n.setNota(query.getDouble("nota"));
+                lista.add(n);
             }
             query.close();
             stmt.close();
@@ -54,20 +53,18 @@ public class GestorNotas {
         return lista;
     }
     
-    public Alumno obtenerAlumno (int id) {
-        Alumno a = new Alumno();
+    public Notas obtenerNota (int id) {
+        Notas n = new Notas();
         try {
-            PreparedStatement stmt = conn.prepareStatement("select * from Alumnos where id_alumno = ? and visible = 0");
+            PreparedStatement stmt = conn.prepareStatement("select * from Notas where id_nota = ? and visible = 0");
             stmt.setInt(1, id);
             ResultSet query = stmt.executeQuery();
             if (query.next()) {
-                a.setIdAlumno(query.getInt("id_alumno"));
-                a.setLegajo(query.getInt("legajo"));
-                a.setNombre(query.getString("nombre"));
-                a.setApellido(query.getString("apellido"));
-                a.setIdCurso(query.getInt("id_curso"));
-                a.setIdCondicion(query.getInt("id_condicion"));
-                a.setGrupo(query.getInt("grupo"));
+                n.setIdNota(query.getInt("id_nota"));
+                n.setIdAlumno(query.getInt("id_alumno"));
+                n.setIdExamen(query.getInt("id_examen"));
+                n.setIdTp(query.getInt("id_tp"));
+                n.setNota(query.getDouble("nota"));
             }
             query.close();
             stmt.close();
@@ -75,19 +72,18 @@ public class GestorNotas {
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-        return a;
+        return n;
     }
     //TERMINAR
-    public boolean modificarAlumno (Alumno a) {
+    public boolean modificarNotas (Notas n) {
         boolean modifico = true;
         try {
             PreparedStatement stmt = conn.prepareStatement("");
-            stmt.setInt(1, a.getIdAlumno());
-            stmt.setInt(2, a.getLegajo());
-            stmt.setString(3, a.getNombre());
-            stmt.setString(4, a.getApellido());
-            stmt.setInt(5, a.getIdCondicion());
-            stmt.setInt(6, a.getGrupo());
+            stmt.setInt(1, n.getIdNota());
+            stmt.setInt(2, n.getIdAlumno());
+            stmt.setInt(3, n.getIdExamen());
+            stmt.setInt(4, n.getIdTp());
+            stmt.setDouble(5, n.getNota());
             stmt.executeUpdate();
             stmt.close();
             conn.close();
@@ -98,11 +94,11 @@ public class GestorNotas {
         return modifico;
     }
     //TERMINAR
-    public boolean elimniarAlumno (Alumno a, int id) {
+    public boolean elimniarNota (Notas n, int id) {
         boolean modifico = true;
         try {
             PreparedStatement stmt = conn.prepareStatement("");
-            stmt.setBoolean(1, a.isVisible());
+            stmt.setBoolean(1, n.isVisible());
             stmt.executeUpdate();
             stmt.close();
             conn.close();
@@ -113,16 +109,14 @@ public class GestorNotas {
         return modifico;
     }
     //TERMINAR
-    public boolean agregarAlumno (Alumno a) {
+    public boolean agregarAlumno (Notas n) {
         boolean inserto = true;
         try {
             PreparedStatement stmt = conn.prepareStatement("");
-            stmt.setInt(1, a.getIdAlumno());
-            stmt.setInt(2, a.getLegajo());
-            stmt.setString(3, a.getNombre());
-            stmt.setString(4, a.getApellido());
-            stmt.setInt(5, a.getIdCondicion());
-            stmt.setInt(6, a.getGrupo());
+            stmt.setInt(1, n.getIdAlumno());
+            stmt.setInt(2, n.getIdExamen());
+            stmt.setInt(3, n.getIdTp());
+            stmt.setDouble(4, n.getNota());
             stmt.executeUpdate();
             stmt.close();
             conn.close();
@@ -132,5 +126,4 @@ public class GestorNotas {
         }
         return inserto;
     }
-    */
 }
