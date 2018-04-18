@@ -9,6 +9,9 @@ public class TPs {
     String nombreTp;
     boolean visible;
 
+    public TPs() {
+    }
+
     public TPs(int idTp, String nombreTp) {
         this.idTp = idTp;
         this.nombreTp = nombreTp;
