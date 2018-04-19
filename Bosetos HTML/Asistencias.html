@@ -3,7 +3,9 @@
 		<title>Asistencia</title>
 	</head>
 	<body>
-		<h2>Asistencia día (Fecha)</h2>
+		<h2>Asistencia día <input type="date" name="fechaHoy"> </h2>
+		<form>
+		<input type="checkbox" name="FechaObligatoria" value=""> Fecha Obligatoria<br>
 		<table class="table table-striped">
 		  <thead>
 			<tr>
@@ -13,14 +15,18 @@
 			  <th scope="col">Presente?</th>
 			</tr>
 		  </thead>
-		  <tbody>
-			<tr>
-			  <th scope="row">108809</th>
-			  <td>Cueva Lavezzo, Yasmin </td>
-			  <td>1w2</td>
-			  <td>(chek)</td>
-			</tr>
-		  </tbody>
+			<div>
+			  <tbody>
+				<tr>
+				  <th scope="row">108809</th>
+				  <td>Cueva Lavezzo, Yasmin </td>
+				  <td>1w2</td>
+				  <td>(<input type="checkbox" name="Asistencia" value="">)</td>
+				</tr>
+			  </tbody>
+			</div>
 		</table>
+		<input type="submit" value="submit">
+		</form>
 	</body>
 </html>
