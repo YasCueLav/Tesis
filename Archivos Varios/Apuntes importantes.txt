@@ -2,7 +2,7 @@ usuario de SQL --> prueba
 Pass --> sa1234
 ________________________________________________________________________________________
 
-Aprobación directa -> 80% asistencias // aprobado parcial de sistemas de unidades con 8 // entregado todos los TPs en la 1° entrega // presentado en TFI nota mínima de 8
+Aprobación directa -> 80% asistencias // aprobado parcial de sistemas de unidades con 8 // entregado todos los TPs en la 1° entrega // presentado en TFI nota mínima de 8(no recuperatorio)
 Promoción de Sistema de unidades -> 80% asistencias // aprobado parcial de sistemas de unidades con 7 //entregado todos los TPs tiempo y forma // presentado en TFI nota mínima de 7
 Regular -> 80% asistencias // aprobado parcial de sistemas de unidades con 4 // entregado todos los TPs tiempo y forma // presentado en TFI nota mínima de 7
 Libre x no cumplimiento
@@ -14,6 +14,16 @@ Integracion 1v1
 Integracion 1v2
 ________________________________________________________________________________________
 
+--TPs
+-- Trabajo practico 1 (entregado a tiempo y aprobado)
+-- Trabajo practico 2 (entregado a tiempo y aprobado)
+-- Trabajo practico 3 (entregado a tiempo y aprobado)
+-- Trabajo practico 4 (entregado a tiempo y aprobado)
+-- Trabajo practico 5 (entregado a tiempo y aprobado)
+-- TP Final integrador (entregado a tiempo y nota)
+
+--Parcial recuperatorio--
+--Parcial siestemas de unidades (recupertorio)
 
 
 
