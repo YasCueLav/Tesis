@@ -5,7 +5,7 @@
  */
 package Controladores;
 
-import Model.TPs;
+import Model.TiposExamenes;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -18,11 +18,10 @@ import java.util.ArrayList;
  *
  * @author Yasmin
  */
-public class GestorTPs {
-    
+public class GestorTiposExamenes {
     private Connection conn;
     
-    public GestorTPs (){
+    public GestorTiposExamenes (){
         AccesoDatos ad = new AccesoDatos();
         try {
             conn = DriverManager.getConnection(ad.getConn_string(), ad.getUser(), ad.getPass());
@@ -31,16 +30,16 @@ public class GestorTPs {
         }
     }
     
-    public ArrayList<TPs> obtenerTPs (){
-        ArrayList<TPs> lista = new ArrayList<>();
+    public ArrayList<TiposExamenes> obtenerTiposExamenes (){
+        ArrayList<TiposExamenes> lista = new ArrayList<>();
         try {
             Statement stmt = conn.createStatement();
-            ResultSet query = stmt.executeQuery("Select * from Trabajos_Practicos where visible = 0");
+            ResultSet query = stmt.executeQuery("Select * from Tipos_Examenes where visible = 0");
             while (query.next()){
-                TPs t = new TPs();
-                t.setIdTp(query.getInt("id_tp"));
-                t.setNombreTp(query.getString("nombre"));
-                lista.add(t);
+                TiposExamenes te = new TiposExamenes();
+                te.setIdTipoExamne(query.getInt("id_tipo_examen"));
+                te.setTipoExamen(query.getString("tipo_examen"));
+                lista.add(te);
             }
             query.close();
             stmt.close();
@@ -51,15 +50,15 @@ public class GestorTPs {
         return lista;
     }
     
-    public TPs obtenerTPs (int id) {
-        TPs t = new TPs();
+    public TiposExamenes obtenerTipoExamen (int id) {
+        TiposExamenes te = new TiposExamenes();
         try {
-            PreparedStatement stmt = conn.prepareStatement("select * from Trabajos_Practicos where id_tp = ? and visible = 0");
+            PreparedStatement stmt = conn.prepareStatement("select * from Tipos_Examenes where id_tipo_examen = ? and visible = 0");
             stmt.setInt(1, id);
             ResultSet query = stmt.executeQuery();
             if (query.next()) {
-                t.setIdTp(query.getInt("id_tp"));
-                t.setNombreTp(query.getString("nombre"));
+                te.setIdTipoExamne(query.getInt("id_tipo_examen"));
+                te.setTipoExamen(query.getString("tipo_examen"));
             }
             query.close();
             stmt.close();
@@ -67,7 +66,6 @@ public class GestorTPs {
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-        return t;
+        return te;
     }
-    
 }

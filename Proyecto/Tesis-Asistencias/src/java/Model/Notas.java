@@ -8,16 +8,27 @@ public class Notas {
     int idNota;
     double nota;
     int idAlumno;
+    int idExamen;
+    int idTp;
     boolean visible;
 
     public Notas() {
     }
 
-    
-    public Notas(int idNota, double nota, int idAlumno) {
+    public Notas(int idNota, double nota, int idAlumno, int idExamen, int idTp) {
         this.idNota = idNota;
         this.nota = nota;
         this.idAlumno = idAlumno;
+        this.idExamen = idExamen;
+        this.idTp = idTp;
+    }
+
+    public int getIdExamen() {
+        return idExamen;
+    }
+
+    public int getIdTp() {
+        return idTp;
     }
 
     public int getIdNota() {
@@ -50,6 +61,14 @@ public class Notas {
 
     public void setVisible(boolean visible) {
         this.visible = visible;
+    }
+
+    public void setIdExamen(int idExamen) {
+        this.idExamen = idExamen;
+    }
+
+    public void setIdTp(int idTp) {
+        this.idTp = idTp;
     }
     
     

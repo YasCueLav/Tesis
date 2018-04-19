@@ -11,6 +11,9 @@ public class TpsAlumnos {
     boolean presentado;
     boolean visible;
 
+    public TpsAlumnos() {
+    }
+
     public TpsAlumnos(int idTpAlumno, int idTp, int idAlumno, boolean presentado) {
         this.idTpAlumno = idTpAlumno;
         this.idTp = idTp;
