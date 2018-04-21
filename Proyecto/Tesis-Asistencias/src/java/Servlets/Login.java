@@ -71,7 +71,7 @@ public class Login extends HttpServlet {
                 HttpSession mySession = request.getSession();
                 mySession.setAttribute("inicio", true);
                 getServletContext().getRequestDispatcher("/Index.jsp").forward(request, response);
-                System.out.println("inisidado");
+                System.out.println("inicidado");
             } else {
                 // no match
                 System.out.println("no match");

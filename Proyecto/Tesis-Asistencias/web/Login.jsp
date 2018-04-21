@@ -27,7 +27,6 @@
               <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña" name="pass">
             </div>
                 <input type="submit" value="Iniciar" class="btn btn-primary"/>
-                <!--<button type="submit" value="Iniciar" class="btn btn-primary">Submit</button>-->
         </form>
         </div>
     </body>
