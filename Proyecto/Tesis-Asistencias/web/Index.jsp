@@ -8,10 +8,12 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>Inicio</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <jsp:include page="Links.jsp"></jsp:include>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <jsp:include page="Menu.jsp"></jsp:include>
+        <h1>Bien</h1>
     </body>
 </html>
