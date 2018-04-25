@@ -41,7 +41,7 @@ public class GestorTPsAlumnos {
                 ta.setIdTpAlumno(query.getInt("id_tp_alumno"));
                 ta.setIdTp(query.getInt("id_tp"));
                 ta.setIdAlumno(query.getInt("id_alumno"));
-                ta.setPresentado(query.getBoolean("presentado"));
+                ta.setPresentado(query.getInt("presentado"));
                 lista.add(ta);
             }
             query.close();
@@ -63,7 +63,7 @@ public class GestorTPsAlumnos {
                 ta.setIdTpAlumno(query.getInt("id_tp_alumno"));
                 ta.setIdTp(query.getInt("id_tp"));
                 ta.setIdAlumno(query.getInt("id_alumno"));
-                ta.setPresentado(query.getBoolean("presentado"));
+                ta.setPresentado(query.getInt("presentado"));
             }
             query.close();
             stmt.close();

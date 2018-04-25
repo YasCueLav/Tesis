@@ -42,8 +42,8 @@ public class GestorAsistencias {
                 a.setIdAsistencias(query.getInt("id_asistencia"));
                 a.setIdAlumno(query.getInt("id_alumno"));
                 a.setFechaReguistro(query.getDate("fecha_registro"));
-                a.setEstaPresente(query.getBoolean("esta_Precente"));
-                a.setFechaObligatoria(query.getBoolean("obligatoria"));
+                a.setEstaPresente(query.getInt("esta_Precente"));
+                a.setFechaObligatoria(query.getInt("obligatoria"));
                 lista.add(a);
             }
             query.close();
@@ -65,8 +65,8 @@ public class GestorAsistencias {
                 a.setIdAsistencias(query.getInt("id_asistencia"));
                 a.setIdAlumno(query.getInt("id_alumno"));
                 a.setFechaReguistro(query.getDate("fecha_registro"));
-                a.setEstaPresente(query.getBoolean("esta_Precente"));
-                a.setFechaObligatoria(query.getBoolean("obligatoria"));
+                a.setEstaPresente(query.getInt("esta_Precente"));
+                a.setFechaObligatoria(query.getInt("obligatoria"));
             }
             query.close();
             stmt.close();
