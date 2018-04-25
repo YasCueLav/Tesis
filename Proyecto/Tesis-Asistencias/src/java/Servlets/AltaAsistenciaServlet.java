@@ -7,6 +7,7 @@ package Servlets;
 
 import Controladores.GestorAlumnos;
 import Controladores.GestorAsistencias;
+import Model.Asistencias;
 import Model.VMAlumnosCursos;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -21,7 +22,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Yasmin
  */
-public class TomaAsistenciaServlet extends HttpServlet {
+public class AltaAsistenciaServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -73,7 +74,19 @@ public class TomaAsistenciaServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        Asistencias a = new Asistencias();
+        GestorAsistencias ga = new GestorAsistencias();
+        a.setIdAlumno(Integer.parseInt(request.getParameter("")));
+//        a.setFechaReguistro();
+        a.setEstaPresente(Integer.parseInt(request.getParameter("")));
+        a.setFechaObligatoria(Integer.parseInt(request.getParameter("")));
         
+        boolean cargo = ga.agregarAsistencias(a);
+        if (cargo) {
+            getServletContext().getRequestDispatcher("/Exito.jsp").forward(request, response);
+        } else {
+            getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
+        }
         processRequest(request, response);
     }
 

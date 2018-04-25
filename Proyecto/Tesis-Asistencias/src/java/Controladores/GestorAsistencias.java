@@ -117,11 +117,11 @@ public class GestorAsistencias {
     public boolean agregarAsistencias(Asistencias a) {
         boolean inserto = true;
         try {
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Asistencias (id_alumno,fecha_registro,esta_Precente,obligatoria,visible) VALUES (?,?,?,?,?)");
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Asistencias (id_alumno,fecha_registro,esta_Precente,obligatoria,visible) VALUES (?,GETDATE(),?,?,0)");
             stmt.setInt(1, a.getIdAlumno());
-            stmt.setDate(2, a.getFechaReguistro());
-            stmt.setBoolean(3, a.isEstaPresente());
-            stmt.setBoolean(4, a.isFechaObligatoria());
+//            stmt.setDate(2, a.getFechaReguistro());
+            stmt.setBoolean(2, a.isEstaPresente());
+            stmt.setBoolean(3, a.isFechaObligatoria());
             stmt.executeUpdate();
             stmt.close();
             conn.close();

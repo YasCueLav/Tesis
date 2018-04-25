@@ -10,7 +10,11 @@
     </servlet>
     <servlet>
         <servlet-name>TomaAsistenciaServlet</servlet-name>
-        <servlet-class>Servlets.TomaAsistenciaServlet</servlet-class>
+        <servlet-class>Servlets.AltAsistenciaServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AltaAsistenciaServlet</servlet-name>
+        <servlet-class>Servlets.AltaAsistenciaServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>TomaAsistenciaServlet</servlet-name>
         <url-pattern>/TomaAsistenciaServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AltaAsistenciaServlet</servlet-name>
+        <url-pattern>/AltaAsistenciaServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

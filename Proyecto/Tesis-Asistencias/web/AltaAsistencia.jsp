@@ -1,5 +1,5 @@
 <%-- 
-    Document   : TomaAsistencia
+    Document   : AltaAsistencia
     Created on : 25/04/2018, 16:40:15
     Author     : Yasmin
 --%>
@@ -10,14 +10,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>TomaAsistencia</title>
+        <title>Alta Asistencia</title>
         <jsp:include page="Links.jsp"></jsp:include>
     </head>
     <body>
         <jsp:include page="Menu.jsp"></jsp:include>
         <div>
-            <h2>Asistencia día <input type="date" name="fechaHoy"> </h2>
-            <form>
+            <h2>Asistencia día <input type="date" name="fechaHoy" value=""> </h2>
+            <form action="AltaAsistenciaServlet" method="POST">
                 <input type="checkbox" name="FechaObligatoria" value=""> Fecha Obligatoria<br>
                 <table class="table table-striped">
                   <thead>
@@ -30,14 +30,14 @@
                   </thead>
                     <div>
                         <tbody>
-                            <%--<c:forEach items="${}" var"">
+                            <c:forEach items="${alumno}" var="a">
                                 <tr>
-                                  <th scope="row">108809</th>
-                                  <td>Cueva Lavezzo, Yasmin </td>
-                                  <td>1w2</td>
-                                  <td><input type="checkbox" name="Asistencia" value="false"></td>
+                                    <th val scope="row" <%--value="${a.getIdAlumno}"--%>> ${a.getLegajo}</th>
+                                    <td> ${a.getApellido}, ${a.getNombre}</td>
+                                    <td <%--value="${a.getIdCurso}"--%>>${a.getDivicionCurso}</td>
+                                    <td><input type="checkbox" class="form-check-input" name="Asistencia" value="false"></td>
                                 </tr>
-                            </c:forEach>--%>
+                            </c:forEach>
                           </tbody>
                     </div>
                 </table>
