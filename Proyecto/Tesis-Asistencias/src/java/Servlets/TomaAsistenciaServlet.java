@@ -5,12 +5,17 @@
  */
 package Servlets;
 
+import Controladores.GestorAlumnos;
+import Controladores.GestorAsistencias;
+import Model.VMAlumnosCursos;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -44,6 +49,16 @@ public class TomaAsistenciaServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession mySession = request.getSession();
+        boolean isLogged = (boolean) mySession.getAttribute("inicio");
+        if (isLogged) {
+            GestorAlumnos ga = new GestorAlumnos();
+            ArrayList<VMAlumnosCursos> alumno = ga.obtenerAlumnoCurso();
+            request.setAttribute("alumno", alumno);
+            getServletContext().getRequestDispatcher("/TomaAsistencia.jsp").forward(request, response);
+        } else {
+            getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
+        }
         processRequest(request, response);
     }
 
@@ -58,6 +73,7 @@ public class TomaAsistenciaServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         processRequest(request, response);
     }
 

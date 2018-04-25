@@ -6,6 +6,7 @@
 package Controladores;
 
 import Model.Asistencias;
+import Model.VMAlumnosCursos;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -53,7 +54,7 @@ public class GestorAsistencias {
         }
         return lista;
     }
-
+    
     public Asistencias obtenerAsistencias(int id) {
         Asistencias a = new Asistencias();
         try {
@@ -116,12 +117,11 @@ public class GestorAsistencias {
     public boolean agregarAsistencias(Asistencias a) {
         boolean inserto = true;
         try {
-            PreparedStatement stmt = conn.prepareStatement("");
-            stmt.setInt(1, a.getIdAsistencias());
-            stmt.setInt(2, a.getIdAlumno());
-            stmt.setDate(3, a.getFechaReguistro());
-            stmt.setBoolean(4, a.isEstaPresente());
-            stmt.setBoolean(5, a.isFechaObligatoria());
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Asistencias (id_alumno,fecha_registro,esta_Precente,obligatoria,visible) VALUES (?,?,?,?,?)");
+            stmt.setInt(1, a.getIdAlumno());
+            stmt.setDate(2, a.getFechaReguistro());
+            stmt.setBoolean(3, a.isEstaPresente());
+            stmt.setBoolean(4, a.isFechaObligatoria());
             stmt.executeUpdate();
             stmt.close();
             conn.close();

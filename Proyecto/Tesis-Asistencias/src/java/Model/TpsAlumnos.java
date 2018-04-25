@@ -53,12 +53,20 @@ public class TpsAlumnos {
         this.idAlumno = idAlumno;
     }
 
-    public void setPresentado(boolean presentado) {
-        this.presentado = presentado;
+    public void setPresentado(int presentado) {
+        if (presentado == 0) {
+            this.presentado = true;
+        } else {
+            this.presentado = false;
+        }
     }
 
-    public void setVisible(boolean visible) {
-        this.visible = visible;
+    public void setVisible(int visible) {
+        if (visible == 0) {
+            this.visible = true;
+        } else {
+            this.visible = false;
+        }
     }
     
     

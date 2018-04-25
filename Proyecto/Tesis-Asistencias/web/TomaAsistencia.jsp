@@ -4,6 +4,7 @@
     Author     : Yasmin
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -24,21 +25,23 @@
                           <th scope="col">legajo</th>
                           <th scope="col">Apellido, Nombre</th>
                           <th scope="col">Divicion</th>
-                          <th scope="col">Presente?</th>
+                          <th scope="col">Asistio?</th>
                         </tr>
                   </thead>
                     <div>
                         <tbody>
-                                <!--<tr>
+                            <%--<c:forEach items="${}" var"">
+                                <tr>
                                   <th scope="row">108809</th>
                                   <td>Cueva Lavezzo, Yasmin </td>
                                   <td>1w2</td>
-                                  <td>(<input type="checkbox" name="Asistencia" value="">)</td>
-                                </tr>-->
+                                  <td><input type="checkbox" name="Asistencia" value="false"></td>
+                                </tr>
+                            </c:forEach>--%>
                           </tbody>
                     </div>
                 </table>
-                <input type="submit" value="submit">
+                <input type="submit" value="Cargar" class="btn btn-primary">
             </form>
         </div>
     </body>
