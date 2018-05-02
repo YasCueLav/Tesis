@@ -5,25 +5,18 @@
  */
 package Servlets;
 
-import Controladores.GestorAlumnos;
-import Controladores.GestorAsistencias;
-import Model.Alumno;
-import Model.Asistencias;
-import Model.VMAlumnosCursos;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Yasmin
  */
-public class AltaAsistenciaServlet extends HttpServlet {
+public class AltaCalificacionServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,6 +30,18 @@ public class AltaAsistenciaServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet AltaCalificacionServlet</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet AltaCalificacionServlet at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -51,16 +56,6 @@ public class AltaAsistenciaServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession mySession = request.getSession();
-        boolean isLogged = (boolean) mySession.getAttribute("inicio");
-        if (isLogged) {
-            GestorAlumnos ga = new GestorAlumnos();
-            ArrayList<VMAlumnosCursos> alumno = ga.obtenerAlumnoCurso();
-            request.setAttribute("alumno", alumno);
-            getServletContext().getRequestDispatcher("/AltaAsistencia.jsp").forward(request, response);
-        } else {
-            getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
-        }
         processRequest(request, response);
     }
 
@@ -75,19 +70,6 @@ public class AltaAsistenciaServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Asistencias a = new Asistencias();
-        GestorAsistencias ga = new GestorAsistencias();
-        a.setIdAlumno(Integer.parseInt(request.getParameter("")));
-//        a.setFechaReguistro();
-        a.setEstaPresente(Integer.parseInt(request.getParameter("")));
-        a.setFechaObligatoria(Integer.parseInt(request.getParameter("")));
-        
-        boolean cargo = ga.agregarAsistencias(a);
-        if (cargo) {
-            getServletContext().getRequestDispatcher("/Exito.jsp").forward(request, response);
-        } else {
-            getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
-        }
         processRequest(request, response);
     }
 

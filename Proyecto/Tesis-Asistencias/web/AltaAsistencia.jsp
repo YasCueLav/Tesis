@@ -44,5 +44,8 @@
                 <input type="submit" value="Cargar" class="btn btn-primary">
             </form>
         </div>
+        <!--<c:forEach items="${alumno}" var="a">
+            <p>${a.getLegajo}</p>            
+        </c:forEach>-->
     </body>
 </html>

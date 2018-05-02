@@ -16,6 +16,10 @@
         <servlet-name>AltaAsistenciaServlet</servlet-name>
         <servlet-class>Servlets.AltaAsistenciaServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AltaCalificacionServlet</servlet-name>
+        <servlet-class>Servlets.AltaCalificacionServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
         <url-pattern>/Index</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>AltaAsistenciaServlet</servlet-name>
         <url-pattern>/AltaAsistenciaServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AltaCalificacionServlet</servlet-name>
+        <url-pattern>/AltaCalificacionServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
