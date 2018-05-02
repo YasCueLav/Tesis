@@ -66,16 +66,28 @@ public class Asistencias {
         this.fechaReguistro = fechaReguistro;
     }
 
-    public void setEstaPresente(boolean estaPresente) {
-        this.estaPresente = estaPresente;
+    public void setEstaPresente (int estaPresente) {
+        if (estaPresente == 0) {
+            this.estaPresente = true;
+        } else {
+            this.estaPresente = false;
+        }
     }
 
-    public void setFechaObligatoria(boolean fechaObligatoria) {
-        this.fechaObligatoria = fechaObligatoria;
+    public void setFechaObligatoria(int fechaObligatoria) {
+        if (fechaObligatoria == 0) {
+            this.fechaObligatoria = true;
+        } else {
+            this.fechaObligatoria = false;
+        }
     }
 
-    public void setVisible(boolean visible) {
-        this.visible = visible;
+    public void setVisible (int visible) {
+        if (visible == 0) {
+            this.visible = true;
+        } else {
+            this.visible = false;
+        }
     }
     
     

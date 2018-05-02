@@ -6,6 +6,7 @@
 package Controladores;
 
 import Model.Asistencias;
+import Model.VMAlumnosCursos;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -41,8 +42,8 @@ public class GestorAsistencias {
                 a.setIdAsistencias(query.getInt("id_asistencia"));
                 a.setIdAlumno(query.getInt("id_alumno"));
                 a.setFechaReguistro(query.getDate("fecha_registro"));
-                a.setEstaPresente(query.getBoolean("esta_Precente"));
-                a.setFechaObligatoria(query.getBoolean("obligatoria"));
+                a.setEstaPresente(query.getInt("esta_Precente"));
+                a.setFechaObligatoria(query.getInt("obligatoria"));
                 lista.add(a);
             }
             query.close();
@@ -53,7 +54,7 @@ public class GestorAsistencias {
         }
         return lista;
     }
-
+    
     public Asistencias obtenerAsistencias(int id) {
         Asistencias a = new Asistencias();
         try {
@@ -64,8 +65,8 @@ public class GestorAsistencias {
                 a.setIdAsistencias(query.getInt("id_asistencia"));
                 a.setIdAlumno(query.getInt("id_alumno"));
                 a.setFechaReguistro(query.getDate("fecha_registro"));
-                a.setEstaPresente(query.getBoolean("esta_Precente"));
-                a.setFechaObligatoria(query.getBoolean("obligatoria"));
+                a.setEstaPresente(query.getInt("esta_Precente"));
+                a.setFechaObligatoria(query.getInt("obligatoria"));
             }
             query.close();
             stmt.close();
@@ -116,12 +117,11 @@ public class GestorAsistencias {
     public boolean agregarAsistencias(Asistencias a) {
         boolean inserto = true;
         try {
-            PreparedStatement stmt = conn.prepareStatement("");
-            stmt.setInt(1, a.getIdAsistencias());
-            stmt.setInt(2, a.getIdAlumno());
-            stmt.setDate(3, a.getFechaReguistro());
-            stmt.setBoolean(4, a.isEstaPresente());
-            stmt.setBoolean(5, a.isFechaObligatoria());
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Asistencias (id_alumno,fecha_registro,esta_Precente,obligatoria,visible) VALUES (?,GETDATE(),?,?,0)");
+            stmt.setInt(1, a.getIdAlumno());
+//            stmt.setDate(2, a.getFechaReguistro());
+            stmt.setBoolean(2, a.isEstaPresente());
+            stmt.setBoolean(3, a.isFechaObligatoria());
             stmt.executeUpdate();
             stmt.close();
             conn.close();

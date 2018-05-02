@@ -8,6 +8,18 @@
         <servlet-name>Login</servlet-name>
         <servlet-class>Servlets.Login</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>TomaAsistenciaServlet</servlet-name>
+        <servlet-class>Servlets.AltAsistenciaServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AltaAsistenciaServlet</servlet-name>
+        <servlet-class>Servlets.AltaAsistenciaServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AltaCalificacionServlet</servlet-name>
+        <servlet-class>Servlets.AltaCalificacionServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
         <url-pattern>/Index</url-pattern>
@@ -15,6 +27,18 @@
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TomaAsistenciaServlet</servlet-name>
+        <url-pattern>/TomaAsistenciaServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AltaAsistenciaServlet</servlet-name>
+        <url-pattern>/AltaAsistenciaServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AltaCalificacionServlet</servlet-name>
+        <url-pattern>/AltaCalificacionServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

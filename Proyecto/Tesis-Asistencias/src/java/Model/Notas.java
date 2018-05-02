@@ -59,8 +59,12 @@ public class Notas {
         this.idAlumno = idAlumno;
     }
 
-    public void setVisible(boolean visible) {
-        this.visible = visible;
+    public void setVisible(int visible) {
+        if (visible == 0) {
+            this.visible = true;
+        } else {
+            this.visible = false;
+        }
     }
 
     public void setIdExamen(int idExamen) {

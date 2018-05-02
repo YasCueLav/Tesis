@@ -1,6 +1,7 @@
 package Controladores;
 
 import Model.Alumno;
+import Model.VMAlumnosCursos;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -130,4 +131,28 @@ public class GestorAlumnos {
         return inserto;
     }
 
+    public ArrayList<VMAlumnosCursos> obtenerAlumnoCurso() {
+        ArrayList<VMAlumnosCursos> lista = new ArrayList<>();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet query = stmt.executeQuery("SELECT al.id_alumno, al.legajo, al.apellido, al.nombre, c.id_curso, c.seccion FROM Alumnos al join Cursos c on (al.id_curso = c.id_curso) WHERE al.visible = 0 and c.visible =0");
+            while (query.next()) {
+                VMAlumnosCursos vw = new VMAlumnosCursos();
+                vw.setIdAlumno(query.getInt("id_alumno"));
+                vw.setLegajo(query.getInt("legajo"));
+                vw.setApellido(query.getString("apellido"));
+                vw.setNombre(query.getString("nombre"));
+                vw.setIdCurso(query.getInt("id_curso"));
+                vw.setDivicionCurso(query.getString("seccion"));
+                lista.add(vw);
+            }
+            query.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return lista;
+    }
 }
+
