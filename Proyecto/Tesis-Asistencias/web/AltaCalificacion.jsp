@@ -19,16 +19,19 @@
         <div>
             <form action="AltaCalificacionServlet" method="POST">
                 <select name="Examen">
+                    <option>Seleccione un examen ...</option>
                 <c:forEach items="${examen}" var="e">
                      <option value="${e.getIdExamen}">${e.getExamenNombre} - ${e.getTipoExamne}</option>
                 </c:forEach>
                 </select>
-                <select name="curso">
+                <select name="Curso">
+                    <option>Seleccione un curso ...</option>
                 <c:forEach items="${curso}" var="c">
                      <option value="${c.getIdCursos}">${c.getNombreCurso}/${c.getSeccionCurso}</option>
                 </c:forEach>
                 </select>
                 </br>
+                
                 <table class="table table-striped">
                 <thead>
                     <tr>
@@ -39,15 +42,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                      <th scope="row">108809</th>
-                      <td>Cueva Lavezzo, Yasmin </td>
-                      <td>1v2</td>
-                      <td>(<input type="number" name="nota">)</td>
-                    </tr>
+                    <c:forEach items="${alumno}" var="a">
+                        <tr>
+                            <th value="${a.getIdAluno}" name="Alumno" scope="row">${a.getLegajo}</th>
+                            <td>${a.getApellido}, ${a.getNombre} </td>
+                            <td>${a.getDivicionCurso}</td>
+                            <td><input type="number" name="Nota"></td>
+                        </tr>
+                    </c:forEach>
                 </tbody>
-            </table>
-            <input type="submit" value="submit">
+                </table>
+                <input type="submit" value="Cargar" class="btn btn-primary">
             </form>
         </div>
     </body>

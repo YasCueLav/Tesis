@@ -5,9 +5,13 @@
  */
 package Servlets;
 
+import Controladores.GestorAlumnos;
 import Controladores.GestorCursos;
 import Controladores.GestorExamenes;
+import Controladores.GestorNotas;
 import Model.Cursos;
+import Model.Notas;
+import Model.VMAlumnosCursos;
 import Model.VMTipoExamenExamen;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -62,6 +66,9 @@ public class AltaCalificacionServlet extends HttpServlet {
             ArrayList<Cursos> curso = gc.obtenerCursos();
             request.setAttribute("curso", curso);
             //Lista Alumnos
+            GestorAlumnos ga = new GestorAlumnos();
+            ArrayList<VMAlumnosCursos> alumno = ga.obtenerAlumnoCurso();
+            request.setAttribute("alumno", alumno);
             
             getServletContext().getRequestDispatcher("/AltaCalificacion.jsp").forward(request, response);
         } else {
@@ -81,6 +88,18 @@ public class AltaCalificacionServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        Notas n = new Notas();
+        GestorNotas gn = new GestorNotas();
+        n.setIdAlumno(Integer.parseInt(request.getParameter("Alumno")));
+        n.setIdExamen(Integer.parseInt(request.getParameter("Examen")));
+        n.setNota(Integer.parseInt(request.getParameter("Nota")));
+        
+        boolean cargo = gn.agregarNotaParcial(n);
+        if (cargo) {
+            getServletContext().getRequestDispatcher("/Exito.jsp").forward(request, response);
+        } else {
+            getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
+        }
         processRequest(request, response);
     }
 
