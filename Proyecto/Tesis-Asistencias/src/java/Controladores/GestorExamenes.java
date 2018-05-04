@@ -6,6 +6,7 @@
 package Controladores;
 
 import Model.Examenes;
+import Model.VMTipoExamenExamen;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -71,5 +72,25 @@ public class GestorExamenes {
         }
         return e;
     }
-  
+
+    public ArrayList<VMTipoExamenExamen> obtenerTodosExamenes (){
+        ArrayList<VMTipoExamenExamen> lista = new ArrayList<>();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet query = stmt.executeQuery("select e.id_examen,t.tipo_examen,e.examen from Examenes e join Tipos_Examenes t on (e.id_tipo_examen = t.id_tipo_examen) where e.visible = 0 and t.visible = 0");
+            while (query.next()){
+                VMTipoExamenExamen vm = new VMTipoExamenExamen();
+                vm.setIdExamen(query.getInt("id_examen"));
+                vm.setTipoExamne(query.getString("tipo_examen"));
+                vm.setExamenNombre(query.getString("examen"));
+                lista.add(vm);
+            }
+            query.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return lista;
+    }
 }
