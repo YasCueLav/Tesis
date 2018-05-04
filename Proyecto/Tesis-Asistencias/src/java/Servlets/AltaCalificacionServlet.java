@@ -5,8 +5,13 @@
  */
 package Servlets;
 
+import Controladores.GestorCursos;
+import Controladores.GestorExamenes;
+import Model.Cursos;
+import Model.VMTipoExamenExamen;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -48,6 +53,16 @@ public class AltaCalificacionServlet extends HttpServlet {
         HttpSession mySession = request.getSession();
         boolean isLogged = (boolean) mySession.getAttribute("inicio");
         if (isLogged) {
+            //Selecion Examen
+            GestorExamenes ge = new GestorExamenes();
+            ArrayList<VMTipoExamenExamen> examen = ge.obtenerTodosExamenes();
+            request.setAttribute("examen", examen);
+            //Selecion Curso
+            GestorCursos gc = new GestorCursos();
+            ArrayList<Cursos> curso = gc.obtenerCursos();
+            request.setAttribute("curso", curso);
+            //Lista Alumnos
+            
             getServletContext().getRequestDispatcher("/AltaCalificacion.jsp").forward(request, response);
         } else {
             getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
