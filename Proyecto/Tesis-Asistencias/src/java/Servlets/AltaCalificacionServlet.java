@@ -92,7 +92,7 @@ public class AltaCalificacionServlet extends HttpServlet {
         GestorNotas gn = new GestorNotas();
         n.setIdAlumno(Integer.parseInt(request.getParameter("Alumno")));
         n.setIdExamen(Integer.parseInt(request.getParameter("Examen")));
-        n.setNota(Integer.parseInt(request.getParameter("Nota")));
+        n.setNota(Double.parseDouble(request.getParameter("Nota")));
         
         boolean cargo = gn.agregarNotaParcial(n);
         if (cargo) {

@@ -5,8 +5,14 @@
  */
 package Servlets;
 
+import Controladores.GestorAlumnos;
+import Controladores.GestorNotas;
 import Controladores.GestorTPs;
+import Controladores.GestorTPsAlumnos;
+import Model.Notas;
 import Model.TPs;
+import Model.TpsAlumnos;
+import Model.VMAlumnosCursos;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -55,6 +61,10 @@ public class AltaEntregaTPServlet extends HttpServlet {
             GestorTPs gt = new GestorTPs();
              ArrayList<TPs> tp = gt.obtenerTPs();
             request.setAttribute("tp", tp);
+            //Lista Alumnos
+            GestorAlumnos ga = new GestorAlumnos();
+            ArrayList<VMAlumnosCursos> alumno = ga.obtenerAlumnoCurso();
+            request.setAttribute("alumno", alumno);
             
             getServletContext().getRequestDispatcher("/AltaEntregaTP.jsp").forward(request, response);
         } else {
@@ -74,8 +84,23 @@ public class AltaEntregaTPServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        boolean cargo =false;//= gn.agregarNotaParcial(n);
-        if (cargo) {
+        TpsAlumnos tpa = new TpsAlumnos();
+        GestorTPsAlumnos gta = new GestorTPsAlumnos();
+        Notas n = new Notas();
+        GestorNotas gn = new GestorNotas();
+        //n.setIdAlumno(Integer.parseInt(request.getParameter("Alumno")));
+        tpa.setIdTp(Integer.parseInt(request.getParameter("Tp")));
+        tpa.setIdAlumno(Integer.parseInt(request.getParameter("Alumno")));
+        tpa.setPresentado(Integer.parseInt(request.getParameter("Entregado")));
+        
+        n.setNota(Double.parseDouble(request.getParameter("NotaTp")));
+        n.setIdAlumno(Integer.parseInt(request.getParameter("Alumno")));
+        n.setIdAlumno(Integer.parseInt(request.getParameter("Tp")));
+        
+        boolean cargo = gta.agregarTPsAlumnos(tpa);
+        boolean cargoN = gn.agregarNotaTPs(n);
+        
+        if (cargo && cargoN) {
             getServletContext().getRequestDispatcher("/Exito.jsp").forward(request, response);
         } else {
             getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);

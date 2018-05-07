@@ -37,17 +37,19 @@
 			  <th scope="col">Nota?</th>
 			</tr>
 		  </thead>
-                        <tbody>
+                    <tbody>
+                        <c:forEach items="${alumno}" var="a">
                             <tr>
-                              <th scope="row">108809</th>
-                              <td>Cueva Lavezzo, Yasmin </td>
-                              <td>1w2</td>
-                              <td>(<input type="checkbox" name="entregado">)</td>
-                              <td>(<input type="number" name="notaTp">)</td>
+                                <th value="${a.getIdAluno}" name="Alumno" scope="row">${a.getLegajo}</th>
+                                <td>${a.getApellido}, ${a.getNombre} </td>
+                                <td>${a.getDivicionCurso}</td>
+                                <td><input type="checkbox" name="Entregado"></td>
+                                <td><input type="number" name="NotaTp"></td>
                             </tr>
-                        </tbody>
+                        </c:forEach>
+                    </tbody>
 		</table>
-		<input type="submit" value="submit">
+		<input type="submit" value="Cargar" class="btn btn-primary">
             </form>
         </div>
     </body>

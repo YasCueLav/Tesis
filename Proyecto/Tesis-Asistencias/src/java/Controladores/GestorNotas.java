@@ -125,4 +125,21 @@ public class GestorNotas {
         }
         return inserto;
     }
+    
+    public boolean agregarNotaTPs ( Notas n) {
+        boolean inserto = true;
+        try {
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Notas(nota, id_alumno,id_tp, visible) VALUES (?,?,?,0)");
+            stmt.setDouble(1, n.getNota());
+            stmt.setInt(2, n.getIdAlumno());
+            stmt.setInt(3, n.getIdTp());
+            stmt.executeUpdate();
+            stmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            inserto = false;
+        }
+        return inserto;
+    }
 }
