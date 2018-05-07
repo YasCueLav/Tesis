@@ -20,6 +20,10 @@
         <servlet-name>AltaCalificacionServlet</servlet-name>
         <servlet-class>Servlets.AltaCalificacionServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AltaEntregaTPServlet</servlet-name>
+        <servlet-class>Servlets.AltaEntregaTPServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
         <url-pattern>/Index</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>AltaCalificacionServlet</servlet-name>
         <url-pattern>/AltaCalificacionServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AltaEntregaTPServlet</servlet-name>
+        <url-pattern>/AltaEntregaTPServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
