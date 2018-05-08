@@ -109,14 +109,30 @@ public class GestorNotas {
         return modifico;
     }
     //TERMINAR
-    public boolean agregarAlumno (Notas n) {
+    public boolean agregarNotaParcial (Notas n) {
         boolean inserto = true;
         try {
-            PreparedStatement stmt = conn.prepareStatement("");
+            PreparedStatement stmt = conn.prepareStatement("insert into Notas (id_alumno,id_examen,nota,visible) values (?,?,?,0)");
             stmt.setInt(1, n.getIdAlumno());
             stmt.setInt(2, n.getIdExamen());
+            stmt.setDouble(3, n.getNota());
+            stmt.executeUpdate();
+            stmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            inserto = false;
+        }
+        return inserto;
+    }
+    
+    public boolean agregarNotaTPs ( Notas n) {
+        boolean inserto = true;
+        try {
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Notas(nota, id_alumno,id_tp, visible) VALUES (?,?,?,0)");
+            stmt.setDouble(1, n.getNota());
+            stmt.setInt(2, n.getIdAlumno());
             stmt.setInt(3, n.getIdTp());
-            stmt.setDouble(4, n.getNota());
             stmt.executeUpdate();
             stmt.close();
             conn.close();

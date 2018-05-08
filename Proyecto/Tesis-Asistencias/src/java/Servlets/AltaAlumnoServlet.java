@@ -5,28 +5,18 @@
  */
 package Servlets;
 
-import Controladores.GestorAlumnos;
-import Controladores.GestorCursos;
-import Controladores.GestorExamenes;
-import Controladores.GestorNotas;
-import Model.Cursos;
-import Model.Notas;
-import Model.VMAlumnosCursos;
-import Model.VMTipoExamenExamen;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Yasmin
  */
-public class AltaCalificacionServlet extends HttpServlet {
+public class AltaAlumnoServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -54,26 +44,6 @@ public class AltaCalificacionServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession mySession = request.getSession();
-        boolean isLogged = (boolean) mySession.getAttribute("inicio");
-        if (isLogged) {
-            //Selecion Examen
-            GestorExamenes ge = new GestorExamenes();
-            ArrayList<VMTipoExamenExamen> examen = ge.obtenerTodosExamenes();
-            request.setAttribute("examen", examen);
-            //Selecion Curso
-            GestorCursos gc = new GestorCursos();
-            ArrayList<Cursos> curso = gc.obtenerCursos();
-            request.setAttribute("curso", curso);
-            //Lista Alumnos
-            GestorAlumnos ga = new GestorAlumnos();
-            ArrayList<VMAlumnosCursos> alumno = ga.obtenerAlumnoCurso();
-            request.setAttribute("alumno", alumno);
-            
-            getServletContext().getRequestDispatcher("/AltaCalificacion.jsp").forward(request, response);
-        } else {
-            getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
-        }
         processRequest(request, response);
     }
 
@@ -88,18 +58,6 @@ public class AltaCalificacionServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Notas n = new Notas();
-        GestorNotas gn = new GestorNotas();
-        n.setIdAlumno(Integer.parseInt(request.getParameter("Alumno")));
-        n.setIdExamen(Integer.parseInt(request.getParameter("Examen")));
-        n.setNota(Double.parseDouble(request.getParameter("Nota")));
-        
-        boolean cargo = gn.agregarNotaParcial(n);
-        if (cargo) {
-            getServletContext().getRequestDispatcher("/Exito.jsp").forward(request, response);
-        } else {
-            getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
-        }
         processRequest(request, response);
     }
 

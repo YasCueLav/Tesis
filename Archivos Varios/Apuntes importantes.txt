@@ -49,3 +49,14 @@ INSERT INTO Alumnos(legajo, nombre, apellido, id_curso, id_condicion , grupo , v
 VALUES (108813,'Diego' ,'Mayo', 2 , 3, null, 0)
 
 select * from Asistencias
+
+________________________________________________________________________________________
+
+insert into Notas (id_alumno,id_examen,nota,visible)
+	values (1,1,10,0)
+
+select n.id_nota,a.Legajo, te.tipo_examen + ' ' + e.examen 'Examen', n.nota 
+from Notas n join Alumnos a on (n.id_alumno = a.id_alumno)
+	join Examenes e on (n.id_examen = e.id_examen)
+	join Tipos_Examenes te on (e.id_tipo_examen = te.id_tipo_examen)
+where n.visible = 0 and a.visible = 0 and e.visible = 0 and te.visible = 0

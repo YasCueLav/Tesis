@@ -16,16 +16,19 @@
         <li class="nav-item">
         <a class="nav-link" href="/Tesis-Asistencias/AltaAsistenciaServlet">Asistencia <span class="sr-only">(current)</span></a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/Tesis-Asistencias/AltaEntregaTPServlet">Entrega TP <span class="sr-only">(current)</span></a>
+      </li>
       <li class="nav-item dropdown" >
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Nuevo
+          Cargar
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="">Cliente</a>
-          <a class="dropdown-item" href="">Puesto</a>
+          <a class="dropdown-item" href="/Tesis-Asistencias/AltaCalificacionServlet">Notas Parciales</a>
+          <a class="dropdown-item" href="">kk</a>
         </div>
       </li>
-      <li class="nav-item dropdown">
+      <!--<li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
           Listado
         </a>
@@ -34,7 +37,7 @@
           <a class="dropdown-item" href="">Clientes</a>
           <a class="dropdown-item" href="">Puestos</a>
         </div>
-      </li>
+      </li>-->
       <li class="nav-item">
         <a class="nav-link" href="">Ganancias por Piso <span class="sr-only">(current)</span></a>
       </li>

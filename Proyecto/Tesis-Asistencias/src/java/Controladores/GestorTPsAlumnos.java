@@ -95,7 +95,7 @@ public class GestorTPsAlumnos {
     public boolean agregarTPsAlumnos (TpsAlumnos ta) {
         boolean inserto = true;
         try {
-            PreparedStatement stmt = conn.prepareStatement("");
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Tp_Alumnos(id_tp,id_alumno, presentado, visible) VALUES (?, ?,?,0)");
             stmt.setInt(1, ta.getIdTp());
             stmt.setInt(2, ta.getIdAlumno());
             stmt.setBoolean(3, ta.isPresentado());

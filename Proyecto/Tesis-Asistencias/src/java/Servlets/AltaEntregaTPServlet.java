@@ -6,13 +6,13 @@
 package Servlets;
 
 import Controladores.GestorAlumnos;
-import Controladores.GestorCursos;
-import Controladores.GestorExamenes;
 import Controladores.GestorNotas;
-import Model.Cursos;
+import Controladores.GestorTPs;
+import Controladores.GestorTPsAlumnos;
 import Model.Notas;
+import Model.TPs;
+import Model.TpsAlumnos;
 import Model.VMAlumnosCursos;
-import Model.VMTipoExamenExamen;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Yasmin
  */
-public class AltaCalificacionServlet extends HttpServlet {
+public class AltaEntregaTPServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -57,20 +57,16 @@ public class AltaCalificacionServlet extends HttpServlet {
         HttpSession mySession = request.getSession();
         boolean isLogged = (boolean) mySession.getAttribute("inicio");
         if (isLogged) {
-            //Selecion Examen
-            GestorExamenes ge = new GestorExamenes();
-            ArrayList<VMTipoExamenExamen> examen = ge.obtenerTodosExamenes();
-            request.setAttribute("examen", examen);
-            //Selecion Curso
-            GestorCursos gc = new GestorCursos();
-            ArrayList<Cursos> curso = gc.obtenerCursos();
-            request.setAttribute("curso", curso);
+            //tipo TP
+            GestorTPs gt = new GestorTPs();
+             ArrayList<TPs> tp = gt.obtenerTPs();
+            request.setAttribute("tp", tp);
             //Lista Alumnos
             GestorAlumnos ga = new GestorAlumnos();
             ArrayList<VMAlumnosCursos> alumno = ga.obtenerAlumnoCurso();
             request.setAttribute("alumno", alumno);
             
-            getServletContext().getRequestDispatcher("/AltaCalificacion.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/AltaEntregaTP.jsp").forward(request, response);
         } else {
             getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
         }
@@ -88,14 +84,23 @@ public class AltaCalificacionServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        TpsAlumnos tpa = new TpsAlumnos();
+        GestorTPsAlumnos gta = new GestorTPsAlumnos();
         Notas n = new Notas();
         GestorNotas gn = new GestorNotas();
-        n.setIdAlumno(Integer.parseInt(request.getParameter("Alumno")));
-        n.setIdExamen(Integer.parseInt(request.getParameter("Examen")));
-        n.setNota(Double.parseDouble(request.getParameter("Nota")));
+        //n.setIdAlumno(Integer.parseInt(request.getParameter("Alumno")));
+        tpa.setIdTp(Integer.parseInt(request.getParameter("Tp")));
+        tpa.setIdAlumno(Integer.parseInt(request.getParameter("Alumno")));
+        tpa.setPresentado(Integer.parseInt(request.getParameter("Entregado")));
         
-        boolean cargo = gn.agregarNotaParcial(n);
-        if (cargo) {
+        n.setNota(Double.parseDouble(request.getParameter("NotaTp")));
+        n.setIdAlumno(Integer.parseInt(request.getParameter("Alumno")));
+        n.setIdAlumno(Integer.parseInt(request.getParameter("Tp")));
+        
+        boolean cargo = gta.agregarTPsAlumnos(tpa);
+        boolean cargoN = gn.agregarNotaTPs(n);
+        
+        if (cargo && cargoN) {
             getServletContext().getRequestDispatcher("/Exito.jsp").forward(request, response);
         } else {
             getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
