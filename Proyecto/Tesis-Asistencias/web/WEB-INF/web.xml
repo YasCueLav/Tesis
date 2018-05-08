@@ -24,6 +24,10 @@
         <servlet-name>AltaEntregaTPServlet</servlet-name>
         <servlet-class>Servlets.AltaEntregaTPServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AltaAlumnoServlet</servlet-name>
+        <servlet-class>Servlets.AltaAlumnoServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
         <url-pattern>/Index</url-pattern>
@@ -47,6 +51,10 @@
     <servlet-mapping>
         <servlet-name>AltaEntregaTPServlet</servlet-name>
         <url-pattern>/AltaEntregaTPServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AltaAlumnoServlet</servlet-name>
+        <url-pattern>/AltaAlumnoServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
