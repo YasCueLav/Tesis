@@ -5,12 +5,16 @@
  */
 package Servlets;
 
+import Controladores.GestorAlumnos;
+import Model.Alumno;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -44,6 +48,16 @@ public class AltaAlumnoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession mySession = request.getSession();
+        boolean isLogged = (boolean) mySession.getAttribute("inicio");
+        if (isLogged) {
+//            GestorAlumnos ga = new GestorAlumnos();
+//            ArrayList<Alumno> alumno = ga.obtenerAlumnos();
+//            request.setAttribute("alumno", alumno);
+            getServletContext().getRequestDispatcher("/AltaAlumno.jsp").forward(request, response);
+        } else {
+            getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
+        }
         processRequest(request, response);
     }
 
