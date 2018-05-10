@@ -20,14 +20,14 @@
             <form action="AltaCalificacionServlet" method="POST">
                 <select name="Examen">
                     <option>Seleccione un examen ...</option>
-                <c:forEach items="${examen}" var="e">
-                     <option value="${e.getIdExamen}">${e.getExamenNombre} - ${e.getTipoExamne}</option>
+                <c:forEach items="${examen()}" var="e">
+                     <option value="${e.getIdExamen()}">${e.getExamenNombre()} - ${e.getTipoExamne()}</option>
                 </c:forEach>
                 </select>
                 <select name="Curso">
                     <option>Seleccione un curso ...</option>
                 <c:forEach items="${curso}" var="c">
-                     <option value="${c.getIdCursos}">${c.getNombreCurso}/${c.getSeccionCurso}</option>
+                     <option value="${c.getIdCursos()}">${c.getNombreCurso()}/${c.getSeccionCurso()}</option>
                 </c:forEach>
                 </select>
                 </br>
@@ -42,11 +42,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <c:forEach items="${alumno}" var="a">
+                    <c:forEach items="${alumno()}" var="a">
                         <tr>
-                            <th value="${a.getIdAluno}" name="Alumno" scope="row">${a.getLegajo}</th>
-                            <td>${a.getApellido}, ${a.getNombre} </td>
-                            <td>${a.getDivicionCurso}</td>
+                            <th value="${a.getIdAluno()}" name="Alumno" scope="row">${a.getLegajo()}</th>
+                            <td>${a.getApellido()}, ${a.getNombre()} </td>
+                            <td>${a.getDivicionCurso()}</td>
                             <td><input type="number" name="Nota"></td>
                         </tr>
                     </c:forEach>

@@ -56,6 +56,7 @@ public class AltaAsistenciaServlet extends HttpServlet {
         if (isLogged) {
             GestorAlumnos ga = new GestorAlumnos();
             ArrayList<VMAlumnosCursos> alumno = ga.obtenerAlumnoCurso();
+            //ArrayList<Alumno> alumno = ga.obtenerAlumnos();
             request.setAttribute("alumno", alumno);
             getServletContext().getRequestDispatcher("/AltaAsistencia.jsp").forward(request, response);
         } else {

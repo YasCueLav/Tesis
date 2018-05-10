@@ -44,7 +44,7 @@
                     <select name="Condicion" class="form-control">
                         <option>Selecione la condicion...</option>
                         <c:forEach items="${condicion}" var="co">
-                            <option value="${co.getIdondicion()}">${co.getCondicion()}</option>
+                            <option value="${co.getIdCondicion()}">${co.getCondicion()}</option>
                         </c:forEach>
                     </select>
                 </div>
