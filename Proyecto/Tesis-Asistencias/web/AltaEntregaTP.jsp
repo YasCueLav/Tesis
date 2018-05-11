@@ -21,7 +21,7 @@
                     <select name="Tp">
                     <option>Seleccione un Trabajo Practico ...</option>
                     <c:forEach items="${tp}" var="t">
-                        <option value="${t.getIdTp()}">${t.getNombreTp()}</option>
+                        <option>  ${t.getIdTp()} - ${t.getNombreTp()}</option>
                     </c:forEach>
                     </select>
                     <input type="date" name="fechaHoy" placeholder=""><!-- Crear clase que traiga fecha hoy y colocarla en valor por defecto-->
@@ -40,7 +40,7 @@
                     <tbody>
                         <c:forEach items="${alumno}" var="a">
                             <tr>
-                                <th value="${a.getIdAluno()}" name="Alumno" scope="row">${a.getLegajo()}</th>
+                                <th name="Alumno" scope="row">${a.getLegajo()}</th>
                                 <td>${a.getApellido()}, ${a.getNombre()} </td>
                                 <td>${a.getDivicionCurso()}</td>
                                 <td><input type="checkbox" name="Entregado"></td>
