@@ -35,7 +35,7 @@
                     <select name="Curso" class="form-control">
                         <option>Selecione el Curso...</option>
                         <c:forEach items="${curso}" var="c">
-                            <option value="${c.getIdCurso()}">${c.getNombre()}, ${cl.getSeccion()}</option>
+                            <option> ${c.getNombreCurso()}, ${cl.getSeccionCurso()}</option>
                         </c:forEach>
                     </select>
                 </div>

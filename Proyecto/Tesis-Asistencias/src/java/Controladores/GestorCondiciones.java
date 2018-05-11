@@ -34,7 +34,7 @@ public class GestorCondiciones {
         ArrayList<Condiciones> lista = new ArrayList<>();
         try {
             Statement stmt = conn.createStatement();
-            ResultSet query = stmt.executeQuery("Select * from Condiciones where visible = 0");
+            ResultSet query = stmt.executeQuery("Select id_condicion , condicion from Condiciones where visible = 0");
             while (query.next()){
                 Condiciones c = new Condiciones();
                 c.setIdCondicion(query.getInt("id_condicion"));
@@ -50,7 +50,7 @@ public class GestorCondiciones {
         return lista;
     }
     
-    public Condiciones obtenerCondiciones (int id) {
+    public Condiciones obtenerCondicionesConID (int id) {
         Condiciones c = new Condiciones();
         try {
             PreparedStatement stmt = conn.prepareStatement("select * from Condiciones where id_condicion = ? and visible = 0");

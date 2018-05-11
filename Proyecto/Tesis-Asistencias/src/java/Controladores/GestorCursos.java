@@ -34,7 +34,7 @@ public class GestorCursos {
         ArrayList<Cursos> lista = new ArrayList<>();
         try {
             Statement stmt = conn.createStatement();
-            ResultSet query = stmt.executeQuery("Select * from Cursos where visible = 0");
+            ResultSet query = stmt.executeQuery("Select id_curso , nombre , seccion from Cursos where visible = 0");
             while (query.next()){
                 Cursos c = new Cursos();
                 c.setIdCursos(query.getInt("id_curso"));
@@ -51,7 +51,7 @@ public class GestorCursos {
         return lista;
     }
     
-    public Cursos obtenerCurso (int id) {
+    public Cursos obtenerCursoConID (int id) {
         Cursos c = new Cursos();
         try {
             PreparedStatement stmt = conn.prepareStatement("select * from Cursos where id_curso = ? and visible = 0");

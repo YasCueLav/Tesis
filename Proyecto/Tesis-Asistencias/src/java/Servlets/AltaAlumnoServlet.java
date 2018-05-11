@@ -6,7 +6,11 @@
 package Servlets;
 
 import Controladores.GestorAlumnos;
+import Controladores.GestorCondiciones;
+import Controladores.GestorCursos;
 import Model.Alumno;
+import Model.Condiciones;
+import Model.Cursos;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -51,9 +55,15 @@ public class AltaAlumnoServlet extends HttpServlet {
         HttpSession mySession = request.getSession();
         boolean isLogged = (boolean) mySession.getAttribute("inicio");
         if (isLogged) {
-//            GestorAlumnos ga = new GestorAlumnos();
-//            ArrayList<Alumno> alumno = ga.obtenerAlumnos();
-//            request.setAttribute("alumno", alumno);
+            GestorCursos gc = new GestorCursos();
+            ArrayList<Cursos> curso = gc.obtenerCursos();
+            request.setAttribute("curso", curso);
+            GestorCondiciones go = new GestorCondiciones();
+            ArrayList<Condiciones> condicion = go.obtenerCondiciones();
+            
+            request.setAttribute("condicion", condicion);
+//            request.setAttribute("curso", curso);
+            
             getServletContext().getRequestDispatcher("/AltaAlumno.jsp").forward(request, response);
         } else {
             getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
