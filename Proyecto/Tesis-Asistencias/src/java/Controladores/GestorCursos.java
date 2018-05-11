@@ -28,6 +28,7 @@ public class GestorCursos {
         } catch (SQLException e) {
             System.out.println(e);
         }
+        System.out.println("2 - a");
     }
     
     public ArrayList<Cursos> obtenerCursos (){
@@ -35,6 +36,7 @@ public class GestorCursos {
         try {
             Statement stmt = conn.createStatement();
             ResultSet query = stmt.executeQuery("Select id_curso , nombre , seccion from Cursos where visible = 0");
+            System.out.println("2 - b");
             while (query.next()){
                 Cursos c = new Cursos();
                 c.setIdCursos(query.getInt("id_curso"));
@@ -42,6 +44,7 @@ public class GestorCursos {
                 c.setSeccionCurso(query.getString("seccion"));
                 lista.add(c);
             }
+            System.out.println("2 - c");
             query.close();
             stmt.close();
             conn.close();

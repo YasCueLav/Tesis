@@ -30,6 +30,7 @@ public class GestorExamenes {
         } catch (SQLException e) {
             System.out.println(e);
         }
+        System.out.println("1 - a");
     }
     
     public ArrayList<Examenes> obtenerExamenes (){
@@ -78,6 +79,7 @@ public class GestorExamenes {
         try {
             Statement stmt = conn.createStatement();
             ResultSet query = stmt.executeQuery("select e.id_examen,t.tipo_examen,e.examen from Examenes e join Tipos_Examenes t on (e.id_tipo_examen = t.id_tipo_examen) where e.visible = 0 and t.visible = 0");
+            System.out.println("1 - b");
             while (query.next()){
                 VMTipoExamenExamen vm = new VMTipoExamenExamen();
                 vm.setIdExamen(query.getInt("id_examen"));
@@ -85,6 +87,7 @@ public class GestorExamenes {
                 vm.setExamenNombre(query.getString("examen"));
                 lista.add(vm);
             }
+            System.out.println("1 - c");
             query.close();
             stmt.close();
             conn.close();
