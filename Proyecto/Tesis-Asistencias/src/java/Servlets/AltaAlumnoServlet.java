@@ -5,12 +5,20 @@
  */
 package Servlets;
 
+import Controladores.GestorAlumnos;
+import Controladores.GestorCondiciones;
+import Controladores.GestorCursos;
+import Model.Alumno;
+import Model.Condiciones;
+import Model.Cursos;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -44,6 +52,22 @@ public class AltaAlumnoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession mySession = request.getSession();
+        boolean isLogged = (boolean) mySession.getAttribute("inicio");
+        if (isLogged) {
+            GestorCursos gc = new GestorCursos();
+            ArrayList<Cursos> curso = gc.obtenerCursos();
+            request.setAttribute("curso", curso);
+            GestorCondiciones go = new GestorCondiciones();
+            ArrayList<Condiciones> condicion = go.obtenerCondiciones();
+            
+            request.setAttribute("condicion", condicion);
+//            request.setAttribute("curso", curso);
+            
+            getServletContext().getRequestDispatcher("/AltaAlumno.jsp").forward(request, response);
+        } else {
+            getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
+        }
         processRequest(request, response);
     }
 

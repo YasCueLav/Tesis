@@ -60,14 +60,15 @@ public class AltaCalificacionServlet extends HttpServlet {
             //Selecion Examen
             GestorExamenes ge = new GestorExamenes();
             ArrayList<VMTipoExamenExamen> examen = ge.obtenerTodosExamenes();
-            request.setAttribute("examen", examen);
             //Selecion Curso
             GestorCursos gc = new GestorCursos();
             ArrayList<Cursos> curso = gc.obtenerCursos();
-            request.setAttribute("curso", curso);
             //Lista Alumnos
             GestorAlumnos ga = new GestorAlumnos();
             ArrayList<VMAlumnosCursos> alumno = ga.obtenerAlumnoCurso();
+            
+            request.setAttribute("curso", curso);
+            request.setAttribute("examen", examen);
             request.setAttribute("alumno", alumno);
             
             getServletContext().getRequestDispatcher("/AltaCalificacion.jsp").forward(request, response);

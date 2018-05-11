@@ -60,10 +60,11 @@ public class AltaEntregaTPServlet extends HttpServlet {
             //tipo TP
             GestorTPs gt = new GestorTPs();
              ArrayList<TPs> tp = gt.obtenerTPs();
-            request.setAttribute("tp", tp);
             //Lista Alumnos
             GestorAlumnos ga = new GestorAlumnos();
             ArrayList<VMAlumnosCursos> alumno = ga.obtenerAlumnoCurso();
+            
+            request.setAttribute("tp", tp);
             request.setAttribute("alumno", alumno);
             
             getServletContext().getRequestDispatcher("/AltaEntregaTP.jsp").forward(request, response);

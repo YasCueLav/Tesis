@@ -32,9 +32,9 @@
                         <tbody>
                             <c:forEach items="${alumno}" var="a">
                                 <tr>
-                                    <th val scope="row" <%--value="${a.getIdAlumno}"--%>> ${a.getLegajo}</th>
-                                    <td> ${a.getApellido}, ${a.getNombre}</td>
-                                    <td <%--value="${a.getIdCurso}"--%>>${a.getDivicionCurso}</td>
+                                    <th val scope="row" <%--value="${a.getIdAlumno}"--%>> ${a.getLegajo()}</th>
+                                    <td> ${a.getApellido()}, ${a.getNombre()}</td>
+                                    <td <%--value="${a.getIdCurso}"--%>>${a.getDivicionCurso()}</td>
                                     <td><input type="checkbox" class="form-check-input" name="Asistencia" value="false"></td>
                                 </tr>
                             </c:forEach>
@@ -44,8 +44,5 @@
                 <input type="submit" value="Cargar" class="btn btn-primary">
             </form>
         </div>
-        <!--<c:forEach items="${alumno}" var="a">
-            <p>${a.getLegajo}</p>            
-        </c:forEach>-->
     </body>
 </html>

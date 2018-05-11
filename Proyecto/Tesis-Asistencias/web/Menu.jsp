@@ -28,16 +28,16 @@
           <a class="dropdown-item" href="">kk</a>
         </div>
       </li>
-      <!--<li class="nav-item dropdown">
+      <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-          Listado
+          Nuevo
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="">Alquileres</a>
-          <a class="dropdown-item" href="">Clientes</a>
-          <a class="dropdown-item" href="">Puestos</a>
+          <a class="dropdown-item" href="/Tesis-Asistencias/AltaAlumnoServlet">Alumno</a>
+          <a class="dropdown-item" href="">cc</a>
+          <a class="dropdown-item" href="">bb</a>
         </div>
-      </li>-->
+      </li>
       <li class="nav-item">
         <a class="nav-link" href="">Ganancias por Piso <span class="sr-only">(current)</span></a>
       </li>
