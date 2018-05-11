@@ -75,12 +75,24 @@ public class AltaAsistenciaServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        //HACER UN ARRAY LIST, PARA QUE SE CARGEN TODAS LAS ASISTENCIAS
         Asistencias a = new Asistencias();
         GestorAsistencias ga = new GestorAsistencias();
-        a.setIdAlumno(Integer.parseInt(request.getParameter("")));
+        System.out.println(request.getParameter("IdAlumno"));
+        a.setIdAlumno(Integer.parseInt(request.getParameter("IdAlumno")));
 //        a.setFechaReguistro();
-        a.setEstaPresente(Integer.parseInt(request.getParameter("")));
-        a.setFechaObligatoria(Integer.parseInt(request.getParameter("")));
+        String asistencia = request.getParameter("Asistencia");
+        if (asistencia != null) {
+            a.setEstaPresente(0);
+        } else {
+            a.setEstaPresente(1);
+        }
+        String fechaObligatoria = request.getParameter("FechaObligatoria");
+        if (asistencia != null) {
+            a.setFechaObligatoria(0);
+        } else {
+            a.setFechaObligatoria(1);
+        }
         
         boolean cargo = ga.agregarAsistencias(a);
         if (cargo) {

@@ -32,7 +32,7 @@ public class GestorAsistencias {
         }
     }
 
-    public ArrayList<Asistencias> obtenerAsistencias() {
+    public ArrayList<Asistencias> obtenerAsistenciasTodas() {
         ArrayList<Asistencias> lista = new ArrayList<>();
         try {
             Statement stmt = conn.createStatement();
@@ -113,7 +113,7 @@ public class GestorAsistencias {
         return modifico;
     }
 
-    //TERMINAR
+    
     public boolean agregarAsistencias(Asistencias a) {
         boolean inserto = true;
         try {

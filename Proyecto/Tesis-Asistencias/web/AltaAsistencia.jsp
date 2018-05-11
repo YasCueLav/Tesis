@@ -28,13 +28,15 @@
                           <th scope="col">Asistio?</th>
                         </tr>
                   </thead>
-                    <div>
+                    <div>value="${a.getIdAlumno()}"
                         <tbody>
                             <c:forEach items="${alumno}" var="a">
                                 <tr>
-                                    <th val scope="row" <%--value="${a.getIdAlumno}"--%>> ${a.getLegajo()}</th>
+                                    <th val scope="row" <%--name="IdAlumno" value="${a.getIdAlumno()}"--%>> <%--${a.getLegajo()}--%>
+                                        <input type="text" name="IdAlumno" value="${a.getIdAlumno()}">${a.getLegajo()}
+                                    </th>
                                     <td> ${a.getApellido()}, ${a.getNombre()}</td>
-                                    <td <%--value="${a.getIdCurso}"--%>>${a.getDivicionCurso()}</td>
+                                    <td value="${a.getIdCurso()}" name="IdCurso">${a.getDivicionCurso()}</td>
                                     <td><input type="checkbox" class="form-check-input" name="Asistencia" value="false"></td>
                                 </tr>
                             </c:forEach>
