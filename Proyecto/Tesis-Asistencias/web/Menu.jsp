@@ -39,10 +39,10 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="">Ganancias por Piso <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="">xa <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="">Puestos Disponibles <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="">xe <span class="sr-only">(current)</span></a>
       </li>
     </ul>
     <ul class="nav justify-content-end">

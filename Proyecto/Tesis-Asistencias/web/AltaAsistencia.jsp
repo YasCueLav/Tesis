@@ -16,9 +16,10 @@
     <body>
         <jsp:include page="Menu.jsp"></jsp:include>
         <div>
-            <h2>Asistencia día <input type="date" name="fechaHoy" value=""> </h2>
-            <form action="AltaAsistenciaServlet" method="POST">
-                <input type="checkbox" name="FechaObligatoria" value=""> Fecha Obligatoria<br>
+            <h2>Asistencia día </h2>
+            <form action="AltaAsistenciaServlet" method="POST"><h2>Asistencia día </h2>
+                <h5><input type="date" name="fechaHoy" value=""> <input type="checkbox" name="FechaObligatoria" value=""> Fecha Obligatoria</h5>
+                <br>
                 <table class="table table-striped">
                   <thead>
                         <tr>
@@ -28,7 +29,7 @@
                           <th scope="col">Asistio?</th>
                         </tr>
                   </thead>
-                    <div>value="${a.getIdAlumno()}"
+                    <div><%--value="${a.getIdAlumno()}"--%>
                         <tbody>
                             <c:forEach items="${alumno}" var="a">
                                 <tr>
