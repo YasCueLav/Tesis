@@ -13,11 +13,13 @@ import Model.VMAlumnosCursos;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Iterator;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.apache.jasper.tagplugins.jstl.ForEach;
 
 /**
  *
@@ -76,30 +78,50 @@ public class AltaAsistenciaServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //HACER UN ARRAY LIST, PARA QUE SE CARGEN TODAS LAS ASISTENCIAS
-        Asistencias a = new Asistencias();
+        int cant = 0;
+        GestorAlumnos gas = new GestorAlumnos();
+        cant = gas.obtenerCantidadAlumnos();
+        System.out.println("CANTIDAD ALUMNO = "+ cant);
+        
+        ArrayList <Asistencias> asistencias = new ArrayList<>();
         GestorAsistencias ga = new GestorAsistencias();
-        System.out.println(request.getParameter("IdAlumno"));
-        a.setIdAlumno(Integer.parseInt(request.getParameter("IdAlumno")));
-//        a.setFechaReguistro();
-        String asistencia = request.getParameter("Asistencia");
-        if (asistencia != null) {
-            a.setEstaPresente(0);
-        } else {
-            a.setEstaPresente(1);
+        
+        //System.out.println("Legajo" + request.getParameter("Legajo"));
+        //a.setLegajo(Integer.parseInt(request.getParameter("Legajo")));
+
+        for (int i = 0; i < 10; i++) {
+            Asistencias a = new Asistencias();
+            
+            System.out.println("Este es el ID del Alumno "+ request.getParameter("IdAlumno"));
+            a.setIdAlumno(Integer.parseInt(request.getParameter("IdAlumno")));
+            
+            String asistencia = request.getParameter("Asistencia");
+            if (asistencia != null) {
+                a.setEstaPresente(0);
+            } else {
+                a.setEstaPresente(1);
+            }
+            String fechaObligatoria = request.getParameter("FechaObligatoria");
+            if (asistencia != null) {
+                a.setFechaObligatoria(0);
+            } else {
+                a.setFechaObligatoria(1);
+            }
+        
+            asistencias.add(a);
         }
-        String fechaObligatoria = request.getParameter("FechaObligatoria");
-        if (asistencia != null) {
-            a.setFechaObligatoria(0);
-        } else {
-            a.setFechaObligatoria(1);
+        ArrayList<Boolean> cargo = new ArrayList<>();
+        for (int i = 0; i < asistencias.size(); i++) {
+            Asistencias a = asistencias.get(i);
+            cargo.add(ga.agregarAsistencias(a));
         }
         
-        boolean cargo = ga.agregarAsistencias(a);
+        /*boolean cargo = ga.agregarAsistencias(a);
         if (cargo) {
             getServletContext().getRequestDispatcher("/Exito.jsp").forward(request, response);
         } else {
             getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
-        }
+        }*/
         processRequest(request, response);
     }
 

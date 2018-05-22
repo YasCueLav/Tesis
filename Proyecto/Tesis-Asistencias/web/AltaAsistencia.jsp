@@ -17,8 +17,8 @@
         <jsp:include page="Menu.jsp"></jsp:include>
         <div>
             <h2>Asistencia día </h2>
-            <form action="AltaAsistenciaServlet" method="POST"><h2>Asistencia día </h2>
-                <h5><input type="date" name="fechaHoy" value=""> <input type="checkbox" name="FechaObligatoria" value=""> Fecha Obligatoria</h5>
+            <form action="AltaAsistenciaServlet" method="POST">
+                <h5><input type="date" name="fechaHoy" value=""> <input type="checkbox" name="FechaObligatoria" value="false"> Fecha Obligatoria</h5>
                 <br>
                 <table class="table table-striped">
                   <thead>
@@ -33,8 +33,8 @@
                         <tbody>
                             <c:forEach items="${alumno}" var="a">
                                 <tr>
-                                    <th val scope="row" <%--name="IdAlumno" value="${a.getIdAlumno()}"--%>> <%--${a.getLegajo()}--%>
-                                        <input type="text" name="IdAlumno" value="${a.getIdAlumno()}">${a.getLegajo()}
+                                    <th scope="row" >
+                                        <div value="${a.getIdAlumno()}" name="IdAlumno" >${a.getLegajo()}</div>
                                     </th>
                                     <td> ${a.getApellido()}, ${a.getNombre()}</td>
                                     <td value="${a.getIdCurso()}" name="IdCurso">${a.getDivicionCurso()}</td>

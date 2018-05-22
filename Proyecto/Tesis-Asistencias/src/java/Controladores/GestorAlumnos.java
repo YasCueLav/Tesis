@@ -133,6 +133,23 @@ public class GestorAlumnos {
         return inserto;
     }
 
+    public int obtenerCantidadAlumnos (){
+        System.out.println("ESTOY EN GESTOR");
+        int cant = 0;
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet query = stmt.executeQuery("select count(*) numero from Alumnos where visible = 0");
+            cant = query.getInt("numero");
+            System.out.println("EN GESTOR CANT ALUMNO ="+cant);
+            query.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return cant;
+    }
+    
     public ArrayList<VMAlumnosCursos> obtenerAlumnoCurso() {
         ArrayList<VMAlumnosCursos> lista = new ArrayList<>();
         try {

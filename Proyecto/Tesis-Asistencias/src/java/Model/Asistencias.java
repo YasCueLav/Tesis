@@ -14,6 +14,7 @@ import java.sql.Date;
 public class Asistencias {
     int idAsistencias;
     int idAlumno;
+    int legajo;
     Date fechaReguistro;
     boolean estaPresente;
     boolean fechaObligatoria;
@@ -22,14 +23,22 @@ public class Asistencias {
     public Asistencias() {
     }
 
-    public Asistencias(int ideAsistencias, int idAlumno, Date fechaReguistro, boolean estaPresente, boolean fechaObligatoria) {
+    public Asistencias(int ideAsistencias, int idAlumno, int legajo,Date fechaReguistro, boolean estaPresente, boolean fechaObligatoria) {
         this.idAsistencias = ideAsistencias;
         this.idAlumno = idAlumno;
+        this.legajo = legajo;
         this.fechaReguistro = fechaReguistro;
         this.estaPresente = estaPresente;
         this.fechaObligatoria = fechaObligatoria;
     }
 
+    public int getLegajo() {
+        return legajo;
+    }
+
+    public void setLegajo(int legajo) {
+        this.legajo = legajo;
+    }
     public int getIdAsistencias() {
         return idAsistencias;
     }
