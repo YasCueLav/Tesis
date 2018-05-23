@@ -1,3 +1,4 @@
+use Gestus
 ----INSERT CONDICIONES----
 INSERT INTO Condiciones
 VALUES ('Aprobación Directa', 0)
