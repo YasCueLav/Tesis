@@ -26,7 +26,7 @@
                     <label for="exampleFormControlInput1">Nombre</label>
                     <input type="text" class="form-control" id="" name="Nombre">
                 </div>
-				<div class="form-group">
+		<div class="form-group">
                     <label for="exampleFormControlInput1">Apellido</label>
                     <input type="text" class="form-control" id="" name="Apellido">
                 </div>
@@ -39,6 +39,13 @@
                         </c:forEach>
                     </select>
                 </div>
+                        <select name="Curso">
+                    <option>Seleccione un curso ...</option>
+                <c:forEach items="${curso}" var="c">
+                     <option value="${c.getIdCursos()}">${c.getNombreCurso()}/${c.getSeccionCurso()}</option>
+                </c:forEach>
+                </select>
+                </br>
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Condicion</label>
                     <select name="Condicion" class="form-control">

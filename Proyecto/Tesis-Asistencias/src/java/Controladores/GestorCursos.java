@@ -46,7 +46,7 @@ public class GestorCursos {
             stmt.close();
             conn.close();
         } catch (SQLException e) {
-            System.out.println(e);
+            System.out.println(e.toString());
         }
         return lista;
     }

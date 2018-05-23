@@ -32,6 +32,7 @@ create table Alumnos
 	id_curso int not null,
 	id_condicion int not null,
 	grupo int,
+	fecha_ingreso date,
 	visible bit not null 
 	constraint pk_alumno primary key(id_alumno),
 	constraint fk_curso foreign key (id_curso)

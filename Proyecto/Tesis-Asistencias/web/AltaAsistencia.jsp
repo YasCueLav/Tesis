@@ -16,9 +16,10 @@
     <body>
         <jsp:include page="Menu.jsp"></jsp:include>
         <div>
-            <h2>Asistencia día <input type="date" name="fechaHoy" value=""> </h2>
+            <h2>Asistencia día </h2>
             <form action="AltaAsistenciaServlet" method="POST">
-                <input type="checkbox" name="FechaObligatoria" value=""> Fecha Obligatoria<br>
+                <h5><input type="date" name="fechaHoy" value=""> <input type="checkbox" name="FechaObligatoria" value="false"> Fecha Obligatoria</h5>
+                <br>
                 <table class="table table-striped">
                   <thead>
                         <tr>
@@ -28,13 +29,15 @@
                           <th scope="col">Asistio?</th>
                         </tr>
                   </thead>
-                    <div>
+                    <div><%--value="${a.getIdAlumno()}"--%>
                         <tbody>
                             <c:forEach items="${alumno}" var="a">
                                 <tr>
-                                    <th val scope="row" <%--value="${a.getIdAlumno}"--%>> ${a.getLegajo()}</th>
+                                    <th scope="row" >
+                                        <div value="${a.getIdAlumno()}" name="IdAlumno" >${a.getLegajo()}</div>
+                                    </th>
                                     <td> ${a.getApellido()}, ${a.getNombre()}</td>
-                                    <td <%--value="${a.getIdCurso}"--%>>${a.getDivicionCurso()}</td>
+                                    <td value="${a.getIdCurso()}" name="IdCurso">${a.getDivicionCurso()}</td>
                                     <td><input type="checkbox" class="form-check-input" name="Asistencia" value="false"></td>
                                 </tr>
                             </c:forEach>
