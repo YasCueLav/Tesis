@@ -4,6 +4,7 @@
     Author     : Yasmin
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -34,23 +35,23 @@
                     <label for="exampleFormControlSelect1">Curso</label>
                     <select name="Curso" class="form-control">
                         <option>Selecione el Curso...</option>
-                        <c:forEach items="${curso}" var="c">
-                            <option> ${c.getNombreCurso()}, ${cl.getSeccionCurso()}</option>
+                        <c:forEach items="${cu}" var="c">
+                            <option> ${c.getNombreCurso()}, ${c.getSeccionCurso()}</option>
                         </c:forEach>
                     </select>
                 </div>
-                        <select name="Curso">
+                     <%--   <select name="Curso">
                     <option>Seleccione un curso ...</option>
                 <c:forEach items="${curso}" var="c">
                      <option value="${c.getIdCursos()}">${c.getNombreCurso()}/${c.getSeccionCurso()}</option>
                 </c:forEach>
-                </select>
+                </select>--%>
                 </br>
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Condicion</label>
                     <select name="Condicion" class="form-control">
                         <option>Selecione la condicion...</option>
-                        <c:forEach items="${condicion}" var="co">
+                        <c:forEach items="${con}" var="co">
                             <option value="${co.getIdCondicion()}">${co.getCondicion()}</option>
                         </c:forEach>
                     </select>

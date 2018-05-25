@@ -10,7 +10,7 @@ VALUES (78932,'Ania Micaela' ,'Acosta Villafañe', 1 , 3, null,'01/04/2018',0)
 
 INSERT INTO Alumnos(legajo, nombre, apellido, id_curso, id_condicion , grupo , fecha_ingreso, visible)
 VALUES (78339,'Francisco' ,'Aizpeolea Gerbaudo', 1 , 3, null, '01/04/2018', 0)
-
+--
 INSERT INTO Alumnos(legajo, nombre, apellido, id_curso, id_condicion , grupo , fecha_ingreso, visible)
 VALUES (75778,'María Victoria' ,'Alamo', 1 , 3, null, '01/04/2018', 0)
 

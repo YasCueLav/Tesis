@@ -21,12 +21,10 @@ public class GestorAlumnos {
     public GestorAlumnos (){
         AccesoDatos ad = new AccesoDatos();
         try {
-            System.out.println("estoy en try acceso db");
             conn = DriverManager.getConnection(ad.getConn_string(), ad.getUser(), ad.getPass());
         } catch (SQLException e) {
             System.out.println(e);
         }
-        System.out.println("3 - a");
     }
     
     public ArrayList<Alumno> obtenerAlumnos (){
@@ -155,7 +153,6 @@ public class GestorAlumnos {
         try {
             Statement stmt = conn.createStatement();
             ResultSet query = stmt.executeQuery("SELECT al.id_alumno, al.legajo, al.apellido, al.nombre, c.id_curso, c.seccion FROM Alumnos al join Cursos c on (al.id_curso = c.id_curso) WHERE al.visible = 0 and c.visible =0");
-            System.out.println("3 - b");
             while (query.next()) {
                 VMAlumnosCursos vw = new VMAlumnosCursos();
                 vw.setIdAlumno(query.getInt("id_alumno"));
@@ -169,7 +166,6 @@ public class GestorAlumnos {
             query.close();
             stmt.close();
             conn.close();
-            System.out.println("3 - c");
         } catch (SQLException e) {
             System.out.println(e.toString());
         }
