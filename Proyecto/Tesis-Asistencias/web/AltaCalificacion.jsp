@@ -44,7 +44,7 @@
                 <tbody>
                     <c:forEach items="${alumno}" var="a">
                         <tr>
-                            <th value="${a.getIdAlumno()}" name="Alumno" scope="row">${a.getLegajo()}</th>
+                            <th><input type="hidden" value="${a.getIdAlumno()}" name="IdAlumno"> ${a.getLegajo()}</th>
                             <td>${a.getApellido()}, ${a.getNombre()} </td>
                             <td>${a.getDivicionCurso()}</td>
                             <td><input type="number" name="Nota"></td>

@@ -34,13 +34,19 @@
                             <c:forEach items="${alumno}" var="a">
                                 <tr>
                                     <th scope="row" >
-                                        <%--<div value="${a.getIdAlumno()}" name="IdAlumno" >${a.getLegajo()}</div>--%>
-                                        <input type="text" value="${a.getIdAlumno()}" name="IdAlumno">
+                                        <%--<div value="${a.getIdAlumno()}" name="IdAlumno" >${a.getLegajo()}</div>
+                                        <input type="text" value="${a.getIdAlumno()}" name="IdAlumno">${a.getLegajo()}--%>
+                                        <input type="hidden" value="${a.getIdAlumno()}" name="IdAlumno"> ${a.getLegajo()}
                                     </th>
                                     <td> ${a.getApellido()}, ${a.getNombre()}</td>
                                     <td value="${a.getIdCurso()}" name="IdCurso">${a.getDivicionCurso()}</td>
-                                    <td><input type="checkbox" class="form-check-input" name="Asistencia" value="false"></td>
+                                    <td>
+                                        <%--<input type="checkbox" class="form-check-input" name="Asistencia">--%>
+                                        P<input type="radio" name="${a.getIdAlumno()}" value="P"> - 
+                                        A<input type="radio" name="${a.getIdAlumno()}" value="A" checked="true">
+                                    </td>
                                 </tr>
+                                
                             </c:forEach>
                           </tbody>
                     </div>
