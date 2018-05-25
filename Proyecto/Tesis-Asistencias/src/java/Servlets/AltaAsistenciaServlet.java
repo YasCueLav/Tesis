@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
+import javax.faces.component.UIData;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -78,18 +79,18 @@ public class AltaAsistenciaServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //HACER UN ARRAY LIST, PARA QUE SE CARGEN TODAS LAS ASISTENCIAS
-        int cant = 0;
+        /*int cant = 0;
         GestorAlumnos gas = new GestorAlumnos();
         cant = gas.obtenerCantidadAlumnos();
-        System.out.println("CANTIDAD ALUMNO = "+ cant);
+        System.out.println("CANTIDAD ALUMNO = "+ cant);*/
         
-        ArrayList <Asistencias> asistencias = new ArrayList<>();
+        //ArrayList <Asistencias> asistencias = new ArrayList<>();
         GestorAsistencias ga = new GestorAsistencias();
         
         //System.out.println("Legajo" + request.getParameter("Legajo"));
         //a.setLegajo(Integer.parseInt(request.getParameter("Legajo")));
 
-        for (int i = 0; i < 10; i++) {
+        /*for (int i = 0; i < 10; i++) {
             Asistencias a = new Asistencias();
             
             System.out.println("Este es el ID del Alumno "+ request.getParameter("IdAlumno"));
@@ -114,14 +115,38 @@ public class AltaAsistenciaServlet extends HttpServlet {
         for (int i = 0; i < asistencias.size(); i++) {
             Asistencias a = asistencias.get(i);
             cargo.add(ga.agregarAsistencias(a));
+        }*/
+        String[] ids = request.getParameterValues("IdAlumno");
+        String[] presente = request.getParameterValues("Asistencia");
+        String fechaObligatoria = request.getParameter("FechaObligatoria");
+        
+        
+        ArrayList <Asistencias> asistencias = new ArrayList<>();
+        for (int i = 0; i < ids.length; i++) {
+            Asistencias a = new Asistencias();
+            a.setIdAlumno(Integer.parseInt(ids[i])); 
+            
+            if (presente[i] != null) {
+                a.setEstaPresente(0);
+            } else {
+                a.setEstaPresente(1);
+            }
+            
+            if (fechaObligatoria != null) {
+                a.setFechaObligatoria(0);
+            } else {
+                a.setFechaObligatoria(1);
+            }
+            
+            asistencias.add(a);
         }
         
-        /*boolean cargo = ga.agregarAsistencias(a);
+        boolean cargo = ga.agregarAsistencias(asistencias);
         if (cargo) {
             getServletContext().getRequestDispatcher("/Exito.jsp").forward(request, response);
         } else {
             getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
-        }*/
+        }
         processRequest(request, response);
     }
 

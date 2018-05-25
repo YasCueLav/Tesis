@@ -114,15 +114,18 @@ public class GestorAsistencias {
     }
 
     
-    public boolean agregarAsistencias(Asistencias a) {
+    public boolean agregarAsistencias(ArrayList<Asistencias> asistencias) {
         boolean inserto = true;
         try {
             PreparedStatement stmt = conn.prepareStatement("INSERT INTO Asistencias (id_alumno,fecha_registro,esta_Precente,obligatoria,visible) VALUES (?,GETDATE(),?,?,0)");
-            stmt.setInt(1, a.getIdAlumno());
-//            stmt.setDate(2, a.getFechaReguistro());
-            stmt.setBoolean(2, a.isEstaPresente());
-            stmt.setBoolean(3, a.isFechaObligatoria());
-            stmt.executeUpdate();
+            for (Asistencias a : asistencias) {
+                stmt.setInt(1, a.getIdAlumno());
+                //stmt.setDate(2, a.getFechaReguistro());
+                stmt.setBoolean(2, a.isEstaPresente());
+                stmt.setBoolean(3, a.isFechaObligatoria());
+                stmt.executeUpdate();
+            }
+            
             stmt.close();
             conn.close();
         } catch (SQLException ex) {

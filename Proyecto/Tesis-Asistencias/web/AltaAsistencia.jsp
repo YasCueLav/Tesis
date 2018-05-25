@@ -20,7 +20,7 @@
             <form action="AltaAsistenciaServlet" method="POST">
                 <h5><input type="date" name="fechaHoy" value=""> <input type="checkbox" name="FechaObligatoria" value="false"> Fecha Obligatoria</h5>
                 <br>
-                <table class="table table-striped">
+                <table class="table table-striped" name="tabla">
                   <thead>
                         <tr>
                           <th scope="col">legajo</th>
@@ -34,7 +34,8 @@
                             <c:forEach items="${alumno}" var="a">
                                 <tr>
                                     <th scope="row" >
-                                        <div value="${a.getIdAlumno()}" name="IdAlumno" >${a.getLegajo()}</div>
+                                        <%--<div value="${a.getIdAlumno()}" name="IdAlumno" >${a.getLegajo()}</div>--%>
+                                        <input type="text" value="${a.getIdAlumno()}" name="IdAlumno">
                                     </th>
                                     <td> ${a.getApellido()}, ${a.getNombre()}</td>
                                     <td value="${a.getIdCurso()}" name="IdCurso">${a.getDivicionCurso()}</td>
