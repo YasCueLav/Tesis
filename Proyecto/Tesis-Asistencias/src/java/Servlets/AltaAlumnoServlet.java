@@ -54,13 +54,13 @@ public class AltaAlumnoServlet extends HttpServlet {
         if (isLogged) {
             //Selecion curso
             GestorCursos gc = new GestorCursos();
-            ArrayList<Cursos> curso = gc.obtenerCursos();
+            ArrayList<Cursos> cu = gc.obtenerCursos();
             //Seleccion condicion
             GestorCondiciones go = new GestorCondiciones();
-            ArrayList<Condiciones> condicion = go.obtenerCondiciones();
+            ArrayList<Condiciones> con = go.obtenerCondiciones();
             
-            request.setAttribute("curso", curso);
-            request.setAttribute("condicion", condicion);
+            request.setAttribute("cu", cu);
+            request.setAttribute("con", con);
             
             getServletContext().getRequestDispatcher("/AltaAlumno.jsp").forward(request, response);
         } else {

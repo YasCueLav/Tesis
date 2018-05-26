@@ -89,6 +89,7 @@ public class AltaCalificacionServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        //boton input filtrar valla al DOPOST y de hay un if y vea cual es, si es filtrar que valla a metodo actualizar tabla
         Notas n = new Notas();
         GestorNotas gn = new GestorNotas();
         n.setIdAlumno(Integer.parseInt(request.getParameter("Alumno")));

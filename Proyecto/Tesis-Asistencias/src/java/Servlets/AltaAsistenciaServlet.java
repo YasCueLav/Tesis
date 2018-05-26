@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
+import javax.faces.component.UIData;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -77,51 +78,45 @@ public class AltaAsistenciaServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //HACER UN ARRAY LIST, PARA QUE SE CARGEN TODAS LAS ASISTENCIAS
-        int cant = 0;
-        GestorAlumnos gas = new GestorAlumnos();
-        cant = gas.obtenerCantidadAlumnos();
-        System.out.println("CANTIDAD ALUMNO = "+ cant);
+
+        GestorAsistencias ga = new GestorAsistencias();
+
+        String[] ids = request.getParameterValues("IdAlumno");
+        String fechaObligatoria = request.getParameter("FechaObligatoria");
+        
+        System.out.println("CANT ID = " + ids.length);
         
         ArrayList <Asistencias> asistencias = new ArrayList<>();
-        GestorAsistencias ga = new GestorAsistencias();
-        
-        //System.out.println("Legajo" + request.getParameter("Legajo"));
-        //a.setLegajo(Integer.parseInt(request.getParameter("Legajo")));
-
-        for (int i = 0; i < 10; i++) {
+                
+        for (int i = 0; i < ids.length; i++) {
+            
+            System.out.println("ID = "+ ids[i]);
+            
             Asistencias a = new Asistencias();
-            
-            System.out.println("Este es el ID del Alumno "+ request.getParameter("IdAlumno"));
-            a.setIdAlumno(Integer.parseInt(request.getParameter("IdAlumno")));
-            
-            String asistencia = request.getParameter("Asistencia");
-            if (asistencia != null) {
+            a.setIdAlumno(Integer.parseInt(ids[i])); 
+                        
+            String presente = request.getParameter(""+a.getIdAlumno());
+            if (presente.equals("P")) {
                 a.setEstaPresente(0);
             } else {
                 a.setEstaPresente(1);
             }
-            String fechaObligatoria = request.getParameter("FechaObligatoria");
-            if (asistencia != null) {
+            
+            if (fechaObligatoria != null) {
                 a.setFechaObligatoria(0);
             } else {
                 a.setFechaObligatoria(1);
             }
-        
+            
             asistencias.add(a);
         }
-        ArrayList<Boolean> cargo = new ArrayList<>();
-        for (int i = 0; i < asistencias.size(); i++) {
-            Asistencias a = asistencias.get(i);
-            cargo.add(ga.agregarAsistencias(a));
-        }
         
-        /*boolean cargo = ga.agregarAsistencias(a);
+        boolean cargo = ga.agregarAsistencias(asistencias);
         if (cargo) {
             getServletContext().getRequestDispatcher("/Exito.jsp").forward(request, response);
         } else {
             getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
-        }*/
+        }
         processRequest(request, response);
     }
 
@@ -134,5 +129,4 @@ public class AltaAsistenciaServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }

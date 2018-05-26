@@ -32,6 +32,11 @@ public class Asistencias {
         this.fechaObligatoria = fechaObligatoria;
     }
 
+    public Asistencias(int idAlumno, boolean estaPresente, boolean fechaObligatoria) {
+        this.idAlumno = idAlumno;
+        this.estaPresente = estaPresente;
+        this.fechaObligatoria = fechaObligatoria;
+    }
     public int getLegajo() {
         return legajo;
     }

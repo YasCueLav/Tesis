@@ -4,6 +4,7 @@
     Author     : Yasmin
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -40,7 +41,7 @@
                     <tbody>
                         <c:forEach items="${alumno}" var="a">
                             <tr>
-                                <th name="Alumno" scope="row">${a.getLegajo()}</th>
+                                <th><input type="hidden" value="${a.getIdAlumno()}" name="IdAlumno"> ${a.getLegajo()}</th>
                                 <td>${a.getApellido()}, ${a.getNombre()} </td>
                                 <td>${a.getDivicionCurso()}</td>
                                 <td><input type="checkbox" name="Entregado"></td>

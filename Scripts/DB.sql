@@ -1,5 +1,6 @@
 create database Gestus
 use Gestus
+SET LANGUAGE 'Español'
 
 create table Cursos
 (
@@ -26,7 +27,7 @@ create table Condiciones
 create table Alumnos
 (
 	id_alumno int identity(1,1),
-	legajo int not null,
+	legajo int unique not null,
 	nombre varchar(50) not null,
 	apellido varchar (50) not null,
 	id_curso int not null,
