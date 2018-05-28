@@ -21,15 +21,28 @@
                 <select name="Examen">
                     <option>Seleccione un examen ...</option>
                 <c:forEach items="${examen}" var="e">
-                     <option value="${e.getIdExamen()}">${e.getExamenNombre()} - ${e.getTipoExamne()}</option>
+                     <option name="IdExamen" value="${e.getIdExamen()}"> ${e.getExamenNombre()} - ${e.getTipoExamne()}</option>
                 </c:forEach>
                 </select>
+                
+                <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Seleccione un examen ...
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <c:forEach items="${examen}" var="e">
+                        <a class="dropdown-item" name="IdExamenA" value="${e.getIdExamen()}" >${e.getExamenNombre()} - ${e.getTipoExamne()}</a>
+                    </c:forEach>
+                </div>
+              </div>
+                
                 <select name="Curso">
                     <option>Seleccione un curso ...</option>
                 <c:forEach items="${curso}" var="c">
-                     <option value="${c.getIdCursos()}">${c.getNombreCurso()}/${c.getSeccionCurso()}</option>
+                     <option name="IdCurso" value="${c.getIdCursos()}">${c.getNombreCurso()}/${c.getSeccionCurso()}</option>
                 </c:forEach>
                 </select>
+                <input type="submit" value="Filtrar" class="btn btn-primary" name="Boton">
                 </br>
                 
                 <table class="table table-striped">
@@ -47,12 +60,12 @@
                             <th><input type="hidden" value="${a.getIdAlumno()}" name="IdAlumno"> ${a.getLegajo()}</th>
                             <td>${a.getApellido()}, ${a.getNombre()} </td>
                             <td>${a.getDivicionCurso()}</td>
-                            <td><input type="number" name="Nota"></td>
+                            <td><input type="number" name="NumeoNota"></td>
                         </tr>
                     </c:forEach>
                 </tbody>
                 </table>
-                <input type="submit" value="Cargar" class="btn btn-primary">
+                <input type="submit" value="Cargar" class="btn btn-primary" name="Boton">
             </form>
         </div>
     </body>

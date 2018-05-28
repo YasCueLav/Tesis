@@ -109,14 +109,16 @@ public class GestorNotas {
         return modifico;
     }
     //TERMINAR
-    public boolean agregarNotaParcial (Notas n) {
+    public boolean agregarNotaParcial (ArrayList<Notas> notas) {
         boolean inserto = true;
         try {
             PreparedStatement stmt = conn.prepareStatement("insert into Notas (id_alumno,id_examen,nota,visible) values (?,?,?,0)");
+            for (Notas n : notas) {
             stmt.setInt(1, n.getIdAlumno());
             stmt.setInt(2, n.getIdExamen());
             stmt.setDouble(3, n.getNota());
             stmt.executeUpdate();
+            }
             stmt.close();
             conn.close();
         } catch (SQLException ex) {
