@@ -28,6 +28,10 @@
         <servlet-name>AltaAlumnoServlet</servlet-name>
         <servlet-class>Servlets.AltaAlumnoServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ReporteNotaPorAlumnoServlet</servlet-name>
+        <servlet-class>Servlets.ReporteNotaPorAlumnoServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
         <url-pattern>/Index</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>AltaAlumnoServlet</servlet-name>
         <url-pattern>/AltaAlumnoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReporteNotaPorAlumnoServlet</servlet-name>
+        <url-pattern>/ReporteNotaPorAlumnoServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
