@@ -97,7 +97,8 @@ public class AltaCalificacionServlet extends HttpServlet {
         switch (valor) {
             case "Filtrar":
                 System.out.println("Filtro");
-                System.out.println("Examen " + Integer.parseInt(request.getParameter("IdExamenA")));
+                //int x = Integer.parseInt(request.getParameter("IdExamenA"));
+                int a = Integer.parseInt(request.getParameter("IdExamen"));
                 int c = Integer.parseInt(request.getParameter("IdCurso"));
                 
                 System.out.println("Cursos " + c);

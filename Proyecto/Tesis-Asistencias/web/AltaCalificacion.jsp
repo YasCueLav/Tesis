@@ -18,13 +18,15 @@
         <h1>Cargar Notas Examenes</h1>
         <div>
             <form action="AltaCalificacionServlet" method="POST">
+                
                 <select name="Examen">
                     <option>Seleccione un examen ...</option>
                 <c:forEach items="${examen}" var="e">
-                     <option name="IdExamen" value="${e.getIdExamen()}"> ${e.getExamenNombre()} - ${e.getTipoExamne()}</option>
+                     <option name="IdExamen" value="${e.getIdExamen()}">${e.getIdExamen()}- ${e.getExamenNombre()} - ${e.getTipoExamne()}</option>
                 </c:forEach>
                 </select>
                 
+                <%--
                 <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Seleccione un examen ...
@@ -35,11 +37,12 @@
                     </c:forEach>
                 </div>
               </div>
+                --%>
                 
                 <select name="Curso">
                     <option>Seleccione un curso ...</option>
                 <c:forEach items="${curso}" var="c">
-                     <option name="IdCurso" value="${c.getIdCursos()}">${c.getNombreCurso()}/${c.getSeccionCurso()}</option>
+                     <option name="IdCurso" value="${c.getIdCursos()}">${c.getIdCursos()}-${c.getNombreCurso()}/${c.getSeccionCurso()}</option>
                 </c:forEach>
                 </select>
                 <input type="submit" value="Filtrar" class="btn btn-primary" name="Boton">
