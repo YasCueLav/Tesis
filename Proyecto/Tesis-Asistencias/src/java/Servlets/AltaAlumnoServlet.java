@@ -5,11 +5,14 @@
  */
 package Servlets;
 
+import Controladores.GestorAlumnos;
 import Controladores.GestorCondiciones;
 import Controladores.GestorCursos;
+import Model.Alumno;
 import Model.Condiciones;
 import Model.Cursos;
 import java.io.IOException;
+import java.sql.Date;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -61,6 +64,7 @@ public class AltaAlumnoServlet extends HttpServlet {
             
             request.setAttribute("cu", cu);
             request.setAttribute("con", con);
+            System.out.println("Cargando Pag Alumno");
             
             getServletContext().getRequestDispatcher("/AltaAlumno.jsp").forward(request, response);
         } else {
@@ -80,6 +84,29 @@ public class AltaAlumnoServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        GestorAlumnos ga = new GestorAlumnos();
+        Alumno alum = new Alumno();
+        
+        String f = request.getParameter("Fecha");
+        System.out.println("FECHA --" + f);
+        
+        alum.setLegajo(Integer.parseInt(request.getParameter("Legajo")));
+        alum.setNombre(request.getParameter("Nombre"));
+        alum.setApellido(request.getParameter("Apellido"));
+        alum.setIdCurso(Integer.parseInt(request.getParameter("Curso")));
+        alum.setIdCondicion(Integer.parseInt(request.getParameter("Condicion")));
+        alum.setGrupo(Integer.parseInt(request.getParameter("Grupo")));
+        alum.setFechaIngreso(Date.valueOf(f));
+                
+        boolean cargo = ga.agregarAlumno(alum);
+        
+        if (cargo) {
+            getServletContext().getRequestDispatcher("/Exito.jsp").forward(request, response);
+        } else {
+            getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
+        }
+        
         processRequest(request, response);
     }
 

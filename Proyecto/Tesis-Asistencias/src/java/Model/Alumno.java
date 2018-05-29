@@ -1,5 +1,7 @@
 package Model;
 
+import java.sql.Date;
+
 /**
  *
  * @author Yasmin
@@ -12,12 +14,13 @@ public class Alumno {
     int idCurso;
     int idCondicion;
     int grupo;
+    Date fechaIngreso;
     boolean visible;
 
     public Alumno() {
     }
-    
-    public Alumno(int idAlumno, int legajo, String nombre, String apellido, int idCurso, int idCondicion, int grupo) {
+
+    public Alumno(int idAlumno, int legajo, String nombre, String apellido, int idCurso, int idCondicion, int grupo, Date fechaIngreso) {
         this.idAlumno = idAlumno;
         this.legajo = legajo;
         this.nombre = nombre;
@@ -25,6 +28,7 @@ public class Alumno {
         this.idCurso = idCurso;
         this.idCondicion = idCondicion;
         this.grupo = grupo;
+        this.fechaIngreso = fechaIngreso;
     }
 
     public int getIdAlumno() {
@@ -53,6 +57,10 @@ public class Alumno {
 
     public int getGrupo() {
         return grupo;
+    }
+
+    public Date getFechaIngreso() {
+        return fechaIngreso;
     }
 
     public boolean isVisible() {
@@ -87,6 +95,10 @@ public class Alumno {
         this.grupo = grupo;
     }
 
+    public void setFechaIngreso(Date fechaIngreso) {
+        this.fechaIngreso = fechaIngreso;
+    }
+    
     public void setVisible(int visible) {
         if (visible == 0) {
             this.visible = true;

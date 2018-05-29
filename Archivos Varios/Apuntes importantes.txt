@@ -40,16 +40,6 @@ WHERE a.visible = 0 and al.visible = 0 and c.visible =0
 
 INSERT INTO Asistencias (id_alumno,fecha_registro,esta_Precente,obligatoria,visible)
 VALUES (1,GETDATE(),0,1,0)
-
-----------------------------------------------------------
-INSERT INTO Alumnos(legajo, nombre, apellido, id_curso, id_condicion , grupo , visible)
-VALUES (108809,'Yasmin' ,'Cueva Lavezzo', 1 , 3, null, 0)
-
-INSERT INTO Alumnos(legajo, nombre, apellido, id_curso, id_condicion , grupo , visible)
-VALUES (108813,'Diego' ,'Mayo', 2 , 3, null, 0)
-
-select * from Asistencias
-
 ________________________________________________________________________________________
 
 insert into Notas (id_alumno,id_examen,nota,visible)
@@ -63,3 +53,6 @@ where n.visible = 0 and a.visible = 0 and e.visible = 0 and te.visible = 0
 
 _______________________________________________________________________________________
 select count(*)numero from Alumnos where visible = 0
+_______________________________________________________________________________________
+INSERT INTO Alumnos (legajo, nombre, apellido, id_curso, id_condicion, grupo, fecha_ingreso, visible)
+VALUES (?,?,?,?,?,?,?,0)

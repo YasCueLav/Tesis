@@ -41,6 +41,7 @@ public class GestorAlumnos {
                 a.setIdCurso(query.getInt("id_curso"));
                 a.setIdCondicion(query.getInt("id_condicion"));
                 a.setGrupo(query.getInt("grupo"));
+                a.setFechaIngreso(query.getDate("fecha_ingreso"));
                 lista.add(a);
             }
             query.close();
@@ -137,13 +138,14 @@ public class GestorAlumnos {
     public boolean agregarAlumno (Alumno a) {
         boolean inserto = true;
         try {
-            PreparedStatement stmt = conn.prepareStatement("");
-            stmt.setInt(1, a.getIdAlumno());
-            stmt.setInt(2, a.getLegajo());
-            stmt.setString(3, a.getNombre());
-            stmt.setString(4, a.getApellido());
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Alumnos (legajo, nombre, apellido, id_curso, id_condicion, grupo, fecha_ingreso, visible) VALUES (?,?,?,?,?,?,?,0)");
+            stmt.setInt(1, a.getLegajo());
+            stmt.setString(2, a.getNombre());
+            stmt.setString(3, a.getApellido());
+            stmt.setInt(4, a.getIdCurso());
             stmt.setInt(5, a.getIdCondicion());
             stmt.setInt(6, a.getGrupo());
+            stmt.setDate(7, a.getFechaIngreso());
             stmt.executeUpdate();
             stmt.close();
             conn.close();
@@ -155,7 +157,6 @@ public class GestorAlumnos {
     }
 
     public int obtenerCantidadAlumnos (){
-        System.out.println("ESTOY EN GESTOR");
         int cant = 0;
         try {
             Statement stmt = conn.createStatement();
