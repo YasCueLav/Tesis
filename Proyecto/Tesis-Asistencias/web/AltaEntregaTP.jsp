@@ -17,15 +17,15 @@
         <jsp:include page="Menu.jsp"></jsp:include>
         <h1>Entrega de Trabajos Practicos</h1>
         <div>
-            <form>
+            <form action="AltaEntregaTPServlet" method="POST">
                 <div>
                     <select name="Tp">
                     <option>Seleccione un Trabajo Practico ...</option>
                     <c:forEach items="${tp}" var="t">
-                        <option>  ${t.getIdTp()} - ${t.getNombreTp()}</option>
+                        <option value="${t.getIdTp()}"> <%-- ${t.getIdTp()} --%> ${t.getNombreTp()}</option>
                     </c:forEach>
                     </select>
-                    <input type="date" name="fechaHoy" placeholder=""><!-- Crear clase que traiga fecha hoy y colocarla en valor por defecto-->
+                    <input type="date" name="Fecha">
                 </div>
                 </br>
                 <table class="table table-striped">
@@ -44,8 +44,11 @@
                                 <th><input type="hidden" value="${a.getIdAlumno()}" name="IdAlumno"> ${a.getLegajo()}</th>
                                 <td>${a.getApellido()}, ${a.getNombre()} </td>
                                 <td>${a.getDivicionCurso()}</td>
-                                <td><input type="checkbox" name="Entregado"></td>
-                                <td><input type="number" name="NotaTp"></td>
+                                <td>
+                                    E <input type="radio" name="${a.getIdAlumno()}" value="E">- 
+                                    EFT <input type="radio" name="${a.getIdAlumno()}" value="EFT" checked="true">
+                                </td>
+                                <td><input type="number" name="NotaTp" value="0"></td>
                             </tr>
                         </c:forEach>
                     </tbody>
