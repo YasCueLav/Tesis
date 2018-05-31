@@ -19,14 +19,8 @@
       <li class="nav-item">
         <a class="nav-link" href="/Tesis-Asistencias/AltaEntregaTPServlet">Entrega TP <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item dropdown" >
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Cargar
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="/Tesis-Asistencias/AltaCalificacionServlet">Notas Parciales</a>
-          <a class="dropdown-item" href="">kk</a>
-        </div>
+      <li class="nav-item">
+        <a class="nav-link" href="/Tesis-Asistencias/AltaCalificacionServlet">Notas Parciales <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
@@ -36,6 +30,15 @@
           <a class="dropdown-item" href="/Tesis-Asistencias/AltaAlumnoServlet">Alumno</a>
           <a class="dropdown-item" href="">cc</a>
           <a class="dropdown-item" href="">bb</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown" >
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Reportes
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="">aa</a>
+          <a class="dropdown-item" href="">kk</a>
         </div>
       </li>
       <li class="nav-item">

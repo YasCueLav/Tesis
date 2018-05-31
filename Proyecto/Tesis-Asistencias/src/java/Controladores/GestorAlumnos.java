@@ -41,6 +41,7 @@ public class GestorAlumnos {
                 a.setIdCurso(query.getInt("id_curso"));
                 a.setIdCondicion(query.getInt("id_condicion"));
                 a.setGrupo(query.getInt("grupo"));
+                a.setFechaIngreso(query.getDate("fecha_ingreso"));
                 lista.add(a);
             }
             query.close();
@@ -48,6 +49,29 @@ public class GestorAlumnos {
             conn.close();
         } catch (SQLException e) {
             System.out.println(e);
+        }
+        return lista;
+    }
+    public ArrayList<VMAlumnosCursos> obtenerAlumnosXCurso(int curso) {
+        ArrayList<VMAlumnosCursos> lista = new ArrayList<>();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet query = stmt.executeQuery("SELECT al.id_alumno, al.legajo, al.apellido, al.nombre, c.id_curso, c.seccion FROM Alumnos al join Cursos c on (al.id_curso = c.id_curso) WHERE c.id_curso = "+ curso +"and al.visible = 0 and c.visible = 0");
+            while (query.next()) {
+                VMAlumnosCursos vw = new VMAlumnosCursos();
+                vw.setIdAlumno(query.getInt("id_alumno"));
+                vw.setLegajo(query.getInt("legajo"));
+                vw.setApellido(query.getString("apellido"));
+                vw.setNombre(query.getString("nombre"));
+                vw.setIdCurso(query.getInt("id_curso"));
+                vw.setDivicionCurso(query.getString("seccion"));
+                lista.add(vw);
+            }
+            query.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e.toString());
         }
         return lista;
     }
@@ -114,13 +138,14 @@ public class GestorAlumnos {
     public boolean agregarAlumno (Alumno a) {
         boolean inserto = true;
         try {
-            PreparedStatement stmt = conn.prepareStatement("");
-            stmt.setInt(1, a.getIdAlumno());
-            stmt.setInt(2, a.getLegajo());
-            stmt.setString(3, a.getNombre());
-            stmt.setString(4, a.getApellido());
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Alumnos (legajo, nombre, apellido, id_curso, id_condicion, grupo, fecha_ingreso, visible) VALUES (?,?,?,?,?,?,?,0)");
+            stmt.setInt(1, a.getLegajo());
+            stmt.setString(2, a.getNombre());
+            stmt.setString(3, a.getApellido());
+            stmt.setInt(4, a.getIdCurso());
             stmt.setInt(5, a.getIdCondicion());
             stmt.setInt(6, a.getGrupo());
+            stmt.setDate(7, a.getFechaIngreso());
             stmt.executeUpdate();
             stmt.close();
             conn.close();
@@ -132,7 +157,6 @@ public class GestorAlumnos {
     }
 
     public int obtenerCantidadAlumnos (){
-        System.out.println("ESTOY EN GESTOR");
         int cant = 0;
         try {
             Statement stmt = conn.createStatement();

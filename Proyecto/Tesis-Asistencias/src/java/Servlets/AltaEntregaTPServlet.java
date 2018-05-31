@@ -85,21 +85,43 @@ public class AltaEntregaTPServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        TpsAlumnos tpa = new TpsAlumnos();
+        ArrayList<TpsAlumnos> trabAlum = new ArrayList<>();
+        ArrayList<Notas> notas = new ArrayList<>();
+        
         GestorTPsAlumnos gta = new GestorTPsAlumnos();
-        Notas n = new Notas();
         GestorNotas gn = new GestorNotas();
-        //n.setIdAlumno(Integer.parseInt(request.getParameter("Alumno")));
-        tpa.setIdTp(Integer.parseInt(request.getParameter("Tp")));
-        tpa.setIdAlumno(Integer.parseInt(request.getParameter("Alumno")));
-        tpa.setPresentado(Integer.parseInt(request.getParameter("Entregado")));
         
-        n.setNota(Double.parseDouble(request.getParameter("NotaTp")));
-        n.setIdAlumno(Integer.parseInt(request.getParameter("Alumno")));
-        n.setIdAlumno(Integer.parseInt(request.getParameter("Tp")));
+        int idTp = Integer.parseInt(request.getParameter("Tp"));
+                
+        String[] ids = request.getParameterValues("IdAlumno");
         
-        boolean cargo = gta.agregarTPsAlumnos(tpa);
-        boolean cargoN = gn.agregarNotaTPs(n);
+        String[] nota = request.getParameterValues("NotaTp");
+        
+        for (int i = 0; i < ids.length; i++) {
+            
+            TpsAlumnos tpa = new TpsAlumnos();
+            Notas n = new Notas();
+
+            tpa.setIdTp(idTp);
+            tpa.setIdAlumno(Integer.parseInt(ids[i]));
+            String entregado = request.getParameter(""+tpa.getIdAlumno());
+            if (entregado.equals("E")) {
+                tpa.setPresentado(0);
+            }else {
+                tpa.setPresentado(1);
+            }
+            
+            n.setNota(Double.parseDouble(nota[i]));
+            n.setIdAlumno(Integer.parseInt(ids[i]));
+            
+            n.setIdTp(idTp);
+            
+            trabAlum.add(tpa);
+            notas.add(n);
+        }
+        
+        boolean cargo = gta.agregarTPsAlumnos(trabAlum);
+        boolean cargoN = gn.agregarNotaTPs(notas);
         
         if (cargo && cargoN) {
             getServletContext().getRequestDispatcher("/Exito.jsp").forward(request, response);

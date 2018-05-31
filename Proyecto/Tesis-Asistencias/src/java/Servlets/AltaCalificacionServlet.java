@@ -89,18 +89,68 @@ public class AltaCalificacionServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //boton input filtrar valla al DOPOST y de hay un if y vea cual es, si es filtrar que valla a metodo actualizar tabla
-        Notas n = new Notas();
-        GestorNotas gn = new GestorNotas();
-        n.setIdAlumno(Integer.parseInt(request.getParameter("Alumno")));
-        n.setIdExamen(Integer.parseInt(request.getParameter("Examen")));
-        n.setNota(Double.parseDouble(request.getParameter("Nota")));
+        //boton input filtrar valla al DOPOST y de hay un if y vea cual es, 
+        //si es filtrar que valla a metodo actualizar tabla
         
-        boolean cargo = gn.agregarNotaParcial(n);
-        if (cargo) {
-            getServletContext().getRequestDispatcher("/Exito.jsp").forward(request, response);
-        } else {
-            getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
+        String valor = request.getParameter("Boton");
+     
+        switch (valor) {
+            case "Filtrar":
+                System.out.println("Filtro");
+                
+                GestorExamenes ge = new GestorExamenes();
+                ArrayList<VMTipoExamenExamen> examen = ge.obtenerTodosExamenes();
+            
+                int ex = Integer.parseInt(request.getParameter("Examen"));
+                int cu = Integer.parseInt(request.getParameter("Curso"));
+                
+                System.out.println("Cursos " + cu);
+                
+                GestorCursos gc = new GestorCursos();
+                ArrayList<Cursos> curso = gc.obtenerCursosIdArray(cu);
+ 
+                GestorAlumnos ga = new GestorAlumnos();
+                ArrayList<VMAlumnosCursos> alumno = ga.obtenerAlumnosXCurso(cu);
+                
+                
+                request.setAttribute("examen", examen);
+                request.setAttribute("curso", curso);
+                request.setAttribute("alumno", alumno);
+                
+                getServletContext().getRequestDispatcher("/AltaCalificacion.jsp").forward(request, response);
+                break;
+                
+            case "Cargar":
+                System.out.println("Cargo");
+                
+                GestorNotas gn = new GestorNotas();
+                
+                String[] ids = request.getParameterValues("IdAlumno");
+                String[] numeoNota = request.getParameterValues("NumeoNota");
+                
+                ArrayList <Notas> notas = new ArrayList<>();
+
+                for (int i = 0; i < ids.length; i++) {
+                    Notas n = new Notas();
+                    
+                    n.setIdAlumno(Integer.parseInt(ids[i]));
+                    n.setIdExamen(Integer.parseInt(request.getParameter("Examen")));
+                    n.setNota(Double.parseDouble(numeoNota[i]));
+                    
+                    notas.add(n);
+                }   
+                
+                boolean cargo = gn.agregarNotaParcial(notas);
+                if (cargo) {
+                    getServletContext().getRequestDispatcher("/Exito.jsp").forward(request, response);
+                } else {
+                    getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
+                }
+                break;
+                
+            default:
+                getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
+                break;
         }
         processRequest(request, response);
     }

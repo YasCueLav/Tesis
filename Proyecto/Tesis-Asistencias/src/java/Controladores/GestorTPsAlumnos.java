@@ -92,14 +92,16 @@ public class GestorTPsAlumnos {
         return modifico;
     }
     //TERMINAR
-    public boolean agregarTPsAlumnos (TpsAlumnos ta) {
+    public boolean agregarTPsAlumnos (ArrayList<TpsAlumnos> tpsAlumnos) {
         boolean inserto = true;
         try {
             PreparedStatement stmt = conn.prepareStatement("INSERT INTO Tp_Alumnos(id_tp,id_alumno, presentado, visible) VALUES (?, ?,?,0)");
-            stmt.setInt(1, ta.getIdTp());
-            stmt.setInt(2, ta.getIdAlumno());
-            stmt.setBoolean(3, ta.isPresentado());
-            stmt.executeUpdate();
+            for (TpsAlumnos ta : tpsAlumnos) {
+                stmt.setInt(1, ta.getIdTp());
+                stmt.setInt(2, ta.getIdAlumno());
+                stmt.setBoolean(3, ta.isPresentado());
+                stmt.executeUpdate();
+            }
             stmt.close();
             conn.close();
         } catch (SQLException ex) {
