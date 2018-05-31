@@ -26,19 +26,6 @@
                 </c:forEach>
                 </select>
                 
-                <%--
-                <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Seleccione un examen ...
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <c:forEach items="${examen}" var="e">
-                        <a class="dropdown-item" name="IdExamenA" value="${e.getIdExamen()}" >${e.getExamenNombre()} - ${e.getTipoExamne()}</a>
-                    </c:forEach>
-                </div>
-              </div>
-                --%>
-                
                 <select name="Curso">
                     <option>Seleccione un curso ...</option>
                 <c:forEach items="${curso}" var="c">
