@@ -97,20 +97,27 @@ public class AltaCalificacionServlet extends HttpServlet {
         switch (valor) {
             case "Filtrar":
                 System.out.println("Filtro");
-                //int x = Integer.parseInt(request.getParameter("IdExamenA"));
-                int a = Integer.parseInt(request.getParameter("IdExamen"));
-                int c = Integer.parseInt(request.getParameter("IdCurso"));
                 
-                System.out.println("Cursos " + c);
+                GestorExamenes ge = new GestorExamenes();
+                ArrayList<VMTipoExamenExamen> examen = ge.obtenerTodosExamenes();
+            
+                int ex = Integer.parseInt(request.getParameter("Examen"));
+                int cu = Integer.parseInt(request.getParameter("Curso"));
+                
+                System.out.println("Cursos " + cu);
                 
                 GestorCursos gc = new GestorCursos();
-                Cursos curso = gc.obtenerCursoConID(c);
+                ArrayList<Cursos> curso = gc.obtenerCursosIdArray(cu);
  
                 GestorAlumnos ga = new GestorAlumnos();
-                ArrayList<VMAlumnosCursos> alumno = ga.obtenerAlumnosXCurso(c);
+                ArrayList<VMAlumnosCursos> alumno = ga.obtenerAlumnosXCurso(cu);
                 
+                
+                request.setAttribute("examen", examen);
                 request.setAttribute("curso", curso);
                 request.setAttribute("alumno", alumno);
+                
+                getServletContext().getRequestDispatcher("/AltaCalificacion.jsp").forward(request, response);
                 break;
                 
             case "Cargar":
@@ -127,7 +134,7 @@ public class AltaCalificacionServlet extends HttpServlet {
                     Notas n = new Notas();
                     
                     n.setIdAlumno(Integer.parseInt(ids[i]));
-                    n.setIdExamen(Integer.parseInt(request.getParameter("IdExamen")));
+                    n.setIdExamen(Integer.parseInt(request.getParameter("Examen")));
                     n.setNota(Double.parseDouble(numeoNota[i]));
                     
                     notas.add(n);

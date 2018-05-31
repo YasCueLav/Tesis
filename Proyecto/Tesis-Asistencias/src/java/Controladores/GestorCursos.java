@@ -51,6 +51,27 @@ public class GestorCursos {
         return lista;
     }
     
+    public ArrayList<Cursos> obtenerCursosIdArray (int id){
+        ArrayList<Cursos> lista = new ArrayList<>();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet query = stmt.executeQuery("select * from Cursos where id_curso = "+ id +"and visible = 0");
+            while (query.next()){
+                Cursos c = new Cursos();
+                c.setIdCursos(query.getInt("id_curso"));
+                c.setNombreCurso(query.getString("nombre"));
+                c.setSeccionCurso(query.getString("seccion"));
+                lista.add(c);
+            }
+            query.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+        return lista;
+    }
+    
     public Cursos obtenerCursoConID (int id) {
         Cursos c = new Cursos();
         try {
