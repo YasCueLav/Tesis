@@ -32,6 +32,18 @@
         <servlet-name>ReporteNotaPorAlumnoServlet</servlet-name>
         <servlet-class>Servlets.ReporteNotaPorAlumnoServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EliminarAsistenciasServlet</servlet-name>
+        <servlet-class>Servlets.EliminarAsistenciasServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ModificarAsistenciasServlet</servlet-name>
+        <servlet-class>Servlets.ModificarAsistenciasServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListadoAsistenciasServlet</servlet-name>
+        <servlet-class>Servlets.ListadoAsistenciasServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
         <url-pattern>/Index</url-pattern>
@@ -63,6 +75,18 @@
     <servlet-mapping>
         <servlet-name>ReporteNotaPorAlumnoServlet</servlet-name>
         <url-pattern>/ReporteNotaPorAlumnoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EliminarAsistenciasServlet</servlet-name>
+        <url-pattern>/EliminarAsistenciasServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ModificarAsistenciasServlet</servlet-name>
+        <url-pattern>/ModificarAsistenciasServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListadoAsistenciasServlet</servlet-name>
+        <url-pattern>/ListadoAsistenciasServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

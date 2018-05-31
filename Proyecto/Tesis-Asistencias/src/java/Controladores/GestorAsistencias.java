@@ -7,6 +7,7 @@ package Controladores;
 
 import Model.Asistencias;
 import Model.VMAlumnosCursos;
+import Model.VMAsistenciaAlumnoCurso;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -81,12 +82,11 @@ public class GestorAsistencias {
     public boolean modificarAsistencias(Asistencias a) {
         boolean modifico = true;
         try {
-            PreparedStatement stmt = conn.prepareStatement("");
-            stmt.setInt(1, a.getIdAsistencias());
-            stmt.setInt(2, a.getIdAlumno());
-            stmt.setDate(3, a.getFechaReguistro());
-            stmt.setBoolean(4, a.isEstaPresente());
-            stmt.setBoolean(5, a.isFechaObligatoria());
+            PreparedStatement stmt = conn.prepareStatement("UPDATE Asistencias SET obligatoria = ?,esta_Precente = ? WHERE id_asistencia = ?");
+            //stmt.setDate(1, a.getFechaReguistro());
+            stmt.setBoolean(1, a.isFechaObligatoria());
+            stmt.setBoolean(2, a.isEstaPresente());
+            stmt.setInt(3, a.getIdAsistencias());
             stmt.executeUpdate();
             stmt.close();
             conn.close();
@@ -96,7 +96,6 @@ public class GestorAsistencias {
         }
         return modifico;
     }
-
     //TERMINAR
     public boolean elimniarAsistencias(Asistencias a, int id) {
         boolean modifico = true;
@@ -113,7 +112,6 @@ public class GestorAsistencias {
         return modifico;
     }
 
-    
     public boolean agregarAsistencias(ArrayList<Asistencias> asistencias) {
         boolean inserto = true;
         try {
@@ -133,5 +131,55 @@ public class GestorAsistencias {
             inserto = false;
         }
         return inserto;
+    }
+    
+    public ArrayList<VMAsistenciaAlumnoCurso> obtenerAsistenciasAlumnoCurso() {
+        ArrayList<VMAsistenciaAlumnoCurso> lista = new ArrayList<>();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet query = stmt.executeQuery("SELECT a.id_asistencia,al.id_alumno,al.legajo,al.apellido,al.nombre,c.seccion,a.esta_Precente,a.obligatoria, a.fecha_registro FROM  Asistencias a JOIN Alumnos al ON (a.id_alumno = al.id_alumno) JOIN Cursos c ON (al.id_curso = c.id_curso) WHERE a.visible = 0 AND al.visible = 0 AND c.visible = 0 ");
+            while (query.next()) {
+                VMAsistenciaAlumnoCurso vm = new VMAsistenciaAlumnoCurso();
+                vm.setIdAsistencias(query.getInt("id_asistencia"));
+                vm.setIdAlumno(query.getInt("id_alumno"));
+                vm.setLegajo(query.getInt("legajo"));
+                vm.setApellido(query.getString("apellido"));
+                vm.setNombre(query.getString("nombre"));
+                vm.setDivicionCurso(query.getString("seccion"));
+                vm.setEstaPresente(query.getBoolean("esta_Precente"));
+                vm.setFechaObligatoria(query.getBoolean("obligatoria"));
+                vm.setFechaReguistro(query.getDate("fecha_registro"));
+                lista.add(vm);
+            }
+            query.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+        return lista;
+    }
+    
+    public VMAsistenciaAlumnoCurso obtenerAsistenciasAlumnoCursoID( int id) {
+        VMAsistenciaAlumnoCurso vm = new VMAsistenciaAlumnoCurso();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet query = stmt.executeQuery("SELECT a.id_asistencia,al.id_alumno,al.legajo,al.apellido,al.nombre,c.seccion,a.esta_Precente,a.obligatoria, a.fecha_registro FROM  Asistencias a JOIN Alumnos al ON (a.id_alumno = al.id_alumno) JOIN Cursos c ON (al.id_curso = c.id_curso) WHERE a.visible = 0 AND al.visible = 0 AND c.visible = 0 AND a.id_asistencia = " + id);
+                vm.setIdAsistencias(query.getInt("id_asistencia"));
+                vm.setIdAlumno(query.getInt("id_alumno"));
+                vm.setLegajo(query.getInt("legajo"));
+                vm.setApellido(query.getString("apellido"));
+                vm.setNombre(query.getString("nombre"));
+                vm.setDivicionCurso(query.getString("seccion"));
+                vm.setEstaPresente(query.getBoolean("esta_Precente"));
+                vm.setFechaObligatoria(query.getBoolean("obligatoria"));
+                vm.setFechaReguistro(query.getDate("fecha_registro"));
+            query.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+        return vm;
     }
 }
