@@ -22,7 +22,7 @@
                     <select name="Tp">
                     <option>Seleccione un Trabajo Practico ...</option>
                     <c:forEach items="${tp}" var="t">
-                        <option value="${t.getIdTp()}"> <%-- ${t.getIdTp()} --%> ${t.getNombreTp()}</option>
+                        <option value="${t.getIdTp()}">${t.getNombreTp()}</option>
                     </c:forEach>
                     </select>
                     <input type="date" name="Fecha">
@@ -45,8 +45,8 @@
                                 <td>${a.getApellido()}, ${a.getNombre()} </td>
                                 <td>${a.getDivicionCurso()}</td>
                                 <td>
-                                    E <input type="radio" name="${a.getIdAlumno()}" value="E">- 
-                                    EFT <input type="radio" name="${a.getIdAlumno()}" value="EFT" checked="true">
+                                    Si <input type="radio" name="${a.getIdAlumno()}" value="Si">- 
+                                    No <input type="radio" name="${a.getIdAlumno()}" value="No" checked="true">
                                 </td>
                                 <td><input type="number" name="NotaTp" value="0"></td>
                             </tr>

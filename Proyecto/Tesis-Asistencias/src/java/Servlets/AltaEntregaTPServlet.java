@@ -105,7 +105,7 @@ public class AltaEntregaTPServlet extends HttpServlet {
             tpa.setIdTp(idTp);
             tpa.setIdAlumno(Integer.parseInt(ids[i]));
             String entregado = request.getParameter(""+tpa.getIdAlumno());
-            if (entregado.equals("E")) {
+            if (entregado.equals("Si")) {
                 tpa.setPresentado(0);
             }else {
                 tpa.setPresentado(1);
