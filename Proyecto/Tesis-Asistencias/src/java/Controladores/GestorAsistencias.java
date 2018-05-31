@@ -163,17 +163,20 @@ public class GestorAsistencias {
     public VMAsistenciaAlumnoCurso obtenerAsistenciasAlumnoCursoID( int id) {
         VMAsistenciaAlumnoCurso vm = new VMAsistenciaAlumnoCurso();
         try {
-            Statement stmt = conn.createStatement();
-            ResultSet query = stmt.executeQuery("SELECT a.id_asistencia,al.id_alumno,al.legajo,al.apellido,al.nombre,c.seccion,a.esta_Precente,a.obligatoria, a.fecha_registro FROM  Asistencias a JOIN Alumnos al ON (a.id_alumno = al.id_alumno) JOIN Cursos c ON (al.id_curso = c.id_curso) WHERE a.visible = 0 AND al.visible = 0 AND c.visible = 0 AND a.id_asistencia = " + id);
-                vm.setIdAsistencias(query.getInt("id_asistencia"));
-                vm.setIdAlumno(query.getInt("id_alumno"));
-                vm.setLegajo(query.getInt("legajo"));
-                vm.setApellido(query.getString("apellido"));
-                vm.setNombre(query.getString("nombre"));
-                vm.setDivicionCurso(query.getString("seccion"));
-                vm.setEstaPresente(query.getBoolean("esta_Precente"));
-                vm.setFechaObligatoria(query.getBoolean("obligatoria"));
-                vm.setFechaReguistro(query.getDate("fecha_registro"));
+            PreparedStatement stmt = conn.prepareStatement("SELECT al.id_alumno,al.legajo,al.apellido,al.nombre,c.seccion,a.esta_Precente,a.obligatoria, a.fecha_registro FROM  Asistencias a JOIN Alumnos al ON (a.id_alumno = al.id_alumno) JOIN Cursos c ON (al.id_curso = c.id_curso) WHERE a.id_asistencia = ? AND a.visible = 0 AND al.visible = 0 AND c.visible = 0");
+            stmt.setInt(1, id);
+            ResultSet query = stmt.executeQuery();
+                if(query.next()){
+                    vm.setIdAsistencias(query.getInt("id_asistencia"));
+                    vm.setIdAlumno(query.getInt("id_alumno"));
+                    vm.setLegajo(query.getInt("legajo"));
+                    vm.setApellido(query.getString("apellido"));
+                    vm.setNombre(query.getString("nombre"));
+                    vm.setDivicionCurso(query.getString("seccion"));
+                    vm.setEstaPresente(query.getBoolean("esta_Precente"));
+                    vm.setFechaObligatoria(query.getBoolean("obligatoria"));
+                    vm.setFechaReguistro(query.getDate("fecha_registro"));
+                }
             query.close();
             stmt.close();
             conn.close();

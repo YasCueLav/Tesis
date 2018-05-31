@@ -52,9 +52,10 @@ public class ModificarAsistenciasServlet extends HttpServlet {
         HttpSession mySession = request.getSession();
         boolean isLogged = (boolean) mySession.getAttribute("inicio");
         if (isLogged) {
+            //int id = Integer.parseInt(request.getParameter("idAsistencia"));
             GestorAsistencias ga = new GestorAsistencias();
-            VMAsistenciaAlumnoCurso alumno = ga.obtenerAsistenciasAlumnoCursoID(id);
-            request.setAttribute("alumno", alumno);
+            VMAsistenciaAlumnoCurso alu = ga.obtenerAsistenciasAlumnoCursoID(id);
+            request.setAttribute("alu", alu);
             
             getServletContext().getRequestDispatcher("/ModificarAsistencias.jsp").forward(request, response);
         } else {

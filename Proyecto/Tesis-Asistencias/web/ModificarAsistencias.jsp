@@ -18,16 +18,18 @@
         <div>
             <h2>Editar Asistencia</h2>
             <form action="ModificarAsistenciasServlet" method="POST">
-                <input type="hidden" name="idAlquiler" value="${alumno.getIdAsistencias()}">
+                <input type="hidden" name="idAlquiler" value="${alu.getIdAsistencias()}">
             
-                <h5>
-                    <c:if test="${alumno.isFechaObligatoria()}">
-                        <input type="checkbox" name="FechaObligatoria" value="ture">
+                <h5> Fecha Obligatoria
+                    <c:if test="${alu.isFechaObligatoria()}">
+                        Si <input type="radio" name="FechaObligatoria" value="ture"> - 
+                        No<input type="radio" name="FechaObligatoria">
                     </c:if>
-                    <c:if test="${!alumno.isFechaObligatoria()}">
-                        <input type="checkbox" name="FechaObligatoria" value="false">
+                    <c:if test="${!alu.isFechaObligatoria()}">
+                        Si<input type="radio" name="FechaObligatoria"> - 
+                        No<input type="radio" name="FechaObligatoria" value="ture">
                     </c:if>
-                Fecha Obligatoria</h5>
+                </h5>
                 <br>
                 <table class="table table-striped" name="tabla">
                   <thead>
@@ -42,16 +44,18 @@
                     <div>
                         <tbody>
                             <tr>
-                                <th scope="row" >${alumno.getLegajo()}</th>
-                                <td> ${alumno.getApellido()}, ${alumno.getNombre()}</td>
-                                <td>${alumno.getDivicionCurso()}</td>
-                                <td>${alumno.getFechaReguistro()}</td>
+                                <th scope="row" >${alu.getLegajo()}</th>
+                                <td> ${alu.getApellido()}, ${alu.getNombre()}</td>
+                                <td>${alu.getDivicionCurso()}</td>
+                                <td>${alu.getFechaReguistro()}</td>
                                 <td>
-                                    <c:if test="${!alumno.isEstaPresente()}">
-                                        A <input type="radio" name="${alumno.getIdAlumno()}" value="A" checked="true">
+                                    <c:if test="${!alu.isEstaPresente()}">
+                                        A <input type="radio" name="${alu.getIdAlumno()}" value="A" checked="true">
+                                        P<input type="radio" name="${alu.getIdAlumno()}" value="P">
                                     </c:if>
-                                    <c:if test="${alumno.isEstaPresente()}">
-                                        P<input type="radio" name="${alumno.getIdAlumno()}" value="P" checked="true">
+                                    <c:if test="${alu.isEstaPresente()}">
+                                        A <input type="radio" name="${alu.getIdAlumno()}" value="A"> - 
+                                        P<input type="radio" name="${alu.getIdAlumno()}" value="P" checked="true">
                                     </c:if>
                                 </td>
                             </tr>
