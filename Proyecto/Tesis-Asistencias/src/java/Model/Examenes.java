@@ -5,6 +5,8 @@
  */
 package Model;
 
+import java.sql.Date;
+
 /**
  *
  * @author Yasmin
@@ -14,15 +16,17 @@ public class Examenes {
     int idExamen;
     int idTipoExamne;
     String examenNombre;
+    Date fechaExamen;
     boolean visible;
 
     public Examenes() {
     }
 
-    public Examenes(int idExamen, int idTipoExamne, String examenNombre) {
+    public Examenes(int idExamen, int idTipoExamne, String examenNombre,Date fechaExamen) {
         this.idExamen = idExamen;
         this.idTipoExamne = idTipoExamne;
         this.examenNombre = examenNombre;
+        this.fechaExamen = fechaExamen;
     }
 
     public int getIdExamen() {
@@ -41,6 +45,15 @@ public class Examenes {
         return visible;
     }
 
+    public Date getFechaExamen() {
+        return fechaExamen;
+    }
+
+    public void setFechaExamen(Date fechaExamen) {
+        this.fechaExamen = fechaExamen;
+    }
+
+    
     public void setIdExamen(int idExamen) {
         this.idExamen = idExamen;
     }

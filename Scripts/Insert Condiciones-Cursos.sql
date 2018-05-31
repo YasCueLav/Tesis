@@ -49,13 +49,24 @@ INSERT INTO Tipos_Examenes
 VALUES ('Recuperatorio',0)
 
 ----INSERT Tipo Examen----
-INSERT INTO Examenes
-VALUES (1,'Siestemas de Unidades',0)
+SET LANGUAGE 'Español'
+INSERT INTO Examenes (id_tipo_examen,examen,fecha_examen,visible)
+VALUES (1,'Siestemas de Unidades','11/05/2018',0)
 
-INSERT INTO Examenes
+INSERT INTO Examenes (id_tipo_examen,examen,visible)
 VALUES (2,'Siestemas de Unidades',0)
 
 select * from Examenes
 
 select e.id_examen , t.tipo_examen , e.examen 
 from Examenes e join Tipos_Examenes t on e.id_tipo_examen = t.id_tipo_examen
+
+----INSERT Estados----
+INSERT INTO Estados (estado,visible)
+VALUES ('Sin Estado',0)
+
+INSERT INTO Estados (estado,visible)
+VALUES ('Aprobado',0)
+
+INSERT INTO Estados (estado,visible)
+VALUES ('No Aprobado',0)

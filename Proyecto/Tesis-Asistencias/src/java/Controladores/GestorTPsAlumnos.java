@@ -5,6 +5,7 @@
  */
 package Controladores;
 
+import Model.Estado;
 import Model.TpsAlumnos;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -42,6 +43,7 @@ public class GestorTPsAlumnos {
                 ta.setIdTp(query.getInt("id_tp"));
                 ta.setIdAlumno(query.getInt("id_alumno"));
                 ta.setPresentado(query.getInt("presentado"));
+                ta.setFechaPresentado(query.getDate("fecha_entregado"));
                 lista.add(ta);
             }
             query.close();
@@ -64,6 +66,7 @@ public class GestorTPsAlumnos {
                 ta.setIdTp(query.getInt("id_tp"));
                 ta.setIdAlumno(query.getInt("id_alumno"));
                 ta.setPresentado(query.getInt("presentado"));
+                ta.setFechaPresentado(query.getDate("fecha_entregado"));
             }
             query.close();
             stmt.close();
@@ -95,11 +98,13 @@ public class GestorTPsAlumnos {
     public boolean agregarTPsAlumnos (ArrayList<TpsAlumnos> tpsAlumnos) {
         boolean inserto = true;
         try {
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Tp_Alumnos(id_tp,id_alumno, presentado, visible) VALUES (?, ?,?,0)");
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Tp_Alumnos(id_tp,id_alumno, presentado,fecha_entregado, id_estado ,visible) VALUES (?, ?,?,?,?,0)");
             for (TpsAlumnos ta : tpsAlumnos) {
                 stmt.setInt(1, ta.getIdTp());
                 stmt.setInt(2, ta.getIdAlumno());
                 stmt.setBoolean(3, ta.isPresentado());
+                stmt.setString(4, ta.getFecha());
+                stmt.setInt(5, ta.getIdEstado());
                 stmt.executeUpdate();
             }
             stmt.close();
@@ -109,5 +114,26 @@ public class GestorTPsAlumnos {
             inserto = false;
         }
         return inserto;
+    }
+    
+    public ArrayList<Estado> obtenerEstados (){
+        ArrayList<Estado> lista = new ArrayList<>();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet query = stmt.executeQuery("select * from Estados where visible = 0");
+            while (query.next()){
+                Estado e = new Estado();
+                e.setIdEstado(query.getInt("id_estado"));
+                e.setEstado(query.getString("estado"));
+                e.setVisible(query.getBoolean("visible"));
+                lista.add(e);
+            }
+            query.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return lista;
     }
 }

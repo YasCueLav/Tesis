@@ -34,8 +34,8 @@
 			  <th scope="col">legajo</th>
 			  <th scope="col">Apellido, Nombre</th>
 			  <th scope="col">Divicion</th>
-			  <th scope="col">entregado?</th>
-			  <th scope="col">Nota?</th>
+			  <th scope="col">Entregado?</th>
+			  <th scope="col">Estado TP</th>
 			</tr>
 		  </thead>
                     <tbody>
@@ -48,7 +48,11 @@
                                     Si <input type="radio" name="${a.getIdAlumno()}" value="Si">- 
                                     No <input type="radio" name="${a.getIdAlumno()}" value="No" checked="true">
                                 </td>
-                                <td><input type="number" name="NotaTp" value="0"></td>
+                                <td>
+                                    Aprobado <input type="radio" name="Estado${a.getIdAlumno()}" value="A">- 
+                                    No Aprobado<input type="radio" name="Estado${a.getIdAlumno()}" value="D">
+                                    <input type="radio"  id="invisible" name="Estado${a.getIdAlumno()}" value="N" checked="true">
+                                </td>
                             </tr>
                         </c:forEach>
                     </tbody>

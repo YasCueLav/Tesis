@@ -15,6 +15,7 @@ import Model.TpsAlumnos;
 import Model.VMAlumnosCursos;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -85,22 +86,25 @@ public class AltaEntregaTPServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         ArrayList<TpsAlumnos> trabAlum = new ArrayList<>();
-        ArrayList<Notas> notas = new ArrayList<>();
+//        ArrayList<Notas> notas = new ArrayList<>();
         
         GestorTPsAlumnos gta = new GestorTPsAlumnos();
-        GestorNotas gn = new GestorNotas();
+//        GestorNotas gn = new GestorNotas();
         
         int idTp = Integer.parseInt(request.getParameter("Tp"));
                 
         String[] ids = request.getParameterValues("IdAlumno");
         
-        String[] nota = request.getParameterValues("NotaTp");
+        //String[] nota = request.getParameterValues("NotaTp");
         
+        String fecha = request.getParameter("Fecha");
+               
         for (int i = 0; i < ids.length; i++) {
             
             TpsAlumnos tpa = new TpsAlumnos();
-            Notas n = new Notas();
+//            Notas n = new Notas();
 
             tpa.setIdTp(idTp);
             tpa.setIdAlumno(Integer.parseInt(ids[i]));
@@ -110,20 +114,31 @@ public class AltaEntregaTPServlet extends HttpServlet {
             }else {
                 tpa.setPresentado(1);
             }
+            tpa.setFecha(fecha);
             
-            n.setNota(Double.parseDouble(nota[i]));
-            n.setIdAlumno(Integer.parseInt(ids[i]));
+            String estado = request.getParameter("Estado"+tpa.getIdAlumno());
             
-            n.setIdTp(idTp);
+            if (estado.equals("A")) {
+                tpa.setIdEstado(2);
+            }else if (estado.equals("D")){
+                tpa.setIdEstado(3);
+            } else {
+                tpa.setIdEstado(1);
+            }
+            
+//            n.setNota(Double.parseDouble(nota[i]));
+//            n.setIdAlumno(Integer.parseInt(ids[i]));
+//            
+//            n.setIdTp(idTp);
             
             trabAlum.add(tpa);
-            notas.add(n);
+            //notas.add(n);
         }
         
         boolean cargo = gta.agregarTPsAlumnos(trabAlum);
-        boolean cargoN = gn.agregarNotaTPs(notas);
+        //boolean cargoN = gn.agregarNotaTPs(notas);
         
-        if (cargo && cargoN) {
+        if (cargo/* && cargoN*/) {
             getServletContext().getRequestDispatcher("/Exito.jsp").forward(request, response);
         } else {
             getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);

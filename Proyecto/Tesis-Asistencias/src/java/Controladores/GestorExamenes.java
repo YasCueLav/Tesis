@@ -43,6 +43,7 @@ public class GestorExamenes {
                 e.setIdExamen(query.getInt("id_examen"));
                 e.setIdTipoExamne(query.getInt("id_tipo_examen"));
                 e.setExamenNombre(query.getString("examen"));
+                e.setFechaExamen(query.getDate("fecha_examen"));
                 lista.add(e);
             }
             query.close();
@@ -64,6 +65,7 @@ public class GestorExamenes {
                 e.setIdExamen(query.getInt("id_examen"));
                 e.setIdTipoExamne(query.getInt("id_tipo_examen"));
                 e.setExamenNombre(query.getString("examen"));
+                e.setFechaExamen(query.getDate("fecha_examen"));
             }
             query.close();
             stmt.close();
