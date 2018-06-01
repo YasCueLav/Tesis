@@ -80,16 +80,16 @@ public class GestorExamenes {
         ArrayList<VMTipoExamenExamen> lista = new ArrayList<>();
         try {
             Statement stmt = conn.createStatement();
-            ResultSet query = stmt.executeQuery("select e.id_examen,t.tipo_examen,e.examen from Examenes e join Tipos_Examenes t on (e.id_tipo_examen = t.id_tipo_examen) where e.visible = 0 and t.visible = 0");
-            System.out.println("1 - b");
+            ResultSet query = stmt.executeQuery("select e.id_examen,t.id_tipo_examen,t .tipo_examen,e.examen,e.fecha_examen from Examenes e join Tipos_Examenes t on (e.id_tipo_examen = t.id_tipo_examen) where e.visible = 0 and t.visible = 0");
             while (query.next()){
                 VMTipoExamenExamen vm = new VMTipoExamenExamen();
                 vm.setIdExamen(query.getInt("id_examen"));
+                vm.setIdTipoExamen(query.getInt("id_tipo_examen"));
                 vm.setTipoExamne(query.getString("tipo_examen"));
                 vm.setExamenNombre(query.getString("examen"));
+                vm.setFecha(query.getDate("fecha_examen"));
                 lista.add(vm);
             }
-            System.out.println("1 - c");
             query.close();
             stmt.close();
             conn.close();

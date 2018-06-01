@@ -5,8 +5,11 @@
  */
 package Servlets;
 
+import Controladores.GestorExamenes;
+import Model.VMTipoExamenExamen;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -48,7 +51,10 @@ public class ListadoSoporteServlet extends HttpServlet {
         HttpSession mySession = request.getSession();
         boolean isLogged = (boolean) mySession.getAttribute("inicio");
         if (isLogged) {
+            GestorExamenes ge = new GestorExamenes();
+            ArrayList<VMTipoExamenExamen> examen = ge.obtenerTodosExamenes();
             
+            request.setAttribute("examen", examen);
             
             
             getServletContext().getRequestDispatcher("/ListadoSoporte.jsp").forward(request, response);
