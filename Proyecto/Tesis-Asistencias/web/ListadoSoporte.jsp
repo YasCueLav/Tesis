@@ -33,8 +33,8 @@
                                 <th>${e.getTipoExamne()} ${e.getExamenNombre()}</th>
                                 <td> ${e.getFecha()}</td>
                                 <td>
-                                    <a id="Link" href="/Tesis-Asistencias/UpdateTPServlet?idExamen=${e.getIdExamen()}?M=1">Editar</a> / 
-                                    <a id="Link" href="/Tesis-Asistencias/UpdateTPServlet?idExamen=${e.getIdExamen()}?M=2">Eliminar</a>
+                                    <a id="Link" href="/Tesis-Asistencias/UpdateParcialServlet?idExamen=${e.getIdExamen()}&?estado=1">Editar</a> / 
+                                    <a id="Link" href="/Tesis-Asistencias/UpdateParcialServlet?idExamen=${e.getIdExamen()}&?estado=2">Eliminar</a>
                                 </td>
                             </tr>
                         </c:forEach>

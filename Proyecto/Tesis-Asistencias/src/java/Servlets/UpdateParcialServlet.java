@@ -5,12 +5,18 @@
  */
 package Servlets;
 
+import Controladores.GestorExamenes;
+import Controladores.GestorTiposExamenes;
+import Model.TiposExamenes;
+import Model.VMTipoExamenExamen;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -30,18 +36,6 @@ public class UpdateParcialServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet UpdateParcialServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet UpdateParcialServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -56,7 +50,45 @@ public class UpdateParcialServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("idExamen"));
+        int m = Integer.parseInt(request.getParameter("estado"));
+        
+        HttpSession mySession = request.getSession();
+        boolean isLogged = (boolean) mySession.getAttribute("inicio");
+        if (isLogged) {
+            GestorExamenes ge = new GestorExamenes();
+            switch (m){
+                case 1: 
+                    GestorTiposExamenes gte = new GestorTiposExamenes();
+                    ArrayList<TiposExamenes> tipoexamen = gte.obtenerTiposExamenes();
+
+                    VMTipoExamenExamen examen = ge.obtenerVMExamenes(id);
+
+                    request.setAttribute("examen", examen);
+                    request.setAttribute("tipoexamen", tipoexamen);
+            
+                    getServletContext().getRequestDispatcher("/UpdateParcial.jsp").forward(request, response);
+                    break;
+                case 2:
+                    boolean ca = ge.elimniarExamen(id);
+                    if (ca) {
+                        getServletContext().getRequestDispatcher("/ListadoSoporte.jsp").forward(request, response);
+                    }else{
+                        getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
+                    }
+                    
+                    break;
+                    
+                default:
+                    getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
+                    break;
+            }
+        } else {
+            getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
+        }
+        
         processRequest(request, response);
+        
     }
 
     /**

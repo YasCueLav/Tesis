@@ -53,8 +53,9 @@
               Sopotre
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="/Tesis-Asistencias/CargaTPServlet">Carga TP</a>
+                
               <a class="dropdown-item" href="/Tesis-Asistencias/CargaParcialServlet">Carga Parcial</a>
+              <a class="dropdown-item" href="/Tesis-Asistencias/CargaTPServlet">Carga TP</a>
               <a class="dropdown-item" href="/Tesis-Asistencias/CargaCursoServlet">Carga Curso</a>
               <a class="dropdown-item" href="/Tesis-Asistencias/CargaCondicionesServlet">Carga Condiciones</a>
               <a class="dropdown-item" href="/Tesis-Asistencias/ListadoSoporteServlet">Listado</a>

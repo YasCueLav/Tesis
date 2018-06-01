@@ -53,11 +53,6 @@ public class CargaTPServlet extends HttpServlet {
         HttpSession mySession = request.getSession();
         boolean isLogged = (boolean) mySession.getAttribute("inicio");
         if (isLogged) {
-            //Selecion Examen
-            GestorTiposExamenes ge = new GestorTiposExamenes();
-            ArrayList<TiposExamenes> tipoexamen = ge.obtenerTiposExamenes();
-            
-            request.setAttribute("tipoexamen", tipoexamen);
             
             getServletContext().getRequestDispatcher("/CargaTP.jsp").forward(request, response);
         } else {
@@ -77,20 +72,13 @@ public class CargaTPServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        GestorExamenes ge = new GestorExamenes();
         
-        Examenes e = new Examenes();
-        
-        e.setIdTipoExamne(Integer.parseInt(request.getParameter("TipoExamen")));
-        e.setExamenNombre(request.getParameter("Examen"));
-        e.setFecha(request.getParameter("Fecha"));
-        
-        boolean cargo = ge.agregarExamen(e);
-        if (cargo) {
-            getServletContext().getRequestDispatcher("/Exito.jsp").forward(request, response);
-        } else {
-            getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
-        }
+//        boolean cargo = ge.agregarExamen(e);
+//        if (cargo) {
+//            getServletContext().getRequestDispatcher("/Exito.jsp").forward(request, response);
+//        } else {
+//            getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
+//        }
         
         processRequest(request, response);
     }
