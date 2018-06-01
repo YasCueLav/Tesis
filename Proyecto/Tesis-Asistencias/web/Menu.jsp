@@ -40,14 +40,28 @@
           <a class="dropdown-item" href="/Tesis-Asistencias/ListadoAsistenciasServlet">Asistencias</a>
           <a class="dropdown-item" href="">kk</a>
         </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="">xa <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="">xe <span class="sr-only">(current)</span></a>
-      </li>
+        </li>
+            <li class="nav-item">
+              <a class="nav-link" href="">xa <span class="sr-only">(current)</span></a>
+            </li>
+          <li class="nav-item">
+            <a class="nav-link" href="">xe <span class="sr-only">(current)</span></a>
+          </li>
+      
+        <li class="nav-item dropdown" >
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Sopotre
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/Tesis-Asistencias/CargaTPServlet">Carga TP</a>
+              <a class="dropdown-item" href="/Tesis-Asistencias/CargaParcialServlet">Carga Parcial</a>
+              <a class="dropdown-item" href="/Tesis-Asistencias/CargaCursoServlet">Carga Curso</a>
+              <a class="dropdown-item" href="/Tesis-Asistencias/CargaCondicionesServlet">Carga Condiciones</a>
+              <a class="dropdown-item" href="/Tesis-Asistencias/ListadoSoporteServlet">Listado</a>
+            </div>
+        </li>
     </ul>
+      
     <ul class="nav justify-content-end">
       <li class="nav-item active">
         <c:if test="${inicio}">

@@ -44,6 +44,34 @@
         <servlet-name>ListadoAsistenciasServlet</servlet-name>
         <servlet-class>Servlets.ListadoAsistenciasServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CargaTPServlet</servlet-name>
+        <servlet-class>Servlets.CargaTPServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CargaParcialServlet</servlet-name>
+        <servlet-class>Servlets.CargaParcialServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateTPServlet</servlet-name>
+        <servlet-class>Servlets.UpdateTPServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateParcialServlet</servlet-name>
+        <servlet-class>Servlets.UpdateParcialServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListadoSoporteServlet</servlet-name>
+        <servlet-class>Servlets.ListadoSoporteServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CargaCursoServlet</servlet-name>
+        <servlet-class>Servlets.CargaCursoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CargaCondicionesServlet</servlet-name>
+        <servlet-class>Servlets.CargaCondicionesServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
         <url-pattern>/Index</url-pattern>
@@ -87,6 +115,34 @@
     <servlet-mapping>
         <servlet-name>ListadoAsistenciasServlet</servlet-name>
         <url-pattern>/ListadoAsistenciasServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CargaTPServlet</servlet-name>
+        <url-pattern>/CargaTPServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CargaParcialServlet</servlet-name>
+        <url-pattern>/CargaParcialServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateTPServlet</servlet-name>
+        <url-pattern>/UpdateTPServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateParcialServlet</servlet-name>
+        <url-pattern>/UpdateParcialServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListadoSoporteServlet</servlet-name>
+        <url-pattern>/ListadoSoporteServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CargaCursoServlet</servlet-name>
+        <url-pattern>/CargaCursoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CargaCondicionesServlet</servlet-name>
+        <url-pattern>/CargaCondicionesServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

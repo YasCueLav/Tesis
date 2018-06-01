@@ -17,6 +17,7 @@ public class Examenes {
     int idTipoExamne;
     String examenNombre;
     Date fechaExamen;
+    String fecha;
     boolean visible;
 
     public Examenes() {
@@ -29,6 +30,15 @@ public class Examenes {
         this.fechaExamen = fechaExamen;
     }
 
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    
     public int getIdExamen() {
         return idExamen;
     }

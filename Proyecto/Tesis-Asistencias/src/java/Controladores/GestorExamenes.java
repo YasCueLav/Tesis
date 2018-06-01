@@ -98,4 +98,21 @@ public class GestorExamenes {
         }
         return lista;
     }
+    
+    public boolean agregarExamen (Examenes e) {
+        boolean inserto = true;
+        try {
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Examenes (id_tipo_examen, examen, fecha_examen, visible) VALUES (?,?,?,0)");
+            stmt.setInt(1, e.getIdTipoExamne());
+            stmt.setString(2, e.getExamenNombre());
+            stmt.setDate(3, e.getFechaExamen());
+            stmt.executeUpdate();
+            stmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            inserto = false;
+        }
+        return inserto;
+    }
 }
