@@ -6,6 +6,8 @@
 package Servlets;
 
 import Controladores.GestorAsistencias;
+import Controladores.GestorCursos;
+import Model.Cursos;
 import Model.VMAsistenciaAlumnoCurso;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -52,9 +54,13 @@ public class ListadoAsistenciasServlet extends HttpServlet {
         boolean isLogged = (boolean) mySession.getAttribute("inicio");
         if (isLogged) {
             GestorAsistencias ga = new GestorAsistencias();
-            ArrayList<VMAsistenciaAlumnoCurso> alumno = ga.obtenerAsistenciasAlumnoCurso();
-            request.setAttribute("alumno", alumno);
+            ArrayList<VMAsistenciaAlumnoCurso> alumno = ga.obtenerAsistenciasAlumnoCursoTodos();
             
+            GestorCursos gc = new GestorCursos();
+            ArrayList<Cursos> curso = gc.obtenerCursos();
+            
+            request.setAttribute("curso", curso);
+            request.setAttribute("alumno", alumno);
             
             getServletContext().getRequestDispatcher("/ListadoAsistencias.jsp").forward(request, response);
         } else {
@@ -74,6 +80,32 @@ public class ListadoAsistenciasServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        int legajo = Integer.parseInt(request.getParameter("Legajo"));
+        int cu = Integer.parseInt(request.getParameter("Curso"));
+        
+        GestorAsistencias ga = new GestorAsistencias();
+        GestorCursos gc = new GestorCursos();
+        
+        ArrayList<VMAsistenciaAlumnoCurso> alumno;
+        
+        if (legajo != 0 && cu != 0) {
+            alumno = ga.obtenerAsistenciasAlumnoCursoFiltroLegajoCurso(legajo,cu);
+        } else if (legajo != 0){
+            alumno = ga.obtenerAsistenciasAlumnoCursoFiltroLegajo(legajo);
+        }else if (cu != 0){
+            alumno = ga.obtenerAsistenciasAlumnoCursoFiltroCurso(cu);
+        } else{
+            alumno = ga.obtenerAsistenciasAlumnoCursoTodos();
+        }
+        
+        ArrayList<Cursos> curso = gc.obtenerCursos();
+
+        request.setAttribute("curso", curso);
+        request.setAttribute("alumno", alumno);
+        
+        getServletContext().getRequestDispatcher("/ListadoAsistencias.jsp").forward(request, response);
+        
         processRequest(request, response);
     }
 

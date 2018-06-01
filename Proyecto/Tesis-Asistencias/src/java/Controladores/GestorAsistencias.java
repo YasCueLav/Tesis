@@ -133,7 +133,7 @@ public class GestorAsistencias {
         return inserto;
     }
     
-    public ArrayList<VMAsistenciaAlumnoCurso> obtenerAsistenciasAlumnoCurso() {
+    public ArrayList<VMAsistenciaAlumnoCurso> obtenerAsistenciasAlumnoCursoTodos() {
         ArrayList<VMAsistenciaAlumnoCurso> lista = new ArrayList<>();
         try {
             Statement stmt = conn.createStatement();
@@ -159,7 +159,7 @@ public class GestorAsistencias {
         }
         return lista;
     }
-    
+    //No funciona bien con el modif
     public VMAsistenciaAlumnoCurso obtenerAsistenciasAlumnoCursoID( int id) {
         VMAsistenciaAlumnoCurso vm = new VMAsistenciaAlumnoCurso();
         try {
@@ -184,5 +184,86 @@ public class GestorAsistencias {
             System.out.println(e.toString());
         }
         return vm;
+    }
+  
+    public ArrayList<VMAsistenciaAlumnoCurso> obtenerAsistenciasAlumnoCursoFiltroLegajo(int leg) {
+        ArrayList<VMAsistenciaAlumnoCurso> lista = new ArrayList<>();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet query = stmt.executeQuery("SELECT a.id_asistencia,al.id_alumno,al.legajo,al.apellido,al.nombre,c.seccion,a.esta_Precente,a.obligatoria, a.fecha_registro FROM  Asistencias a JOIN Alumnos al ON (a.id_alumno = al.id_alumno) JOIN Cursos c ON (al.id_curso = c.id_curso) WHERE a.visible = 0 AND al.visible = 0 AND c.visible = 0 AND al.legajo = "+ leg);
+            while (query.next()) {
+                VMAsistenciaAlumnoCurso vm = new VMAsistenciaAlumnoCurso();
+                vm.setIdAsistencias(query.getInt("id_asistencia"));
+                vm.setIdAlumno(query.getInt("id_alumno"));
+                vm.setLegajo(query.getInt("legajo"));
+                vm.setApellido(query.getString("apellido"));
+                vm.setNombre(query.getString("nombre"));
+                vm.setDivicionCurso(query.getString("seccion"));
+                vm.setEstaPresente(query.getBoolean("esta_Precente"));
+                vm.setFechaObligatoria(query.getBoolean("obligatoria"));
+                vm.setFechaReguistro(query.getDate("fecha_registro"));
+                lista.add(vm);
+            }
+            query.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+        return lista;
+    }
+
+    public ArrayList<VMAsistenciaAlumnoCurso> obtenerAsistenciasAlumnoCursoFiltroCurso(int idCurso) {
+        ArrayList<VMAsistenciaAlumnoCurso> lista = new ArrayList<>();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet query = stmt.executeQuery("SELECT a.id_asistencia,al.id_alumno,al.legajo,al.apellido,al.nombre,c.seccion,a.esta_Precente,a.obligatoria, a.fecha_registro FROM  Asistencias a JOIN Alumnos al ON (a.id_alumno = al.id_alumno) JOIN Cursos c ON (al.id_curso = c.id_curso) WHERE a.visible = 0 AND al.visible = 0 AND c.visible = 0 AND al.id_curso = "+ idCurso);
+            while (query.next()) {
+                VMAsistenciaAlumnoCurso vm = new VMAsistenciaAlumnoCurso();
+                vm.setIdAsistencias(query.getInt("id_asistencia"));
+                vm.setIdAlumno(query.getInt("id_alumno"));
+                vm.setLegajo(query.getInt("legajo"));
+                vm.setApellido(query.getString("apellido"));
+                vm.setNombre(query.getString("nombre"));
+                vm.setDivicionCurso(query.getString("seccion"));
+                vm.setEstaPresente(query.getBoolean("esta_Precente"));
+                vm.setFechaObligatoria(query.getBoolean("obligatoria"));
+                vm.setFechaReguistro(query.getDate("fecha_registro"));
+                lista.add(vm);
+            }
+            query.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+        return lista;
+    }
+  
+    public ArrayList<VMAsistenciaAlumnoCurso> obtenerAsistenciasAlumnoCursoFiltroLegajoCurso( int leg, int idCurso) {
+        ArrayList<VMAsistenciaAlumnoCurso> lista = new ArrayList<>();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet query = stmt.executeQuery("SELECT a.id_asistencia,al.id_alumno,al.legajo,al.apellido,al.nombre,c.seccion,a.esta_Precente,a.obligatoria, a.fecha_registro FROM  Asistencias a JOIN Alumnos al ON (a.id_alumno = al.id_alumno) JOIN Cursos c ON (al.id_curso = c.id_curso) WHERE a.visible = 0 AND al.visible = 0 AND c.visible = 0 AND al.legajo ="+ leg+" AND al.id_curso = "+ idCurso);
+            while (query.next()) {
+                VMAsistenciaAlumnoCurso vm = new VMAsistenciaAlumnoCurso();
+                vm.setIdAsistencias(query.getInt("id_asistencia"));
+                vm.setIdAlumno(query.getInt("id_alumno"));
+                vm.setLegajo(query.getInt("legajo"));
+                vm.setApellido(query.getString("apellido"));
+                vm.setNombre(query.getString("nombre"));
+                vm.setDivicionCurso(query.getString("seccion"));
+                vm.setEstaPresente(query.getBoolean("esta_Precente"));
+                vm.setFechaObligatoria(query.getBoolean("obligatoria"));
+                vm.setFechaReguistro(query.getDate("fecha_registro"));
+                lista.add(vm);
+            }
+            query.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+        return lista;
     }
 }
