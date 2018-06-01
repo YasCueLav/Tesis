@@ -17,6 +17,7 @@
         <jsp:include page="Menu.jsp"></jsp:include>
         <h2>Listados</h2>
         
+        <h5>Listados de Examenes</h5>
         <div>
             <table class="table table-striped" name="tabla">
                 <thead>
@@ -33,8 +34,87 @@
                                 <th>${e.getTipoExamne()} ${e.getExamenNombre()}</th>
                                 <td> ${e.getFecha()}</td>
                                 <td>
-                                    <a id="Link" href="/Tesis-Asistencias/UpdateParcialServlet?idExamen=${e.getIdExamen()}&?estado=1">Editar</a> / 
-                                    <a id="Link" href="/Tesis-Asistencias/UpdateParcialServlet?idExamen=${e.getIdExamen()}&?estado=2">Eliminar</a>
+                                    <a id="Link" href="/Tesis-Asistencias/UpdateParcialServlet?idExamen=${e.getIdExamen()}&estado=1">Editar</a> / 
+                                    <a id="Link" href="/Tesis-Asistencias/UpdateParcialServlet?idExamen=${e.getIdExamen()}&estado=2">Eliminar</a>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </div>
+            </table>
+        </div>
+        
+        <h5>Listados de Trabajos Practicos</h5>
+        <div>
+            <table class="table table-striped" name="tabla">
+                <thead>
+                    <tr>
+                        <th scope="col">Trabjao Practico</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <div>
+                    <tbody>
+                        <c:forEach items="${tp}" var="t">
+                            <tr>
+                                <th>${t.getNombreTp()}</th>
+                                <td>
+                                    <a id="Link" href="/Tesis-Asistencias/UpdateTPServlet?idTp=${t.getIdTp()}&estado=1">Editar</a> / 
+                                    <a id="Link" href="/Tesis-Asistencias/UpdateTPServlet?idTp=${t.getIdTp()}&estado=2">Eliminar</a>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </div>
+            </table>
+        </div>
+<%--/////////////////////////////////////////////////////////////////////////// --%>
+        <h5>Listados de Cursos</h5>
+        <div>
+            <table class="table table-striped" name="tabla">
+                <thead>
+                    <tr>
+                        <th scope="col">Examen</th>
+                        <th scope="col">Fecha del Examen</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <div>
+                    <tbody>
+                        <c:forEach items="${examen}" var="e">
+                            <tr>
+                                <th>${e.getTipoExamne()} ${e.getExamenNombre()}</th>
+                                <td> ${e.getFecha()}</td>
+                                <td>
+                                    <a id="Link" href="/Tesis-Asistencias/UpdateParcialServlet?idExamen=${e.getIdExamen()}&estado=1">Editar</a> / 
+                                    <a id="Link" href="/Tesis-Asistencias/UpdateParcialServlet?idExamen=${e.getIdExamen()}&estado=2">Eliminar</a>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </div>
+            </table>
+        </div>
+<%--/////////////////////////////////////////////////////////////////////////// --%>
+        <h5>Listados de Condicion</h5>
+        <div>
+            <table class="table table-striped" name="tabla">
+                <thead>
+                    <tr>
+                        <th scope="col">Examen</th>
+                        <th scope="col">Fecha del Examen</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <div>
+                    <tbody>
+                        <c:forEach items="${examen}" var="e">
+                            <tr>
+                                <th>${e.getTipoExamne()} ${e.getExamenNombre()}</th>
+                                <td> ${e.getFecha()}</td>
+                                <td>
+                                    <a id="Link" href="/Tesis-Asistencias/UpdateParcialServlet?idExamen=${e.getIdExamen()}&estado=1">Editar</a> / 
+                                    <a id="Link" href="/Tesis-Asistencias/UpdateParcialServlet?idExamen=${e.getIdExamen()}&estado=2">Eliminar</a>
                                 </td>
                             </tr>
                         </c:forEach>

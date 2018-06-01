@@ -24,7 +24,7 @@
                   <label for="exampleFormControlSelect1">Tipo Examen</label>
                   <select class="form-control" id="exampleFormControlSelect1" name="TipoExamen">
                     <c:forEach items="${tipoexamen}" var="e">
-                         <option name="IdTipoEx" value="${e.getIdTipoExamne()}">${e.getTipoExamen()}</option>
+                        <option value="${e.getIdTipoExamne()}">${e.getTipoExamen()}</option>
                     </c:forEach>
                   </select>
                 </div>
@@ -33,8 +33,10 @@
                   <input class="form-control" type="text" name="Examen" placeholder="${examen.getExamenNombre()}">
                 </div>
                 <div class="form-group">
-                  <label for="exampleFormControlInput1">Fecha Examen</label>
-                  <input type="date" name="Fecha" placeholder="${examen.getFecha()}"> 
+                    <label for="exampleFormControlInput1">Fecha Examen</label>
+                    Si<input type="radio" name="FechaS" value="S"> - 
+                    No<input type="radio" name="FechaS" value="N" checked="true">
+                    <input type="date" name="Fecha" placeholder="${examen.getFecha()}"> 
                 </div>
                 <input type="submit" value="Cargar" class="btn btn-primary">
             </form>

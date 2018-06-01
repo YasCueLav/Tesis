@@ -5,12 +5,15 @@
  */
 package Servlets;
 
+import Controladores.GestorTPs;
+import Model.TPs;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -27,8 +30,10 @@ public class UpdateTPServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    int id=0;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        id = Integer.parseInt(request.getParameter("idTp"));
         response.setContentType("text/html;charset=UTF-8");
     }
 
@@ -44,6 +49,41 @@ public class UpdateTPServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        int m = 0;
+        id = Integer.parseInt(request.getParameter("idTp"));
+        m = Integer.parseInt(request.getParameter("estado"));
+        
+        HttpSession mySession = request.getSession();
+        boolean isLogged = (boolean) mySession.getAttribute("inicio");
+        if (isLogged) {
+            GestorTPs gt;
+            switch (m){
+                case 1: 
+                    gt = new GestorTPs();
+                    TPs trabPrac = gt.obtenerTPs(id);
+
+                    request.setAttribute("trabPrac", trabPrac);
+            
+                    getServletContext().getRequestDispatcher("/UpdateTP.jsp").forward(request, response);
+                    break;
+                case 2:
+                    gt = new GestorTPs();
+                    boolean ca = gt.elimniarTP(id);
+                    if (ca) {
+                        getServletContext().getRequestDispatcher("/ListadoSoporteServlet").forward(request, response);
+                    }else{
+                        getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
+                    }
+                    
+                    break;
+                    
+                default:
+                    getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
+                    break;
+            }
+        } else {
+            getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
+        }
         processRequest(request, response);
     }
 
@@ -58,6 +98,18 @@ public class UpdateTPServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        GestorTPs gt = new GestorTPs();
+        TPs tp = new TPs();
+        tp.setIdTp(id);
+        tp.setNombreTp(request.getParameter("TrabajoP"));
+        
+        boolean c = gt.ModificarTP(tp);
+        
+        if (c) {
+            getServletContext().getRequestDispatcher("/ListadoSoporteServlet").forward(request, response);
+        }else{
+            getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
+        }
         processRequest(request, response);
     }
 

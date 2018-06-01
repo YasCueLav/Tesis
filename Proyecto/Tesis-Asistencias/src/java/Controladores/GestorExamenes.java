@@ -80,7 +80,7 @@ public class GestorExamenes {
         ArrayList<VMTipoExamenExamen> lista = new ArrayList<>();
         try {
             Statement stmt = conn.createStatement();
-            ResultSet query = stmt.executeQuery("select e.id_examen,t.id_tipo_examen,t .tipo_examen,e.examen,e.fecha_examen from Examenes e join Tipos_Examenes t on (e.id_tipo_examen = t.id_tipo_examen) where e.visible = 0 and t.visible = 0");
+            ResultSet query = stmt.executeQuery("select e.id_examen,t.id_tipo_examen,t.tipo_examen,e.examen,e.fecha_examen from Examenes e join Tipos_Examenes t on (e.id_tipo_examen = t.id_tipo_examen) where e.visible = 0 and t.visible = 0");
             while (query.next()){
                 VMTipoExamenExamen vm = new VMTipoExamenExamen();
                 vm.setIdExamen(query.getInt("id_examen"));
@@ -103,7 +103,7 @@ public class GestorExamenes {
          VMTipoExamenExamen vm = new VMTipoExamenExamen();
         try {
             Statement stmt = conn.createStatement();
-            ResultSet query = stmt.executeQuery("select e.id_examen,t.id_tipo_examen,t .tipo_examen,e.examen,e.fecha_examen from Examenes e join Tipos_Examenes t on (e.id_tipo_examen = t.id_tipo_examen) where e.visible = 0 and t.visible = 0 and e.id_examen = "+ id);
+            ResultSet query = stmt.executeQuery("select e.id_examen,t.id_tipo_examen, t.tipo_examen,e.examen,e.fecha_examen from Examenes e join Tipos_Examenes t on (e.id_tipo_examen = t.id_tipo_examen) where e.visible = 0 and t.visible = 0 and e.id_examen = "+ id);
                 vm.setIdExamen(query.getInt("id_examen"));
                 vm.setIdTipoExamen(query.getInt("id_tipo_examen"));
                 vm.setTipoExamne(query.getString("tipo_examen"));
@@ -147,5 +147,39 @@ public class GestorExamenes {
             modifico = false;
         }
         return modifico;
+    }
+    
+    public boolean modificarExamenConFecha (Examenes e) {
+        boolean modificar = true;
+        try {
+            PreparedStatement stmt = conn.prepareStatement("UPDATE Examenes SET id_tipo_examen = ?, examen = ?,fecha_examen = ? WHERE id_examen = ?");
+            stmt.setInt(1, e.getIdTipoExamne());
+            stmt.setString(2, e.getExamenNombre());
+            stmt.setString(3, e.getFecha());
+            stmt.setInt(4, e.getIdExamen());
+            stmt.executeUpdate();
+            stmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            modificar = false;
+        }
+        return modificar;
+    }
+    public boolean modificarExamenSinFecha (Examenes e) {
+        boolean modificar = true;
+        try {
+            PreparedStatement stmt = conn.prepareStatement("UPDATE Examenes SET id_tipo_examen = ?, examen = ? WHERE id_examen = ?");
+            stmt.setInt(1, e.getIdTipoExamne());
+            stmt.setString(2, e.getExamenNombre());
+            stmt.setInt(3, e.getIdExamen());
+            stmt.executeUpdate();
+            stmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            modificar = false;
+        }
+        return modificar;
     }
 }

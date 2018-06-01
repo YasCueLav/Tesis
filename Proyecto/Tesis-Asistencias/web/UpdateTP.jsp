@@ -11,11 +11,21 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:include page="Links.jsp"></jsp:include>
-        <title>Modificar</title>
+        <title>Modificar TP</title>
     </head>
     <body>
         <jsp:include page="Menu.jsp"></jsp:include>
-        
         <h1>Modificar TP</h1>
+        
+        <div>
+            <h5>${trabPrac.getNombreTp()}</h5>
+            <form action="UpdateTPServlet" method="POST">
+                <div class="form-group">
+                  <label for="exampleFormControlInput1">Nombre Trabajo Pracico</label>
+                  <input class="form-control" type="text" name="TrabajoP" >
+                </div>
+                <input type="submit" value="Cargar" class="btn btn-primary">
+            </form>
+        </div>
     </body>
 </html>

@@ -6,8 +6,10 @@
 package Servlets;
 
 import Controladores.GestorExamenes;
+import Controladores.GestorTPs;
 import Controladores.GestorTiposExamenes;
 import Model.Examenes;
+import Model.TPs;
 import Model.TiposExamenes;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -53,7 +55,6 @@ public class CargaTPServlet extends HttpServlet {
         HttpSession mySession = request.getSession();
         boolean isLogged = (boolean) mySession.getAttribute("inicio");
         if (isLogged) {
-            
             getServletContext().getRequestDispatcher("/CargaTP.jsp").forward(request, response);
         } else {
             getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
@@ -72,14 +73,16 @@ public class CargaTPServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        GestorTPs gtp = new GestorTPs();
+        TPs t = new TPs();
+        t.setNombreTp(request.getParameter("TrabajoP"));
         
-//        boolean cargo = ge.agregarExamen(e);
-//        if (cargo) {
-//            getServletContext().getRequestDispatcher("/Exito.jsp").forward(request, response);
-//        } else {
-//            getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
-//        }
-        
+        boolean cargo = gtp.agregarExamen(t);
+        if (cargo) {
+            getServletContext().getRequestDispatcher("/Exito.jsp").forward(request, response);
+        } else {
+            getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
+        }
         processRequest(request, response);
     }
 

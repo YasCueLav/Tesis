@@ -70,4 +70,46 @@ public class GestorTPs {
         return t;
     }
     
+    public boolean agregarExamen (TPs t) {
+        boolean inserto = true;
+        try {
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Trabajos_Practicos (nombre, visible) VALUES (?,0)");
+            stmt.setString(1, t.getNombreTp());
+            stmt.executeUpdate();
+            stmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            inserto = false;
+        }
+        return inserto;
+    }
+     public boolean elimniarTP(int id) {
+        boolean modifico = true;
+        try {
+            PreparedStatement stmt = conn.prepareStatement("UPDATE Trabajos_Practicos SET visible = 1 WHERE id_tp = "+ id);
+            stmt.executeUpdate();
+            stmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            modifico = false;
+        }
+        return modifico;
+    }
+     public boolean ModificarTP(TPs t) {
+        boolean modifico = true;
+        try {
+            PreparedStatement stmt = conn.prepareStatement("UPDATE Trabajos_Practicos SET nombre = ? WHERE id_tp = ?");
+            stmt.setString(1, t.getNombreTp());
+            stmt.setInt(2, t.getIdTp());
+            stmt.executeUpdate();
+            stmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            modifico = false;
+        }
+        return modifico;
+    }
 }

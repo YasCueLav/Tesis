@@ -6,6 +6,8 @@
 package Servlets;
 
 import Controladores.GestorExamenes;
+import Controladores.GestorTPs;
+import Model.TPs;
 import Model.VMTipoExamenExamen;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -54,6 +56,10 @@ public class ListadoSoporteServlet extends HttpServlet {
             GestorExamenes ge = new GestorExamenes();
             ArrayList<VMTipoExamenExamen> examen = ge.obtenerTodosExamenes();
             
+            GestorTPs gt = new GestorTPs();
+            ArrayList<TPs> tp = gt.obtenerTPs();
+
+            request.setAttribute("tp", tp);
             request.setAttribute("examen", examen);
             
             
