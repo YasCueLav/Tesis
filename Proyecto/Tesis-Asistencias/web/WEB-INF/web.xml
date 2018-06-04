@@ -72,6 +72,14 @@
         <servlet-name>CargaCondicionesServlet</servlet-name>
         <servlet-class>Servlets.CargaCondicionesServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateCondicionServlet</servlet-name>
+        <servlet-class>Servlets.UpdateCondicionServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateCursoServlet</servlet-name>
+        <servlet-class>Servlets.UpdateCursoServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
         <url-pattern>/Index</url-pattern>
@@ -143,6 +151,14 @@
     <servlet-mapping>
         <servlet-name>CargaCondicionesServlet</servlet-name>
         <url-pattern>/CargaCondicionesServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateCondicionServlet</servlet-name>
+        <url-pattern>/UpdateCondicionServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateCursoServlet</servlet-name>
+        <url-pattern>/UpdateCursoServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

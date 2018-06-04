@@ -68,19 +68,49 @@ public class GestorCondiciones {
         }
         return c;
     }
-    //TERMINAR
-//    public boolean agregarCondiciones (Condiciones c) {
-//        boolean inserto = true;
-//        try {
-//            PreparedStatement stmt = conn.prepareStatement("");
-//            stmt.setString(1, c.getCondicion());
-//            stmt.executeUpdate();
-//            stmt.close();
-//            conn.close();
-//        } catch (SQLException ex) {
-//            System.out.println(ex);
-//            inserto = false;
-//        }
-//        return inserto;
-//    }
+    public boolean agregarCondiciones (Condiciones c) {
+        boolean inserto = true;
+        try {
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Condiciones (condicion, visible) VALUES (?,0)");
+            stmt.setString(1, c.getCondicion());
+            stmt.executeUpdate();
+            stmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            inserto = false;
+        }
+        return inserto;
+    }
+    
+    public boolean modificarCondiciones (Condiciones c) {
+        boolean inserto = true;
+        try {
+            PreparedStatement stmt = conn.prepareStatement("UPDATE Condiciones SET condicion = ? WHERE id_condicion = ?");
+            stmt.setString(1, c.getCondicion());
+            stmt.setInt(2, c.getIdCondicion());
+            stmt.executeUpdate();
+            stmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            inserto = false;
+        }
+        return inserto;
+    }
+    
+    public boolean eliminarCondiciones (int id) {
+        boolean inserto = true;
+        try {
+            PreparedStatement stmt = conn.prepareStatement("UPDATE Condiciones SET visible = 1 WHERE id_condicion = "+ id);
+            stmt.executeUpdate();
+            stmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            inserto = false;
+        }
+        return inserto;
+    }
 }
+    

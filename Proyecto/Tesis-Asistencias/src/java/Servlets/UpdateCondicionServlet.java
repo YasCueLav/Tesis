@@ -5,14 +5,10 @@
  */
 package Servlets;
 
-import Controladores.GestorExamenes;
-import Controladores.GestorTiposExamenes;
-import Model.Examenes;
-import Model.TiposExamenes;
-import Model.VMTipoExamenExamen;
+import Controladores.GestorCondiciones;
+import Model.Condiciones;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +19,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Yasmin
  */
-public class UpdateParcialServlet extends HttpServlet {
+public class UpdateCondicionServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,7 +33,7 @@ public class UpdateParcialServlet extends HttpServlet {
     int id=0;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        id = Integer.parseInt(request.getParameter("idExamen"));
+        id = Integer.parseInt(request.getParameter("idCodicion"));
         response.setContentType("text/html;charset=UTF-8");
     }
 
@@ -54,27 +50,25 @@ public class UpdateParcialServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int m = 0;
+        id = Integer.parseInt(request.getParameter("idCodicion"));
         m = Integer.parseInt(request.getParameter("estado"));
         
         HttpSession mySession = request.getSession();
         boolean isLogged = (boolean) mySession.getAttribute("inicio");
         if (isLogged) {
-            GestorExamenes ge;
+            GestorCondiciones gc;
             switch (m){
                 case 1: 
-                    GestorTiposExamenes gte = new GestorTiposExamenes();
-                    ge = new GestorExamenes();
-                    ArrayList<TiposExamenes> tipoexamen = gte.obtenerTiposExamenes();
-                    VMTipoExamenExamen examen = ge.obtenerVMExamenes(id);
+                    gc = new GestorCondiciones();
+                    Condiciones condi = gc.obtenerCondicionesConID(id);
 
-                    request.setAttribute("examen", examen);
-                    request.setAttribute("tipoexamen", tipoexamen);
+                    request.setAttribute("condi", condi);
             
-                    getServletContext().getRequestDispatcher("/UpdateParcial.jsp").forward(request, response);
+                    getServletContext().getRequestDispatcher("/UpdateCondicion.jsp").forward(request, response);
                     break;
                 case 2:
-                    ge = new GestorExamenes();
-                    boolean ca = ge.elimniarExamen(id);
+                    gc = new GestorCondiciones();
+                    boolean ca = gc.eliminarCondiciones(id);
                     if (ca) {
                         getServletContext().getRequestDispatcher("/Exito.jsp").forward(request, response);
                     }else{
@@ -90,9 +84,7 @@ public class UpdateParcialServlet extends HttpServlet {
         } else {
             getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
         }
-        
         processRequest(request, response);
-        
     }
 
     /**
@@ -106,23 +98,16 @@ public class UpdateParcialServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        boolean cargar = false;
-        GestorExamenes ge = new GestorExamenes();
-        Examenes e = new Examenes(); 
-        e.setIdExamen(id);
-        e.setIdTipoExamne(Integer.parseInt(request.getParameter("TipoExamen")));
-        e.setExamenNombre(request.getParameter("Examen"));
-        String presente = request.getParameter("FechaS");
-            if (presente.equals("S")) {
-                e.setFecha(request.getParameter("Fecha"));
-                cargar = ge.modificarExamenConFecha(e);
-            } else if (presente.equals("N")){
-                cargar = ge.modificarExamenSinFecha(e);
-            }
-                
-        if (cargar) {
+        GestorCondiciones gc = new GestorCondiciones();
+        Condiciones c = new Condiciones();
+        
+        c.setIdCondicion(id);
+        c.setCondicion(request.getParameter("Condicion"));
+        
+        boolean cargo = gc.modificarCondiciones(c);
+        if (cargo) {
             getServletContext().getRequestDispatcher("/Exito.jsp").forward(request, response);
-        }else{
+        } else {
             getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
         }
         processRequest(request, response);

@@ -70,7 +70,7 @@ public class UpdateTPServlet extends HttpServlet {
                     gt = new GestorTPs();
                     boolean ca = gt.elimniarTP(id);
                     if (ca) {
-                        getServletContext().getRequestDispatcher("/ListadoSoporteServlet").forward(request, response);
+                        getServletContext().getRequestDispatcher("/Exito.jsp").forward(request, response);
                     }else{
                         getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
                     }
@@ -106,7 +106,7 @@ public class UpdateTPServlet extends HttpServlet {
         boolean c = gt.ModificarTP(tp);
         
         if (c) {
-            getServletContext().getRequestDispatcher("/ListadoSoporteServlet").forward(request, response);
+            getServletContext().getRequestDispatcher("/Exito.jsp").forward(request, response);
         }else{
             getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
         }

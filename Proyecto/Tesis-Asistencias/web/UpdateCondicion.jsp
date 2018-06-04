@@ -1,6 +1,6 @@
 <%-- 
-    Document   : CargaCondiciones
-    Created on : 31/05/2018, 22:41:53
+    Document   : UpdateCondicion
+    Created on : 04/06/2018, 13:54:09
     Author     : Yasmin
 --%>
 
@@ -18,10 +18,11 @@
         <h1>Carga Condicion Academica</h1>
         
         <div>
-            <form action="CargaCondicionesServlet" method="POST">
+            <h5>${condi.getCondicion()}</h5>
+            <form action="UpdateCondicionServlet" method="POST">
                 <div class="form-group">
                   <label for="exampleFormControlInput1">Nombre Condicion</label>
-                  <input class="form-control" type="text" name="Condicion" placeholder="">
+                  <input class="form-control" type="text" name="Condicion" placeholder="${condi.getCondicion()}">
                 </div>
                 <input type="submit" value="Cargar" class="btn btn-primary">
             </form>

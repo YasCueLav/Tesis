@@ -69,25 +69,23 @@
             </table>
         </div>
 <%--/////////////////////////////////////////////////////////////////////////// --%>
-        <h5>Listados de Cursos</h5>
+        <h5>Listados de Condiciones</h5>
         <div>
             <table class="table table-striped" name="tabla">
                 <thead>
                     <tr>
-                        <th scope="col">Examen</th>
-                        <th scope="col">Fecha del Examen</th>
+                        <th scope="col">Condicion</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
                 <div>
                     <tbody>
-                        <c:forEach items="${examen}" var="e">
+                        <c:forEach items="${condicion}" var="c">
                             <tr>
-                                <th>${e.getTipoExamne()} ${e.getExamenNombre()}</th>
-                                <td> ${e.getFecha()}</td>
+                                <th>${c.getCondicion()}</th>
                                 <td>
-                                    <a id="Link" href="/Tesis-Asistencias/UpdateParcialServlet?idExamen=${e.getIdExamen()}&estado=1">Editar</a> / 
-                                    <a id="Link" href="/Tesis-Asistencias/UpdateParcialServlet?idExamen=${e.getIdExamen()}&estado=2">Eliminar</a>
+                                    <a id="Link" href="/Tesis-Asistencias/UpdateCondicionServlet?idCodicion=${c.getIdCondicion()}&estado=1">Editar</a> / 
+                                    <a id="Link" href="/Tesis-Asistencias/UpdateCondicionServlet?idCodicion=${c.getIdCondicion()}&estado=2">Eliminar</a>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -96,25 +94,25 @@
             </table>
         </div>
 <%--/////////////////////////////////////////////////////////////////////////// --%>
-        <h5>Listados de Condicion</h5>
+        <h5>Listados de Cursos</h5>
         <div>
             <table class="table table-striped" name="tabla">
                 <thead>
                     <tr>
-                        <th scope="col">Examen</th>
-                        <th scope="col">Fecha del Examen</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Seccion</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
                 <div>
                     <tbody>
-                        <c:forEach items="${examen}" var="e">
+                        <c:forEach items="${curso}" var="cu">
                             <tr>
-                                <th>${e.getTipoExamne()} ${e.getExamenNombre()}</th>
-                                <td> ${e.getFecha()}</td>
+                                <th>${cu.getNombreCurso()}</th>
+                                <td> ${cu.getSeccionCurso()}</td>
                                 <td>
-                                    <a id="Link" href="/Tesis-Asistencias/UpdateParcialServlet?idExamen=${e.getIdExamen()}&estado=1">Editar</a> / 
-                                    <a id="Link" href="/Tesis-Asistencias/UpdateParcialServlet?idExamen=${e.getIdExamen()}&estado=2">Eliminar</a>
+                                    <a id="Link" href="/Tesis-Asistencias/UpdateCursoServlet?idCurso=${cu.getIdCursos()}&estado=1">Editar</a> / 
+                                    <a id="Link" href="/Tesis-Asistencias/UpdateCursoServlet?idCurso=${cu.getIdCursos()}&estado=2">Eliminar</a>
                                 </td>
                             </tr>
                         </c:forEach>

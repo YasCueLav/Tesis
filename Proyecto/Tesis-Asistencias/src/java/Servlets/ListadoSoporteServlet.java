@@ -5,8 +5,12 @@
  */
 package Servlets;
 
+import Controladores.GestorCondiciones;
+import Controladores.GestorCursos;
 import Controladores.GestorExamenes;
 import Controladores.GestorTPs;
+import Model.Condiciones;
+import Model.Cursos;
 import Model.TPs;
 import Model.VMTipoExamenExamen;
 import java.io.IOException;
@@ -59,9 +63,16 @@ public class ListadoSoporteServlet extends HttpServlet {
             GestorTPs gt = new GestorTPs();
             ArrayList<TPs> tp = gt.obtenerTPs();
 
+            GestorCondiciones gc = new GestorCondiciones();
+            ArrayList<Condiciones> condicion = gc.obtenerCondiciones();
+            
+            GestorCursos gcu = new GestorCursos();
+            ArrayList<Cursos> curso = gcu.obtenerCursos();
+            
             request.setAttribute("tp", tp);
             request.setAttribute("examen", examen);
-            
+            request.setAttribute("condicion", condicion);
+            request.setAttribute("curso", curso);
             
             getServletContext().getRequestDispatcher("/ListadoSoporte.jsp").forward(request, response);
         } else {
