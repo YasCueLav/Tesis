@@ -18,7 +18,7 @@
         <h1>Carga Curso</h1>
         
         <div>
-            <form action="CargaCondicionesServlet" method="POST">
+            <form action="CargaCursoServlet" method="POST">
                 <div class="form-group">
                   <label for="exampleFormControlInput1">Nombre Curso</label>
                   <input class="form-control" type="text" name="Curso" placeholder="">

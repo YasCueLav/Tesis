@@ -19,7 +19,8 @@
         
         <div>
             <h5>${curso.getNombreCurso()} - ${curso.getSeccionCurso()}</h5>
-            <form action="CargaCondicionesServlet" method="POST">
+        
+            <form action="UpdateCursoServlet" method="POST">
                 <div class="form-group">
                   <label for="exampleFormControlInput1">Nombre Curso</label>
                   <input class="form-control" type="text" name="Curso" placeholder="${curso.getNombreCurso()}">

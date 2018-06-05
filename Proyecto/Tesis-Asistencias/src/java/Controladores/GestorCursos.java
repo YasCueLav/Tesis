@@ -95,7 +95,7 @@ public class GestorCursos {
     public boolean elimniarCurso (int id) {
         boolean modifico = true;
         try {
-            PreparedStatement stmt = conn.prepareStatement("UPDATE Condiciones SET visible = 0 WHERE id_curso = "+ id);
+            PreparedStatement stmt = conn.prepareStatement("UPDATE Cursos SET visible = 1 WHERE id_curso = "+ id);
             stmt.executeUpdate();
             stmt.close();
             conn.close();
@@ -125,7 +125,7 @@ public class GestorCursos {
     public boolean modificarCurso (Cursos c) {
         boolean modifico = true;
         try {
-            PreparedStatement stmt = conn.prepareStatement("UPDATE Condiciones SET nombre = ? ,seccion =  ? WHERE id_curso = ?");
+            PreparedStatement stmt = conn.prepareStatement("UPDATE Cursos SET nombre = ? ,seccion =  ? WHERE id_curso = ?");
             stmt.setString(1, c.getNombreCurso());
             stmt.setString(2, c.getSeccionCurso());
             stmt.setInt(3, c.getIdCursos());

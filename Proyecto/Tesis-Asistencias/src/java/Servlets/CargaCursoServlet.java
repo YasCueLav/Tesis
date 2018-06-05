@@ -73,7 +73,6 @@ public class CargaCursoServlet extends HttpServlet {
         
         c.setNombreCurso(request.getParameter("Curso"));
         c.setSeccionCurso(request.getParameter("Seccion"));
-        
         boolean cargo = gcu.agregarCurso(c);
         if (cargo) {
             getServletContext().getRequestDispatcher("/Exito.jsp").forward(request, response);
