@@ -6,13 +6,9 @@
 package Servlets;
 
 import Controladores.GestorAlumnos;
-import Controladores.GestorCondiciones;
-import Controladores.GestorCursos;
-import Model.Alumno;
-import Model.Condiciones;
-import Model.Cursos;
+import Model.VMAlumnosCursosCondiciones;
 import java.io.IOException;
-import java.sql.Date;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -24,7 +20,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Yasmin
  */
-public class AltaAlumnoServlet extends HttpServlet {
+public class ListadoAlumnosServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -55,17 +51,12 @@ public class AltaAlumnoServlet extends HttpServlet {
         HttpSession mySession = request.getSession();
         boolean isLogged = (boolean) mySession.getAttribute("inicio");
         if (isLogged) {
-            //Selecion curso
-            GestorCursos gc = new GestorCursos();
-            ArrayList<Cursos> cu = gc.obtenerCursos();
-            //Seleccion condicion
-            GestorCondiciones go = new GestorCondiciones();
-            ArrayList<Condiciones> con = go.obtenerCondiciones();
+            GestorAlumnos ga = new GestorAlumnos();
+            ArrayList<VMAlumnosCursosCondiciones> alumno = ga.obtenerAlumnoCursoCondiciones();
             
-            request.setAttribute("cu", cu);
-            request.setAttribute("con", con);
+            request.setAttribute("alumno", alumno);
             
-            getServletContext().getRequestDispatcher("/AltaAlumno.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/ListadoAlumnos.jsp").forward(request, response);
         } else {
             getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
         }
@@ -83,29 +74,6 @@ public class AltaAlumnoServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        GestorAlumnos ga = new GestorAlumnos();
-        Alumno alum = new Alumno();
-        
-        String f = request.getParameter("Fecha");
-        System.out.println("FECHA --" + f);
-        
-        alum.setLegajo(Integer.parseInt(request.getParameter("Legajo")));
-        alum.setNombre(request.getParameter("Nombre"));
-        alum.setApellido(request.getParameter("Apellido"));
-        alum.setIdCurso(Integer.parseInt(request.getParameter("Curso")));
-        alum.setIdCondicion(Integer.parseInt(request.getParameter("Condicion")));
-        alum.setGrupo(Integer.parseInt(request.getParameter("Grupo")));
-        alum.setFechaIngreso(Date.valueOf(f));
-                
-        boolean cargo = ga.agregarAlumno(alum);
-        
-        if (cargo) {
-            getServletContext().getRequestDispatcher("/Exito.jsp").forward(request, response);
-        } else {
-            getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
-        }
-        
         processRequest(request, response);
     }
 

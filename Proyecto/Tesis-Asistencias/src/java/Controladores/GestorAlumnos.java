@@ -2,6 +2,7 @@ package Controladores;
 
 import Model.Alumno;
 import Model.VMAlumnosCursos;
+import Model.VMAlumnosCursosCondiciones;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -52,6 +53,7 @@ public class GestorAlumnos {
         }
         return lista;
     }
+    
     public ArrayList<VMAlumnosCursos> obtenerAlumnosXCurso(int curso) {
         ArrayList<VMAlumnosCursos> lista = new ArrayList<>();
         try {
@@ -103,13 +105,13 @@ public class GestorAlumnos {
     public boolean modificarAlumno (Alumno a) {
         boolean modifico = true;
         try {
-            PreparedStatement stmt = conn.prepareStatement("");
-            stmt.setInt(1, a.getIdAlumno());
-            stmt.setInt(2, a.getLegajo());
-            stmt.setString(3, a.getNombre());
-            stmt.setString(4, a.getApellido());
-            stmt.setInt(5, a.getIdCondicion());
-            stmt.setInt(6, a.getGrupo());
+            PreparedStatement stmt = conn.prepareStatement("UPDATE Alumnos SET legajo = ?, nombre = ?, apellido = ?, id_curso = ?, id_condicion = ?, grupo = ?, fecha_ingreso = ? WHERE id_alumno = ?");
+//            stmt.setInt(1, a.getIdAlumno());
+//            stmt.setInt(2, a.getLegajo());
+//            stmt.setString(3, a.getNombre());
+//            stmt.setString(4, a.getApellido());
+//            stmt.setInt(5, a.getIdCondicion());
+//            stmt.setInt(6, a.getGrupo());
             stmt.executeUpdate();
             stmt.close();
             conn.close();
@@ -119,12 +121,11 @@ public class GestorAlumnos {
         }
         return modifico;
     }
-    //TERMINAR
-    public boolean elimniarAlumno (Alumno a, int id) {
+    
+    public boolean elimniarAlumno ( int id) {
         boolean modifico = true;
         try {
-            PreparedStatement stmt = conn.prepareStatement("");
-            stmt.setBoolean(1, a.isVisible());
+            PreparedStatement stmt = conn.prepareStatement("UPDATE Alumnos SET visible = 1 WHERE id_alumno = "+ id);
             stmt.executeUpdate();
             stmt.close();
             conn.close();
@@ -156,22 +157,6 @@ public class GestorAlumnos {
         return inserto;
     }
 
-    public int obtenerCantidadAlumnos (){
-        int cant = 0;
-        try {
-            Statement stmt = conn.createStatement();
-            ResultSet query = stmt.executeQuery("select count(*) numero from Alumnos where visible = 0");
-            cant = query.getInt("numero");
-            System.out.println("EN GESTOR CANT ALUMNO ="+cant);
-            query.close();
-            stmt.close();
-            conn.close();
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-        return cant;
-    }
-    
     public ArrayList<VMAlumnosCursos> obtenerAlumnoCurso() {
         ArrayList<VMAlumnosCursos> lista = new ArrayList<>();
         try {
@@ -185,6 +170,34 @@ public class GestorAlumnos {
                 vw.setNombre(query.getString("nombre"));
                 vw.setIdCurso(query.getInt("id_curso"));
                 vw.setDivicionCurso(query.getString("seccion"));
+                lista.add(vw);
+            }
+            query.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+        return lista;
+    }
+    
+    public ArrayList<VMAlumnosCursosCondiciones> obtenerAlumnoCursoCondiciones() {
+        ArrayList<VMAlumnosCursosCondiciones> lista = new ArrayList<>();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet query = stmt.executeQuery("SELECT al.id_alumno, al.legajo, al.apellido, al.nombre, c.id_curso, c.nombre 'nombrecurso', c.seccion, co.id_condicion, co.condicion, al.fecha_ingreso  FROM Alumnos al join Cursos c ON (al.id_curso = c.id_curso) join Condiciones co ON (al.id_condicion = co.id_condicion) WHERE al.visible = 0 AND c.visible = 0 AND co.visible = 0");
+            while (query.next()) {
+                VMAlumnosCursosCondiciones vw = new VMAlumnosCursosCondiciones();
+                vw.setIdAlumno(query.getInt("id_alumno"));
+                vw.setLegajo(query.getInt("legajo"));
+                vw.setApellido(query.getString("apellido"));
+                vw.setNombre(query.getString("nombre"));
+                vw.setIdCurso(query.getInt("id_curso"));
+                vw.setNombreCurso(query.getString("nombrecurso"));
+                vw.setDivicionCurso(query.getString("seccion"));
+                vw.setIdcondicion(query.getInt("id_condicion"));
+                vw.setCondicion(query.getString("condicion"));
+                vw.setFecha(query.getDate("fecha_ingreso"));
                 lista.add(vw);
             }
             query.close();

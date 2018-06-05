@@ -31,8 +31,10 @@ public class ModificarAsistenciasServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    int id;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        id = Integer.parseInt(request.getParameter("idAsistencia"));
         response.setContentType("text/html;charset=UTF-8");
     }
 
@@ -48,11 +50,10 @@ public class ModificarAsistenciasServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("idAsistencia"));
+        id = Integer.parseInt(request.getParameter("idAsistencia"));
         HttpSession mySession = request.getSession();
         boolean isLogged = (boolean) mySession.getAttribute("inicio");
         if (isLogged) {
-            //int id = Integer.parseInt(request.getParameter("idAsistencia"));
             GestorAsistencias ga = new GestorAsistencias();
             VMAsistenciaAlumnoCurso alu = ga.obtenerAsistenciasAlumnoCursoID(id);
             request.setAttribute("alu", alu);

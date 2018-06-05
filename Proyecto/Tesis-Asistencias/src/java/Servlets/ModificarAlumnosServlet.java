@@ -12,7 +12,7 @@ import Model.Alumno;
 import Model.Condiciones;
 import Model.Cursos;
 import java.io.IOException;
-import java.sql.Date;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -24,7 +24,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Yasmin
  */
-public class AltaAlumnoServlet extends HttpServlet {
+public class ModificarAlumnosServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,8 +35,10 @@ public class AltaAlumnoServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    int id =0;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        id = Integer.parseInt(request.getParameter("idAlumno"));
         response.setContentType("text/html;charset=UTF-8");
     }
 
@@ -52,20 +54,45 @@ public class AltaAlumnoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        int m = 0;
+        id = Integer.parseInt(request.getParameter("idCodicion"));
+        m = Integer.parseInt(request.getParameter("estado"));
+        
         HttpSession mySession = request.getSession();
         boolean isLogged = (boolean) mySession.getAttribute("inicio");
         if (isLogged) {
-            //Selecion curso
-            GestorCursos gc = new GestorCursos();
-            ArrayList<Cursos> cu = gc.obtenerCursos();
-            //Seleccion condicion
-            GestorCondiciones go = new GestorCondiciones();
-            ArrayList<Condiciones> con = go.obtenerCondiciones();
+            GestorAlumnos ga;
+            switch (m){
+                case 1: 
+                    ga = new GestorAlumnos();
+                    Alumno alumno = ga.obtenerAlumno(id);
+                    
+                    GestorCursos gc = new GestorCursos();
+                    ArrayList<Cursos> curso = gc.obtenerCursos();
+                    
+                    GestorCondiciones go = new GestorCondiciones();
+                    ArrayList<Condiciones> condicion = go.obtenerCondiciones();
+
+                    request.setAttribute("alumno", alumno);
+                    request.setAttribute("curso", curso);
+                    request.setAttribute("condicion", condicion);
             
-            request.setAttribute("cu", cu);
-            request.setAttribute("con", con);
-            
-            getServletContext().getRequestDispatcher("/AltaAlumno.jsp").forward(request, response);
+                    getServletContext().getRequestDispatcher("/ModificarAlumnos.jsp").forward(request, response);
+                    break;
+                case 2:
+                    ga = new GestorAlumnos();
+                    boolean ca = ga.elimniarAlumno(id);
+                    if (ca) {
+                        getServletContext().getRequestDispatcher("/Exito.jsp").forward(request, response);
+                    }else{
+                        getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
+                    }
+                    break;
+                    
+                default:
+                    getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
+                    break;
+            }
         } else {
             getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
         }
@@ -83,29 +110,15 @@ public class AltaAlumnoServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+         GestorAlumnos ga = new GestorAlumnos();
+        Alumno a = new Alumno();
         
-        GestorAlumnos ga = new GestorAlumnos();
-        Alumno alum = new Alumno();
-        
-        String f = request.getParameter("Fecha");
-        System.out.println("FECHA --" + f);
-        
-        alum.setLegajo(Integer.parseInt(request.getParameter("Legajo")));
-        alum.setNombre(request.getParameter("Nombre"));
-        alum.setApellido(request.getParameter("Apellido"));
-        alum.setIdCurso(Integer.parseInt(request.getParameter("Curso")));
-        alum.setIdCondicion(Integer.parseInt(request.getParameter("Condicion")));
-        alum.setGrupo(Integer.parseInt(request.getParameter("Grupo")));
-        alum.setFechaIngreso(Date.valueOf(f));
-                
-        boolean cargo = ga.agregarAlumno(alum);
-        
+        boolean cargo = ga.modificarAlumno(a);
         if (cargo) {
             getServletContext().getRequestDispatcher("/Exito.jsp").forward(request, response);
         } else {
             getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
         }
-        
         processRequest(request, response);
     }
 

@@ -80,6 +80,14 @@
         <servlet-name>UpdateCursoServlet</servlet-name>
         <servlet-class>Servlets.UpdateCursoServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ListadoAlumnosServlet</servlet-name>
+        <servlet-class>Servlets.ListadoAlumnosServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ModificarAumnosServlet</servlet-name>
+        <servlet-class>Servlets.ModificarAlumnosServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
         <url-pattern>/Index</url-pattern>
@@ -159,6 +167,14 @@
     <servlet-mapping>
         <servlet-name>UpdateCursoServlet</servlet-name>
         <url-pattern>/UpdateCursoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListadoAlumnosServlet</servlet-name>
+        <url-pattern>/ListadoAlumnosServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ModificarAumnosServlet</servlet-name>
+        <url-pattern>/ModificarAumnosServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

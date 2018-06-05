@@ -18,7 +18,7 @@
         <div>
             <h2>Editar Asistencia</h2>
             <form action="ModificarAsistenciasServlet" method="POST">
-                <input type="hidden" name="idAlquiler" value="${alu.getIdAsistencias()}">
+                
             
                 <h5> Fecha Obligatoria
                     <c:if test="${alu.isFechaObligatoria()}">

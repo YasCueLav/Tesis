@@ -78,12 +78,10 @@ public class GestorAsistencias {
         return a;
     }
 
-    //TERMINAR
     public boolean modificarAsistencias(Asistencias a) {
         boolean modifico = true;
         try {
             PreparedStatement stmt = conn.prepareStatement("UPDATE Asistencias SET obligatoria = ?,esta_Precente = ? WHERE id_asistencia = ?");
-            //stmt.setDate(1, a.getFechaReguistro());
             stmt.setBoolean(1, a.isFechaObligatoria());
             stmt.setBoolean(2, a.isEstaPresente());
             stmt.setInt(3, a.getIdAsistencias());
@@ -159,11 +157,11 @@ public class GestorAsistencias {
         }
         return lista;
     }
-    //No funciona bien con el modif
+    
     public VMAsistenciaAlumnoCurso obtenerAsistenciasAlumnoCursoID( int id) {
         VMAsistenciaAlumnoCurso vm = new VMAsistenciaAlumnoCurso();
         try {
-            PreparedStatement stmt = conn.prepareStatement("SELECT al.id_alumno,al.legajo,al.apellido,al.nombre,c.seccion,a.esta_Precente,a.obligatoria, a.fecha_registro FROM  Asistencias a JOIN Alumnos al ON (a.id_alumno = al.id_alumno) JOIN Cursos c ON (al.id_curso = c.id_curso) WHERE a.id_asistencia = ? AND a.visible = 0 AND al.visible = 0 AND c.visible = 0");
+            PreparedStatement stmt = conn.prepareStatement("SELECT a.id_asistencia, al.id_alumno,al.legajo,al.apellido,al.nombre,c.seccion,a.esta_Precente,a.obligatoria, a.fecha_registro FROM  Asistencias a JOIN Alumnos al ON (a.id_alumno = al.id_alumno) JOIN Cursos c ON (al.id_curso = c.id_curso) WHERE a.id_asistencia = ? AND a.visible = 0 AND al.visible = 0 AND c.visible = 0");
             stmt.setInt(1, id);
             ResultSet query = stmt.executeQuery();
                 if(query.next()){
