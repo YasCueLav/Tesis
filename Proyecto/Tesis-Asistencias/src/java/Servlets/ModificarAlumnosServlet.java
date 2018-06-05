@@ -120,36 +120,38 @@ public class ModificarAlumnosServlet extends HttpServlet {
         int legajo = Integer.parseInt(request.getParameter("Legajo"));
         String nombre = request.getParameter("Nombre");
         String apellido = request.getParameter("Apellido");
-        int curso = Integer.parseInt(request.getParameter("Curso"));
-        int condicion = Integer.parseInt(request.getParameter("Condicion"));
+        int cu = 0;//Integer.parseInt(request.getParameter("Curso"));
+        int con = 0;//Integer.parseInt(request.getParameter("Condicion"));
         int grupo = Integer.parseInt(request.getParameter("Grupo"));
         
-        if(legajo != alu.getLegajo() && legajo != 0){
+        a.setIdAlumno(id);
+        
+        if(legajo != alu.getLegajo() || legajo != 0){
             a.setLegajo(legajo);
         } else{
             a.setLegajo(alu.getLegajo());
         }
         
-        if("".equals(nombre) && !nombre.equals(alu.getNombre())){
+        if(!nombre.equals("") || !nombre.equals(alu.getNombre())){
           a.setNombre(nombre);
         }else{
             a.setNombre(alu.getNombre());
         }
         
-        if("".equals(apellido) && !apellido.equals(alu.getApellido())){
+        if(!"".equals(apellido) && !apellido.equals(alu.getApellido())){
             a.setApellido(apellido);
         }else{
             a.setApellido(alu.getApellido());
         }
         
-        if(curso != alu.getIdCurso()  && curso != 0){
-            a.setIdCurso(curso);
+        if(cu != alu.getIdCurso()  && cu != 0){
+            a.setIdCurso(cu);
         }else{
             a.setIdCurso(alu.getIdCurso());
         }
         
-        if(condicion != alu.getIdCondicion()  && condicion != 0){
-            a.setIdCondicion(condicion);
+        if(con != alu.getIdCondicion()  && con != 0){
+            a.setIdCondicion(con);
         }else{
             a.setIdCondicion(alu.getIdCondicion());
         }
