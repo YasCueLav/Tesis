@@ -42,8 +42,8 @@
                                 <td>${a.getGrupo()}</td>
                                 <td>${a.getFecha()}</td>
                                 <td>
-                                    <a id="Link" href="/Tesis-Asistencias/ModificarAlumnosServlet?idAlumno=${a.getIdAlumno()}&estado=1">Editar</a> / 
-                                    <a id="Link" href="/Tesis-Asistencias/ModificarAlumnosServlet?idAlumno=${a.getIdAlumno()}&estado=2">Eliminar</a>
+                                    <a id="Link" href="/Tesis-Asistencias/ModificarAlumnosServlet?idAlumno=${a.getIdAlumno()}&tipo=1">Editar</a> / 
+                                    <a id="Link" href="/Tesis-Asistencias/ModificarAlumnosServlet?idAlumno=${a.getIdAlumno()}&tipo=2">Eliminar</a>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -51,4 +51,5 @@
                 </div>
             </table>
         </div>
-        
+    </body>
+ </html>
