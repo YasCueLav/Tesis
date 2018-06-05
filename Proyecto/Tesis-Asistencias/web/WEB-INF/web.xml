@@ -88,6 +88,10 @@
         <servlet-name>ModificarAumnosServlet</servlet-name>
         <servlet-class>Servlets.ModificarAlumnosServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ModificarAlumnosServlet</servlet-name>
+        <servlet-class>Servlets.ModificarAlumnosServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
         <url-pattern>/Index</url-pattern>
@@ -175,6 +179,10 @@
     <servlet-mapping>
         <servlet-name>ModificarAumnosServlet</servlet-name>
         <url-pattern>/ModificarAumnosServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ModificarAlumnosServlet</servlet-name>
+        <url-pattern>/ModificarAlumnosServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

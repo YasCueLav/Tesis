@@ -105,14 +105,13 @@ public class GestorAlumnos {
     public boolean modificarAlumno (Alumno a) {
         boolean modifico = true;
         try {
-            PreparedStatement stmt = conn.prepareStatement("UPDATE Alumnos SET legajo = ?, nombre = ?, apellido = ?, id_curso = ?, id_condicion = ?, grupo = ?, fecha_ingreso = ? WHERE id_alumno = ?");
+            PreparedStatement stmt = conn.prepareStatement("UPDATE Alumnos SET legajo = ?, nombre = ?, apellido = ?, id_curso = ?, id_condicion = ?, grupo = ? WHERE id_alumno = ?");
             stmt.setInt(1, a.getLegajo());
             stmt.setString(2, a.getNombre());
             stmt.setString(3, a.getApellido());
             stmt.setInt(4, a.getIdCurso());
             stmt.setInt(5, a.getIdCondicion());
             stmt.setInt(6, a.getGrupo());
-            stmt.setDate(7, a.getFechaIngreso());
             stmt.setInt(8, a.getIdAlumno());
             stmt.executeUpdate();
             stmt.close();
