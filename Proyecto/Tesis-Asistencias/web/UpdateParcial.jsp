@@ -17,7 +17,7 @@
         <jsp:include page="Menu.jsp"></jsp:include>
         
         <h1>Modificar Examen</h1>
-        <h4>${examen.getTipoExamne()} ${examen.getExamenNombre()} -- ${examen.getFecha()}</h4>
+        <h4>${ex.getTipoExamne()} ${ex.getExamenNombre()} -- ${ex.getFecha()}</h4>
         <div>
             <form action="UpdateParcialServlet" method="POST">
                 <div class="form-group">
@@ -29,14 +29,14 @@
                   </select>
                 </div>
                 <div class="form-group">
-                  <label for="exampleFormControlInput1">Nombre Examen</label>
-                  <input class="form-control" type="text" name="Examen" placeholder="${examen.getExamenNombre()}">
+                    <label for="exampleFormControlInput1">>Nombre Examen</label>
+                  <input class="form-control" type="text" name="Examen" placeholder="${ex.getExamenNombre()}" value="${ex.getExamenNombre()}">
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlInput1">Fecha Examen</label>
                     Si<input type="radio" name="FechaS" value="S"> - 
                     No<input type="radio" name="FechaS" value="N" checked="true">
-                    <input type="date" name="Fecha" placeholder="${examen.getFecha()}"> 
+                    <input type="date" name="Fecha" placeholder="${ex.getFecha()}" value="${ex.getFecha()}"> 
                 </div>
                 <input type="submit" value="Cargar" class="btn btn-primary">
             </form>

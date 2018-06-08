@@ -19,7 +19,7 @@
             <h2>Editar Asistencia</h2>
             <form action="ModificarAsistenciasServlet" method="POST">
                 
-            
+            <%--
                 <h5> Fecha Obligatoria
                     <c:if test="${alu.isFechaObligatoria()}">
                         Si <input type="radio" name="FechaObligatoria" value="ture"> - 
@@ -31,6 +31,7 @@
                     </c:if>
                 </h5>
                 <br>
+            --%>
                 <table class="table table-striped" name="tabla">
                   <thead>
                         <tr>
@@ -50,12 +51,12 @@
                                 <td>${alu.getFechaReguistro()}</td>
                                 <td>
                                     <c:if test="${!alu.isEstaPresente()}">
-                                        A <input type="radio" name="${alu.getIdAlumno()}" value="A" checked="true">
-                                        P<input type="radio" name="${alu.getIdAlumno()}" value="P">
+                                        A <input type="radio" name="estado" value="A" checked="true">
+                                        P<input type="radio" name="estado" value="P">
                                     </c:if>
                                     <c:if test="${alu.isEstaPresente()}">
-                                        A <input type="radio" name="${alu.getIdAlumno()}" value="A"> - 
-                                        P<input type="radio" name="${alu.getIdAlumno()}" value="P" checked="true">
+                                        A <input type="radio" name="estado" value="A"> - 
+                                        P<input type="radio" name="estado" value="P" checked="true">
                                     </c:if>
                                 </td>
                             </tr>

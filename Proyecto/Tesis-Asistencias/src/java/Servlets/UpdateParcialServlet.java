@@ -63,12 +63,14 @@ public class UpdateParcialServlet extends HttpServlet {
             switch (m){
                 case 1: 
                     GestorTiposExamenes gte = new GestorTiposExamenes();
-                    ge = new GestorExamenes();
                     ArrayList<TiposExamenes> tipoexamen = gte.obtenerTiposExamenes();
-                    VMTipoExamenExamen examen = ge.obtenerVMExamenes(id);
-
-                    request.setAttribute("examen", examen);
+                    
+                    ge = new GestorExamenes();
+                    VMTipoExamenExamen ex = ge.obtenerVMExamenes(id);
+                    
+                    
                     request.setAttribute("tipoexamen", tipoexamen);
+                    request.setAttribute("ex", ex);
             
                     getServletContext().getRequestDispatcher("/UpdateParcial.jsp").forward(request, response);
                     break;

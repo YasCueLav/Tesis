@@ -23,11 +23,11 @@
             <form action="UpdateCursoServlet" method="POST">
                 <div class="form-group">
                   <label for="exampleFormControlInput1">Nombre Curso</label>
-                  <input class="form-control" type="text" name="Curso" placeholder="${curso.getNombreCurso()}">
+                  <input class="form-control" type="text" name="Curso" placeholder="${curso.getNombreCurso()}" value="${curso.getNombreCurso()}">
                 </div>
                 <div class="form-group">
                   <label for="exampleFormControlInput1">Seccion</label>
-                  <input class="form-control" type="text" name="Seccion" placeholder="${curso.getSeccionCurso()}">
+                  <input class="form-control" type="text" name="Seccion" placeholder="${curso.getSeccionCurso()}" value="${curso.getSeccionCurso()}">
                 </div>
                 <input type="submit" value="Cargar" class="btn btn-primary">
             </form>

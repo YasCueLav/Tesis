@@ -22,17 +22,17 @@
                 
 		<div class="form-group">
                     <label for="exampleFormControlInput1">Legajo</label>
-                    <input type="number" class="form-control" name="Legajo" min="0" placeholder="${alumno.getLegajo()}" value="0">
+                    <input type="number" class="form-control" name="Legajo" min="0" placeholder="${alumno.getLegajo()}" value="${alumno.getLegajo()}">
                 </div>
                 
 		<div class="form-group">
                     <label for="exampleFormControlInput1">Nombre</label>
-                    <input type="text" class="form-control" name="Nombre" placeholder="${alumno.getNombre()}" value="">
+                    <input type="text" class="form-control" name="Nombre" placeholder="${alumno.getNombre()}" value="${alumno.getNombre()}">
                 </div>
                 
 		<div class="form-group">
                     <label for="exampleFormControlInput1">Apellido</label>
-                    <input type="text" class="form-control" name="Apellido" placeholder="${alumno.getApellido()}" value="">
+                    <input type="text" class="form-control" name="Apellido" placeholder="${alumno.getApellido()}" value="${alumno.getApellido()}">
                 </div>
                 
                 <div class="form-group">

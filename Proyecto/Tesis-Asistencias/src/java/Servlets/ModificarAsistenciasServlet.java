@@ -6,6 +6,7 @@
 package Servlets;
 
 import Controladores.GestorAsistencias;
+import Model.Asistencias;
 import Model.VMAsistenciaAlumnoCurso;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -62,7 +63,6 @@ public class ModificarAsistenciasServlet extends HttpServlet {
         } else {
             getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
         }
-        processRequest(request, response);
     }
 
     /**
@@ -76,66 +76,42 @@ public class ModificarAsistenciasServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        /*
-        Alquiler a = new Alquiler();
-        a.setIdAlquiler(Integer.parseInt(request.getParameter("idAlquiler")));
-        a.setCanEquipo(Integer.parseInt(request.getParameter("canEquipo")));
-        a.setSillasExtras(Integer.parseInt(request.getParameter("sillasExtra")));
-
-        String salaReunion = request.getParameter("salaReunion");
-        if (salaReunion != null) {
-            a.setSalaReunion(true);
-        } else {
-            a.setSalaReunion(false);
-        }
-        GestorAlquiler ga = new GestorAlquiler();
-        //modificar el alquiler
-        if (ga.modificarAlquiler(a)) {
-            getServletContext().getRequestDispatcher("/exito.jsp").forward(request, response);
-        } else {
-            getServletContext().getRequestDispatcher("/HuboUnProblema.jsp").forward(request, response);
-        }*/
-        /*
-        
         GestorAsistencias ga = new GestorAsistencias();
-
-        String[] ids = request.getParameterValues("IdAlumno");
-        String fechaObligatoria = request.getParameter("FechaObligatoria");
+        Asistencias asis = ga.obtenerAsistencias(id);
+        Asistencias as = new Asistencias();
+        Asistencias a = new Asistencias();
         
-        System.out.println("CANT ID = " + ids.length);
+        a.setIdAsistencias(asis.getIdAsistencias());
         
-        ArrayList <Asistencias> asistencias = new ArrayList<>();
-                
-        for (int i = 0; i < ids.length; i++) {
-            
-            System.out.println("ID = "+ ids[i]);
-            
-            Asistencias a = new Asistencias();
-            a.setIdAlumno(Integer.parseInt(ids[i])); 
-                        
-            String presente = request.getParameter(""+a.getIdAlumno());
+        boolean p = asis.isEstaPresente();
+        String presente = request.getParameter("estado");
+        
             if (presente.equals("P")) {
-                a.setEstaPresente(0);
+                as.setEstaPresente(1);
             } else {
-                a.setEstaPresente(1);
+                as.setEstaPresente(0);
             }
             
-            if (fechaObligatoria != null) {
-                a.setFechaObligatoria(0);
+            boolean pre = as.isEstaPresente();
+            if (p == pre){
+                if (pre) {
+                    a.setEstaPresente(1);
+                }else{
+                    a.setEstaPresente(0);
+                }
             } else {
-                a.setFechaObligatoria(1);
+                if (pre) {
+                    a.setEstaPresente(1);
+                }else{
+                    a.setEstaPresente(0);
+                }
             }
-            
-            asistencias.add(a);
-        }
-        
-        boolean cargo = ga.agregarAsistencias(asistencias);
-        if (cargo) {
-            getServletContext().getRequestDispatcher("/Exito.jsp").forward(request, response);
-        } else {
-            getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
-        }
-        */
+            boolean cargo = ga.modificarAsistencias(a);
+            if (cargo) {
+                getServletContext().getRequestDispatcher("/Exito.jsp").forward(request, response);
+            } else {
+                getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
+            }
         processRequest(request, response);
     }
 

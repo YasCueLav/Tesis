@@ -81,10 +81,10 @@ public class Asistencias {
     }
 
     public void setEstaPresente (int estaPresente) {
-        if (estaPresente == 0) {
-            this.estaPresente = true;
+        if (estaPresente == 1) {
+            this.estaPresente = true;//Presente
         } else {
-            this.estaPresente = false;
+            this.estaPresente = false;//Ausente
         }
     }
 

@@ -22,7 +22,7 @@
             <form action="UpdateTPServlet" method="POST">
                 <div class="form-group">
                   <label for="exampleFormControlInput1">Nombre Trabajo Pracico</label>
-                  <input class="form-control" type="text" name="TrabajoP" >
+                  <input class="form-control" type="text" name="TrabajoP" placeholder="${trabPrac.getNombreTp()}" value="${trabPrac.getNombreTp()}">
                 </div>
                 <input type="submit" value="Cargar" class="btn btn-primary">
             </form>

@@ -22,7 +22,7 @@
             <form action="UpdateCondicionServlet" method="POST">
                 <div class="form-group">
                   <label for="exampleFormControlInput1">Nombre Condicion</label>
-                  <input class="form-control" type="text" name="Condicion" placeholder="${condi.getCondicion()}">
+                  <input class="form-control" type="text" name="Condicion" placeholder="${condi.getCondicion()}" value="${condi.getCondicion()}">
                 </div>
                 <input type="submit" value="Cargar" class="btn btn-primary">
             </form>

@@ -81,10 +81,9 @@ public class GestorAsistencias {
     public boolean modificarAsistencias(Asistencias a) {
         boolean modifico = true;
         try {
-            PreparedStatement stmt = conn.prepareStatement("UPDATE Asistencias SET obligatoria = ?,esta_Precente = ? WHERE id_asistencia = ?");
-            stmt.setBoolean(1, a.isFechaObligatoria());
-            stmt.setBoolean(2, a.isEstaPresente());
-            stmt.setInt(3, a.getIdAsistencias());
+            PreparedStatement stmt = conn.prepareStatement("UPDATE Asistencias SET esta_Precente = ? WHERE id_asistencia = ?");
+            stmt.setBoolean(1, a.isEstaPresente());
+            stmt.setInt(2, a.getIdAsistencias());
             stmt.executeUpdate();
             stmt.close();
             conn.close();
@@ -94,7 +93,7 @@ public class GestorAsistencias {
         }
         return modifico;
     }
-    //TERMINAR
+    /*/TERMINAR
     public boolean elimniarAsistencias(Asistencias a, int id) {
         boolean modifico = true;
         try {
@@ -109,7 +108,7 @@ public class GestorAsistencias {
         }
         return modifico;
     }
-
+    */
     public boolean agregarAsistencias(ArrayList<Asistencias> asistencias) {
         boolean inserto = true;
         try {
