@@ -32,7 +32,7 @@ public class GestorAlumnos {
         ArrayList<Alumno> lista = new ArrayList<>();
         try {
             Statement stmt = conn.createStatement();
-            ResultSet query = stmt.executeQuery("Select * from Alumnos where visible = 0");
+            ResultSet query = stmt.executeQuery("Select * from Alumnos where visible = 1");
             while (query.next()){
                 Alumno a = new Alumno();
                 a.setIdAlumno(query.getInt("id_alumno"));
@@ -58,7 +58,7 @@ public class GestorAlumnos {
         ArrayList<VMAlumnosCursos> lista = new ArrayList<>();
         try {
             Statement stmt = conn.createStatement();
-            ResultSet query = stmt.executeQuery("SELECT al.id_alumno, al.legajo, al.apellido, al.nombre, c.id_curso, c.seccion FROM Alumnos al join Cursos c on (al.id_curso = c.id_curso) WHERE c.id_curso = "+ curso +"and al.visible = 0 and c.visible = 0");
+            ResultSet query = stmt.executeQuery("SELECT al.id_alumno, al.legajo, al.apellido, al.nombre, c.id_curso, c.seccion FROM Alumnos al join Cursos c on (al.id_curso = c.id_curso) WHERE c.id_curso = "+ curso +"and al.visible = 1 and c.visible = 1");
             while (query.next()) {
                 VMAlumnosCursos vw = new VMAlumnosCursos();
                 vw.setIdAlumno(query.getInt("id_alumno"));
@@ -81,7 +81,7 @@ public class GestorAlumnos {
     public Alumno obtenerAlumno (int id) {
         Alumno a = new Alumno();
         try {
-            PreparedStatement stmt = conn.prepareStatement("select * from Alumnos where id_alumno = ? and visible = 0");
+            PreparedStatement stmt = conn.prepareStatement("select * from Alumnos where id_alumno = ? and visible = 1");
             stmt.setInt(1, id);
             ResultSet query = stmt.executeQuery();
             if (query.next()) {
@@ -126,7 +126,7 @@ public class GestorAlumnos {
     public boolean elimniarAlumno ( int id) {
         boolean modifico = true;
         try {
-            PreparedStatement stmt = conn.prepareStatement("UPDATE Alumnos SET visible = 1 WHERE id_alumno = "+ id);
+            PreparedStatement stmt = conn.prepareStatement("UPDATE Alumnos SET visible = 0 WHERE id_alumno = "+ id);
             stmt.executeUpdate();
             stmt.close();
             conn.close();
@@ -140,7 +140,7 @@ public class GestorAlumnos {
     public boolean agregarAlumno (Alumno a) {
         boolean inserto = true;
         try {
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Alumnos (legajo, nombre, apellido, id_curso, id_condicion, grupo, fecha_ingreso, visible) VALUES (?,?,?,?,?,?,?,0)");
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Alumnos (legajo, nombre, apellido, id_curso, id_condicion, grupo, fecha_ingreso, visible) VALUES (?,?,?,?,?,?,?,1)");
             stmt.setInt(1, a.getLegajo());
             stmt.setString(2, a.getNombre());
             stmt.setString(3, a.getApellido());
@@ -162,7 +162,7 @@ public class GestorAlumnos {
         ArrayList<VMAlumnosCursos> lista = new ArrayList<>();
         try {
             Statement stmt = conn.createStatement();
-            ResultSet query = stmt.executeQuery("SELECT al.id_alumno, al.legajo, al.apellido, al.nombre, c.id_curso, c.seccion FROM Alumnos al join Cursos c on (al.id_curso = c.id_curso) WHERE al.visible = 0 and c.visible =0");
+            ResultSet query = stmt.executeQuery("SELECT al.id_alumno, al.legajo, al.apellido, al.nombre, c.id_curso, c.seccion FROM Alumnos al join Cursos c on (al.id_curso = c.id_curso) WHERE al.visible = 10 and c.visible = 1");
             while (query.next()) {
                 VMAlumnosCursos vw = new VMAlumnosCursos();
                 vw.setIdAlumno(query.getInt("id_alumno"));
@@ -186,7 +186,7 @@ public class GestorAlumnos {
         ArrayList<VMAlumnosCursosCondiciones> lista = new ArrayList<>();
         try {
             Statement stmt = conn.createStatement();
-            ResultSet query = stmt.executeQuery("SELECT al.id_alumno, al.legajo, al.apellido, al.nombre, c.id_curso, c.nombre 'nombrecurso', c.seccion, co.id_condicion, co.condicion, al.fecha_ingreso  FROM Alumnos al join Cursos c ON (al.id_curso = c.id_curso) join Condiciones co ON (al.id_condicion = co.id_condicion) WHERE al.visible = 0 AND c.visible = 0 AND co.visible = 0");
+            ResultSet query = stmt.executeQuery("SELECT al.id_alumno, al.legajo, al.apellido, al.nombre, c.id_curso, c.nombre 'nombrecurso', c.seccion, co.id_condicion, co.condicion, al.fecha_ingreso  FROM Alumnos al join Cursos c ON (al.id_curso = c.id_curso) join Condiciones co ON (al.id_condicion = co.id_condicion) WHERE al.visible = 1 AND c.visible = 1 AND co.visible = 1");
             while (query.next()) {
                 VMAlumnosCursosCondiciones vw = new VMAlumnosCursosCondiciones();
                 vw.setIdAlumno(query.getInt("id_alumno"));

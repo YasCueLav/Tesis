@@ -34,7 +34,7 @@ public class GestorCursos {
         ArrayList<Cursos> lista = new ArrayList<>();
         try {
             Statement stmt = conn.createStatement();
-            ResultSet query = stmt.executeQuery("Select id_curso , nombre , seccion from Cursos where visible = 0");
+            ResultSet query = stmt.executeQuery("Select id_curso , nombre , seccion from Cursos where visible = 1");
             while (query.next()){
                 Cursos c = new Cursos();
                 c.setIdCursos(query.getInt("id_curso"));
@@ -55,7 +55,7 @@ public class GestorCursos {
         ArrayList<Cursos> lista = new ArrayList<>();
         try {
             Statement stmt = conn.createStatement();
-            ResultSet query = stmt.executeQuery("select * from Cursos where id_curso = "+ id +"and visible = 0");
+            ResultSet query = stmt.executeQuery("select * from Cursos where id_curso = "+ id +"and visible = 1");
             while (query.next()){
                 Cursos c = new Cursos();
                 c.setIdCursos(query.getInt("id_curso"));
@@ -75,7 +75,7 @@ public class GestorCursos {
     public Cursos obtenerCursoConID (int id) {
         Cursos c = new Cursos();
         try {
-            PreparedStatement stmt = conn.prepareStatement("select * from Cursos where id_curso = ? and visible = 0");
+            PreparedStatement stmt = conn.prepareStatement("select * from Cursos where id_curso = ? and visible = 1");
             stmt.setInt(1, id);
             ResultSet query = stmt.executeQuery();
             if (query.next()) {
@@ -95,7 +95,7 @@ public class GestorCursos {
     public boolean elimniarCurso (int id) {
         boolean modifico = true;
         try {
-            PreparedStatement stmt = conn.prepareStatement("UPDATE Cursos SET visible = 1 WHERE id_curso = "+ id);
+            PreparedStatement stmt = conn.prepareStatement("UPDATE Cursos SET visible = 0 WHERE id_curso = "+ id);
             stmt.executeUpdate();
             stmt.close();
             conn.close();
@@ -109,7 +109,7 @@ public class GestorCursos {
     public boolean agregarCurso (Cursos c) {
         boolean inserto = true;
         try {
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Cursos (nombre,seccion, visible) VALUES (?,?,0)");
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Cursos (nombre,seccion, visible) VALUES (?,?,1)");
             stmt.setString(1, c.getNombreCurso());
             stmt.setString(2, c.getSeccionCurso());
             stmt.executeUpdate();

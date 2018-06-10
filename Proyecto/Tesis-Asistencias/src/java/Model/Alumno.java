@@ -100,7 +100,7 @@ public class Alumno {
     }
     
     public void setVisible(int visible) {
-        if (visible == 0) {
+        if (visible == 1) {
             this.visible = true;
         } else {
             this.visible = false;

@@ -34,7 +34,7 @@ public class GestorNotas {
         ArrayList<Notas> lista = new ArrayList<>();
         try {
             Statement stmt = conn.createStatement();
-            ResultSet query = stmt.executeQuery("Select * from Notas where visible = 0");
+            ResultSet query = stmt.executeQuery("Select * from Notas where visible = 1");
             while (query.next()){
                 Notas n = new Notas();
                 n.setIdNota(query.getInt("id_nota"));
@@ -56,7 +56,7 @@ public class GestorNotas {
     public Notas obtenerNota (int id) {
         Notas n = new Notas();
         try {
-            PreparedStatement stmt = conn.prepareStatement("select * from Notas where id_nota = ? and visible = 0");
+            PreparedStatement stmt = conn.prepareStatement("select * from Notas where id_nota = ? and visible = 1");
             stmt.setInt(1, id);
             ResultSet query = stmt.executeQuery();
             if (query.next()) {
@@ -112,7 +112,7 @@ public class GestorNotas {
     public boolean agregarNotaParcial (ArrayList<Notas> notas) {
         boolean inserto = true;
         try {
-            PreparedStatement stmt = conn.prepareStatement("insert into Notas (id_alumno,id_examen,nota,visible) values (?,?,?,0)");
+            PreparedStatement stmt = conn.prepareStatement("insert into Notas (id_alumno,id_examen,nota,visible) values (?,?,?,1)");
             for (Notas n : notas) {
             stmt.setInt(1, n.getIdAlumno());
             stmt.setInt(2, n.getIdExamen());
@@ -131,7 +131,7 @@ public class GestorNotas {
     public boolean agregarNotaTPs ( ArrayList<Notas> notas) {
         boolean inserto = true;
         try {
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Notas(nota, id_alumno,id_tp, visible) VALUES (?,?,?,0)");
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Notas(nota, id_alumno,id_tp, visible) VALUES (?,?,?,1)");
             for (Notas n : notas) {
                 stmt.setDouble(1, n.getNota());
             stmt.setInt(2, n.getIdAlumno());

@@ -78,17 +78,17 @@ public class TpsAlumnos {
     
     public void setPresentado(int presentado) {
         if (presentado == 0) {
-            this.presentado = true;
-        } else {
             this.presentado = false;
+        } else {
+            this.presentado = true;
         }
     }
 
     public void setVisible(int visible) {
         if (visible == 0) {
-            this.visible = true;
-        } else {
             this.visible = false;
+        } else {
+            this.visible = true;
         }
     }
 

@@ -89,7 +89,7 @@ public class Asistencias {
     }
 
     public void setFechaObligatoria(int fechaObligatoria) {
-        if (fechaObligatoria == 0) {
+        if (fechaObligatoria == 1) {
             this.fechaObligatoria = true;
         } else {
             this.fechaObligatoria = false;
@@ -97,7 +97,7 @@ public class Asistencias {
     }
 
     public void setVisible (int visible) {
-        if (visible == 0) {
+        if (visible == 1) {
             this.visible = true;
         } else {
             this.visible = false;

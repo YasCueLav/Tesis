@@ -37,7 +37,7 @@ public class GestorExamenes {
         ArrayList<Examenes> lista = new ArrayList<>();
         try {
             Statement stmt = conn.createStatement();
-            ResultSet query = stmt.executeQuery("Select * from Examenes where visible = 0");
+            ResultSet query = stmt.executeQuery("Select * from Examenes where visible = 1");
             while (query.next()){
                 Examenes e = new Examenes();
                 e.setIdExamen(query.getInt("id_examen"));
@@ -58,7 +58,7 @@ public class GestorExamenes {
     public Examenes obtenerExamen (int id) {
         Examenes e = new Examenes();
         try {
-            PreparedStatement stmt = conn.prepareStatement("select * from Examenes where id_examen = ? and visible = 0");
+            PreparedStatement stmt = conn.prepareStatement("select * from Examenes where id_examen = ? and visible = 1");
             stmt.setInt(1, id);
             ResultSet query = stmt.executeQuery();
             if (query.next()) {
@@ -80,7 +80,7 @@ public class GestorExamenes {
         ArrayList<VMTipoExamenExamen> lista = new ArrayList<>();
         try {
             Statement stmt = conn.createStatement();
-            ResultSet query = stmt.executeQuery("select e.id_examen,t.id_tipo_examen,t.tipo_examen,e.examen,e.fecha_examen from Examenes e join Tipos_Examenes t on (e.id_tipo_examen = t.id_tipo_examen) where e.visible = 0 and t.visible = 0");
+            ResultSet query = stmt.executeQuery("select e.id_examen,t.id_tipo_examen,t.tipo_examen,e.examen,e.fecha_examen from Examenes e join Tipos_Examenes t on (e.id_tipo_examen = t.id_tipo_examen) where e.visible = 1 and t.visible = 1");
             while (query.next()){
                 VMTipoExamenExamen vm = new VMTipoExamenExamen();
                 vm.setIdExamen(query.getInt("id_examen"));
@@ -103,7 +103,7 @@ public class GestorExamenes {
          VMTipoExamenExamen vm = new VMTipoExamenExamen();
         try {
             Statement stmt = conn.createStatement();
-            ResultSet query = stmt.executeQuery("select e.id_examen,t.id_tipo_examen, t.tipo_examen,e.examen,e.fecha_examen from Examenes e join Tipos_Examenes t on (e.id_tipo_examen = t.id_tipo_examen) where e.visible = 0 and t.visible = 0 and e.id_examen = "+ id);
+            ResultSet query = stmt.executeQuery("select e.id_examen,t.id_tipo_examen, t.tipo_examen,e.examen,e.fecha_examen from Examenes e join Tipos_Examenes t on (e.id_tipo_examen = t.id_tipo_examen) where e.visible = 1 and t.visible = 1 and e.id_examen = "+ id);
                 vm.setIdExamen(query.getInt("id_examen"));
                 vm.setIdTipoExamen(query.getInt("id_tipo_examen"));
                 vm.setTipoExamne(query.getString("tipo_examen"));
@@ -121,7 +121,7 @@ public class GestorExamenes {
     public boolean agregarExamen (Examenes e) {
         boolean inserto = true;
         try {
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Examenes (id_tipo_examen, examen, fecha_examen, visible) VALUES (?,?,?,0)");
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Examenes (id_tipo_examen, examen, fecha_examen, visible) VALUES (?,?,?,1)");
             stmt.setInt(1, e.getIdTipoExamne());
             stmt.setString(2, e.getExamenNombre());
             stmt.setString(3, e.getFecha());
@@ -138,7 +138,7 @@ public class GestorExamenes {
     public boolean elimniarExamen(int id) {
         boolean modifico = true;
         try {
-            PreparedStatement stmt = conn.prepareStatement("UPDATE Examenes SET visible = 1 WHERE id_examen = "+ id);
+            PreparedStatement stmt = conn.prepareStatement("UPDATE Examenes SET visible = 0 WHERE id_examen = "+ id);
             stmt.executeUpdate();
             stmt.close();
             conn.close();

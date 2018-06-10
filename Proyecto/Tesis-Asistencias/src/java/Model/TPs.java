@@ -39,9 +39,9 @@ public class TPs {
 
     public void setVisible(int visible) {
         if (visible == 0) {
-            this.visible = true;
-        } else {
             this.visible = false;
+        } else {
+            this.visible = true;
         }
     }
     

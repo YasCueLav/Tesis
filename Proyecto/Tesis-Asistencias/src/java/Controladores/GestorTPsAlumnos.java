@@ -36,7 +36,7 @@ public class GestorTPsAlumnos {
         ArrayList<TpsAlumnos> lista = new ArrayList<>();
         try {
             Statement stmt = conn.createStatement();
-            ResultSet query = stmt.executeQuery("Select * from Tp_Alumnos where visible = 0");
+            ResultSet query = stmt.executeQuery("Select * from Tp_Alumnos where visible = 1");
             while (query.next()){
                 TpsAlumnos ta = new TpsAlumnos();
                 ta.setIdTpAlumno(query.getInt("id_tp_alumno"));
@@ -58,7 +58,7 @@ public class GestorTPsAlumnos {
     public TpsAlumnos obtenerTPsAlumnos (int id) {
         TpsAlumnos ta = new TpsAlumnos();
         try {
-            PreparedStatement stmt = conn.prepareStatement("select * from Alumnos where id_tp_alumno = ? and visible = 0");
+            PreparedStatement stmt = conn.prepareStatement("select * from Alumnos where id_tp_alumno = ? and visible = 1");
             stmt.setInt(1, id);
             ResultSet query = stmt.executeQuery();
             if (query.next()) {
@@ -98,7 +98,7 @@ public class GestorTPsAlumnos {
     public boolean agregarTPsAlumnos (ArrayList<TpsAlumnos> tpsAlumnos) {
         boolean inserto = true;
         try {
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Tp_Alumnos(id_tp,id_alumno, presentado,fecha_entregado, id_estado ,visible) VALUES (?, ?,?,?,?,0)");
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Tp_Alumnos(id_tp,id_alumno, presentado,fecha_entregado, id_estado ,visible) VALUES (?, ?,?,?,?,1)");
             for (TpsAlumnos ta : tpsAlumnos) {
                 stmt.setInt(1, ta.getIdTp());
                 stmt.setInt(2, ta.getIdAlumno());
@@ -120,7 +120,7 @@ public class GestorTPsAlumnos {
         ArrayList<Estado> lista = new ArrayList<>();
         try {
             Statement stmt = conn.createStatement();
-            ResultSet query = stmt.executeQuery("select * from Estados where visible = 0");
+            ResultSet query = stmt.executeQuery("select * from Estados where visible = 1");
             while (query.next()){
                 Estado e = new Estado();
                 e.setIdEstado(query.getInt("id_estado"));

@@ -37,7 +37,7 @@ public class GestorAsistencias {
         ArrayList<Asistencias> lista = new ArrayList<>();
         try {
             Statement stmt = conn.createStatement();
-            ResultSet query = stmt.executeQuery("Select * from Asistencias where visible = 0");
+            ResultSet query = stmt.executeQuery("Select * from Asistencias where visible = 1");
             while (query.next()) {
                 Asistencias a = new Asistencias();
                 a.setIdAsistencias(query.getInt("id_asistencia"));
@@ -112,7 +112,7 @@ public class GestorAsistencias {
     public boolean agregarAsistencias(ArrayList<Asistencias> asistencias) {
         boolean inserto = true;
         try {
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Asistencias (id_alumno,fecha_registro,esta_Precente,obligatoria,visible) VALUES (?,GETDATE(),?,?,0)");
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Asistencias (id_alumno,fecha_registro,esta_Precente,obligatoria,visible) VALUES (?,GETDATE(),?,?,1)");
             for (Asistencias a : asistencias) {
                 stmt.setInt(1, a.getIdAlumno());
                 //stmt.setDate(2, a.getFechaReguistro());
@@ -134,7 +134,7 @@ public class GestorAsistencias {
         ArrayList<VMAsistenciaAlumnoCurso> lista = new ArrayList<>();
         try {
             Statement stmt = conn.createStatement();
-            ResultSet query = stmt.executeQuery("SELECT a.id_asistencia,al.id_alumno,al.legajo,al.apellido,al.nombre,c.seccion,a.esta_Precente,a.obligatoria, a.fecha_registro FROM  Asistencias a JOIN Alumnos al ON (a.id_alumno = al.id_alumno) JOIN Cursos c ON (al.id_curso = c.id_curso) WHERE a.visible = 0 AND al.visible = 0 AND c.visible = 0 ");
+            ResultSet query = stmt.executeQuery("SELECT a.id_asistencia,al.id_alumno,al.legajo,al.apellido,al.nombre,c.seccion,a.esta_Precente,a.obligatoria, a.fecha_registro FROM  Asistencias a JOIN Alumnos al ON (a.id_alumno = al.id_alumno) JOIN Cursos c ON (al.id_curso = c.id_curso) WHERE a.visible = 1 AND al.visible = 1 AND c.visible = 1");
             while (query.next()) {
                 VMAsistenciaAlumnoCurso vm = new VMAsistenciaAlumnoCurso();
                 vm.setIdAsistencias(query.getInt("id_asistencia"));
@@ -160,7 +160,7 @@ public class GestorAsistencias {
     public VMAsistenciaAlumnoCurso obtenerAsistenciasAlumnoCursoID( int id) {
         VMAsistenciaAlumnoCurso vm = new VMAsistenciaAlumnoCurso();
         try {
-            PreparedStatement stmt = conn.prepareStatement("SELECT a.id_asistencia, al.id_alumno,al.legajo,al.apellido,al.nombre,c.seccion,a.esta_Precente,a.obligatoria, a.fecha_registro FROM  Asistencias a JOIN Alumnos al ON (a.id_alumno = al.id_alumno) JOIN Cursos c ON (al.id_curso = c.id_curso) WHERE a.id_asistencia = ? AND a.visible = 0 AND al.visible = 0 AND c.visible = 0");
+            PreparedStatement stmt = conn.prepareStatement("SELECT a.id_asistencia, al.id_alumno,al.legajo,al.apellido,al.nombre,c.seccion,a.esta_Precente,a.obligatoria, a.fecha_registro FROM  Asistencias a JOIN Alumnos al ON (a.id_alumno = al.id_alumno) JOIN Cursos c ON (al.id_curso = c.id_curso) WHERE a.id_asistencia = ? AND a.visible = 1 AND al.visible = 1 AND c.visible = 1");
             stmt.setInt(1, id);
             ResultSet query = stmt.executeQuery();
                 if(query.next()){
@@ -187,7 +187,7 @@ public class GestorAsistencias {
         ArrayList<VMAsistenciaAlumnoCurso> lista = new ArrayList<>();
         try {
             Statement stmt = conn.createStatement();
-            ResultSet query = stmt.executeQuery("SELECT a.id_asistencia,al.id_alumno,al.legajo,al.apellido,al.nombre,c.seccion,a.esta_Precente,a.obligatoria, a.fecha_registro FROM  Asistencias a JOIN Alumnos al ON (a.id_alumno = al.id_alumno) JOIN Cursos c ON (al.id_curso = c.id_curso) WHERE a.visible = 0 AND al.visible = 0 AND c.visible = 0 AND al.legajo = "+ leg);
+            ResultSet query = stmt.executeQuery("SELECT a.id_asistencia,al.id_alumno,al.legajo,al.apellido,al.nombre,c.seccion,a.esta_Precente,a.obligatoria, a.fecha_registro FROM  Asistencias a JOIN Alumnos al ON (a.id_alumno = al.id_alumno) JOIN Cursos c ON (al.id_curso = c.id_curso) WHERE a.visible = 1 AND al.visible = 1 AND c.visible = 1 AND al.legajo = "+ leg);
             while (query.next()) {
                 VMAsistenciaAlumnoCurso vm = new VMAsistenciaAlumnoCurso();
                 vm.setIdAsistencias(query.getInt("id_asistencia"));
@@ -214,7 +214,7 @@ public class GestorAsistencias {
         ArrayList<VMAsistenciaAlumnoCurso> lista = new ArrayList<>();
         try {
             Statement stmt = conn.createStatement();
-            ResultSet query = stmt.executeQuery("SELECT a.id_asistencia,al.id_alumno,al.legajo,al.apellido,al.nombre,c.seccion,a.esta_Precente,a.obligatoria, a.fecha_registro FROM  Asistencias a JOIN Alumnos al ON (a.id_alumno = al.id_alumno) JOIN Cursos c ON (al.id_curso = c.id_curso) WHERE a.visible = 0 AND al.visible = 0 AND c.visible = 0 AND al.id_curso = "+ idCurso);
+            ResultSet query = stmt.executeQuery("SELECT a.id_asistencia,al.id_alumno,al.legajo,al.apellido,al.nombre,c.seccion,a.esta_Precente,a.obligatoria, a.fecha_registro FROM  Asistencias a JOIN Alumnos al ON (a.id_alumno = al.id_alumno) JOIN Cursos c ON (al.id_curso = c.id_curso) WHERE a.visible = 1 AND al.visible = 1 AND c.visible = 1 AND al.id_curso = "+ idCurso);
             while (query.next()) {
                 VMAsistenciaAlumnoCurso vm = new VMAsistenciaAlumnoCurso();
                 vm.setIdAsistencias(query.getInt("id_asistencia"));
@@ -241,7 +241,7 @@ public class GestorAsistencias {
         ArrayList<VMAsistenciaAlumnoCurso> lista = new ArrayList<>();
         try {
             Statement stmt = conn.createStatement();
-            ResultSet query = stmt.executeQuery("SELECT a.id_asistencia,al.id_alumno,al.legajo,al.apellido,al.nombre,c.seccion,a.esta_Precente,a.obligatoria, a.fecha_registro FROM  Asistencias a JOIN Alumnos al ON (a.id_alumno = al.id_alumno) JOIN Cursos c ON (al.id_curso = c.id_curso) WHERE a.visible = 0 AND al.visible = 0 AND c.visible = 0 AND al.legajo ="+ leg+" AND al.id_curso = "+ idCurso);
+            ResultSet query = stmt.executeQuery("SELECT a.id_asistencia,al.id_alumno,al.legajo,al.apellido,al.nombre,c.seccion,a.esta_Precente,a.obligatoria, a.fecha_registro FROM  Asistencias a JOIN Alumnos al ON (a.id_alumno = al.id_alumno) JOIN Cursos c ON (al.id_curso = c.id_curso) WHERE a.visible = 1 AND al.visible = 1 AND c.visible = 1 AND al.legajo ="+ leg+" AND al.id_curso = "+ idCurso);
             while (query.next()) {
                 VMAsistenciaAlumnoCurso vm = new VMAsistenciaAlumnoCurso();
                 vm.setIdAsistencias(query.getInt("id_asistencia"));
