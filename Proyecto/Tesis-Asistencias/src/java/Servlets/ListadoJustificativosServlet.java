@@ -14,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -47,11 +48,18 @@ public class ListadoJustificativosServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        GestorAsistencias ga = new GestorAsistencias();
-        ArrayList<VMAsistenciaAlmunoJustificativo> justi = ga.obtenerJustificativoAlumnoAsistencias();
+        HttpSession mySession = request.getSession();
+        boolean isLogged = (boolean) mySession.getAttribute("inicio");
+        if (isLogged) {
+            GestorAsistencias ga = new GestorAsistencias();
+            ArrayList<VMAsistenciaAlmunoJustificativo> justi = ga.obtenerJustificativoAlumnoAsistencias();
         
-        request.setAttribute("justi", justi);
-        
+            request.setAttribute("justi", justi);
+            
+            getServletContext().getRequestDispatcher("/ListadoJustificativos.jsp").forward(request, response);
+        } else {
+            getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
+        }
         processRequest(request, response);
     }
 

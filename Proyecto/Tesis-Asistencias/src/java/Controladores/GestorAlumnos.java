@@ -162,7 +162,7 @@ public class GestorAlumnos {
         ArrayList<VMAlumnosCursos> lista = new ArrayList<>();
         try {
             Statement stmt = conn.createStatement();
-            ResultSet query = stmt.executeQuery("SELECT al.id_alumno, al.legajo, al.apellido, al.nombre, c.id_curso, c.seccion FROM Alumnos al join Cursos c on (al.id_curso = c.id_curso) WHERE al.visible = 10 and c.visible = 1");
+            ResultSet query = stmt.executeQuery("SELECT al.id_alumno, al.legajo, al.apellido, al.nombre, c.id_curso, c.seccion FROM Alumnos al join Cursos c on (al.id_curso = c.id_curso) WHERE al.visible = 1 and c.visible = 1");
             while (query.next()) {
                 VMAlumnosCursos vw = new VMAlumnosCursos();
                 vw.setIdAlumno(query.getInt("id_alumno"));
