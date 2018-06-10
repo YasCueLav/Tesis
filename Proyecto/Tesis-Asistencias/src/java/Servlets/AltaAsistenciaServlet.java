@@ -97,15 +97,15 @@ public class AltaAsistenciaServlet extends HttpServlet {
                         
             String presente = request.getParameter(""+a.getIdAlumno());
             if (presente.equals("P")) {
-                a.setEstaPresente(0);
-            } else {
                 a.setEstaPresente(1);
+            } else {
+                a.setEstaPresente(0);
             }
             
             if (fechaObligatoria != null) {
-                a.setFechaObligatoria(0);
-            } else {
                 a.setFechaObligatoria(1);
+            } else {
+                a.setFechaObligatoria(0);
             }
             
             asistencias.add(a);
