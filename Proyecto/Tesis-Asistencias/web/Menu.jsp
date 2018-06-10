@@ -41,12 +41,12 @@
           <a class="dropdown-item" href="/Tesis-Asistencias/ListadoAlumnosServlet">Alumnos</a>
         </div>
         </li>
-            <li class="nav-item">
-              <a class="nav-link" href="">xa <span class="sr-only">(current)</span></a>
+        <%--<li class="nav-item">
+                <a class="nav-link" href="/Tesis-Asistencias/AltaJustificativo">Justificativo<span class="sr-only">(current)</span></a>
             </li>
-          <li class="nav-item">
-            <a class="nav-link" href="">xe <span class="sr-only">(current)</span></a>
-          </li>
+            <li class="nav-item">
+                <a class="nav-link" href="">xe <span class="sr-only">(current)</span></a>
+            </li>--%>
       
         <li class="nav-item dropdown" >
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -59,6 +59,7 @@
               <a class="dropdown-item" href="/Tesis-Asistencias/CargaCondicionesServlet">Carga Condiciones</a>
               <a class="dropdown-item" href="/Tesis-Asistencias/CargaCursoServlet">Carga Curso</a>
               <a class="dropdown-item" href="/Tesis-Asistencias/ListadoSoporteServlet">Listado</a>
+              <a class="dropdown-item" href="/Tesis-Asistencias/ListadoJustificativosServlet">Listado Justificativos</a>
             </div>
         </li>
     </ul>

@@ -6,18 +6,10 @@
 package Servlets;
 
 import Controladores.GestorAsistencias;
-import Controladores.GestorCondiciones;
-import Controladores.GestorCursos;
-import Controladores.GestorExamenes;
-import Controladores.GestorTPs;
-import Model.Condiciones;
-import Model.Cursos;
 import Model.Justificativo;
-import Model.TPs;
-import Model.VMTipoExamenExamen;
+import Model.VMAsistenciaAlmunoJustificativo;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -28,7 +20,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Yasmin
  */
-public class ListadoSoporteServlet extends HttpServlet {
+public class UpdateJustificativoServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,8 +31,10 @@ public class ListadoSoporteServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    int id=0;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        id = Integer.parseInt(request.getParameter("idAsistencia"));
         response.setContentType("text/html;charset=UTF-8");
     }
 
@@ -56,27 +50,38 @@ public class ListadoSoporteServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        int m = 0;
+        m = Integer.parseInt(request.getParameter("estado"));
+        id = Integer.parseInt(request.getParameter("idAsistencia"));
+        
         HttpSession mySession = request.getSession();
         boolean isLogged = (boolean) mySession.getAttribute("inicio");
         if (isLogged) {
-            GestorExamenes ge = new GestorExamenes();
-            ArrayList<VMTipoExamenExamen> examen = ge.obtenerTodosExamenes();
-            
-            GestorTPs gt = new GestorTPs();
-            ArrayList<TPs> tp = gt.obtenerTPs();
-
-            GestorCondiciones gc = new GestorCondiciones();
-            ArrayList<Condiciones> condicion = gc.obtenerCondiciones();
-            
-            GestorCursos gcu = new GestorCursos();
-            ArrayList<Cursos> curso = gcu.obtenerCursos();
-            
-            request.setAttribute("tp", tp);
-            request.setAttribute("examen", examen);
-            request.setAttribute("condicion", condicion);
-            request.setAttribute("curso", curso);
-            
-            getServletContext().getRequestDispatcher("/ListadoSoporte.jsp").forward(request, response);
+            GestorAsistencias ga;
+            switch (m){
+                case 1: 
+                    ga = new GestorAsistencias();
+                    VMAsistenciaAlmunoJustificativo justi = ga.obtenerJustificativoAlumnoAsistencias(id);
+        
+                    request.setAttribute("justi", justi);
+                    
+                    getServletContext().getRequestDispatcher("/UpdateJustificativo.jsp").forward(request, response);
+                    break;
+                case 2:
+                    ga = new GestorAsistencias();
+                    boolean ca = ga.elimniarJustificativo(id);
+                    if (ca) {
+                        getServletContext().getRequestDispatcher("/Exito.jsp").forward(request, response);
+                    }else{
+                        getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
+                    }
+                    
+                    break;
+                    
+                default:
+                    getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
+                    break;
+            }
         } else {
             getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
         }
@@ -94,6 +99,18 @@ public class ListadoSoporteServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        //Justificativo
+        GestorAsistencias ga = new GestorAsistencias();
+        Justificativo j = new Justificativo();
+        j.setIdAsistencias(id);
+        j.setTexto(request.getParameter("Justificativo"));
+        
+        boolean cargo = ga.modificarJustificativo(j);
+        if (cargo) {
+            getServletContext().getRequestDispatcher("/Exito.jsp").forward(request, response);
+        } else {
+            getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
+        }
         processRequest(request, response);
     }
 

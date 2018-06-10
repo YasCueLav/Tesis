@@ -6,7 +6,9 @@
 package Controladores;
 
 import Model.Asistencias;
+import Model.Justificativo;
 import Model.VMAlumnosCursos;
+import Model.VMAsistenciaAlmunoJustificativo;
 import Model.VMAsistenciaAlumnoCurso;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -93,22 +95,7 @@ public class GestorAsistencias {
         }
         return modifico;
     }
-    /*/TERMINAR
-    public boolean elimniarAsistencias(Asistencias a, int id) {
-        boolean modifico = true;
-        try {
-            PreparedStatement stmt = conn.prepareStatement("");
-            stmt.setBoolean(1, a.isVisible());
-            stmt.executeUpdate();
-            stmt.close();
-            conn.close();
-        } catch (SQLException ex) {
-            System.out.println(ex);
-            modifico = false;
-        }
-        return modifico;
-    }
-    */
+    
     public boolean agregarAsistencias(ArrayList<Asistencias> asistencias) {
         boolean inserto = true;
         try {
@@ -263,4 +250,116 @@ public class GestorAsistencias {
         }
         return lista;
     }
+
+
+//Justificativo
+    public ArrayList<VMAsistenciaAlmunoJustificativo> obtenerJustificativoAlumnoAsistencias() {
+        ArrayList<VMAsistenciaAlmunoJustificativo> lista = new ArrayList<>();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet query = stmt.executeQuery("SELECT a.id_asistencia, al.legajo, al.apellido , al.nombre, a.fecha_registro, j.obserbaciones FROM Asistencias a JOIN Alumnos al ON (a.id_alumno = al.id_alumno) JOIN Justificativos j ON (a.id_asistencia = j.id_asistencia) WHERE a.visible = 1 AND al.visible = 1 AND j.visible = 1");
+            while (query.next()) {
+                VMAsistenciaAlmunoJustificativo j = new VMAsistenciaAlmunoJustificativo();
+                j.setIdAsistencias(query.getInt("id_asistencia"));
+                j.setLegajo(query.getInt("legajo"));
+                j.setApellido(query.getString("apellido"));
+                j.setNombre(query.getString("nombre"));
+                j.setFecha(query.getDate("fecha_registro"));
+                j.setTexto(query.getString("obserbaciones"));
+                lista.add(j);
+            }
+            query.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return lista;
+    }
+    
+    public VMAsistenciaAlmunoJustificativo obtenerJustificativoAlumnoAsistencias(int id) {
+        VMAsistenciaAlmunoJustificativo j = new VMAsistenciaAlmunoJustificativo();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet query = stmt.executeQuery("SELECT a.id_asistencia, al.legajo, al.apellido , al.nombre, a.fecha_registro, j.obserbaciones FROM Asistencias a JOIN Alumnos al ON (a.id_alumno = al.id_alumno) JOIN Justificativos j ON (a.id_asistencia = j.id_asistencia) WHERE a.visible = 1 AND al.visible = 1 AND j.visible = 1 AND id_asistencia = "+ id);
+                j.setIdAsistencias(query.getInt("id_asistencia"));
+                j.setLegajo(query.getInt("legajo"));
+                j.setApellido(query.getString("apellido"));
+                j.setNombre(query.getString("nombre"));
+                j.setFecha(query.getDate("fecha_registro"));
+                j.setTexto(query.getString("obserbaciones"));
+            query.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return j;
+    }
+    
+    public Justificativo obtenerJustificativo (int id) {
+        Justificativo j = new Justificativo();
+        try {
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Justificativos WHERE visible = 1 AND id_asistencia = "+ id);
+            stmt.setInt(1, id);
+            ResultSet query = stmt.executeQuery();
+                j.setIdAsistencias(query.getInt("id_asistencia"));
+                j.setTexto(query.getString("obserbaciones"));
+                j.setVisible(query.getBoolean("visible"));
+            query.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return j;
+    }
+
+    public boolean agregarJustificativo (Justificativo j) {
+        boolean inserto = true;
+        try {
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Justificativos (id_asistencia, obserbaciones, visible) VALUES (?,?,1)");
+            stmt.setInt(1, j.getIdAsistencias());
+            stmt.setString(2, j.getTexto());
+            stmt.executeUpdate();
+            
+            stmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            inserto = false;
+        }
+        return inserto;
+    }
+    
+    public boolean modificarJustificativo (Justificativo j) {
+        boolean modifico = true;
+        try {
+            PreparedStatement stmt = conn.prepareStatement("UPDATE Justificativos SET obserbaciones = ? WHERE id_asistencia = ?");
+            stmt.setString(1, j.getTexto());
+            stmt.setInt(2, j.getIdAsistencias());
+            stmt.executeUpdate();
+            stmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            modifico = false;
+        }
+        return modifico;
+    }
+    
+    public boolean elimniarJustificativo(int id) {
+        boolean modifico = true;
+        try {
+            PreparedStatement stmt = conn.prepareStatement("UPDATE Justificativos SET visible = 0 WHERE id_asistencia = "+ id);
+            stmt.executeUpdate();
+            stmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            modifico = false;
+        }
+        return modifico;
+    }
+    
 }

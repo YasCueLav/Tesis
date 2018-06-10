@@ -67,6 +67,9 @@
 
                                 <td>
                                     <a id="Link" href="/Tesis-Asistencias/ModificarAsistenciasServlet?idAsistencia=${a.getIdAsistencias()}">Editar</a>
+                                    <c:if test="${!a.isEstaPresente()}">
+                                        /<a id="Link" href="/Tesis-Asistencias/AltaJustificativo?idAsistencia=${a.getIdAsistencias()}">Justificar</a>
+                                    </c:if>
                                 </td>
                             </tr>
                         </c:forEach>

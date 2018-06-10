@@ -92,6 +92,18 @@
         <servlet-name>ModificarAlumnosServlet</servlet-name>
         <servlet-class>Servlets.ModificarAlumnosServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AltaJustificativoServlet</servlet-name>
+        <servlet-class>Servlets.AltaJustificativoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListadoJustificativosServlet</servlet-name>
+        <servlet-class>Servlets.ListadoJustificativosServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateJustificativoServlet</servlet-name>
+        <servlet-class>Servlets.UpdateJustificativoServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
         <url-pattern>/Index</url-pattern>
@@ -183,6 +195,18 @@
     <servlet-mapping>
         <servlet-name>ModificarAlumnosServlet</servlet-name>
         <url-pattern>/ModificarAlumnosServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AltaJustificativoServlet</servlet-name>
+        <url-pattern>/AltaJustificativoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListadoJustificativosServlet</servlet-name>
+        <url-pattern>/ListadoJustificativosServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateJustificativoServlet</servlet-name>
+        <url-pattern>/UpdateJustificativoServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

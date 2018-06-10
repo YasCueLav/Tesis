@@ -5,19 +5,14 @@
  */
 package Servlets;
 
+import Controladores.GestorAlumnos;
 import Controladores.GestorAsistencias;
-import Controladores.GestorCondiciones;
-import Controladores.GestorCursos;
-import Controladores.GestorExamenes;
-import Controladores.GestorTPs;
-import Model.Condiciones;
-import Model.Cursos;
+import Model.Alumno;
+import Model.Asistencias;
 import Model.Justificativo;
-import Model.TPs;
-import Model.VMTipoExamenExamen;
+import Model.VMAsistenciaAlumnoCurso;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -28,7 +23,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Yasmin
  */
-public class ListadoSoporteServlet extends HttpServlet {
+public class AltaJustificativoServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,8 +34,10 @@ public class ListadoSoporteServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    int id;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        id = Integer.parseInt(request.getParameter("idAsistencia"));
         response.setContentType("text/html;charset=UTF-8");
     }
 
@@ -56,27 +53,19 @@ public class ListadoSoporteServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        id = Integer.parseInt(request.getParameter("idAsistencia"));
         HttpSession mySession = request.getSession();
         boolean isLogged = (boolean) mySession.getAttribute("inicio");
         if (isLogged) {
-            GestorExamenes ge = new GestorExamenes();
-            ArrayList<VMTipoExamenExamen> examen = ge.obtenerTodosExamenes();
+            GestorAsistencias gas = new GestorAsistencias();
+            Asistencias  a = gas.obtenerAsistencias(id);
             
-            GestorTPs gt = new GestorTPs();
-            ArrayList<TPs> tp = gt.obtenerTPs();
-
-            GestorCondiciones gc = new GestorCondiciones();
-            ArrayList<Condiciones> condicion = gc.obtenerCondiciones();
+            GestorAlumnos ga = new GestorAlumnos();
+            Alumno alumno = ga.obtenerAlumno(a.getIdAlumno());
             
-            GestorCursos gcu = new GestorCursos();
-            ArrayList<Cursos> curso = gcu.obtenerCursos();
+            request.setAttribute("alumno", alumno);
             
-            request.setAttribute("tp", tp);
-            request.setAttribute("examen", examen);
-            request.setAttribute("condicion", condicion);
-            request.setAttribute("curso", curso);
-            
-            getServletContext().getRequestDispatcher("/ListadoSoporte.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/AltaJustificativo.jsp").forward(request, response);
         } else {
             getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
         }
@@ -94,6 +83,19 @@ public class ListadoSoporteServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        GestorAsistencias ga = new GestorAsistencias();
+        
+        Justificativo j = new  Justificativo();
+        
+        j.setIdAsistencias(id);
+        j.setTexto(request.getParameter("Justificativo"));
+        
+        boolean cargo = ga.agregarJustificativo(j);
+        if (cargo) {
+            getServletContext().getRequestDispatcher("/Exito.jsp").forward(request, response);
+        } else {
+            getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
+        }
         processRequest(request, response);
     }
 
