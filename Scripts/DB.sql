@@ -111,3 +111,12 @@ create table Asistencias
 	constraint fk_alumno_asistencias foreign key (id_alumno)
 	references Alumnos (id_alumno)
 )
+create table Justificativos
+(
+	id_asistencia int unique,
+	obserbaciones varchar(500) not null,
+	visible bit not null 
+	constraint pk_asistencia_justificativo primary key(id_asistencia),
+	constraint fk_asistencia_justificativo foreign key (id_asistencia)
+	references Asistencias (id_asistencia)
+)
