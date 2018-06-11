@@ -17,7 +17,7 @@
         <jsp:include page="Menu.jsp"></jsp:include>
         <h2>Listados</h2>
         
-        <h5>Listados de Examenes</h5>
+        <h5>Listados de Alumnos</h5>
         <div>
             <table class="table table-striped" name="tabla">
                 <thead>
