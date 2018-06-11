@@ -22,7 +22,7 @@
                     <select name="Tp">
                     <option>Seleccione un Trabajo Practico ...</option>
                     <c:forEach items="${tp}" var="t">
-                        <option value="${t.getIdTp()}"> <%-- ${t.getIdTp()} --%> ${t.getNombreTp()}</option>
+                        <option value="${t.getIdTp()}">${t.getNombreTp()}</option>
                     </c:forEach>
                     </select>
                     <input type="date" name="Fecha">
@@ -34,8 +34,8 @@
 			  <th scope="col">legajo</th>
 			  <th scope="col">Apellido, Nombre</th>
 			  <th scope="col">Divicion</th>
-			  <th scope="col">entregado?</th>
-			  <th scope="col">Nota?</th>
+			  <th scope="col">Entregado?</th>
+			  <th scope="col">Estado TP</th>
 			</tr>
 		  </thead>
                     <tbody>
@@ -45,10 +45,14 @@
                                 <td>${a.getApellido()}, ${a.getNombre()} </td>
                                 <td>${a.getDivicionCurso()}</td>
                                 <td>
-                                    E <input type="radio" name="${a.getIdAlumno()}" value="E">- 
-                                    EFT <input type="radio" name="${a.getIdAlumno()}" value="EFT" checked="true">
+                                    Si <input type="radio" name="${a.getIdAlumno()}" value="Si">- 
+                                    No <input type="radio" name="${a.getIdAlumno()}" value="No" checked="true">
                                 </td>
-                                <td><input type="number" name="NotaTp" value="0"></td>
+                                <td>
+                                    Aprobado <input type="radio" name="Estado${a.getIdAlumno()}" value="A">- 
+                                    No Aprobado<input type="radio" name="Estado${a.getIdAlumno()}" value="D">
+                                    <input type="radio"  id="invisible" name="Estado${a.getIdAlumno()}" value="N" checked="true">
+                                </td>
                             </tr>
                         </c:forEach>
                     </tbody>

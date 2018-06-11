@@ -35,7 +35,7 @@ public class GestorTPs {
         ArrayList<TPs> lista = new ArrayList<>();
         try {
             Statement stmt = conn.createStatement();
-            ResultSet query = stmt.executeQuery("Select * from Trabajos_Practicos where visible = 0");
+            ResultSet query = stmt.executeQuery("Select * from Trabajos_Practicos where visible = 1");
             while (query.next()){
                 TPs t = new TPs();
                 t.setIdTp(query.getInt("id_tp"));
@@ -54,7 +54,7 @@ public class GestorTPs {
     public TPs obtenerTPs (int id) {
         TPs t = new TPs();
         try {
-            PreparedStatement stmt = conn.prepareStatement("select * from Trabajos_Practicos where id_tp = ? and visible = 0");
+            PreparedStatement stmt = conn.prepareStatement("select * from Trabajos_Practicos where id_tp = ? and visible = 1");
             stmt.setInt(1, id);
             ResultSet query = stmt.executeQuery();
             if (query.next()) {
@@ -70,4 +70,46 @@ public class GestorTPs {
         return t;
     }
     
+    public boolean agregarExamen (TPs t) {
+        boolean inserto = true;
+        try {
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Trabajos_Practicos (nombre, visible) VALUES (?,1)");
+            stmt.setString(1, t.getNombreTp());
+            stmt.executeUpdate();
+            stmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            inserto = false;
+        }
+        return inserto;
+    }
+     public boolean elimniarTP(int id) {
+        boolean modifico = true;
+        try {
+            PreparedStatement stmt = conn.prepareStatement("UPDATE Trabajos_Practicos SET visible = 0 WHERE id_tp = "+ id);
+            stmt.executeUpdate();
+            stmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            modifico = false;
+        }
+        return modifico;
+    }
+     public boolean ModificarTP(TPs t) {
+        boolean modifico = true;
+        try {
+            PreparedStatement stmt = conn.prepareStatement("UPDATE Trabajos_Practicos SET nombre = ? WHERE id_tp = ?");
+            stmt.setString(1, t.getNombreTp());
+            stmt.setInt(2, t.getIdTp());
+            stmt.executeUpdate();
+            stmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            modifico = false;
+        }
+        return modifico;
+    }
 }

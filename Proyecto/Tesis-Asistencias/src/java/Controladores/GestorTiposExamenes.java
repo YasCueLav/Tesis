@@ -34,7 +34,7 @@ public class GestorTiposExamenes {
         ArrayList<TiposExamenes> lista = new ArrayList<>();
         try {
             Statement stmt = conn.createStatement();
-            ResultSet query = stmt.executeQuery("Select * from Tipos_Examenes where visible = 0");
+            ResultSet query = stmt.executeQuery("Select * from Tipos_Examenes where visible = 1");
             while (query.next()){
                 TiposExamenes te = new TiposExamenes();
                 te.setIdTipoExamne(query.getInt("id_tipo_examen"));
@@ -53,7 +53,7 @@ public class GestorTiposExamenes {
     public TiposExamenes obtenerTipoExamen (int id) {
         TiposExamenes te = new TiposExamenes();
         try {
-            PreparedStatement stmt = conn.prepareStatement("select * from Tipos_Examenes where id_tipo_examen = ? and visible = 0");
+            PreparedStatement stmt = conn.prepareStatement("select * from Tipos_Examenes where id_tipo_examen = ? and visible = 1");
             stmt.setInt(1, id);
             ResultSet query = stmt.executeQuery();
             if (query.next()) {

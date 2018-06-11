@@ -34,7 +34,7 @@ public class GestorCondiciones {
         ArrayList<Condiciones> lista = new ArrayList<>();
         try {
             Statement stmt = conn.createStatement();
-            ResultSet query = stmt.executeQuery("Select id_condicion , condicion from Condiciones where visible = 0");
+            ResultSet query = stmt.executeQuery("Select id_condicion , condicion from Condiciones where visible = 1");
             while (query.next()){
                 Condiciones c = new Condiciones();
                 c.setIdCondicion(query.getInt("id_condicion"));
@@ -53,7 +53,7 @@ public class GestorCondiciones {
     public Condiciones obtenerCondicionesConID (int id) {
         Condiciones c = new Condiciones();
         try {
-            PreparedStatement stmt = conn.prepareStatement("select * from Condiciones where id_condicion = ? and visible = 0");
+            PreparedStatement stmt = conn.prepareStatement("select * from Condiciones where id_condicion = ? and visible = 1");
             stmt.setInt(1, id);
             ResultSet query = stmt.executeQuery();
             if (query.next()) {
@@ -68,19 +68,49 @@ public class GestorCondiciones {
         }
         return c;
     }
-    //TERMINAR
-//    public boolean agregarCondiciones (Condiciones c) {
-//        boolean inserto = true;
-//        try {
-//            PreparedStatement stmt = conn.prepareStatement("");
-//            stmt.setString(1, c.getCondicion());
-//            stmt.executeUpdate();
-//            stmt.close();
-//            conn.close();
-//        } catch (SQLException ex) {
-//            System.out.println(ex);
-//            inserto = false;
-//        }
-//        return inserto;
-//    }
+    public boolean agregarCondiciones (Condiciones c) {
+        boolean inserto = true;
+        try {
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Condiciones (condicion, visible) VALUES (?,1)");
+            stmt.setString(1, c.getCondicion());
+            stmt.executeUpdate();
+            stmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            inserto = false;
+        }
+        return inserto;
+    }
+    
+    public boolean modificarCondiciones (Condiciones c) {
+        boolean inserto = true;
+        try {
+            PreparedStatement stmt = conn.prepareStatement("UPDATE Condiciones SET condicion = ? WHERE id_condicion = ?");
+            stmt.setString(1, c.getCondicion());
+            stmt.setInt(2, c.getIdCondicion());
+            stmt.executeUpdate();
+            stmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            inserto = false;
+        }
+        return inserto;
+    }
+    
+    public boolean eliminarCondiciones (int id) {
+        boolean inserto = true;
+        try {
+            PreparedStatement stmt = conn.prepareStatement("UPDATE Condiciones SET visible = 0 WHERE id_condicion = "+ id);
+            stmt.executeUpdate();
+            stmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            inserto = false;
+        }
+        return inserto;
+    }
 }
+    

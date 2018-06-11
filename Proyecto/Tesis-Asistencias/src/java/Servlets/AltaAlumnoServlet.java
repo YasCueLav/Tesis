@@ -64,7 +64,6 @@ public class AltaAlumnoServlet extends HttpServlet {
             
             request.setAttribute("cu", cu);
             request.setAttribute("con", con);
-            System.out.println("Cargando Pag Alumno");
             
             getServletContext().getRequestDispatcher("/AltaAlumno.jsp").forward(request, response);
         } else {

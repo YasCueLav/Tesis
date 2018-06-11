@@ -56,3 +56,43 @@ select count(*)numero from Alumnos where visible = 0
 _______________________________________________________________________________________
 INSERT INTO Alumnos (legajo, nombre, apellido, id_curso, id_condicion, grupo, fecha_ingreso, visible)
 VALUES (?,?,?,?,?,?,?,0)
+_______________________________________________________________________________________
+SELECT a.id_asistencia,al.id_alumno,al.legajo,al.apellido,al.nombre,c.seccion,a.esta_Precente,a.obligatoria, a.fecha_registro
+FROM  Asistencias a JOIN Alumnos al ON (a.id_alumno = al.id_alumno) JOIN Cursos c ON (al.id_curso = c.id_curso) 
+WHERE a.visible = 0 AND al.visible = 0 AND c.visible = 0 
+_______________________________________________________________________________________
+UPDATE Asistencias SET fecha_registro = ?, obligatoria = ?,esta_Precente = ? WHERE id_asistencia = ?
+_______________________________________________________________________________________
+SELECT a.id_asistencia,al.id_alumno,al.legajo,al.apellido,al.nombre,c.seccion,a.esta_Precente,a.obligatoria, a.fecha_registro 
+FROM  Asistencias a JOIN Alumnos al ON (a.id_alumno = al.id_alumno) JOIN Cursos c ON (al.id_curso = c.id_curso) 
+WHERE a.visible = 0 AND al.visible = 0 AND c.visible = 0 AND al.legajo = ?
+
+SELECT a.id_asistencia,al.id_alumno,al.legajo,al.apellido,al.nombre,c.seccion,a.esta_Precente,a.obligatoria, a.fecha_registro 
+FROM  Asistencias a JOIN Alumnos al ON (a.id_alumno = al.id_alumno) JOIN Cursos c ON (al.id_curso = c.id_curso) 
+WHERE a.visible = 0 AND al.visible = 0 AND c.visible = 0 AND al.id_curso = ?
+
+SELECT a.id_asistencia,al.id_alumno,al.legajo,al.apellido,al.nombre,c.seccion,a.esta_Precente,a.obligatoria, a.fecha_registro F
+ROM  Asistencias a JOIN Alumnos al ON (a.id_alumno = al.id_alumno) JOIN Cursos c ON (al.id_curso = c.id_curso)
+WHERE a.visible = 0 AND al.visible = 0 AND c.visible = 0 AND al.legajo = ? AND al.id_curso = ?
+_______________________________________________________________________________________
+UPDATE Examenes 
+	SET id_tipo_examen = ?, 
+	examen = ?,
+	fecha_examen = ? 
+WHERE id_examen = ?
+
+UPDATE Examenes 
+SET visible = 1 
+WHERE id_examen = ?
+_______________________________________________________________________________________
+
+INSERT INTO Trabajos_Practicos (nombre, visible) VALUES (?,0)
+
+
+UPDATE Trabajos_Practicos 
+SET visible = 0 
+WHERE id_tp = ?
+
+UPDATE Trabajos_Practicos 
+SET nombre = ? 
+WHERE id_tp = ?

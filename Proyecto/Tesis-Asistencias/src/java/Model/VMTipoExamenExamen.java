@@ -5,26 +5,47 @@
  */
 package Model;
 
+import java.sql.Date;
+
 /**
  *
  * @author Yasmin
  */
 public class VMTipoExamenExamen {
     int idExamen;
+    int idTipoExamen;
     String TipoExamne;
     String examenNombre;
+    Date fecha;
     boolean visible;
 
     public VMTipoExamenExamen() {
     }
 
-    public VMTipoExamenExamen(int idExamen, String TipoExamne, String examenNombre, boolean visible) {
+    public VMTipoExamenExamen(int idExamen, int idTipoExamen, String TipoExamne, String examenNombre, Date fecha) {
         this.idExamen = idExamen;
+        this.idTipoExamen = idTipoExamen;
         this.TipoExamne = TipoExamne;
         this.examenNombre = examenNombre;
-        this.visible = visible;
+        this.fecha = fecha;
     }
 
+    public int getIdTipoExamen() {
+        return idTipoExamen;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setIdTipoExamen(int idTipoExamen) {
+        this.idTipoExamen = idTipoExamen;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+    
     public int getIdExamen() {
         return idExamen;
     }

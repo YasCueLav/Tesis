@@ -2,6 +2,13 @@ create database Gestus
 use Gestus
 SET LANGUAGE 'Español'
 
+create table Estados
+(
+	id_estado int identity(1,1),
+	estado varchar(100) not null,
+	visible bit not null 
+	constraint pk_estado primary key(id_estado)
+)
 create table Cursos
 (
 	id_curso int identity(1,1),
@@ -53,6 +60,7 @@ create table Examenes
 	id_examen int identity(1,1),
 	id_tipo_examen int not null,
 	examen varchar(50) not null,
+	fecha_examen date,
 	visible bit not null
 	constraint pk_examen primary key (id_examen),
 	constraint fk_tipo_examen foreign key (id_tipo_examen)
@@ -80,12 +88,16 @@ create table Tp_Alumnos
 	id_tp int not null,
 	id_alumno int not null,
 	presentado bit not null,
+	fecha_entregado date,
+	id_estado int,
 	visible bit not null 
 	constraint pk_tp_alumno primary key (id_tp_alumno),
 	constraint fk_tp foreign key (id_tp)
 	references Trabajos_Practicos (id_tp),
 	constraint fk_alumno_tp foreign key (id_alumno)
-	references Alumnos (id_alumno)
+	references Alumnos (id_alumno),
+	constraint fk_estado foreign key (id_estado)
+	references Estados (id_estado)
 )
 create table Asistencias
 (
@@ -98,4 +110,13 @@ create table Asistencias
 	constraint pk_asistencia primary key (id_asistencia),
 	constraint fk_alumno_asistencias foreign key (id_alumno)
 	references Alumnos (id_alumno)
+)
+create table Justificativos
+(
+	id_asistencia int unique,
+	obserbaciones varchar(500) not null,
+	visible bit not null 
+	constraint pk_asistencia_justificativo primary key(id_asistencia),
+	constraint fk_asistencia_justificativo foreign key (id_asistencia)
+	references Asistencias (id_asistencia)
 )
