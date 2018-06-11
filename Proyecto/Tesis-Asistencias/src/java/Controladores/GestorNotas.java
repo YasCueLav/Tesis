@@ -78,12 +78,10 @@ public class GestorNotas {
     public boolean modificarNotas (Notas n) {
         boolean modifico = true;
         try {
-            PreparedStatement stmt = conn.prepareStatement("");
-            stmt.setInt(1, n.getIdNota());
-            stmt.setInt(2, n.getIdAlumno());
-            stmt.setInt(3, n.getIdExamen());
-            stmt.setInt(4, n.getIdTp());
-            stmt.setDouble(5, n.getNota());
+            PreparedStatement stmt = conn.prepareStatement("UPDATE Notas SET id_examen = ?, nota = ? WHERE id_nota = ?");
+            stmt.setInt(1, n.getIdExamen());
+            stmt.setDouble(2, n.getNota());
+            stmt.setInt(3, n.getIdNota());
             stmt.executeUpdate();
             stmt.close();
             conn.close();
@@ -94,11 +92,10 @@ public class GestorNotas {
         return modifico;
     }
     //TERMINAR
-    public boolean elimniarNota (Notas n, int id) {
+    public boolean elimniarNota (int id) {
         boolean modifico = true;
         try {
-            PreparedStatement stmt = conn.prepareStatement("");
-            stmt.setBoolean(1, n.isVisible());
+            PreparedStatement stmt = conn.prepareStatement("UPDATE Notas SET visible = 0 WHERE id_nota = "+ id);
             stmt.executeUpdate();
             stmt.close();
             conn.close();

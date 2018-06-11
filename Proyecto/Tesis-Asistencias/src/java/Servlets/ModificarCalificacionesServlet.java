@@ -5,12 +5,10 @@
  */
 package Servlets;
 
-import Controladores.GestorAlumnos;
-import Controladores.GestorAsistencias;
-import Model.Alumno;
-import Model.Asistencias;
-import Model.Justificativo;
-import Model.VMAsistenciaAlumnoCurso;
+import Controladores.GestorExamenes;
+import Controladores.GestorNotas;
+import Model.Notas;
+import Model.VMAlumnoNotaTipoExamenExamen;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -23,7 +21,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Yasmin
  */
-public class AltaJustificativoServlet extends HttpServlet {
+public class ModificarCalificacionesServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,10 +32,10 @@ public class AltaJustificativoServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    int id;
+    int id=0;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        id = Integer.parseInt(request.getParameter("idAsistencia"));
+        id = Integer.parseInt(request.getParameter("idNota"));
         response.setContentType("text/html;charset=UTF-8");
     }
 
@@ -53,22 +51,45 @@ public class AltaJustificativoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        id = Integer.parseInt(request.getParameter("idAsistencia"));
+        int m = 0;
+        id = Integer.parseInt(request.getParameter("idNota"));
+        m = Integer.parseInt(request.getParameter("estado"));
+        
         HttpSession mySession = request.getSession();
         boolean isLogged = (boolean) mySession.getAttribute("inicio");
         if (isLogged) {
-            GestorAsistencias gas = new GestorAsistencias();
-            Asistencias  a = gas.obtenerAsistencias(id);
-            
-            GestorAlumnos ga = new GestorAlumnos();
-            Alumno alumno = ga.obtenerAlumno(a.getIdAlumno());
-            
-            request.setAttribute("alumno", alumno);
-            
-            getServletContext().getRequestDispatcher("/AltaJustificativo.jsp").forward(request, response);
+            GestorExamenes ge;
+            switch (m){
+                case 1: 
+                    ge = new GestorExamenes();
+                    VMAlumnoNotaTipoExamenExamen examen = ge.obtenerExamenesNotaAlumno(id);
+                    
+                    request.setAttribute("examen", examen);
+                    
+                    getServletContext().getRequestDispatcher("/ModificarCalificaciones.jsp").forward(request, response);
+                    break;
+                case 2:
+                    ge = new GestorExamenes();
+                    VMAlumnoNotaTipoExamenExamen e = ge.obtenerExamenesNotaAlumno(id);
+                    
+                    GestorNotas gn = new GestorNotas();
+                    boolean ca = gn.elimniarNota(e.getIdNota());
+                    if (ca) {
+                        getServletContext().getRequestDispatcher("/Exito.jsp").forward(request, response);
+                    }else{
+                        getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
+                    }
+                    
+                    break;
+                    
+                default:
+                    getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
+                    break;
+            }
         } else {
             getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
         }
+        
         processRequest(request, response);
     }
 
@@ -83,18 +104,19 @@ public class AltaJustificativoServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        GestorAsistencias ga = new GestorAsistencias();
-        Justificativo j = new  Justificativo();
+        GestorNotas gn = new GestorNotas();
+        Notas n = new Notas();
         
-        j.setIdAsistencias(id);
-        j.setTexto(request.getParameter("Justificativo"));
+        n.setIdAlumno(Integer.parseInt("IdAlumno"));
+        n.setNota(Double.parseDouble("NumeoNota"));
         
-        boolean cargo = ga.agregarJustificativo(j);
+        boolean cargo = gn.modificarNotas(n);
         if (cargo) {
             getServletContext().getRequestDispatcher("/Exito.jsp").forward(request, response);
         } else {
             getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
         }
+        
         processRequest(request, response);
     }
 

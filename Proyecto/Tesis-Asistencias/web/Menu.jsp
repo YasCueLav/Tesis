@@ -37,8 +37,10 @@
           Listados
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="/Tesis-Asistencias/ListadoAsistenciasServlet">Asistencias</a>
-          <a class="dropdown-item" href="/Tesis-Asistencias/ListadoAlumnosServlet">Alumnos</a>
+            <a class="dropdown-item" href="/Tesis-Asistencias/ListadoAsistenciasServlet">Asistencias</a>
+            <a class="dropdown-item" href="/Tesis-Asistencias/ListadoAlumnosServlet">Alumnos</a>
+            <a class="dropdown-item" href="/Tesis-Asistencias/ListadoJustificativosServlet">Justificativos</a>
+            <a class="dropdown-item" href="/Tesis-Asistencias/ListadoCalificacionesServlet">Notas</a>
         </div>
         </li>
         <%--<li class="nav-item">
@@ -59,7 +61,6 @@
               <a class="dropdown-item" href="/Tesis-Asistencias/CargaCondicionesServlet">Carga Condiciones</a>
               <a class="dropdown-item" href="/Tesis-Asistencias/CargaCursoServlet">Carga Curso</a>
               <a class="dropdown-item" href="/Tesis-Asistencias/ListadoSoporteServlet">Listado</a>
-              <a class="dropdown-item" href="/Tesis-Asistencias/ListadoJustificativosServlet">Listado Justificativos</a>
             </div>
         </li>
     </ul>

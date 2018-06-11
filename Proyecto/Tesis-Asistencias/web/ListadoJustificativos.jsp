@@ -10,9 +10,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <jsp:include page="Links.jsp"></jsp:include>
         <title>Listado</title>
     </head>
     <body>
+        <jsp:include page="Menu.jsp"></jsp:include>
+        
         <h2>Listado de Justificativos de Inasistencias</h2>
         <div>
             <table class="table table-striped" name="tabla">

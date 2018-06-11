@@ -61,8 +61,8 @@ public class UpdateJustificativoServlet extends HttpServlet {
             switch (m){
                 case 1: 
                     ga = new GestorAsistencias();
-                    VMAsistenciaAlmunoJustificativo justi = ga.obtenerJustificativoAlumnoAsistencias(id);
-        
+                    VMAsistenciaAlmunoJustificativo justi = ga.obtenerJustificativoAlumnoAsistenciasTodos(id);
+                    
                     request.setAttribute("justi", justi);
                     
                     getServletContext().getRequestDispatcher("/UpdateJustificativo.jsp").forward(request, response);

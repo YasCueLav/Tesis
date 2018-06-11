@@ -10,9 +10,12 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <jsp:include page="Links.jsp"></jsp:include>
     <title>Justificativo</title>
 </head>
 <body>
+    <jsp:include page="Menu.jsp"></jsp:include>
+        
     <div>
         <h1>Registrar Justificativo</h1>
         <h3>${alumno.getLegajo()} / ${alumno.getApellido()}, ${alumno.getNombre()}</h3>

@@ -277,22 +277,25 @@ public class GestorAsistencias {
         return lista;
     }
     
-    public VMAsistenciaAlmunoJustificativo obtenerJustificativoAlumnoAsistencias(int id) {
+    public VMAsistenciaAlmunoJustificativo obtenerJustificativoAlumnoAsistenciasTodos( int id) {
         VMAsistenciaAlmunoJustificativo j = new VMAsistenciaAlmunoJustificativo();
         try {
-            Statement stmt = conn.createStatement();
-            ResultSet query = stmt.executeQuery("SELECT a.id_asistencia, al.legajo, al.apellido , al.nombre, a.fecha_registro, j.obserbaciones FROM Asistencias a JOIN Alumnos al ON (a.id_alumno = al.id_alumno) JOIN Justificativos j ON (a.id_asistencia = j.id_asistencia) WHERE a.visible = 1 AND al.visible = 1 AND j.visible = 1 AND id_asistencia = "+ id);
-                j.setIdAsistencias(query.getInt("id_asistencia"));
-                j.setLegajo(query.getInt("legajo"));
-                j.setApellido(query.getString("apellido"));
-                j.setNombre(query.getString("nombre"));
-                j.setFecha(query.getDate("fecha_registro"));
-                j.setTexto(query.getString("obserbaciones"));
+            PreparedStatement stmt = conn.prepareStatement("SELECT a.id_asistencia, al.legajo, al.apellido , al.nombre, a.fecha_registro, j.obserbaciones FROM Asistencias a JOIN Alumnos al ON (a.id_alumno = al.id_alumno) JOIN Justificativos j ON (a.id_asistencia = j.id_asistencia) WHERE a.visible = 1 AND al.visible = 1 AND j.visible = 1 AND a.id_asistencia = ?");
+            stmt.setInt(1, id);
+            ResultSet query = stmt.executeQuery();
+                if(query.next()){
+                    j.setIdAsistencias(query.getInt("id_asistencia"));
+                    j.setLegajo(query.getInt("legajo"));
+                    j.setApellido(query.getString("apellido"));
+                    j.setNombre(query.getString("nombre"));
+                    j.setFecha(query.getDate("fecha_registro"));
+                    j.setTexto(query.getString("obserbaciones"));
+                }
             query.close();
             stmt.close();
             conn.close();
         } catch (SQLException e) {
-            System.out.println(e);
+            System.out.println(e.toString());
         }
         return j;
     }

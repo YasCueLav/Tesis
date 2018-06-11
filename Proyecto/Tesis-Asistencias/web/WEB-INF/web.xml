@@ -104,6 +104,14 @@
         <servlet-name>UpdateJustificativoServlet</servlet-name>
         <servlet-class>Servlets.UpdateJustificativoServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ListadoCalificacionesServlet</servlet-name>
+        <servlet-class>Servlets.ListadoCalificacionesServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ModificarCalificacionesServlet</servlet-name>
+        <servlet-class>Servlets.ModificarCalificacionesServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
         <url-pattern>/Index</url-pattern>
@@ -207,6 +215,14 @@
     <servlet-mapping>
         <servlet-name>UpdateJustificativoServlet</servlet-name>
         <url-pattern>/UpdateJustificativoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListadoCalificacionesServlet</servlet-name>
+        <url-pattern>/ListadoCalificacionesServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ModificarCalificacionesServlet</servlet-name>
+        <url-pattern>/ModificarCalificacionesServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
