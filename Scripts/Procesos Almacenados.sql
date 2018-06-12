@@ -17,7 +17,7 @@ SELECT (SELECT count(*) FROM Asistencias WHERE id_alumno = @idAlumno  AND visibl
 		(SELECT count(*) FROM Asistencias WHERE id_alumno = @idAlumno AND esta_Precente = 'true' AND visible = 1) 'CantidadAsistio',
 		(SELECT n.nota FROM Notas n JOIN  Examenes e ON (n.id_examen = e.id_examen) 
 												JOIN Tipos_Examenes te ON (e.id_tipo_examen = te.id_tipo_examen)
-			WHERE n.visible = 1 AND e.visible = 1 AND te.visible = 1 AND n.id_examen = 3 AND te.id_tipo_examen = 1 AND n.id_alumno = @idAlumno) 'NotaParcial',
+			WHERE n.visible = 1 AND e.visible = 1 AND te.visible = 1 AND n.id_examen = 1 AND te.id_tipo_examen = 1 AND n.id_alumno = @idAlumno) 'NotaParcial',
 		(SELECT count(*) FROM Trabajos_Practicos WHERE visible = 1 AND id_tp != 6) 'TpAEntregar',
 		(SELECT count(*) FROM Tp_Alumnos ta JOIN Trabajos_Practicos tp ON (ta.id_tp = tp.id_tp) 
 			WHERE  ta.visible = 1 AND  tp.visible = 1 AND tp.id_tp != 6 AND tp.fecha_entrega = ta.fecha_entregado AND ta.id_alumno = @idAlumno) 'TpEntregadoEnFecha',
