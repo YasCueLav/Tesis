@@ -84,7 +84,8 @@ public class GestorTPs {
         }
         return inserto;
     }
-     public boolean elimniarTP(int id) {
+    
+    public boolean elimniarTP(int id) {
         boolean modifico = true;
         try {
             PreparedStatement stmt = conn.prepareStatement("UPDATE Trabajos_Practicos SET visible = 0 WHERE id_tp = "+ id);
@@ -97,7 +98,8 @@ public class GestorTPs {
         }
         return modifico;
     }
-     public boolean ModificarTP(TPs t) {
+   
+    public boolean ModificarTP(TPs t) {
         boolean modifico = true;
         try {
             PreparedStatement stmt = conn.prepareStatement("UPDATE Trabajos_Practicos SET nombre = ? WHERE id_tp = ?");

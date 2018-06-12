@@ -1,5 +1,7 @@
 package Model;
 
+import java.sql.Date;
+
 /**
  *
  * @author Yasmin
@@ -7,16 +9,24 @@ package Model;
 public class TPs {
     int idTp;
     String nombreTp;
+    Date fechaEntrega;
     boolean visible;
 
     public TPs() {
     }
 
-    public TPs(int idTp, String nombreTp) {
+    public TPs(int idTp, String nombreTp, Date fechaEntrega, boolean visible) {
         this.idTp = idTp;
         this.nombreTp = nombreTp;
+        this.fechaEntrega = fechaEntrega;
+        this.visible = visible;
     }
 
+    public Date getFechaEntrega() {
+        return fechaEntrega;
+    }
+
+    
     public int getIdTp() {
         return idTp;
     }
@@ -35,6 +45,10 @@ public class TPs {
 
     public void setNombreTp(String nombreTp) {
         this.nombreTp = nombreTp;
+    }
+
+    public void setFechaEntrega(Date fechaEntrega) {
+        this.fechaEntrega = fechaEntrega;
     }
 
     public void setVisible(int visible) {

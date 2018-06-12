@@ -8,6 +8,7 @@ package Controladores;
 import Model.Estado;
 import Model.TpsAlumnos;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -114,6 +115,19 @@ public class GestorTPsAlumnos {
             inserto = false;
         }
         return inserto;
+    }
+    public boolean ModificarFechaTP(String fecha, int idTp) {
+        boolean modifico = true;
+        try {
+            PreparedStatement stmt = conn.prepareStatement("EXEC pa__AgregarFechaTP @fecha ='"+fecha+"', @idTp = "+idTp);
+            stmt.executeUpdate();
+            stmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            modifico = false;
+        }
+        return modifico;
     }
     
     public ArrayList<Estado> obtenerEstados (){

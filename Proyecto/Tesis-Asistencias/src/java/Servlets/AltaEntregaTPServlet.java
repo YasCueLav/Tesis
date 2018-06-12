@@ -136,9 +136,9 @@ public class AltaEntregaTPServlet extends HttpServlet {
         }
         
         boolean cargo = gta.agregarTPsAlumnos(trabAlum);
-        //boolean cargoN = gn.agregarNotaTPs(notas);
+        boolean cargoN = gta.ModificarFechaTP(fecha, idTp);
         
-        if (cargo/* && cargoN*/) {
+        if (cargo && cargoN) {
             getServletContext().getRequestDispatcher("/Exito.jsp").forward(request, response);
         } else {
             getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
