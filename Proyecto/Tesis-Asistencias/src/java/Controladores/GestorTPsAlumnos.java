@@ -116,10 +116,30 @@ public class GestorTPsAlumnos {
         }
         return inserto;
     }
+    
+    public boolean agregarTPsAlumnosTFI (ArrayList<TpsAlumnos> tpsAlumnos) {
+        boolean inserto = true;
+        try {
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO Tp_Alumnos(id_tp,id_alumno, presentado,fecha_entregado,visible) VALUES (?,?,?,?,1)");
+            for (TpsAlumnos ta : tpsAlumnos) {
+                stmt.setInt(1, ta.getIdTp());
+                stmt.setInt(2, ta.getIdAlumno());
+                stmt.setBoolean(3, ta.isPresentado());
+                stmt.setString(4, ta.getFecha());
+                stmt.executeUpdate();
+            }
+            stmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            inserto = false;
+        }
+        return inserto;
+    }
     public boolean ModificarFechaTP(String fecha, int idTp) {
         boolean modifico = true;
         try {
-            PreparedStatement stmt = conn.prepareStatement("EXEC pa__AgregarFechaTP @fecha ='"+fecha+"', @idTp = "+idTp);
+            PreparedStatement stmt = conn.prepareStatement("EXEC pa__AgregarFechaTP @fecha = '"+fecha+"' , @idTp = "+idTp);
             stmt.executeUpdate();
             stmt.close();
             conn.close();

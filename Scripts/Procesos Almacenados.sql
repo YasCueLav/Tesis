@@ -1,8 +1,8 @@
-create proc pa__AgregarFechaTP
+alter proc pa__AgregarFechaTP
 @fecha date,
 @idTp int
 as
-IF ((select fecha_entrega from Trabajos_Practicos where id_tp = @idTp) !=   @fecha) 
+IF ((select fecha_entrega from Trabajos_Practicos where id_tp = @idTp) !=   @fecha  AND (select fecha_entrega from Trabajos_Practicos where id_tp = @idTp) != NULL) 
       UPDATE Trabajos_Practicos SET fecha_entrega = @fecha WHERE id_tp = @idTp 
 
 EXEC pa__AgregarFechaTP @fecha = ?, @idTp = ?

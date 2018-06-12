@@ -126,7 +126,7 @@ public class AltaEntregaTFIServlet extends HttpServlet {
             notas.add(n);
         }
         
-        boolean cargo = gta.agregarTPsAlumnos(trabAlum);
+        boolean cargo = gta.agregarTPsAlumnosTFI(trabAlum);
         boolean cargoM = gta.ModificarFechaTP(fecha, idTp);
         boolean cargoN = gn.agregarNotaTPs(notas);
         
