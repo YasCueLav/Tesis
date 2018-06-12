@@ -140,6 +140,28 @@ public class GestorCondiciones {
         } catch (SQLException ex) {
             System.out.println(ex);
         }
+        /*SEGUNDA OPCION
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet query = stmt.executeQuery("EXEC pa_Parametros_Para_Condiciones");
+            while (query.next()){
+                ParametroCondicion pc = new ParametroCondicion();
+                pc.setIdAlmno(query.getInt("Alumno"));
+                pc.setTotalAsistencias(query.getInt("AsistenciasTomadas"));
+                pc.setCantiAsistio(query.getInt("CantidadAsistio"));
+                pc.setNotaParcial(query.getDouble("NotaParcial"));
+                pc.setCantiTpAEntregar(query.getInt("TpAEntregar"));
+                pc.setCantiTpEntregados(query.getInt("TpEntregadoEnFecha"));
+                pc.setNotaTFI(query.getDouble("NotaTFI"));
+                lista.add(pc);
+            }
+            query.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }*/
+        
         return lista;
     }
     
