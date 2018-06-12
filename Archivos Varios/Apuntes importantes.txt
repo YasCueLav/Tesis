@@ -1,8 +1,8 @@
 usuario de SQL --> prueba
 Pass --> sa1234
 ________________________________________________________________________________________
-0 --> True/ Bien
-1 --> false / Mal
+1 --> True/ Bien
+0 --> false / Mal
 ________________________________________________________________________________________
 
 Aprobación directa -> 80% asistencias // aprobado parcial de sistemas de unidades con 8 // entregado todos los TPs en la 1° entrega // presentado en TFI nota mínima de 8(no recuperatorio)
