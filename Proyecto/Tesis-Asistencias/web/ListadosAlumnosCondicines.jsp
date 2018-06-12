@@ -34,7 +34,9 @@
                         <tbody>
                             <c:forEach items="${alumno}" var="a">
                                 <tr>
-                                    <th scope="row" >${a.getLegajo()}</th>
+                                    <th scope="row">
+                                        <input type="hidden" value="${a.getIdAlumno()}" name="IdAlumno">${a.getLegajo()}
+                                    </th>
                                     <td> ${a.getApellido()}, ${a.getNombre()}</td>
                                     <td>${a.getNombreCurso()} - ${a.getDivicionCurso()}</td>
                                     <td>${a.getCondicion()}</td>

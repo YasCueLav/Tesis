@@ -6,6 +6,8 @@
 package Servlets;
 
 import Controladores.GestorAlumnos;
+import Controladores.GestorCondiciones;
+import Model.ParametroCondicion;
 import Model.VMAlumnosCursosCondiciones;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -74,7 +76,59 @@ public class ListadosAlumnosCondicinesServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        GestorCondiciones gc = new GestorCondiciones();
+        String[] ids = request.getParameterValues("IdAlumno");
+        int[] id = new int[ids.length];
         
+        for (int i = 0; i < ids.length; i++) {
+            id[i]=Integer.parseInt(ids[i]);
+        }
+        
+        ArrayList<ParametroCondicion> parametroCondicion = gc.obtenerParametrosCondiciones(id);
+        boolean[] cargo = new boolean[ids.length];
+        
+        int alumno = 0;
+        double asistencia = 0;
+        double notaParcial = 0;
+        int todosTP = 0;
+        int entregadosTP = 0;
+        double notaTFI = 0;
+        
+        int j = 0;
+        
+        for (ParametroCondicion pc : parametroCondicion) {
+            j ++;
+            alumno = pc.getIdAlmno();
+            asistencia = (pc.getCantiAsistio()*100)/pc.getTotalAsistencias();
+            notaParcial = pc.getNotaParcial();
+            todosTP = pc.getCantiTpAEntregar();
+            entregadosTP = pc.getCantiTpEntregados();
+            notaTFI = pc.getNotaTFI();
+            
+            if(asistencia >= 80 && notaParcial >= 8 && todosTP == entregadosTP && notaTFI >= 8){
+                cargo[j] = gc.modificarCondicionAlumno(1, alumno);
+            } else if(asistencia >= 80 && notaParcial >= 7 && todosTP == entregadosTP && notaTFI >= 7){
+                cargo[j] = gc.modificarCondicionAlumno(2, alumno);
+            } else if(asistencia >= 80 && notaParcial >= 4 && todosTP == entregadosTP && notaTFI >= 7){
+                cargo[j] = gc.modificarCondicionAlumno(3, alumno);
+            } else if(todosTP != entregadosTP){
+                cargo[j] = gc.modificarCondicionAlumno(4, alumno);
+            } else if(asistencia < 80){
+                cargo[j] = gc.modificarCondicionAlumno(5, alumno);
+            }
+        }
+        int bien = 0;
+        for (int i = 0; i < cargo.length; i++) {
+            if(cargo[i]){
+                bien++;
+            }
+        }
+       
+        if (bien == cargo.length) {
+            getServletContext().getRequestDispatcher("/ListadosAlumnosCondicinesServlet").forward(request, response);
+        } else {
+            getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
+        }
         processRequest(request, response);
     }
 

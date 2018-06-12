@@ -1,6 +1,7 @@
 package Controladores;
 
 import Model.Alumno;
+import Model.ParametroCondicion;
 import Model.VMAlumnosCursos;
 import Model.VMAlumnosCursosCondiciones;
 import java.sql.Connection;
@@ -101,7 +102,7 @@ public class GestorAlumnos {
         }
         return a;
     }
-    //TERMINAR
+    
     public boolean modificarAlumno (Alumno a) {
         boolean modifico = true;
         try {
