@@ -211,7 +211,33 @@ public class GestorExamenes {
         }
         return lista;
     }
-    
+    public ArrayList<VMAlumnoNotaTipoExamenExamen> obtenerExamenesNotaAlumnoID ( int id){
+        ArrayList<VMAlumnoNotaTipoExamenExamen> lista = new ArrayList<>();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet query = stmt.executeQuery("SELECT n.id_nota, a.id_alumno, a.legajo ,a.apellido, a.nombre, e.examen, t.tipo_examen, c.nombre 'curso', c.seccion, n.nota FROM Notas n JOIN Alumnos a ON (n.id_alumno = a.id_alumno) JOIN Examenes e ON (n.id_examen = e.id_examen) JOIN Tipos_Examenes t ON (t.id_tipo_examen = e.id_tipo_examen) JOIN Cursos c ON (a.id_Curso = c.id_curso) WHERE n.visible = 1 AND a.visible = 1 AND e.visible = 1 AND t.visible = 1 AND n.id_nota = "+ id);
+            while (query.next()){
+                VMAlumnoNotaTipoExamenExamen e = new VMAlumnoNotaTipoExamenExamen();
+                e.setIdNota(query.getInt("id_nota"));
+                e.setIdAlumno(query.getInt("id_alumno"));
+                e.setLegajo(query.getInt("legajo"));
+                e.setApellido(query.getString("apellido"));
+                e.setNombre(query.getString("nombre"));
+                e.setExamen(query.getString("examen"));
+                e.setTipoExamen(query.getString("tipo_examen"));
+                e.setNombreCurso(query.getString("curso"));
+                e.setSeccion(query.getString("seccion"));
+                e.setNota(query.getInt("nota"));
+                lista.add(e);
+            }
+            query.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return lista;
+    }
     public VMAlumnoNotaTipoExamenExamen obtenerExamenesNotaAlumno (int id){
         VMAlumnoNotaTipoExamenExamen e = new VMAlumnoNotaTipoExamenExamen();
         try {

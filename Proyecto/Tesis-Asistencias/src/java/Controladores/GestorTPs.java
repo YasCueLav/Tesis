@@ -50,6 +50,25 @@ public class GestorTPs {
         }
         return lista;
     }
+    public ArrayList<TPs> obtenerTPsID ( int id){
+        ArrayList<TPs> lista = new ArrayList<>();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet query = stmt.executeQuery("select * from Trabajos_Practicos where visible = 1 and id_tp = " + id);
+            while (query.next()){
+                TPs t = new TPs();
+                t.setIdTp(query.getInt("id_tp"));
+                t.setNombreTp(query.getString("nombre"));
+                lista.add(t);
+            }
+            query.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return lista;
+    }
     
     public TPs obtenerTPs (int id) {
         TPs t = new TPs();

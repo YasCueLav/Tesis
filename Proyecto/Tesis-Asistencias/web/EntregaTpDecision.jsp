@@ -1,0 +1,27 @@
+<%-- 
+    Document   : EntregaTpDecision
+    Created on : 12/06/2018, 03:21:04
+    Author     : Yasmin
+--%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <jsp:include page="Links.jsp"></jsp:include>
+        <title>TP</title>
+    </head>
+    <body>
+        <jsp:include page="Menu.jsp"></jsp:include>
+        <div>
+            <button type="button" class="btn btn-primary btn-lg" >
+                <a id="Link" href="/Tesis-Asistencias/AltaEntregaTPServlet" style="color: white">Entrega TP</a> 
+            </button>
+            <button type="button" class="btn btn-secondary btn-lg">
+                <a id="Link" href="/Tesis-Asistencias/AltaEntregaTFIServlet" style="color: white">Entrega TFI</a>
+            </button>
+        </div>
+    </body>
+</html>

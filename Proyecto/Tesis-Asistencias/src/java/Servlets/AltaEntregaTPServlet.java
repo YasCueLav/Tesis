@@ -88,51 +88,44 @@ public class AltaEntregaTPServlet extends HttpServlet {
             throws ServletException, IOException {
         
         ArrayList<TpsAlumnos> trabAlum = new ArrayList<>();
-//        ArrayList<Notas> notas = new ArrayList<>();
-        
         GestorTPsAlumnos gta = new GestorTPsAlumnos();
-//        GestorNotas gn = new GestorNotas();
-        
         int idTp = Integer.parseInt(request.getParameter("Tp"));
                 
         String[] ids = request.getParameterValues("IdAlumno");
-        
-        //String[] nota = request.getParameterValues("NotaTp");
-        
         String fecha = request.getParameter("Fecha");
                
         for (int i = 0; i < ids.length; i++) {
             
             TpsAlumnos tpa = new TpsAlumnos();
-//            Notas n = new Notas();
-
             tpa.setIdTp(idTp);
             tpa.setIdAlumno(Integer.parseInt(ids[i]));
             String entregado = request.getParameter(""+tpa.getIdAlumno());
+            String estado = request.getParameter("Estado"+tpa.getIdAlumno());
             if (entregado.equals("Si")) {
                 tpa.setPresentado(1);
+                if (estado.equals("A")) {
+                    tpa.setIdEstado(2);
+                }else if (estado.equals("D")){
+                    tpa.setIdEstado(3);
+                } else {
+                    tpa.setIdEstado(1);
+                }
             }else {
                 tpa.setPresentado(0);
+                tpa.setIdEstado(1);
             }
             tpa.setFecha(fecha);
             
-            String estado = request.getParameter("Estado"+tpa.getIdAlumno());
+            //String estado = request.getParameter("Estado"+tpa.getIdAlumno());
             
-            if (estado.equals("A")) {
-                tpa.setIdEstado(2);
-            }else if (estado.equals("D")){
-                tpa.setIdEstado(3);
-            } else {
-                tpa.setIdEstado(1);
-            }
-            
-//            n.setNota(Double.parseDouble(nota[i]));
-//            n.setIdAlumno(Integer.parseInt(ids[i]));
-//            
-//            n.setIdTp(idTp);
-            
+//            if (estado.equals("A")) {
+//                tpa.setIdEstado(2);
+//            }else if (estado.equals("D")){
+//                tpa.setIdEstado(3);
+//            } else {
+//                tpa.setIdEstado(1);
+//            }
             trabAlum.add(tpa);
-            //notas.add(n);
         }
         
         boolean cargo = gta.agregarTPsAlumnos(trabAlum);

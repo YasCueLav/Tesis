@@ -5,10 +5,8 @@
  */
 package Servlets;
 
-import Controladores.GestorExamenes;
-import Controladores.GestorNotas;
-import Model.Notas;
-import Model.VMAlumnoNotaTipoExamenExamen;
+import Controladores.GestorAlumnos;
+import Model.VMAlumnosCursosCondiciones;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -22,7 +20,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Yasmin
  */
-public class ModificarCalificacionesServlet extends HttpServlet {
+public class ListadosAlumnosCondicinesServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,10 +31,8 @@ public class ModificarCalificacionesServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    int id=0;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        id = Integer.parseInt(request.getParameter("idNota"));
         response.setContentType("text/html;charset=UTF-8");
     }
 
@@ -52,45 +48,18 @@ public class ModificarCalificacionesServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int m = 0;
-        id = Integer.parseInt(request.getParameter("idNota"));
-        m = Integer.parseInt(request.getParameter("estado"));
-        
         HttpSession mySession = request.getSession();
         boolean isLogged = (boolean) mySession.getAttribute("inicio");
         if (isLogged) {
-            GestorExamenes ge;
-            switch (m){
-                case 1: 
-                    ge = new GestorExamenes();
-                    ArrayList<VMAlumnoNotaTipoExamenExamen> examen = ge.obtenerExamenesNotaAlumnoID(id);
-                    
-                    request.setAttribute("examen", examen);
-                    
-                    getServletContext().getRequestDispatcher("/ModificarCalificaciones.jsp").forward(request, response);
-                    break;
-                case 2:
-                    ge = new GestorExamenes();
-                    VMAlumnoNotaTipoExamenExamen e = ge.obtenerExamenesNotaAlumno(id);
-                    
-                    GestorNotas gn = new GestorNotas();
-                    boolean ca = gn.elimniarNota(e.getIdNota());
-                    if (ca) {
-                        getServletContext().getRequestDispatcher("/Exito.jsp").forward(request, response);
-                    }else{
-                        getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
-                    }
-                    
-                    break;
-                    
-                default:
-                    getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
-                    break;
-            }
+            GestorAlumnos ga = new GestorAlumnos();
+            ArrayList<VMAlumnosCursosCondiciones> alumno = ga.obtenerAlumnoCursoCondiciones();
+            
+            request.setAttribute("alumno", alumno);
+            
+            getServletContext().getRequestDispatcher("/ListadosAlumnosCondicines.jsp").forward(request, response);
         } else {
             getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
         }
-        
         processRequest(request, response);
     }
 
@@ -105,18 +74,6 @@ public class ModificarCalificacionesServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        GestorNotas gn = new GestorNotas();
-        Notas n = new Notas();
-        
-        n.setIdAlumno(Integer.parseInt(request.getParameter("IdAlumno")));
-        n.setNota(Double.parseDouble(request.getParameter("NumeoNota")));
-        
-        boolean cargo = gn.modificarNotas(n);
-        if (cargo) {
-            getServletContext().getRequestDispatcher("/Exito.jsp").forward(request, response);
-        } else {
-            getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
-        }
         
         processRequest(request, response);
     }
