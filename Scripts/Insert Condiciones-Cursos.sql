@@ -23,22 +23,22 @@ INSERT INTO Cursos
 VALUES ('Integración','1v2',1)
 
 ----INSERT TPs----
-INSERT INTO Trabajos_Practicos
+INSERT INTO Trabajos_Practicos (nombre, visible)
 VALUES ('Trabajo Practico 1',1)
 
-INSERT INTO Trabajos_Practicos
+INSERT INTO Trabajos_Practicos (nombre, visible)
 VALUES ('Trabajo Practico 2',1)
 
-INSERT INTO Trabajos_Practicos
+INSERT INTO Trabajos_Practicos (nombre, visible)
 VALUES ('Trabajo Practico 3',1)
 
-INSERT INTO Trabajos_Practicos
+INSERT INTO Trabajos_Practicos (nombre, visible)
 VALUES ('Trabajo Practico 4',1)
 
-INSERT INTO Trabajos_Practicos
+INSERT INTO Trabajos_Practicos (nombre, visible)
 VALUES ('Trabajo Practico 5',1)
 
-INSERT INTO Trabajos_Practicos
+INSERT INTO Trabajos_Practicos (nombre, visible)
 VALUES ('Trabajo Practico Final Integrador',1)
 
 ----INSERT Tipo Examen----
