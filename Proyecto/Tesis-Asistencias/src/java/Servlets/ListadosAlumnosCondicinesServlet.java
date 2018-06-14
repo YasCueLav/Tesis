@@ -88,6 +88,7 @@ public class ListadosAlumnosCondicinesServlet extends HttpServlet {
         boolean[] cargo = new boolean[ids.length];
         
         int alumno = 0;
+        double totalAsistencias = 0;
         double asistencia = 0;
         double notaParcial = 0;
         int todosTP = 0;
@@ -99,7 +100,8 @@ public class ListadosAlumnosCondicinesServlet extends HttpServlet {
         for (ParametroCondicion pc : parametroCondicion) {
             j ++;
             alumno = pc.getIdAlmno();
-            asistencia = (pc.getCantiAsistio()*100)/pc.getTotalAsistencias();
+            totalAsistencias = pc.getCantiAsistio();
+            asistencia = (totalAsistencias*100)/pc.getTotalAsistencias();
             notaParcial = pc.getNotaParcial();
             todosTP = pc.getCantiTpAEntregar();
             entregadosTP = pc.getCantiTpEntregados();

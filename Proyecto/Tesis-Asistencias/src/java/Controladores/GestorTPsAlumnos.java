@@ -136,11 +136,14 @@ public class GestorTPsAlumnos {
         }
         return inserto;
     }
+    
     public boolean ModificarFechaTP(String fecha, int idTp) {
         boolean modifico = true;
         try {
-            PreparedStatement stmt = conn.prepareStatement("EXEC pa__AgregarFechaTP @fecha = '"+fecha+"' , @idTp = "+idTp);
-            stmt.executeUpdate();
+            PreparedStatement stmt = conn.prepareStatement("EXEC pa__AgregarFechaTP @fecha = ? , @idTp = ?");
+                stmt.setString(1, fecha);
+                stmt.setInt(2, idTp);
+                stmt.executeUpdate();
             stmt.close();
             conn.close();
         } catch (SQLException ex) {
