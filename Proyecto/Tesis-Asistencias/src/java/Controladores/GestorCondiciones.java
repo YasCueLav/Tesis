@@ -124,16 +124,17 @@ public class GestorCondiciones {
                 ResultSet query = stmt.executeQuery();
                 ParametroCondicion pc = new ParametroCondicion();
                 if (query.next()) {
-                    pc.setIdAlmno(query.getInt(id[i]));
+                    pc.setIdAlmno(query.getInt("Alumno"));
                     pc.setTotalAsistencias(query.getInt("AsistenciasTomadas"));
                     pc.setCantiAsistio(query.getInt("CantidadAsistio"));
                     pc.setNotaParcial(query.getDouble("NotaParcial"));
                     pc.setCantiTpAEntregar(query.getInt("TpAEntregar"));
                     pc.setCantiTpEntregados(query.getInt("TpEntregadoEnFecha"));
                     pc.setNotaTFI(query.getDouble("NotaTFI"));
-                    lista.add(pc);
+                    
                 }
                 query.close();
+                lista.add(pc);
             }
             stmt.close();
             conn.close();
@@ -168,12 +169,15 @@ public class GestorCondiciones {
     public boolean modificarCondicionAlumno (int condicion, int id) {
         boolean modifico = true;
         try {
-            PreparedStatement stmt = conn.prepareStatement("UPDATE Alumnos SET id_condicion = ? WHERE id_alumno = ?");
+            Connection con;
+            AccesoDatos ad = new AccesoDatos();
+            con = DriverManager.getConnection(ad.getConn_string(), ad.getUser(), ad.getPass());
+            PreparedStatement stmt = con.prepareStatement("UPDATE Alumnos SET id_condicion = ? WHERE id_alumno = ?");
             stmt.setInt(1, condicion);
             stmt.setInt(2, id);
             stmt.executeUpdate();
             stmt.close();
-            conn.close();
+            con.close();
         } catch (SQLException ex) {
             System.out.println(ex);
             modifico = false;

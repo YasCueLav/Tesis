@@ -83,12 +83,14 @@ public class GestorAsistencias {
     public boolean modificarAsistencias(Asistencias a) {
         boolean modifico = true;
         try {
-            PreparedStatement stmt = conn.prepareStatement("UPDATE Asistencias SET esta_Precente = ? WHERE id_asistencia = ?");
+            AccesoDatos ad = new AccesoDatos();
+            Connection con = DriverManager.getConnection(ad.getConn_string(), ad.getUser(), ad.getPass());
+            PreparedStatement stmt = con.prepareStatement("UPDATE Asistencias SET esta_Precente = ? WHERE id_asistencia = ?");
             stmt.setBoolean(1, a.isEstaPresente());
             stmt.setInt(2, a.getIdAsistencias());
             stmt.executeUpdate();
             stmt.close();
-            conn.close();
+            con.close();
         } catch (SQLException ex) {
             System.out.println(ex);
             modifico = false;

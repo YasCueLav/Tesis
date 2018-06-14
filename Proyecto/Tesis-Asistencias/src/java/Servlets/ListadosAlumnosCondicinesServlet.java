@@ -87,7 +87,7 @@ public class ListadosAlumnosCondicinesServlet extends HttpServlet {
         ArrayList<ParametroCondicion> parametroCondicion = gc.obtenerParametrosCondiciones(id);
         boolean[] cargo = new boolean[ids.length];
         
-        int alumno = 0;
+        int alu = 0;
         double totalAsistencias = 0;
         double asistencia = 0;
         double notaParcial = 0;
@@ -98,8 +98,8 @@ public class ListadosAlumnosCondicinesServlet extends HttpServlet {
         int j = 0;
         
         for (ParametroCondicion pc : parametroCondicion) {
-            j ++;
-            alumno = pc.getIdAlmno();
+
+            alu = pc.getIdAlmno();
             totalAsistencias = pc.getCantiAsistio();
             asistencia = (totalAsistencias*100)/pc.getTotalAsistencias();
             notaParcial = pc.getNotaParcial();
@@ -107,17 +107,28 @@ public class ListadosAlumnosCondicinesServlet extends HttpServlet {
             entregadosTP = pc.getCantiTpEntregados();
             notaTFI = pc.getNotaTFI();
             
-            if(asistencia >= 80 && notaParcial >= 8 && todosTP == entregadosTP && notaTFI >= 8){
-                cargo[j] = gc.modificarCondicionAlumno(1, alumno);
-            } else if(asistencia >= 80 && notaParcial >= 7 && todosTP == entregadosTP && notaTFI >= 7){
-                cargo[j] = gc.modificarCondicionAlumno(2, alumno);
-            } else if(asistencia >= 80 && notaParcial >= 4 && todosTP == entregadosTP && notaTFI >= 7){
-                cargo[j] = gc.modificarCondicionAlumno(3, alumno);
-            } else if(todosTP != entregadosTP){
-                cargo[j] = gc.modificarCondicionAlumno(4, alumno);
-            } else if(asistencia < 80){
-                cargo[j] = gc.modificarCondicionAlumno(5, alumno);
+            if(todosTP == entregadosTP){
+                if(asistencia >= 80){
+                    if(notaParcial >= 8){
+                        if (notaTFI >= 8){
+                            cargo[j] = gc.modificarCondicionAlumno(1, alu);
+                        }
+                    } else if (notaParcial >= 7) {
+                        if (notaTFI >= 7){
+                            cargo[j] = gc.modificarCondicionAlumno(2, alu);
+                        }
+                    } else if (notaParcial >= 4) {
+                        if (notaTFI >= 7){
+                            cargo[j] = gc.modificarCondicionAlumno(3, alu);
+                        }
+                    }
+                }else{
+                    cargo[j] = gc.modificarCondicionAlumno(5, alu);
+                }
+            }else{
+                cargo[j] = gc.modificarCondicionAlumno(4, alu);
             }
+            j++;
         }
         int bien = 0;
         for (int i = 0; i < cargo.length; i++) {
@@ -127,7 +138,12 @@ public class ListadosAlumnosCondicinesServlet extends HttpServlet {
         }
        
         if (bien == cargo.length) {
-            getServletContext().getRequestDispatcher("/ListadosAlumnosCondicinesServlet").forward(request, response);
+            GestorAlumnos g = new GestorAlumnos();
+            ArrayList<VMAlumnosCursosCondiciones> alumno = g.obtenerAlumnoCursoCondiciones();
+            
+            request.setAttribute("alumno", alumno);
+            
+            getServletContext().getRequestDispatcher("/ListadosAlumnosCondicines.jsp").forward(request, response);
         } else {
             getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
         }

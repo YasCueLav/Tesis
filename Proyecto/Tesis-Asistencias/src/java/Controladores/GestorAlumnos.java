@@ -106,6 +106,8 @@ public class GestorAlumnos {
     public boolean modificarAlumno (Alumno a) {
         boolean modifico = true;
         try {
+            AccesoDatos ad = new AccesoDatos();
+            conn = DriverManager.getConnection(ad.getConn_string(), ad.getUser(), ad.getPass());
             PreparedStatement stmt = conn.prepareStatement("UPDATE Alumnos SET legajo = ?, nombre = ?, apellido = ?, id_curso = ?, id_condicion = ?, grupo = ? WHERE id_alumno = ?");
             stmt.setInt(1, a.getLegajo());
             stmt.setString(2, a.getNombre());
@@ -113,7 +115,7 @@ public class GestorAlumnos {
             stmt.setInt(4, a.getIdCurso());
             stmt.setInt(5, a.getIdCondicion());
             stmt.setInt(6, a.getGrupo());
-            stmt.setInt(8, a.getIdAlumno());
+            stmt.setInt(7, a.getIdAlumno());
             stmt.executeUpdate();
             stmt.close();
             conn.close();

@@ -140,12 +140,14 @@ public class GestorTPsAlumnos {
     public boolean ModificarFechaTP(String fecha, int idTp) {
         boolean modifico = true;
         try {
-            PreparedStatement stmt = conn.prepareStatement("EXEC pa__AgregarFechaTP @fecha = ? , @idTp = ?");
+            AccesoDatos ad = new AccesoDatos();
+            Connection con = DriverManager.getConnection(ad.getConn_string(), ad.getUser(), ad.getPass());
+            PreparedStatement stmt = con.prepareStatement("EXEC pa__AgregarFechaTP @fecha = ? , @idTp = ?");
                 stmt.setString(1, fecha);
                 stmt.setInt(2, idTp);
                 stmt.executeUpdate();
             stmt.close();
-            conn.close();
+            con.close();
         } catch (SQLException ex) {
             System.out.println(ex);
             modifico = false;
