@@ -254,7 +254,7 @@ public class GestorAsistencias {
     }
 
 
-//Justificativo
+//JUSTIFICATIVO
     public ArrayList<VMAsistenciaAlmunoJustificativo> obtenerJustificativoAlumnoAsistencias() {
         ArrayList<VMAsistenciaAlmunoJustificativo> lista = new ArrayList<>();
         try {

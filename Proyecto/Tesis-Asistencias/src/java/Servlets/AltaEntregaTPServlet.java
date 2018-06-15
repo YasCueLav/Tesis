@@ -60,7 +60,7 @@ public class AltaEntregaTPServlet extends HttpServlet {
         if (isLogged) {
             //tipo TP
             GestorTPs gt = new GestorTPs();
-             ArrayList<TPs> tp = gt.obtenerTPs();
+             ArrayList<TPs> tp = gt.obtenerTPMenosTFI();
             //Lista Alumnos
             GestorAlumnos ga = new GestorAlumnos();
             ArrayList<VMAlumnosCursos> alumno = ga.obtenerAlumnoCurso();

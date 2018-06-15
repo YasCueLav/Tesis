@@ -165,7 +165,7 @@ public class GestorCondiciones {
         
         return lista;
     }
-    
+    //AREGLARO LO DE LA CONEXION
     public boolean modificarCondicionAlumno (int condicion, int id) {
         boolean modifico = true;
         try {

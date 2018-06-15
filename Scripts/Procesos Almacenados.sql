@@ -37,5 +37,5 @@ FROM Asistencias asi JOIN Alumnos a ON (a.id_alumno = asi.id_alumno)
 							JOIN Trabajos_Practicos tp ON (ta.id_tp = tp.id_tp)
 WHERE asi.visible = 1 AND a.visible = 1 AND n.visible = 1 AND e.visible = 1 AND te.visible = 1 AND ta.visible = 1 AND tp.visible = 1
 
-EXEC pa_Parametros_Para_Condiciones @idAlumno = 5
+EXEC pa_Parametros_Para_Condiciones @idAlumno = ?
 /*------------------------------------------------------------------------------------------------------------------------*/

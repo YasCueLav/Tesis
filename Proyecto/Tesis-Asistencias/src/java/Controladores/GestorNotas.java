@@ -74,7 +74,7 @@ public class GestorNotas {
         }
         return n;
     }
-    //TERMINAR
+    
     public boolean modificarNotas (Notas n) {
         boolean modifico = true;
         try {
@@ -91,7 +91,7 @@ public class GestorNotas {
         }
         return modifico;
     }
-    //TERMINAR
+    
     public boolean elimniarNota (int id) {
         boolean modifico = true;
         try {
@@ -105,16 +105,16 @@ public class GestorNotas {
         }
         return modifico;
     }
-    //TERMINAR
+    
     public boolean agregarNotaParcial (ArrayList<Notas> notas) {
         boolean inserto = true;
         try {
             PreparedStatement stmt = conn.prepareStatement("insert into Notas (id_alumno,id_examen,nota,visible) values (?,?,?,1)");
             for (Notas n : notas) {
-            stmt.setInt(1, n.getIdAlumno());
-            stmt.setInt(2, n.getIdExamen());
-            stmt.setDouble(3, n.getNota());
-            stmt.executeUpdate();
+                stmt.setInt(1, n.getIdAlumno());
+                stmt.setInt(2, n.getIdExamen());
+                stmt.setDouble(3, n.getNota());
+                stmt.executeUpdate();
             }
             stmt.close();
             conn.close();
@@ -131,9 +131,9 @@ public class GestorNotas {
             PreparedStatement stmt = conn.prepareStatement("INSERT INTO Notas(nota, id_alumno,id_tp, visible) VALUES (?,?,?,1)");
             for (Notas n : notas) {
                 stmt.setDouble(1, n.getNota());
-            stmt.setInt(2, n.getIdAlumno());
-            stmt.setInt(3, n.getIdTp());
-            stmt.executeUpdate();
+                stmt.setInt(2, n.getIdAlumno());
+                stmt.setInt(3, n.getIdTp());
+                stmt.executeUpdate();
             }
             stmt.close();
             conn.close();

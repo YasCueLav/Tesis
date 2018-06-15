@@ -77,8 +77,9 @@ public class GestorTPsAlumnos {
         }
         return ta;
     }
-    //TERMINAR
-    public boolean modificarTPsAlumnos (TpsAlumnos ta) {
+    
+//TERMINAR
+    /*public boolean modificarTPsAlumnos (TpsAlumnos ta) {
         boolean modifico = true;
         try {
             PreparedStatement stmt = conn.prepareStatement("");
@@ -94,8 +95,8 @@ public class GestorTPsAlumnos {
             modifico = false;
         }
         return modifico;
-    }
-    //TERMINAR
+    }*/
+    
     public boolean agregarTPsAlumnos (ArrayList<TpsAlumnos> tpsAlumnos) {
         boolean inserto = true;
         try {
@@ -136,7 +137,7 @@ public class GestorTPsAlumnos {
         }
         return inserto;
     }
-    
+    //AREGLAR LO DE LA CONEXION
     public boolean ModificarFechaTP(String fecha, int idTp) {
         boolean modifico = true;
         try {

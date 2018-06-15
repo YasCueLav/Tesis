@@ -107,7 +107,7 @@ public class ListadosAlumnosCondicinesServlet extends HttpServlet {
             entregadosTP = pc.getCantiTpEntregados();
             notaTFI = pc.getNotaTFI();
             
-            if(todosTP == entregadosTP){
+            if(todosTP >= entregadosTP){
                 if(asistencia >= 80){
                     if(notaParcial >= 8){
                         if (notaTFI >= 8){

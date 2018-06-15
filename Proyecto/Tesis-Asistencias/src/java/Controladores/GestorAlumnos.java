@@ -102,7 +102,7 @@ public class GestorAlumnos {
         }
         return a;
     }
-    
+    //AEREGLAR CONEXION
     public boolean modificarAlumno (Alumno a) {
         boolean modifico = true;
         try {
@@ -139,7 +139,7 @@ public class GestorAlumnos {
         }
         return modifico;
     }
-    //TERMINAR
+    
     public boolean agregarAlumno (Alumno a) {
         boolean inserto = true;
         try {
