@@ -15,7 +15,6 @@ import Model.TpsAlumnos;
 import Model.VMAlumnosCursos;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -27,7 +26,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Yasmin
  */
-public class AltaEntregaTPServlet extends HttpServlet {
+public class AltaEntregaTFIServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -60,7 +59,7 @@ public class AltaEntregaTPServlet extends HttpServlet {
         if (isLogged) {
             //tipo TP
             GestorTPs gt = new GestorTPs();
-             ArrayList<TPs> tp = gt.obtenerTPMenosTFI();
+             ArrayList<TPs> tp = gt.obtenerTPsID(6);
             //Lista Alumnos
             GestorAlumnos ga = new GestorAlumnos();
             ArrayList<VMAlumnosCursos> alumno = ga.obtenerAlumnoCurso();
@@ -68,7 +67,7 @@ public class AltaEntregaTPServlet extends HttpServlet {
             request.setAttribute("tp", tp);
             request.setAttribute("alumno", alumno);
             
-            getServletContext().getRequestDispatcher("/AltaEntregaTP.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/AltaEntregaTFI.jsp").forward(request, response);
         } else {
             getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
         }
@@ -88,50 +87,50 @@ public class AltaEntregaTPServlet extends HttpServlet {
             throws ServletException, IOException {
         
         ArrayList<TpsAlumnos> trabAlum = new ArrayList<>();
+        ArrayList<Notas> notas = new ArrayList<>();
+        
         GestorTPsAlumnos gta = new GestorTPsAlumnos();
+        GestorNotas gn = new GestorNotas();
+        
         int idTp = Integer.parseInt(request.getParameter("Tp"));
                 
         String[] ids = request.getParameterValues("IdAlumno");
+        
+        String[] nota = request.getParameterValues("Nota");
+        
         String fecha = request.getParameter("Fecha");
                
         for (int i = 0; i < ids.length; i++) {
             
             TpsAlumnos tpa = new TpsAlumnos();
+            Notas n = new Notas();
+
             tpa.setIdTp(idTp);
             tpa.setIdAlumno(Integer.parseInt(ids[i]));
             String entregado = request.getParameter(""+tpa.getIdAlumno());
-            String estado = request.getParameter("Estado"+tpa.getIdAlumno());
             if (entregado.equals("Si")) {
                 tpa.setPresentado(1);
-                if (estado.equals("A")) {
-                    tpa.setIdEstado(2);
-                }else if (estado.equals("D")){
-                    tpa.setIdEstado(3);
-                } else {
-                    tpa.setIdEstado(1);
-                }
+                n.setNota(Double.parseDouble(nota[i]));
             }else {
                 tpa.setPresentado(0);
-                tpa.setIdEstado(1);
+                n.setNota(0);
             }
             tpa.setFecha(fecha);
             
-            //String estado = request.getParameter("Estado"+tpa.getIdAlumno());
+            //n.setNota(Double.parseDouble(nota[i]));
+            n.setIdAlumno(Integer.parseInt(ids[i]));
             
-//            if (estado.equals("A")) {
-//                tpa.setIdEstado(2);
-//            }else if (estado.equals("D")){
-//                tpa.setIdEstado(3);
-//            } else {
-//                tpa.setIdEstado(1);
-//            }
+            n.setIdTp(idTp);
+            
             trabAlum.add(tpa);
+            notas.add(n);
         }
         
-        boolean cargo = gta.agregarTPsAlumnos(trabAlum);
-        boolean cargoN = gta.ModificarFechaTP(fecha, idTp);
+        boolean cargo = gta.agregarTPsAlumnosTFI(trabAlum);
+        boolean cargoM = gta.ModificarFechaTP(fecha, idTp);
+        boolean cargoN = gn.agregarNotaTPs(notas);
         
-        if (cargo && cargoN) {
+        if (cargo && cargoM && cargoN) {
             getServletContext().getRequestDispatcher("/Exito.jsp").forward(request, response);
         } else {
             getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);

@@ -51,6 +51,46 @@ public class GestorTPs {
         return lista;
     }
     
+    public ArrayList<TPs> obtenerTPMenosTFI (){
+        ArrayList<TPs> lista = new ArrayList<>();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet query = stmt.executeQuery("Select * from Trabajos_Practicos where visible = 1 and id_tp != 6");
+            while (query.next()){
+                TPs t = new TPs();
+                t.setIdTp(query.getInt("id_tp"));
+                t.setNombreTp(query.getString("nombre"));
+                lista.add(t);
+            }
+            query.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return lista;
+    }
+    
+    public ArrayList<TPs> obtenerTPsID ( int id){
+        ArrayList<TPs> lista = new ArrayList<>();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet query = stmt.executeQuery("select * from Trabajos_Practicos where visible = 1 and id_tp = " + id);
+            while (query.next()){
+                TPs t = new TPs();
+                t.setIdTp(query.getInt("id_tp"));
+                t.setNombreTp(query.getString("nombre"));
+                lista.add(t);
+            }
+            query.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return lista;
+    }
+    
     public TPs obtenerTPs (int id) {
         TPs t = new TPs();
         try {
@@ -84,7 +124,8 @@ public class GestorTPs {
         }
         return inserto;
     }
-     public boolean elimniarTP(int id) {
+    
+    public boolean elimniarTP(int id) {
         boolean modifico = true;
         try {
             PreparedStatement stmt = conn.prepareStatement("UPDATE Trabajos_Practicos SET visible = 0 WHERE id_tp = "+ id);
@@ -97,7 +138,8 @@ public class GestorTPs {
         }
         return modifico;
     }
-     public boolean ModificarTP(TPs t) {
+   
+    public boolean ModificarTP(TPs t) {
         boolean modifico = true;
         try {
             PreparedStatement stmt = conn.prepareStatement("UPDATE Trabajos_Practicos SET nombre = ? WHERE id_tp = ?");

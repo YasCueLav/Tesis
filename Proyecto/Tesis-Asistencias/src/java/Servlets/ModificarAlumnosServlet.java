@@ -120,8 +120,8 @@ public class ModificarAlumnosServlet extends HttpServlet {
         int legajo = Integer.parseInt(request.getParameter("Legajo"));
         String nombre = request.getParameter("Nombre");
         String apellido = request.getParameter("Apellido");
-        int cu = 0;//Integer.parseInt(request.getParameter("Curso"));
-        int con = 0;//Integer.parseInt(request.getParameter("Condicion"));
+        int cu = Integer.parseInt(request.getParameter("curso"));
+        int con = Integer.parseInt(request.getParameter("Condicion"));
         int grupo = Integer.parseInt(request.getParameter("Grupo"));
         
         a.setIdAlumno(id);

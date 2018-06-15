@@ -31,7 +31,7 @@
                     <tbody>
                         <c:forEach items="${examen}" var="e">
                             <tr>
-                                <th>${e.getTipoExamne()} ${e.getExamenNombre()}</th>
+                                <td>${e.getTipoExamne()} ${e.getExamenNombre()}</td>
                                 <td> ${e.getFecha()}</td>
                                 <td>
                                     <a id="Link" href="/Tesis-Asistencias/UpdateParcialServlet?idExamen=${e.getIdExamen()}&estado=1">Editar</a> / 
@@ -57,7 +57,7 @@
                     <tbody>
                         <c:forEach items="${tp}" var="t">
                             <tr>
-                                <th>${t.getNombreTp()}</th>
+                                <td>${t.getNombreTp()}</td>
                                 <td>
                                     <a id="Link" href="/Tesis-Asistencias/UpdateTPServlet?idTp=${t.getIdTp()}&estado=1">Editar</a> / 
                                     <a id="Link" href="/Tesis-Asistencias/UpdateTPServlet?idTp=${t.getIdTp()}&estado=2">Eliminar</a>
@@ -82,7 +82,7 @@
                     <tbody>
                         <c:forEach items="${condicion}" var="c">
                             <tr>
-                                <th>${c.getCondicion()}</th>
+                                <td>${c.getCondicion()}</td>
                                 <td>
                                     <a id="Link" href="/Tesis-Asistencias/UpdateCondicionServlet?idCodicion=${c.getIdCondicion()}&estado=1">Editar</a> / 
                                     <a id="Link" href="/Tesis-Asistencias/UpdateCondicionServlet?idCodicion=${c.getIdCondicion()}&estado=2">Eliminar</a>
@@ -108,7 +108,7 @@
                     <tbody>
                         <c:forEach items="${curso}" var="cu">
                             <tr>
-                                <th>${cu.getNombreCurso()}</th>
+                                <td>${cu.getNombreCurso()}</td>
                                 <td> ${cu.getSeccionCurso()}</td>
                                 <td>
                                     <a id="Link" href="/Tesis-Asistencias/UpdateCursoServlet?idCurso=${cu.getIdCursos()}&estado=1">Editar</a> / 

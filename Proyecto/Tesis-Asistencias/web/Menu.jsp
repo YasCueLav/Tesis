@@ -16,11 +16,14 @@
         <li class="nav-item">
         <a class="nav-link" href="/Tesis-Asistencias/AltaAsistenciaServlet">Asistencia <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/Tesis-Asistencias/AltaEntregaTPServlet">Entrega TP <span class="sr-only">(current)</span></a>
+      <li class="nav-item"><%--AltaEntregaTPServlet   --%>
+        <a class="nav-link" href="/Tesis-Asistencias/EntregaTpDecisionServlet">Entrega TP <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/Tesis-Asistencias/AltaCalificacionServlet">Notas Parciales <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/Tesis-Asistencias/ListadosAlumnosCondicinesServlet">Condicion<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >

@@ -29,7 +29,7 @@
                   </select>
                 </div>
                 <div class="form-group">
-                    <label for="exampleFormControlInput1">>Nombre Examen</label>
+                    <label for="exampleFormControlInput1">Nombre Examen</label>
                   <input class="form-control" type="text" name="Examen" placeholder="${ex.getExamenNombre()}" value="${ex.getExamenNombre()}">
                 </div>
                 <div class="form-group">

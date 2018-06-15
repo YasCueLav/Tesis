@@ -21,6 +21,7 @@ create table Trabajos_Practicos
 (
 	id_tp int identity(1,1),
 	nombre varchar(50) not null,
+	fecha_entrega date,
 	visible bit not null
 	constraint pk_tp primary key (id_tp)
 )

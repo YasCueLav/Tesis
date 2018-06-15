@@ -6,6 +6,7 @@
 package Controladores;
 
 import Model.Condiciones;
+import Model.ParametroCondicion;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -68,6 +69,7 @@ public class GestorCondiciones {
         }
         return c;
     }
+  
     public boolean agregarCondiciones (Condiciones c) {
         boolean inserto = true;
         try {
@@ -111,6 +113,76 @@ public class GestorCondiciones {
             inserto = false;
         }
         return inserto;
+    }
+    /*-----------------------------------------------------------*/
+    public ArrayList<ParametroCondicion> obtenerParametrosCondiciones (int[] id) {
+        ArrayList<ParametroCondicion> lista = new ArrayList<>();
+        try {
+            PreparedStatement stmt = conn.prepareStatement("EXEC pa_Parametros_Para_Condiciones @idAlumno = ?");
+            for (int i = 0; i < id.length; i++) {
+                stmt.setInt(1, id[i]);
+                ResultSet query = stmt.executeQuery();
+                ParametroCondicion pc = new ParametroCondicion();
+                if (query.next()) {
+                    pc.setIdAlmno(query.getInt("Alumno"));
+                    pc.setTotalAsistencias(query.getInt("AsistenciasTomadas"));
+                    pc.setCantiAsistio(query.getInt("CantidadAsistio"));
+                    pc.setNotaParcial(query.getDouble("NotaParcial"));
+                    pc.setCantiTpAEntregar(query.getInt("TpAEntregar"));
+                    pc.setCantiTpEntregados(query.getInt("TpEntregadoEnFecha"));
+                    pc.setNotaTFI(query.getDouble("NotaTFI"));
+                    
+                }
+                query.close();
+                lista.add(pc);
+            }
+            stmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        /*SEGUNDA OPCION
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet query = stmt.executeQuery("EXEC pa_Parametros_Para_Condiciones");
+            while (query.next()){
+                ParametroCondicion pc = new ParametroCondicion();
+                pc.setIdAlmno(query.getInt("Alumno"));
+                pc.setTotalAsistencias(query.getInt("AsistenciasTomadas"));
+                pc.setCantiAsistio(query.getInt("CantidadAsistio"));
+                pc.setNotaParcial(query.getDouble("NotaParcial"));
+                pc.setCantiTpAEntregar(query.getInt("TpAEntregar"));
+                pc.setCantiTpEntregados(query.getInt("TpEntregadoEnFecha"));
+                pc.setNotaTFI(query.getDouble("NotaTFI"));
+                lista.add(pc);
+            }
+            query.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }*/
+        
+        return lista;
+    }
+    //AREGLARO LO DE LA CONEXION
+    public boolean modificarCondicionAlumno (int condicion, int id) {
+        boolean modifico = true;
+        try {
+            Connection con;
+            AccesoDatos ad = new AccesoDatos();
+            con = DriverManager.getConnection(ad.getConn_string(), ad.getUser(), ad.getPass());
+            PreparedStatement stmt = con.prepareStatement("UPDATE Alumnos SET id_condicion = ? WHERE id_alumno = ?");
+            stmt.setInt(1, condicion);
+            stmt.setInt(2, id);
+            stmt.executeUpdate();
+            stmt.close();
+            con.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            modifico = false;
+        }
+        return modifico;
     }
 }
     

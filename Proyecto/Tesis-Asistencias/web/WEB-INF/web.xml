@@ -112,6 +112,18 @@
         <servlet-name>ModificarCalificacionesServlet</servlet-name>
         <servlet-class>Servlets.ModificarCalificacionesServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EntregaTpDecisionServlet</servlet-name>
+        <servlet-class>Servlets.EntregaTpDecisionServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AltaEntregaTFIServlet</servlet-name>
+        <servlet-class>Servlets.AltaEntregaTFIServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListadosAlumnosCondicinesServlet</servlet-name>
+        <servlet-class>Servlets.ListadosAlumnosCondicinesServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
         <url-pattern>/Index</url-pattern>
@@ -223,6 +235,18 @@
     <servlet-mapping>
         <servlet-name>ModificarCalificacionesServlet</servlet-name>
         <url-pattern>/ModificarCalificacionesServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EntregaTpDecisionServlet</servlet-name>
+        <url-pattern>/EntregaTpDecisionServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AltaEntregaTFIServlet</servlet-name>
+        <url-pattern>/AltaEntregaTFIServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListadosAlumnosCondicinesServlet</servlet-name>
+        <url-pattern>/ListadosAlumnosCondicinesServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

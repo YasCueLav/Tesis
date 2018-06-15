@@ -6,16 +6,11 @@
 package Servlets;
 
 import Controladores.GestorAlumnos;
-import Controladores.GestorNotas;
-import Controladores.GestorTPs;
-import Controladores.GestorTPsAlumnos;
-import Model.Notas;
-import Model.TPs;
-import Model.TpsAlumnos;
-import Model.VMAlumnosCursos;
+import Controladores.GestorCondiciones;
+import Model.ParametroCondicion;
+import Model.VMAlumnosCursosCondiciones;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -27,7 +22,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Yasmin
  */
-public class AltaEntregaTPServlet extends HttpServlet {
+public class ListadosAlumnosCondicinesServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -58,17 +53,12 @@ public class AltaEntregaTPServlet extends HttpServlet {
         HttpSession mySession = request.getSession();
         boolean isLogged = (boolean) mySession.getAttribute("inicio");
         if (isLogged) {
-            //tipo TP
-            GestorTPs gt = new GestorTPs();
-             ArrayList<TPs> tp = gt.obtenerTPMenosTFI();
-            //Lista Alumnos
             GestorAlumnos ga = new GestorAlumnos();
-            ArrayList<VMAlumnosCursos> alumno = ga.obtenerAlumnoCurso();
+            ArrayList<VMAlumnosCursosCondiciones> alumno = ga.obtenerAlumnoCursoCondiciones();
             
-            request.setAttribute("tp", tp);
             request.setAttribute("alumno", alumno);
             
-            getServletContext().getRequestDispatcher("/AltaEntregaTP.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/ListadosAlumnosCondicines.jsp").forward(request, response);
         } else {
             getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
         }
@@ -86,53 +76,74 @@ public class AltaEntregaTPServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        ArrayList<TpsAlumnos> trabAlum = new ArrayList<>();
-        GestorTPsAlumnos gta = new GestorTPsAlumnos();
-        int idTp = Integer.parseInt(request.getParameter("Tp"));
-                
+        GestorCondiciones gc = new GestorCondiciones();
         String[] ids = request.getParameterValues("IdAlumno");
-        String fecha = request.getParameter("Fecha");
-               
+        int[] id = new int[ids.length];
+        
         for (int i = 0; i < ids.length; i++) {
-            
-            TpsAlumnos tpa = new TpsAlumnos();
-            tpa.setIdTp(idTp);
-            tpa.setIdAlumno(Integer.parseInt(ids[i]));
-            String entregado = request.getParameter(""+tpa.getIdAlumno());
-            String estado = request.getParameter("Estado"+tpa.getIdAlumno());
-            if (entregado.equals("Si")) {
-                tpa.setPresentado(1);
-                if (estado.equals("A")) {
-                    tpa.setIdEstado(2);
-                }else if (estado.equals("D")){
-                    tpa.setIdEstado(3);
-                } else {
-                    tpa.setIdEstado(1);
-                }
-            }else {
-                tpa.setPresentado(0);
-                tpa.setIdEstado(1);
-            }
-            tpa.setFecha(fecha);
-            
-            //String estado = request.getParameter("Estado"+tpa.getIdAlumno());
-            
-//            if (estado.equals("A")) {
-//                tpa.setIdEstado(2);
-//            }else if (estado.equals("D")){
-//                tpa.setIdEstado(3);
-//            } else {
-//                tpa.setIdEstado(1);
-//            }
-            trabAlum.add(tpa);
+            id[i]=Integer.parseInt(ids[i]);
         }
         
-        boolean cargo = gta.agregarTPsAlumnos(trabAlum);
-        boolean cargoN = gta.ModificarFechaTP(fecha, idTp);
+        ArrayList<ParametroCondicion> parametroCondicion = gc.obtenerParametrosCondiciones(id);
+        boolean[] cargo = new boolean[ids.length];
         
-        if (cargo && cargoN) {
-            getServletContext().getRequestDispatcher("/Exito.jsp").forward(request, response);
+        int alu = 0;
+        double totalAsistencias = 0;
+        double asistencia = 0;
+        double notaParcial = 0;
+        int todosTP = 0;
+        int entregadosTP = 0;
+        double notaTFI = 0;
+        
+        int j = 0;
+        
+        for (ParametroCondicion pc : parametroCondicion) {
+
+            alu = pc.getIdAlmno();
+            totalAsistencias = pc.getCantiAsistio();
+            asistencia = (totalAsistencias*100)/pc.getTotalAsistencias();
+            notaParcial = pc.getNotaParcial();
+            todosTP = pc.getCantiTpAEntregar();
+            entregadosTP = pc.getCantiTpEntregados();
+            notaTFI = pc.getNotaTFI();
+            
+            if(todosTP >= entregadosTP){
+                if(asistencia >= 80){
+                    if(notaParcial >= 8){
+                        if (notaTFI >= 8){
+                            cargo[j] = gc.modificarCondicionAlumno(1, alu);
+                        }
+                    } else if (notaParcial >= 7) {
+                        if (notaTFI >= 7){
+                            cargo[j] = gc.modificarCondicionAlumno(2, alu);
+                        }
+                    } else if (notaParcial >= 4) {
+                        if (notaTFI >= 7){
+                            cargo[j] = gc.modificarCondicionAlumno(3, alu);
+                        }
+                    }
+                }else{
+                    cargo[j] = gc.modificarCondicionAlumno(5, alu);
+                }
+            }else{
+                cargo[j] = gc.modificarCondicionAlumno(4, alu);
+            }
+            j++;
+        }
+        int bien = 0;
+        for (int i = 0; i < cargo.length; i++) {
+            if(cargo[i]){
+                bien++;
+            }
+        }
+       
+        if (bien == cargo.length) {
+            GestorAlumnos g = new GestorAlumnos();
+            ArrayList<VMAlumnosCursosCondiciones> alumno = g.obtenerAlumnoCursoCondiciones();
+            
+            request.setAttribute("alumno", alumno);
+            
+            getServletContext().getRequestDispatcher("/ListadosAlumnosCondicines.jsp").forward(request, response);
         } else {
             getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
         }
