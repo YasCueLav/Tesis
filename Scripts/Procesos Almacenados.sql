@@ -68,3 +68,17 @@ FROM Asistencias asi JOIN Alumnos a ON (a.id_alumno = asi.id_alumno) JOIN Cursos
 WHERE asi.visible = 1 AND a.visible = 1 AND c.visible = 1 AND asi.id_alumno = @idAlumno
 
 EXEC pa_Alumnos_Curso_Asistencias @idAlumno = 2
+
+/*------------------------------------------------------------------------------------------------------------------------*/
+go
+CREATE PROC pa_Alumnos_Curso_TP_Todos
+as
+SELECT ta.id_tp_alumno, a.id_alumno, a.legajo, a.nombre, a.apellido, c.nombre 'curso', c.seccion, tp.nombre, tp.fecha_entrega, ta.fecha_entregado, e.estado
+FROM Tp_Alumnos ta JOIN Alumnos a ON (ta.id_alumno = a.id_alumno) 
+					JOIN Trabajos_Practicos tp ON (ta.id_tp = tp.id_tp) 
+					JOIN Estados e ON (ta.id_estado = e.id_estado) 
+					JOIN Cursos c ON (a.id_curso = c.id_curso)
+WHERE ta.visible = 1 AND a.visible = 1 AND tp.visible = 1 AND e.visible = 1 AND c.visible = 1 --AND  a.id_alumno = 1
+ORDER BY a.apellido, a.nombre, tp.nombre 
+
+EXEC pa_Alumnos_Curso_TP_Todos
