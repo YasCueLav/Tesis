@@ -5,9 +5,15 @@
  */
 package Servlets;
 
+import Controladores.GestorCondiciones;
+import Controladores.GestorCursos;
 import Controladores.GestorExamenes;
+import Controladores.GestorTPs;
 import Controladores.GestorTiposExamenes;
+import Model.Condiciones;
+import Model.Cursos;
 import Model.Examenes;
+import Model.TPs;
 import Model.TiposExamenes;
 import Model.VMTipoExamenExamen;
 import java.io.IOException;
@@ -123,7 +129,24 @@ public class UpdateParcialServlet extends HttpServlet {
             }
                 
         if (cargar) {
-            getServletContext().getRequestDispatcher("/Exito.jsp").forward(request, response);
+            GestorExamenes g = new GestorExamenes();
+            ArrayList<VMTipoExamenExamen> examen = g.obtenerTodosExamenes();
+            
+            GestorTPs gt = new GestorTPs();
+            ArrayList<TPs> tp = gt.obtenerTPs();
+
+            GestorCondiciones gc = new GestorCondiciones();
+            ArrayList<Condiciones> condicion = gc.obtenerCondiciones();
+            
+            GestorCursos gcu = new GestorCursos();
+            ArrayList<Cursos> curso = gcu.obtenerCursos();
+            
+            request.setAttribute("tp", tp);
+            request.setAttribute("examen", examen);
+            request.setAttribute("condicion", condicion);
+            request.setAttribute("curso", curso);
+            
+            getServletContext().getRequestDispatcher("/ListadoSoporte.jsp").forward(request, response);
         }else{
             getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
         }

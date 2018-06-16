@@ -10,6 +10,7 @@ import Model.Justificativo;
 import Model.VMAsistenciaAlmunoJustificativo;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -107,7 +108,12 @@ public class UpdateJustificativoServlet extends HttpServlet {
         
         boolean cargo = ga.modificarJustificativo(j);
         if (cargo) {
-            getServletContext().getRequestDispatcher("/Exito.jsp").forward(request, response);
+            GestorAsistencias g = new GestorAsistencias();
+            ArrayList<VMAsistenciaAlmunoJustificativo> justi = g.obtenerJustificativoAlumnoAsistencias();
+        
+            request.setAttribute("justi", justi);
+            
+            getServletContext().getRequestDispatcher("/ListadoJustificativos.jsp").forward(request, response);
         } else {
             getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
         }

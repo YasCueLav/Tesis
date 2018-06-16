@@ -113,7 +113,12 @@ public class ModificarCalificacionesServlet extends HttpServlet {
         
         boolean cargo = gn.modificarNotas(n);
         if (cargo) {
-            getServletContext().getRequestDispatcher("/Exito.jsp").forward(request, response);
+            GestorExamenes ge = new GestorExamenes();
+            ArrayList<VMAlumnoNotaTipoExamenExamen> examen = ge.obtenerExamenesNotaAlumno();
+            
+            request.setAttribute("examen", examen);
+            
+            getServletContext().getRequestDispatcher("/ListadoCalificaciones.jsp").forward(request, response);
         } else {
             getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
         }

@@ -11,6 +11,7 @@ import Controladores.GestorCursos;
 import Model.Alumno;
 import Model.Condiciones;
 import Model.Cursos;
+import Model.VMAlumnosCursosCondiciones;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
@@ -164,7 +165,12 @@ public class ModificarAlumnosServlet extends HttpServlet {
         
         boolean cargo = ga.modificarAlumno(a);
         if (cargo) {
-            getServletContext().getRequestDispatcher("/Exito.jsp").forward(request, response);
+            GestorAlumnos g = new GestorAlumnos();
+            ArrayList<VMAlumnosCursosCondiciones> alumno = g.obtenerAlumnoCursoCondiciones();
+            
+            request.setAttribute("alumno", alumno);
+            
+            getServletContext().getRequestDispatcher("/ListadoAlumnos.jsp").forward(request, response);
         } else {
             getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
         }
