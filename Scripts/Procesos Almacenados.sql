@@ -1,4 +1,4 @@
-alter proc pa__AgregarFechaTP
+CREATE proc pa__AgregarFechaTP
 @fecha date,
 @idTp int
 as
@@ -13,7 +13,7 @@ EXEC pa__AgregarFechaTP @fecha = ?, @idTp = ?
 /*------------------------------------------------------------------------------------------------------------------------*/
 
 GO
-alter PROC pa_Parametros_Para_Condiciones
+CREATE PROC pa_Parametros_Para_Condiciones
 @idAlumno int
 as
 SELECT DISTINCT (SELECT id_alumno from Alumnos where id_alumno = @idAlumno) 'Alumno',
@@ -39,3 +39,32 @@ WHERE asi.visible = 1 AND a.visible = 1 AND n.visible = 1 AND e.visible = 1 AND 
 
 EXEC pa_Parametros_Para_Condiciones @idAlumno = ?
 /*------------------------------------------------------------------------------------------------------------------------*/
+
+go
+CREATE PROC pa_Cantidad_Asistencias_Inasistencias
+@idAlumno int
+as
+SELECT DISTINCT (SELECT COUNT(*) FROM Asistencias WHERE visible = 1 AND id_alumno = @idAlumno) 'AsistenciasTomadas', 
+		(SELECT COUNT(*) FROM Asistencias WHERE visible = 1 AND obligatoria = 'True' AND id_alumno = @idAlumno) 'AsistenciasTotalesObligatoria',
+		(SELECT COUNT(*) FROM Asistencias WHERE visible = 1 AND esta_Precente = 'False' AND id_alumno = @idAlumno) 'InasistenciasTotales',
+		(SELECT COUNT(*) FROM Asistencias WHERE visible = 1 AND obligatoria = 'True' AND esta_Precente = 'False' AND id_alumno = @idAlumno) 'InasistenciasTotalesObligatorias'
+FROM Asistencias
+WHERE visible = 1
+
+EXEC pa_Cantidad_Asistencias_Inasistencias @idAlumno = 1
+
+/*------------------------------------------------------------------------------------------------------------------------*/
+
+go
+CREATE PROC pa_Alumnos_Curso_Asistencias
+@idAlumno int
+as
+SELECT DISTINCT a.id_alumno, a.legajo, a.nombre, a.apellido, c.nombre 'curso', c.seccion,
+		(SELECT COUNT(*) FROM Asistencias WHERE visible = 1 AND id_alumno = @idAlumno) 'AsistenciasTomadas', 
+		(SELECT COUNT(*) FROM Asistencias WHERE visible = 1 AND obligatoria = 'True' AND id_alumno = @idAlumno) 'AsistenciasTotalesObligatoria',
+		(SELECT COUNT(*) FROM Asistencias WHERE visible = 1 AND esta_Precente = 'False' AND id_alumno = @idAlumno) 'InasistenciasTotales',
+		(SELECT COUNT(*) FROM Asistencias WHERE visible = 1 AND obligatoria = 'True' AND esta_Precente = 'False' AND id_alumno = @idAlumno) 'InasistenciasTotalesObligatorias'
+FROM Asistencias asi JOIN Alumnos a ON (a.id_alumno = asi.id_alumno) JOIN Cursos c ON (c.id_curso = a.id_curso)
+WHERE asi.visible = 1 AND a.visible = 1 AND c.visible = 1 AND asi.id_alumno = @idAlumno
+
+EXEC pa_Alumnos_Curso_Asistencias @idAlumno = 2

@@ -7,6 +7,8 @@ package Controladores;
 
 import Model.Asistencias;
 import Model.Justificativo;
+import Model.ParametroCondicion;
+import Model.VMAlumnosCursoInasistencias;
 import Model.VMAlumnosCursos;
 import Model.VMAsistenciaAlmunoJustificativo;
 import Model.VMAsistenciaAlumnoCurso;
@@ -367,4 +369,33 @@ public class GestorAsistencias {
         return modifico;
     }
     
+//AUSENCIAS
+    public VMAlumnosCursoInasistencias obtenerCantidadAusencias( int id) {
+        VMAlumnosCursoInasistencias vm = new VMAlumnosCursoInasistencias();
+        try {
+            AccesoDatos ad = new AccesoDatos();
+            Connection con = DriverManager.getConnection(ad.getConn_string(), ad.getUser(), ad.getPass());
+            PreparedStatement stmt = con.prepareStatement("EXEC pa_Alumnos_Curso_Asistencias @idAlumno = ?");
+            stmt.setInt(1, id);
+            ResultSet query = stmt.executeQuery();
+                if(query.next()){
+                    vm.setIdAlumno(query.getInt("id_alumno"));
+                    vm.setLegajo(query.getInt("legajo"));
+                    vm.setNombre(query.getString("nombre"));
+                    vm.setApellido(query.getString("apellido"));
+                    vm.setNombreCurso(query.getString("curso"));
+                    vm.setDivicionCurso(query.getString("seccion"));
+                    vm.setTotalAsistencias(query.getInt("AsistenciasTomadas"));
+                    vm.setTotalAsistenciasObligatoria(query.getInt("AsistenciasTotalesObligatoria"));
+                    vm.setCantAusenciasG(query.getInt("InasistenciasTotales"));
+                    vm.setCantAusenciasO(query.getInt("InasistenciasTotalesObligatorias"));
+                }
+            query.close();
+            stmt.close();
+            con.close();
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+        return vm;
+    }
 }

@@ -16,7 +16,7 @@
         <li class="nav-item">
         <a class="nav-link" href="/Tesis-Asistencias/AltaAsistenciaServlet">Asistencia <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item"><%--AltaEntregaTPServlet   --%>
+      <li class="nav-item">
         <a class="nav-link" href="/Tesis-Asistencias/EntregaTpDecisionServlet">Entrega TP <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
@@ -46,6 +46,16 @@
             <a class="dropdown-item" href="/Tesis-Asistencias/ListadoCalificacionesServlet">Notas</a>
         </div>
         </li>
+        <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+          Consultas
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/Tesis-Asistencias/ListadoAsistenciasEspecificoServlet">Cantidad Ausencias</a>
+          <a class="dropdown-item" href=""></a>
+          <a class="dropdown-item" href=""></a>
+        </div>
+      </li>
         <%--<li class="nav-item">
                 <a class="nav-link" href="/Tesis-Asistencias/AltaJustificativo">Justificativo<span class="sr-only">(current)</span></a>
             </li>

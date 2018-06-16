@@ -124,6 +124,14 @@
         <servlet-name>ListadosAlumnosCondicinesServlet</servlet-name>
         <servlet-class>Servlets.ListadosAlumnosCondicinesServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ListadoAsistenciasEspecificoServlet</servlet-name>
+        <servlet-class>Servlets.ListadoAsistenciasEspecificoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AusenciasListadoAlumnoServlet</servlet-name>
+        <servlet-class>Servlets.AusenciasListadoAlumnoServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
         <url-pattern>/Index</url-pattern>
@@ -247,6 +255,14 @@
     <servlet-mapping>
         <servlet-name>ListadosAlumnosCondicinesServlet</servlet-name>
         <url-pattern>/ListadosAlumnosCondicinesServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListadoAsistenciasEspecificoServlet</servlet-name>
+        <url-pattern>/ListadoAsistenciasEspecificoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AusenciasListadoAlumnoServlet</servlet-name>
+        <url-pattern>/AusenciasListadoAlumnoServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

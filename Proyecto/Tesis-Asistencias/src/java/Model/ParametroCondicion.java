@@ -86,6 +86,5 @@ public class ParametroCondicion {
     public void setNotaTFI(double notaTFI) {
         this.notaTFI = notaTFI;
     }
-    
-    
+
 }
