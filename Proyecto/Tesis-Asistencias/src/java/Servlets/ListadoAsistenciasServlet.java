@@ -33,8 +33,10 @@ public class ListadoAsistenciasServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    int le =0;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        le = Integer.parseInt(request.getParameter("legajo"));
         response.setContentType("text/html;charset=UTF-8");
     }
 
@@ -50,19 +52,36 @@ public class ListadoAsistenciasServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        le = Integer.parseInt(request.getParameter("legajo"));
+        boolean  legajoNumero = false;
         HttpSession mySession = request.getSession();
         boolean isLogged = (boolean) mySession.getAttribute("inicio");
         if (isLogged) {
-            GestorAsistencias ga = new GestorAsistencias();
-            ArrayList<VMAsistenciaAlumnoCurso> alumno = ga.obtenerAsistenciasAlumnoCursoTodos();
-            
-            GestorCursos gc = new GestorCursos();
-            ArrayList<Cursos> curso = gc.obtenerCursos();
-            
-            request.setAttribute("curso", curso);
-            request.setAttribute("alumno", alumno);
-            
-            getServletContext().getRequestDispatcher("/ListadoAsistencias.jsp").forward(request, response);
+            if (le != 0) {
+                GestorAsistencias ga = new GestorAsistencias();
+                ArrayList<VMAsistenciaAlumnoCurso> alumno = ga.obtenerAsistenciasAlumnoCursoTodosXLegajo(le);
+                
+                GestorCursos gc = new GestorCursos();
+                ArrayList<Cursos> curso = gc.obtenerCursos();
+
+                //request.setAttribute("le", le);
+                request.setAttribute("curso", curso);
+                request.setAttribute("alumno", alumno);
+                
+                getServletContext().getRequestDispatcher("/ListadoAsistencias.jsp").forward(request, response);
+            }else{
+                GestorAsistencias ga = new GestorAsistencias();
+                ArrayList<VMAsistenciaAlumnoCurso> alumno = ga.obtenerAsistenciasAlumnoCursoTodos();
+
+                GestorCursos gc = new GestorCursos();
+                ArrayList<Cursos> curso = gc.obtenerCursos();
+
+                request.setAttribute("le", le);
+                request.setAttribute("curso", curso);
+                request.setAttribute("alumno", alumno);
+
+                getServletContext().getRequestDispatcher("/ListadoAsistencias.jsp").forward(request, response);
+            }
         } else {
             getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
         }

@@ -102,6 +102,33 @@ public class GestorAlumnos {
         }
         return a;
     }
+    //NUEVO
+    public ArrayList<Alumno> obtenerAlumnosxLegajo ( int legajo){
+        ArrayList<Alumno> lista = new ArrayList<>();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet query = stmt.executeQuery("Select * from Alumnos where visible = 1 and legajo = " + legajo);
+            while (query.next()){
+                Alumno a = new Alumno();
+                a.setIdAlumno(query.getInt("id_alumno"));
+                a.setLegajo(query.getInt("legajo"));
+                a.setNombre(query.getString("nombre"));
+                a.setApellido(query.getString("apellido"));
+                a.setIdCurso(query.getInt("id_curso"));
+                a.setIdCondicion(query.getInt("id_condicion"));
+                a.setGrupo(query.getInt("grupo"));
+                a.setFechaIngreso(query.getDate("fecha_ingreso"));
+                lista.add(a);
+            }
+            query.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return lista;
+    }
+    
     //AEREGLAR CONEXION
     public boolean modificarAlumno (Alumno a) {
         boolean modifico = true;

@@ -7,7 +7,9 @@ package Servlets;
 
 import Controladores.GestorAlumnos;
 import Controladores.GestorAsistencias;
+import Controladores.GestorCursos;
 import Model.Alumno;
+import Model.Cursos;
 import Model.ParametroCondicion;
 import Model.VMAlumnosCursoInasistencias;
 import Model.VMAsistenciaAlumnoCurso;
@@ -65,7 +67,6 @@ public class ListadoAsistenciasEspecificoServlet extends HttpServlet {
                 VMAlumnosCursoInasistencias p = ga.obtenerCantidadAusencias(vm.getIdAlumno());
                 alumno.add(p);
             }
-            
             request.setAttribute("alumno", alumno);
             
             getServletContext().getRequestDispatcher("/ListadoAsistenciasEspecifico.jsp").forward(request, response);
@@ -85,6 +86,30 @@ public class ListadoAsistenciasEspecificoServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        int legajo = Integer.parseInt(request.getParameter("Legajo"));
+        
+        GestorAsistencias ga = new GestorAsistencias();
+        GestorAlumnos g = new GestorAlumnos();    
+        
+        ArrayList<Alumno> a;
+        if (legajo != 0) {
+            a = g.obtenerAlumnosxLegajo(legajo);
+        } else{
+            a = g.obtenerAlumnos();
+        }
+        
+        ArrayList<VMAlumnosCursoInasistencias> alumno = new ArrayList<>();
+
+        for (Alumno vm : a) {
+            VMAlumnosCursoInasistencias p = ga.obtenerCantidadAusencias(vm.getIdAlumno());
+            alumno.add(p);
+        }
+        
+        request.setAttribute("alumno", alumno);
+        
+        getServletContext().getRequestDispatcher("/ListadoAsistenciasEspecifico.jsp").forward(request, response);
+        
         processRequest(request, response);
     }
 

@@ -17,19 +17,12 @@
         <jsp:include page="Menu.jsp"></jsp:include>
         <h1>Listado de Inasistencias</h1>
         <div>
-            <%--<form action="ListadoAsistenciasEspecificoServlet" method="POST">
+            <form action="ListadoAsistenciasEspecificoServlet" method="POST">
                 <div>
                     <input type="number" name="Legajo" value="0">
-                    <select name="Curso">
-                        <option value="0">Seleccione un curso ...</option>
-                        <c:forEach items="${curso}" var="c">
-                            <option name="IdCurso" value="${c.getIdCursos()}">${c.getIdCursos()}-${c.getNombreCurso()}/${c.getSeccionCurso()}</option>
-                        </c:forEach>
-                    </select>
                     <input type="submit" value="Filtrar" class="btn btn-primary" name="Boton">
                 </div>
                 </br>
-            </form>--%>
             <table class="table table-striped" name="tabla">
                 <thead>
 					<tr>
@@ -58,7 +51,7 @@
                                 <td>${a.getCantAusenciasG()}</td>
                                 <td>${a.getCantAusenciasO()}</td>
                                 <td>
-                                    <a id="Link" href="/Tesis-Asistencias/AusenciasListadoAlumnoServlet?getIdAlumno=${a.getIdAlumno()}">Ver</a>
+                                    <a id="Link" href="/Tesis-Asistencias/ListadoAsistenciasServlet?legajo=${a.getLegajo()}">Ver</a>
                                 </td>
                             </tr>
                         </c:forEach>
