@@ -24,7 +24,7 @@
                     <tr>
                         <th scope="col" colspan="2">Alumno</th>
                         <th scope="col" colspan="2">Materia</th>
-                        <th scope="col" rowspan="2">TFI</th>
+                        <th scope="col" rowspan="2">Trabajo Final Intgrador</th>
                         <th scope="col" colspan="2">Fecha</th>
                         <th scope="col" rowspan="2">Nota</th>
                         <th scope="col" rowspan="2"></th>
@@ -51,7 +51,7 @@
                                 <td>${a.getfEntregado()}</td>
                                 <td>${a.getNota()}</td>
                                 <td>
-                                    <a id="Link" href="/Tesis-Asistencias/ModificarTFIServlet?idTpAlumno=${a.getIdTpAlumno()}">Modificar</a>
+                                    <a id="Link" href="/Tesis-Asistencias/ModificarTFIServlet?idAlumno=${a.getIdAlumno()}">Modificar</a>
                                 </td>
                             </tr>
                         </c:forEach>

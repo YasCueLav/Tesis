@@ -44,7 +44,7 @@
                                         No <input type="radio" name="${p.getLegajo()}" value="No">
                                     </c:if>
                                     <c:if test="${!p.isPresentado()}">
-                                        Si <input type="radio" name="${p.getLegajo()}}" value="Si">- 
+                                        Si <input type="radio" name="${p.getLegajo()}" value="Si">- 
                                         No <input type="radio" name="${p.getLegajo()}" value="No" checked="true">
                                     </c:if>
                                 </td>

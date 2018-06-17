@@ -5,12 +5,17 @@
  */
 package Servlets;
 
+import Controladores.GestorTPsAlumnos;
+import Model.TpsAlumnos;
+import Model.VMAlumnoCursoTpConFecha;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -27,8 +32,10 @@ public class ModificarTFIServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+     int id=0;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        id = Integer.parseInt(request.getParameter("idAlumno"));
         response.setContentType("text/html;charset=UTF-8");
     }
 
@@ -44,6 +51,20 @@ public class ModificarTFIServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        //obtenerAlumnosCursoTfiUno
+        id = Integer.parseInt(request.getParameter("idAlumno"));
+        HttpSession mySession = request.getSession();
+        boolean isLogged = (boolean) mySession.getAttribute("inicio");
+        if (isLogged) {
+            GestorTPsAlumnos gt = new GestorTPsAlumnos();
+            ArrayList<VMAlumnoCursoTpConFecha> tp = gt.obtenerAlumnosCursoTfiUno(id);
+            
+            request.setAttribute("tp", tp);
+            
+            getServletContext().getRequestDispatcher("/ModificarTFI.jsp").forward(request, response);
+        } else {
+            getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
+        }
         processRequest(request, response);
     }
 
@@ -58,6 +79,42 @@ public class ModificarTFIServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        GestorTPsAlumnos gt = new GestorTPsAlumnos();
+        VMAlumnoCursoTpConFecha tpa = new VMAlumnoCursoTpConFecha();
+        
+        boolean cargar = false;
+        
+        tpa.setIdAlumno(id);
+        
+        int alum = Integer.parseInt(request.getParameter("IdAlumno"));
+        
+        String presentado = request.getParameter(""+alum);
+        if (presentado.equals("Si")) {
+            tpa.setPresentado(1);
+            tpa.setNota(Integer.parseInt(request.getParameter("Nota")));
+        } else if (presentado.equals("No")){
+            tpa.setPresentado(0);
+            tpa.setNota(0);
+        }
+        
+        String p = request.getParameter("FechaS");
+        if (p.equals("S")) {
+            tpa.setFechaS(request.getParameter("Fecha"));
+            cargar = gt.modificarTfiAlumnosConfecha(tpa);
+        } else if (p.equals("N")){
+            cargar = gt.modificarTfiAlumnos(tpa);
+        }
+        
+        if (cargar) {
+            GestorTPsAlumnos g = new GestorTPsAlumnos();
+            ArrayList<VMAlumnoCursoTpConFecha> alumno = g.obtenerAlumnosCursoTfiTodo();
+            
+            request.setAttribute("alumno", alumno);
+            
+            getServletContext().getRequestDispatcher("/ListadoTFI.jsp").forward(request, response);
+        }else{
+            getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
+        }
         processRequest(request, response);
     }
 

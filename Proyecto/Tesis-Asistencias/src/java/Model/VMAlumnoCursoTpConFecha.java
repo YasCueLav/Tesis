@@ -23,6 +23,7 @@ public class VMAlumnoCursoTpConFecha extends VMAlumnosCursosCondiciones{
     boolean presentado;
     boolean x;
     int nota;
+    String fechaS;
 
     public VMAlumnoCursoTpConFecha() {
     }
@@ -36,6 +37,15 @@ public class VMAlumnoCursoTpConFecha extends VMAlumnosCursosCondiciones{
         this.estado = estado;
     }
 
+    public String getFechaS() {
+        return fechaS;
+    }
+
+    public void setFechaS(String fechaS) {
+        this.fechaS = fechaS;
+    }
+
+    
     public int getNota() {
         return nota;
     }
@@ -123,8 +133,12 @@ public class VMAlumnoCursoTpConFecha extends VMAlumnosCursosCondiciones{
         this.estado = estado;
     }
 
-    public void setPresentado(boolean presentado) {
-        this.presentado = presentado;
+    public void setPresentado(int presentado) {
+        if (presentado == 0) {
+            this.presentado = false;
+        } else {
+            this.presentado = true;
+        }
     }
     
 }

@@ -101,13 +101,17 @@ EXEC pa_Alumnos_Curso_TP_Uno @id = ?
 /*------------------------------------------------------------------------------------------------------------------------*/
 
 go
-alter PROC pa_Alumnos_Curso_TFI_Todo
+CREATE PROC pa_Alumnos_Curso_TFI_Todo
 as
-SELECT DISTINCT ta.id_tp_alumno, a.id_alumno, a.legajo, a.nombre, a.apellido, c.nombre 'curso', c.seccion, tp.id_tp, tp.nombre 'tp', tp.fecha_entrega, ta.fecha_entregado
+SELECT DISTINCT ta.id_tp_alumno, a.id_alumno, a.legajo, a.nombre, a.apellido, c.nombre 'curso', c.seccion, 
+		tp.id_tp, tp.nombre 'tp', tp.fecha_entrega, ta.fecha_entregado,
+			( SELECT n.nota FROM Alumnos al JOIN Notas n ON (al.id_alumno = n.id_alumno) WHERE al.id_alumno = a.id_alumno AND n.id_tp = 6 AND n.id_nota = 
+				(SELECT MAX(nota.id_nota) FROM Alumnos alum JOIN Notas nota ON (alum.id_alumno = nota.id_alumno) WHERE alum.id_alumno = a.id_alumno AND nota.id_tp = 6)) 'nota'
 FROM Tp_Alumnos ta JOIN Alumnos a ON (ta.id_alumno = a.id_alumno) 
 					JOIN Trabajos_Practicos tp ON (ta.id_tp = tp.id_tp)
 					JOIN Cursos c ON (a.id_curso = c.id_curso) 
-WHERE ta.visible = 1 AND a.visible = 1 AND tp.visible = 1 AND c.visible = 1 AND ta.id_tp = 6
+WHERE ta.visible = 1 AND a.visible = 1 AND tp.visible = 1 AND c.visible = 1 AND ta.id_tp = 6 AND ta.id_tp_alumno = 
+															(SELECT MAX(tpa.id_tp_alumno) FROM Tp_Alumnos tpa WHERE tpa.id_alumno = a.id_alumno AND tpa.id_tp = 6)
 ORDER BY a.apellido, a.nombre, tp.nombre
 
 go
@@ -118,11 +122,15 @@ go
 CREATE PROC pa_Alumnos_Curso_TFI_Uno
 @idAlumno int
 as
-SELECT DISTINCT ta.id_tp_alumno, a.id_alumno, a.legajo, a.nombre, a.apellido, c.nombre 'curso', c.seccion, tp.id_tp, tp.nombre 'tp', tp.fecha_entrega, ta.fecha_entregado
+SELECT DISTINCT ta.id_tp_alumno, a.id_alumno, a.legajo, a.nombre, a.apellido, c.nombre 'curso', c.seccion, tp.id_tp, tp.nombre 'tp',  tp.fecha_entrega, 
+	ta.fecha_entregado, (SELECT n.nota FROM Alumnos al JOIN Notas n ON (al.id_alumno = n.id_alumno) WHERE al.id_alumno = a.id_alumno AND n.id_tp = 6 
+							AND n.id_nota =  (SELECT MAX(nota.id_nota) FROM Alumnos alum JOIN Notas nota ON (alum.id_alumno = nota.id_alumno) 
+												WHERE alum.id_alumno = a.id_alumno AND nota.id_tp = 6)) 'nota'
 FROM Tp_Alumnos ta JOIN Alumnos a ON (ta.id_alumno = a.id_alumno) 
 					JOIN Trabajos_Practicos tp ON (ta.id_tp = tp.id_tp)
-					JOIN Cursos c ON (a.id_curso = c.id_curso)
-WHERE ta.visible = 1 AND a.visible = 1 AND tp.visible = 1 AND c.visible = 1 AND ta.id_tp = 6 AND  a.id_alumno = @idAlumno
+					JOIN Cursos c ON (a.id_curso = c.id_curso) 
+WHERE ta.visible = 1 AND a.visible = 1 AND tp.visible = 1 AND c.visible = 1 AND ta.id_tp = 6 AND ta.id_alumno = @idAlumno AND ta.id_tp_alumno = 
+			(SELECT MAX(tpa.id_tp_alumno) FROM Tp_Alumnos tpa WHERE tpa.id_alumno = a.id_alumno AND tpa.id_tp = 6)
 ORDER BY a.apellido, a.nombre, tp.nombre
 
 EXEC pa_Alumnos_Curso_TFI_uno @idAlumno = ?
@@ -150,4 +158,31 @@ as
 UPDATE Tp_Alumnos SET id_estado = @estado, presentado = @presentado
 WHERE id_tp_alumno = @id 
 
-EXEC pa__Editar_TP_Sin_Fecha @estado = 1, @presentado = 'false', @id = 77
+EXEC pa__Editar_TP_Sin_Fecha @estado = 1, @presentado = ?, @id = ?
+
+/*------------------------------------------------------------------------------------------------------------------------*/
+CREATE proc pa__Editar_TFI_Fecha
+@fecha date,
+@id int,
+@nota int,
+@presentado bit
+as
+UPDATE Tp_Alumnos SET fecha_entregado = @fecha, presentado = @presentado
+WHERE id_tp = 6 AND id_alumno = @id AND id_tp_alumno = (select MAX(tpa.id_tp_alumno) from Tp_Alumnos tpa where tpa.id_alumno = @id and tpa.id_tp = 6)
+UPDATE Notas SET nota = @nota
+WHERE id_tp = 6 AND id_alumno = @id AND id_nota = (select MAX(n.id_nota) from Notas n where n.id_alumno = @id and n.id_tp = 6)
+
+EXEC pa__Editar_TFI_Fecha @fecha = ?, @presentado = ?, @nota = ?, @id = ?
+
+/*------------------------------------------------------------------------------------------------------------------------*/
+CREATE proc pa__Editar_TFI_Sin_Fecha
+@id int,
+@nota int,
+@presentado bit
+as
+UPDATE Tp_Alumnos SET presentado = @presentado
+WHERE id_tp = 6 AND id_alumno = @id AND id_tp_alumno = (select MAX(tpa.id_tp_alumno) from Tp_Alumnos tpa where tpa.id_alumno = @id and tpa.id_tp = 6)
+UPDATE Notas SET nota = @nota
+WHERE id_tp = 6 AND id_alumno = @id AND id_nota = (select MAX(n.id_nota) from Notas n where n.id_alumno = @id and n.id_tp = 6)
+
+EXEC pa__Editar_TFI_Sin_Fecha @presentado = ?, @nota = ?, @id = ?
