@@ -332,7 +332,7 @@ public class GestorTPsAlumnos {
         boolean modifico = true;
         try {
             PreparedStatement stmt = conn.prepareStatement("EXEC pa__Editar_TFI_Fecha @fecha = ?, @presentado = ?, @nota = ?, @id = ?");
-            stmt.setString(12, ta.getFechaS());
+            stmt.setString(1, ta.getFechaS());
             stmt.setBoolean(2, ta.isPresentado());
             stmt.setInt(3, ta.getNota());
             stmt.setInt(4, ta.getIdAlumno());
@@ -345,5 +345,35 @@ public class GestorTPsAlumnos {
         }
         return modifico;
     }
-
+//--------------------------------------------------------------
+    public boolean EliminarTFI (int id) {
+        boolean modifico = true;
+        try {
+            PreparedStatement stmt = conn.prepareStatement("XEC pa_Eliminar_TP_TFI  @id = ?");
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+            stmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            modifico = false;
+        }
+        return modifico;
+    }
+    
+    public boolean EliminarTP (int id, int tp) {
+        boolean modifico = true;
+        try {
+            PreparedStatement stmt = conn.prepareStatement("EXEC pa_Eliminar_TP @tp = ?,  @id = ?");
+            stmt.setInt(1, tp);
+            stmt.setInt(2, id);
+            stmt.executeUpdate();
+            stmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            modifico = false;
+        }
+        return modifico;
+    }
 }

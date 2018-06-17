@@ -51,7 +51,8 @@
                                 <td>${a.getfEntregado()}</td>
                                 <td>${a.getEstado()}</td>
                                 <td>
-                                    <a id="Link" href="/Tesis-Asistencias/ModificarTPServlet?idTpAlumno=${a.getIdTpAlumno()}">Modificar</a>
+                                    <a id="Link" href="/Tesis-Asistencias/ModificarTPServlet?idTpAlumno=${a.getIdTpAlumno()}&tipo=1">Editar</a> /
+                                    <a id="Link" href="/Tesis-Asistencias/ModificarTPServlet?idTpAlumno=${a.getIdTpAlumno()}&tipo=2">Eliminar</a>
                                 </td>
                             </tr>
                         </c:forEach>

@@ -51,17 +51,50 @@ public class ModificarTFIServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //obtenerAlumnosCursoTfiUno
+        int m = 0;
         id = Integer.parseInt(request.getParameter("idAlumno"));
+        m = Integer.parseInt(request.getParameter("tipo"));
+        
         HttpSession mySession = request.getSession();
         boolean isLogged = (boolean) mySession.getAttribute("inicio");
         if (isLogged) {
-            GestorTPsAlumnos gt = new GestorTPsAlumnos();
-            ArrayList<VMAlumnoCursoTpConFecha> tp = gt.obtenerAlumnosCursoTfiUno(id);
-            
-            request.setAttribute("tp", tp);
-            
-            getServletContext().getRequestDispatcher("/ModificarTFI.jsp").forward(request, response);
+            GestorTPsAlumnos gt;
+            switch (m){
+                case 1: 
+                    gt = new GestorTPsAlumnos();
+                    ArrayList<VMAlumnoCursoTpConFecha> tp = gt.obtenerAlumnosCursoTpUno(id);
+
+                    for (VMAlumnoCursoTpConFecha vm : tp) {
+                        if(vm.getIdEstado() == 2){
+                            vm.setEstadoBool(true);
+                            vm.setX(false);
+                        } else if (vm.getIdEstado() == 3){
+                            vm.setEstadoBool(false);
+                            vm.setX(false);
+                        }else {
+                            vm.setX(true);
+                        }
+                    }
+
+                    request.setAttribute("tp", tp);
+
+                    getServletContext().getRequestDispatcher("/ModificarTFI.jsp").forward(request, response);
+                    break;
+                case 2:
+                    gt = new GestorTPsAlumnos();
+                    boolean ca = gt.EliminarTFI(id );
+                    
+                    if (ca) {
+                        getServletContext().getRequestDispatcher("/Exito.jsp").forward(request, response);
+                    }else{
+                        getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
+                    }
+                    break;
+                    
+                default:
+                    getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
+                    break;
+            }
         } else {
             getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
         }

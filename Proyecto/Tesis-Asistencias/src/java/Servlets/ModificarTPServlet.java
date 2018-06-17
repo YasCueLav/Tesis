@@ -53,11 +53,60 @@ public class ModificarTPServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        int m = 0;
         id = Integer.parseInt(request.getParameter("idTpAlumno"));
+        m = Integer.parseInt(request.getParameter("tipo"));
+        
         HttpSession mySession = request.getSession();
         boolean isLogged = (boolean) mySession.getAttribute("inicio");
         if (isLogged) {
-            GestorTPsAlumnos gt = new GestorTPsAlumnos();
+            GestorTPsAlumnos gt;
+            switch (m){
+                case 1: 
+                    gt = new GestorTPsAlumnos();
+                    ArrayList<VMAlumnoCursoTpConFecha> tp = gt.obtenerAlumnosCursoTpUno(id);
+
+                    for (VMAlumnoCursoTpConFecha vm : tp) {
+                        if(vm.getIdEstado() == 2){
+                            vm.setEstadoBool(true);
+                            vm.setX(false);
+                        } else if (vm.getIdEstado() == 3){
+                            vm.setEstadoBool(false);
+                            vm.setX(false);
+                        }else {
+                            vm.setX(true);
+                        }
+                    }
+
+                    request.setAttribute("tp", tp);
+
+                    getServletContext().getRequestDispatcher("/ModificarTP.jsp").forward(request, response);
+                    break;
+                case 2:
+                    GestorTPsAlumnos g =new GestorTPsAlumnos();
+                    TpsAlumnos t = g.obtenerTPsAlumnos(id);
+                    
+                    gt = new GestorTPsAlumnos();
+                    boolean ca = gt.EliminarTP(id , t.getIdTp());
+                    
+                    if (ca) {
+                        getServletContext().getRequestDispatcher("/Exito.jsp").forward(request, response);
+                    }else{
+                        getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
+                    }
+                    break;
+                    
+                default:
+                    getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
+                    break;
+            }
+        } else {
+            getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
+        }
+        processRequest(request, response);
+    }
+    /*
+    gt = new GestorTPsAlumnos();
             ArrayList<VMAlumnoCursoTpConFecha> tp = gt.obtenerAlumnosCursoTpUno(id);
             
             for (VMAlumnoCursoTpConFecha vm : tp) {
@@ -75,11 +124,7 @@ public class ModificarTPServlet extends HttpServlet {
             request.setAttribute("tp", tp);
             
             getServletContext().getRequestDispatcher("/ModificarTP.jsp").forward(request, response);
-        } else {
-            getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
-        }
-        processRequest(request, response);
-    }
+    */
 
     /**
      * Handles the HTTP <code>POST</code> method.

@@ -186,3 +186,24 @@ UPDATE Notas SET nota = @nota
 WHERE id_tp = 6 AND id_alumno = @id AND id_nota = (select MAX(n.id_nota) from Notas n where n.id_alumno = @id and n.id_tp = 6)
 
 EXEC pa__Editar_TFI_Sin_Fecha @presentado = ?, @nota = ?, @id = ?
+
+------------------------------------------------------------------------
+CREATE proc pa_Eliminar_TP_TFI
+@id int,
+@tp int = 6
+as
+UPDATE Tp_Alumnos SET visible = 0
+WHERE id_tp = @tp AND id_alumno = @id 
+UPDATE Notas SET visible = 0
+WHERE id_tp = @tp AND id_alumno = @id 
+
+EXEC pa_Eliminar_TP_TFI  @id = ?
+--------------------------------------------------------------
+CREATE proc pa_Eliminar_TP
+@id int,
+@tp int
+as
+UPDATE Tp_Alumnos SET visible = 0
+WHERE id_tp = @tp AND id_alumno = @id 
+
+EXEC pa_Eliminar_TP @tp = ?,  @id = ?
