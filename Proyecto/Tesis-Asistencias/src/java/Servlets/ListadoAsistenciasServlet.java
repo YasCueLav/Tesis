@@ -52,8 +52,45 @@ public class ListadoAsistenciasServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        le = Integer.parseInt(request.getParameter("legajo"));
-        boolean  legajoNumero = false;
+        
+        try{
+            le = Integer.parseInt(request.getParameter("legajo"));
+            HttpSession mySession = request.getSession();
+            boolean isLogged = (boolean) mySession.getAttribute("inicio");
+            if (isLogged) {
+                if (le != 0) {
+                    GestorAsistencias ga = new GestorAsistencias();
+                    ArrayList<VMAsistenciaAlumnoCurso> alumno = ga.obtenerAsistenciasAlumnoCursoTodosXLegajo(le);
+
+                    GestorCursos gc = new GestorCursos();
+                    ArrayList<Cursos> curso = gc.obtenerCursos();
+
+                    //request.setAttribute("le", le);
+                    request.setAttribute("curso", curso);
+                    request.setAttribute("alumno", alumno);
+
+                    getServletContext().getRequestDispatcher("/ListadoAsistencias.jsp").forward(request, response);
+                }else{
+                    GestorAsistencias ga = new GestorAsistencias();
+                    ArrayList<VMAsistenciaAlumnoCurso> alumno = ga.obtenerAsistenciasAlumnoCursoTodos();
+
+                    GestorCursos gc = new GestorCursos();
+                    ArrayList<Cursos> curso = gc.obtenerCursos();
+
+                    request.setAttribute("le", le);
+                    request.setAttribute("curso", curso);
+                    request.setAttribute("alumno", alumno);
+
+                    getServletContext().getRequestDispatcher("/ListadoAsistencias.jsp").forward(request, response);
+                }
+            } else {
+                getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
+            }
+        }
+        catch (NumberFormatException e){
+            System.out.println(e);
+        }
+        le = 0;
         HttpSession mySession = request.getSession();
         boolean isLogged = (boolean) mySession.getAttribute("inicio");
         if (isLogged) {

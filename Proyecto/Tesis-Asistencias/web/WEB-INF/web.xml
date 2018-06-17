@@ -140,6 +140,10 @@
         <servlet-name>ListadoTFIServlet</servlet-name>
         <servlet-class>Servlets.ListadoTFIServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ModificarTPServlet</servlet-name>
+        <servlet-class>Servlets.ModificarTPServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
         <url-pattern>/Index</url-pattern>
@@ -279,6 +283,10 @@
     <servlet-mapping>
         <servlet-name>ListadoTFIServlet</servlet-name>
         <url-pattern>/ListadoTFIServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ModificarTPServlet</servlet-name>
+        <url-pattern>/ModificarTPServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

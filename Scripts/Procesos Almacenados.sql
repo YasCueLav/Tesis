@@ -73,7 +73,7 @@ EXEC pa_Alumnos_Curso_Asistencias @idAlumno = 2
 go
 CREATE PROC pa_Alumnos_Curso_TP_Todos
 as
-SELECT ta.id_tp_alumno, a.id_alumno, a.legajo, a.nombre, a.apellido, c.nombre 'curso', c.seccion, tp.nombre, tp.fecha_entrega, ta.fecha_entregado, e.estado
+SELECT DISTINCT ta.id_tp_alumno, a.id_alumno, a.legajo, a.nombre, a.apellido, c.nombre 'curso', c.seccion, tp.nombre 'tp', tp.fecha_entrega, ta.fecha_entregado, e.estado
 FROM Tp_Alumnos ta JOIN Alumnos a ON (ta.id_alumno = a.id_alumno) 
 					JOIN Trabajos_Practicos tp ON (ta.id_tp = tp.id_tp) 
 					JOIN Estados e ON (ta.id_estado = e.id_estado) 
@@ -82,3 +82,71 @@ WHERE ta.visible = 1 AND a.visible = 1 AND tp.visible = 1 AND e.visible = 1 AND 
 ORDER BY a.apellido, a.nombre, tp.nombre 
 
 EXEC pa_Alumnos_Curso_TP_Todos
+
+/*------------------------------------------------------------------------------------------------------------------------*/
+go
+CREATE PROC pa_Alumnos_Curso_TP_Uno
+@id int
+as
+SELECT DISTINCT ta.id_tp_alumno, a.id_alumno, a.legajo, a.nombre, a.apellido, c.nombre 'curso', c.seccion, tp.nombre 'tp', tp.fecha_entrega, ta.fecha_entregado,e.id_estado ,e.estado
+FROM Tp_Alumnos ta JOIN Alumnos a ON (ta.id_alumno = a.id_alumno) 
+					JOIN Trabajos_Practicos tp ON (ta.id_tp = tp.id_tp) 
+					JOIN Estados e ON (ta.id_estado = e.id_estado) 
+					JOIN Cursos c ON (a.id_curso = c.id_curso)
+WHERE ta.visible = 1 AND a.visible = 1 AND tp.visible = 1 AND e.visible = 1 AND c.visible = 1 AND  ta.id_tp_alumno = @id
+ORDER BY a.apellido, a.nombre, tp.nombre 
+
+EXEC pa_Alumnos_Curso_TP_Uno @id = ?
+
+/*------------------------------------------------------------------------------------------------------------------------*/
+
+go
+CREATE PROC pa_Alumnos_Curso_TFI_Todo
+as
+SELECT DISTINCT ta.id_tp_alumno, a.id_alumno, a.legajo, a.nombre, a.apellido, c.nombre 'curso', c.seccion, tp.id_tp, tp.nombre 'tp', tp.fecha_entrega, ta.fecha_entregado
+FROM Tp_Alumnos ta JOIN Alumnos a ON (ta.id_alumno = a.id_alumno) 
+					JOIN Trabajos_Practicos tp ON (ta.id_tp = tp.id_tp)
+					JOIN Cursos c ON (a.id_curso = c.id_curso)
+WHERE ta.visible = 1 AND a.visible = 1 AND tp.visible = 1 AND c.visible = 1 AND ta.id_tp = 6
+ORDER BY a.apellido, a.nombre, tp.nombre
+
+EXEC pa_Alumnos_Curso_TFI_Todo
+/*------------------------------------------------------------------------------------------------------------------------*/
+
+go
+CREATE PROC pa_Alumnos_Curso_TFI_Uno
+@idAlumno int
+as
+SELECT DISTINCT ta.id_tp_alumno, a.id_alumno, a.legajo, a.nombre, a.apellido, c.nombre 'curso', c.seccion, tp.id_tp, tp.nombre 'tp', tp.fecha_entrega, ta.fecha_entregado
+FROM Tp_Alumnos ta JOIN Alumnos a ON (ta.id_alumno = a.id_alumno) 
+					JOIN Trabajos_Practicos tp ON (ta.id_tp = tp.id_tp)
+					JOIN Cursos c ON (a.id_curso = c.id_curso)
+WHERE ta.visible = 1 AND a.visible = 1 AND tp.visible = 1 AND c.visible = 1 AND ta.id_tp = 6 AND  a.id_alumno = @idAlumno
+ORDER BY a.apellido, a.nombre, tp.nombre
+
+EXEC pa_Alumnos_Curso_TFI_uno @idAlumno = ?
+
+/*------------------------------------------------------------------------------------------------------------------------*/
+
+CREATE proc pa__Editar_TP
+@fecha date,
+@id int,
+@estado int,
+@presentado bit
+as
+UPDATE Tp_Alumnos SET fecha_entregado = @fecha, id_estado = @estado, presentado = @presentado
+WHERE id_tp_alumno = @id 
+
+EXEC pa__Editar_TP @fecha = ?, @id = ?, @estado = ?, @presentado = ?
+
+/*------------------------------------------------------------------------------------------------------------------------*/
+
+CREATE proc pa__Editar_TP_Sin_Fecha
+@id int,
+@estado int,
+@presentado bit
+as
+UPDATE Tp_Alumnos SET id_estado = @estado, presentado = @presentado
+WHERE id_tp_alumno = @id 
+
+EXEC pa__Editar_TP_Sin_Fecha @estado = 1, @presentado = 'false', @id = 77

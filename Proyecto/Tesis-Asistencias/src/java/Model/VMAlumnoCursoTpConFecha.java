@@ -18,6 +18,10 @@ public class VMAlumnoCursoTpConFecha extends VMAlumnosCursosCondiciones{
     Date fEntrega;
     Date fEntregado;
     String estado;
+    int idEstado;
+    boolean estadoBool;
+    boolean presentado;
+    boolean x;
 
     public VMAlumnoCursoTpConFecha() {
     }
@@ -31,6 +35,33 @@ public class VMAlumnoCursoTpConFecha extends VMAlumnosCursosCondiciones{
         this.estado = estado;
     }
 
+    public void setX(boolean x) {
+        this.x = x;
+    }
+
+    public boolean isX() {
+        return x;
+    }
+
+    
+    
+    public void setEstadoBool(boolean estadoBool) {
+        this.estadoBool = estadoBool;
+    }
+
+    public boolean isEstadoBool() {
+        return estadoBool;
+    }
+
+    
+    public int getIdEstado() {
+        return idEstado;
+    }
+
+    public void setIdEstado(int idEstado) {
+        this.idEstado = idEstado;
+    }
+    
     public int getIdTpAlumno() {
         return idTpAlumno;
     }
@@ -55,6 +86,10 @@ public class VMAlumnoCursoTpConFecha extends VMAlumnosCursosCondiciones{
         return estado;
     }
 
+    public boolean isPresentado() {
+        return presentado;
+    }
+    
     public void setIdTpAlumno(int idTpAlumno) {
         this.idTpAlumno = idTpAlumno;
     }
@@ -78,4 +113,9 @@ public class VMAlumnoCursoTpConFecha extends VMAlumnosCursosCondiciones{
     public void setEstado(String estado) {
         this.estado = estado;
     }
+
+    public void setPresentado(boolean presentado) {
+        this.presentado = presentado;
+    }
+    
 }

@@ -23,10 +23,9 @@
                 <thead>
                     <tr>
                         <th scope="col" colspan="2">Alumno</th>
-                        <th scope="col" colspan="2">Curso</th>
-                        <th scope="col" rowspan="2">Trabajo Practico</th>
-                        <th scope="col" rowspan="2">Fecha de Entrega</th>
-                        <th scope="col" rowspan="2">Fecha Entregado</th>
+                        <th scope="col" colspan="2">Materia</th>
+                        <th scope="col" rowspan="2">TrabajoPractico</th>
+                        <th scope="col" colspan="2">Fecha</th>
                         <th scope="col" rowspan="2">Estado</th>
                         <th scope="col" rowspan="2"></th>
                     </tr>
@@ -35,22 +34,24 @@
                         <th scope="col">Apellido, Nombre</th>
                         <th scope="col">Curso</th>
                         <th scope="col">Divicion</th>
+                        <th scope="col">de Entrega</th>
+                        <th scope="col">Entregado</th>
                     </tr>
                 </thead>
                 <div>
                     <tbody>
-                        <c:forEach items="${justi}" var="j">
+                        <c:forEach items="${alumno}" var="a">
                             <tr>
-                                <td> ${j.getLegajo()}</td>
-                                <th>${j.getApellido()} ${j.getNombre()}</th>
-                                <td> curso</td>
-                                <td> divicion</td>
-                                <td> f entrega</td>
-                                <td> f entregado</td>
-                                <td>estado</td>
-                                <td> divicion</td>
+                                <td> ${a.getLegajo()}</td>
+                                <th>${a.getApellido()} ${a.getNombre()}</th>
+                                <td>${a.getNombreCurso()}</td>
+                                <td>${a.getDivicionCurso()}</td>
+                                <td>${a.getTp()}</td>
+                                <td>${a.getfEntrega()}</td>
+                                <td>${a.getfEntregado()}</td>
+                                <td>${a.getEstado()}</td>
                                 <td>
-                                    <a id="Link" href="/Tesis-Asistencias/ListadoAsistenciasServlet?idAlumno=${a.getLegajo()}">Modificar</a>
+                                    <a id="Link" href="/Tesis-Asistencias/ModificarTPServlet?idTpAlumno=${a.getIdTpAlumno()}">Modificar</a>
                                 </td>
                             </tr>
                         </c:forEach>
