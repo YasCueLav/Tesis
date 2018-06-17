@@ -60,7 +60,7 @@ public class GestorTPsAlumnos {
     public TpsAlumnos obtenerTPsAlumnos (int id) {
         TpsAlumnos ta = new TpsAlumnos();
         try {
-            PreparedStatement stmt = conn.prepareStatement("select * from Alumnos where id_tp_alumno = ? and visible = 1");
+            PreparedStatement stmt = conn.prepareStatement("select * from Tp_Alumnos where visible = 1 and id_tp_alumno = ?");
             stmt.setInt(1, id);
             ResultSet query = stmt.executeQuery();
             if (query.next()) {
@@ -203,10 +203,11 @@ public class GestorTPsAlumnos {
                vm.setNombreCurso(query.getString("curso"));
                vm.setDivicionCurso(query.getString("seccion"));
                vm.setTp(query.getString("tp"));
+               vm.setPresentado(query.getInt("presentado"));
                vm.setfEntrega(query.getDate("fecha_entrega"));
                vm.setfEntregado(query.getDate("fecha_entregado"));
-               vm.setEstado(query.getString("estado"));
                vm.setIdEstado(query.getInt("id_estado"));
+               vm.setEstado(query.getString("estado"));
                lista.add(vm);
            }
            query.close();
@@ -297,6 +298,7 @@ public class GestorTPsAlumnos {
                 vm.setNombreCurso(query.getString("curso"));
                 vm.setDivicionCurso(query.getString("seccion"));
                 vm.setTp(query.getString("tp"));
+                vm.setPresentado(query.getInt("presentado"));
                 vm.setfEntrega(query.getDate("fecha_entrega"));
                 vm.setfEntregado(query.getDate("fecha_entregado"));
                 vm.setNota(query.getInt("nota"));
@@ -349,7 +351,7 @@ public class GestorTPsAlumnos {
     public boolean EliminarTFI (int id) {
         boolean modifico = true;
         try {
-            PreparedStatement stmt = conn.prepareStatement("XEC pa_Eliminar_TP_TFI  @id = ?");
+            PreparedStatement stmt = conn.prepareStatement("XEC pa_Eliminar_TP_TFI  @idAlumno = ?");
             stmt.setInt(1, id);
             stmt.executeUpdate();
             stmt.close();
@@ -364,7 +366,7 @@ public class GestorTPsAlumnos {
     public boolean EliminarTP (int id, int tp) {
         boolean modifico = true;
         try {
-            PreparedStatement stmt = conn.prepareStatement("EXEC pa_Eliminar_TP @tp = ?,  @id = ?");
+            PreparedStatement stmt = conn.prepareStatement("EXEC pa_Eliminar_TP @tp = ?,  @idAlumno = ?");
             stmt.setInt(1, tp);
             stmt.setInt(2, id);
             stmt.executeUpdate();

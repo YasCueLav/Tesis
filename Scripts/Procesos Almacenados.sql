@@ -73,7 +73,7 @@ EXEC pa_Alumnos_Curso_Asistencias @idAlumno = 2
 go
 CREATE PROC pa_Alumnos_Curso_TP_Todos
 as
-SELECT DISTINCT ta.id_tp_alumno, a.id_alumno, a.legajo, a.nombre, a.apellido, c.nombre 'curso', c.seccion, tp.nombre 'tp', tp.fecha_entrega, ta.fecha_entregado, e.estado
+SELECT DISTINCT ta.id_tp_alumno, a.id_alumno, a.legajo, a.nombre, a.apellido, c.nombre 'curso', c.seccion, tp.nombre 'tp',ta.presentado ,tp.fecha_entrega, ta.fecha_entregado, e.estado, ta.visible
 FROM Tp_Alumnos ta JOIN Alumnos a ON (ta.id_alumno = a.id_alumno) 
 					JOIN Trabajos_Practicos tp ON (ta.id_tp = tp.id_tp) 
 					JOIN Estados e ON (ta.id_estado = e.id_estado) 
@@ -88,7 +88,7 @@ go
 CREATE PROC pa_Alumnos_Curso_TP_Uno
 @id int
 as
-SELECT DISTINCT ta.id_tp_alumno, a.id_alumno, a.legajo, a.nombre, a.apellido, c.nombre 'curso', c.seccion, tp.nombre 'tp', tp.fecha_entrega, ta.fecha_entregado,e.id_estado ,e.estado
+SELECT DISTINCT ta.id_tp_alumno, a.id_alumno, a.legajo, a.nombre, a.apellido, c.nombre 'curso', c.seccion, tp.nombre 'tp', ta.presentado ,tp.fecha_entrega, ta.fecha_entregado,e.id_estado ,e.estado
 FROM Tp_Alumnos ta JOIN Alumnos a ON (ta.id_alumno = a.id_alumno) 
 					JOIN Trabajos_Practicos tp ON (ta.id_tp = tp.id_tp) 
 					JOIN Estados e ON (ta.id_estado = e.id_estado) 
@@ -122,8 +122,8 @@ go
 CREATE PROC pa_Alumnos_Curso_TFI_Uno
 @idAlumno int
 as
-SELECT DISTINCT ta.id_tp_alumno, a.id_alumno, a.legajo, a.nombre, a.apellido, c.nombre 'curso', c.seccion, tp.id_tp, tp.nombre 'tp',  tp.fecha_entrega, 
-	ta.fecha_entregado, (SELECT n.nota FROM Alumnos al JOIN Notas n ON (al.id_alumno = n.id_alumno) WHERE al.id_alumno = a.id_alumno AND n.id_tp = 6 
+SELECT DISTINCT ta.id_tp_alumno, a.id_alumno, a.legajo, a.nombre, a.apellido, c.nombre 'curso', c.seccion, tp.id_tp, tp.nombre 'tp',  ta.presentado , 
+	tp.fecha_entrega, ta.fecha_entregado, (SELECT n.nota FROM Alumnos al JOIN Notas n ON (al.id_alumno = n.id_alumno) WHERE al.id_alumno = a.id_alumno AND n.id_tp = 6 
 							AND n.id_nota =  (SELECT MAX(nota.id_nota) FROM Alumnos alum JOIN Notas nota ON (alum.id_alumno = nota.id_alumno) 
 												WHERE alum.id_alumno = a.id_alumno AND nota.id_tp = 6)) 'nota'
 FROM Tp_Alumnos ta JOIN Alumnos a ON (ta.id_alumno = a.id_alumno) 
@@ -189,21 +189,20 @@ EXEC pa__Editar_TFI_Sin_Fecha @presentado = ?, @nota = ?, @id = ?
 
 ------------------------------------------------------------------------
 CREATE proc pa_Eliminar_TP_TFI
-@id int,
-@tp int = 6
+@idAlumno int
 as
 UPDATE Tp_Alumnos SET visible = 0
-WHERE id_tp = @tp AND id_alumno = @id 
+WHERE id_tp = 6 AND id_alumno = @idAlumno 
 UPDATE Notas SET visible = 0
-WHERE id_tp = @tp AND id_alumno = @id 
+WHERE id_tp = 6 AND id_alumno = @idAlumno 
 
-EXEC pa_Eliminar_TP_TFI  @id = ?
+EXEC pa_Eliminar_TP_TFI  @idAlumno = ?
 --------------------------------------------------------------
 CREATE proc pa_Eliminar_TP
-@id int,
+@idAlumno int,
 @tp int
 as
 UPDATE Tp_Alumnos SET visible = 0
-WHERE id_tp = @tp AND id_alumno = @id 
+WHERE id_tp = @tp AND id_alumno = @idAlumno 
 
-EXEC pa_Eliminar_TP @tp = ?,  @id = ?
+EXEC pa_Eliminar_TP @tp = 1,  @idAlumno = 3

@@ -49,21 +49,23 @@
                                     </c:if>
                                 </td>
                                 <td>
-                                    <c:if test="${p.isEstadoBool()} && !${p.isX()}">
-                                        Aprobado <input type="radio" name="Estado${p.getLegajo()}" value="A"  checked="true">- 
-                                        No Aprobado<input type="radio" name="Estado${p.getLegajo()}" value="D">
-                                        <input type="radio"  id="invisible" name="Estado${p.getLegajo()}" value="N">
-                                    </c:if>
-                                    <c:if test="${!p.isEstadoBool()}  && !${p.isX()}">
-                                        Aprobado <input type="radio" name="Estado${p.getLegajo()}" value="A">- 
-                                        No Aprobado<input type="radio" name="Estado${p.getLegajo()}" value="D"  checked="true">
-                                        <input type="radio"  id="invisible" name="Estado${p.getLegajo()}" value="N">
-                                    </c:if>
-                                    <c:if test="${p.isX()}">
-                                        Aprobado <input type="radio" name="Estado${p.getLegajo()}" value="A">- 
-                                        No Aprobado<input type="radio" name="Estado${p.getLegajo()}" value="D">
-                                        <input type="radio"  id="invisible" name="Estado${p.getLegajo()}" value="N" checked="true">
-                                    </c:if>
+                                    <c:choose>
+                                        <c:when test="${p.isEstadoBool()} && !${p.isX()}"><!-- if condition -->
+                                            Aprobado <input type="radio" name="Estado${p.getLegajo()}" value="A"  checked="true">- 
+                                            No Aprobado<input type="radio" name="Estado${p.getLegajo()}" value="D">
+                                            <input type="radio"  id="invisible" name="Estado${p.getLegajo()}" value="N">
+                                        </c:when> 
+                                        <c:when test="!${p.isEstadoBool()}  && !${p.isX()}"><!-- else if condition -->
+                                            Aprobado <input type="radio" name="Estado${p.getLegajo()}" value="A">- 
+                                            No Aprobado<input type="radio" name="Estado${p.getLegajo()}" value="D"  checked="true">
+                                            <input type="radio"  id="invisible" name="Estado${p.getLegajo()}" value="N">
+                                        </c:when> 
+                                        <c:otherwise><!-- else condition -->
+                                            Aprobado <input type="radio" name="Estado${p.getLegajo()}" value="A">- 
+                                            No Aprobado<input type="radio" name="Estado${p.getLegajo()}" value="D">
+                                            <input type="radio"  id="invisible" name="Estado${p.getLegajo()}" value="N" checked="true">
+                                        </c:otherwise>    
+                                     </c:choose>
                                 </td>
                             </tr>
                         </c:forEach>

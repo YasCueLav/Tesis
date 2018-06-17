@@ -87,7 +87,7 @@ public class ModificarTPServlet extends HttpServlet {
                     TpsAlumnos t = g.obtenerTPsAlumnos(id);
                     
                     gt = new GestorTPsAlumnos();
-                    boolean ca = gt.EliminarTP(id , t.getIdTp());
+                    boolean ca = gt.EliminarTP(t.getIdAlumno() , t.getIdTp());
                     
                     if (ca) {
                         getServletContext().getRequestDispatcher("/Exito.jsp").forward(request, response);

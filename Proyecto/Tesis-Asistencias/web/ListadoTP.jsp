@@ -42,8 +42,8 @@
                     <tbody>
                         <c:forEach items="${alumno}" var="a">
                             <tr>
-                                <td> ${a.getLegajo()}</td>
-                                <th>${a.getApellido()} ${a.getNombre()}</th>
+                                <th> ${a.getLegajo()}</th>
+                                <td>${a.getApellido()} ${a.getNombre()}</td>
                                 <td>${a.getNombreCurso()}</td>
                                 <td>${a.getDivicionCurso()}</td>
                                 <td>${a.getTp()}</td>

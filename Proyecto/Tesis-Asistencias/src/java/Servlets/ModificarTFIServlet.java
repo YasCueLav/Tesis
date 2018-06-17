@@ -52,37 +52,33 @@ public class ModificarTFIServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int m = 0;
-        id = Integer.parseInt(request.getParameter("idAlumno"));
+        id = Integer.parseInt(request.getParameter("idTpAlumno"));
         m = Integer.parseInt(request.getParameter("tipo"));
         
         HttpSession mySession = request.getSession();
         boolean isLogged = (boolean) mySession.getAttribute("inicio");
         if (isLogged) {
             GestorTPsAlumnos gt;
+            GestorTPsAlumnos g;
+            TpsAlumnos t;
             switch (m){
                 case 1: 
+                    g =new GestorTPsAlumnos();
+                    t = g.obtenerTPsAlumnos(id);
+                    
                     gt = new GestorTPsAlumnos();
-                    ArrayList<VMAlumnoCursoTpConFecha> tp = gt.obtenerAlumnosCursoTpUno(id);
-
-                    for (VMAlumnoCursoTpConFecha vm : tp) {
-                        if(vm.getIdEstado() == 2){
-                            vm.setEstadoBool(true);
-                            vm.setX(false);
-                        } else if (vm.getIdEstado() == 3){
-                            vm.setEstadoBool(false);
-                            vm.setX(false);
-                        }else {
-                            vm.setX(true);
-                        }
-                    }
+                    ArrayList<VMAlumnoCursoTpConFecha> tp = gt.obtenerAlumnosCursoTfiUno(t.getIdAlumno());
 
                     request.setAttribute("tp", tp);
 
                     getServletContext().getRequestDispatcher("/ModificarTFI.jsp").forward(request, response);
                     break;
                 case 2:
+                    g =new GestorTPsAlumnos();
+                    t = g.obtenerTPsAlumnos(id);
+                    
                     gt = new GestorTPsAlumnos();
-                    boolean ca = gt.EliminarTFI(id );
+                    boolean ca = gt.EliminarTFI(t.getIdAlumno());
                     
                     if (ca) {
                         getServletContext().getRequestDispatcher("/Exito.jsp").forward(request, response);

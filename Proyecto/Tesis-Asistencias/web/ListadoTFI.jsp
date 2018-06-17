@@ -42,8 +42,8 @@
                     <tbody>
                         <c:forEach items="${alumno}" var="a">
                             <tr>
-                                <td> ${a.getLegajo()}</td>
-                                <th>${a.getApellido()} ${a.getNombre()}</th>
+                                <th> ${a.getLegajo()}</th>
+                                <td>${a.getApellido()} ${a.getNombre()}</tdh>
                                 <td>${a.getNombreCurso()}</td>
                                 <td>${a.getDivicionCurso()}</td>
                                 <td>${a.getTp()}</td>
@@ -51,8 +51,8 @@
                                 <td>${a.getfEntregado()}</td>
                                 <td>${a.getNota()}</td>
                                 <td>
-                                    <a id="Link" href="/Tesis-Asistencias/ModificarTFIServlet?idAlumno=${a.getIdAlumno()}&tipo=1">Modificar</a> /
-                                    <a id="Link" href="/Tesis-Asistencias/ModificarTFIServlet?idAlumno=${a.getIdAlumno()}&tipo=2">Eliminar</a>
+                                    <a id="Link" href="/Tesis-Asistencias/ModificarTFIServlet?idTpAlumno=${a.getIdTpAlumno()}&tipo=1">Modificar</a> /
+                                    <a id="Link" href="/Tesis-Asistencias/ModificarTFIServlet?idTpAlumno=${a.getIdTpAlumno()}&tipo=2">Eliminar</a>
                                 </td>
                             </tr>
                         </c:forEach>
