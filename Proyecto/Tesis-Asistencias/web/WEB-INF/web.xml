@@ -144,6 +144,10 @@
         <servlet-name>ModificarTPServlet</servlet-name>
         <servlet-class>Servlets.ModificarTPServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ModificarTFIServlet</servlet-name>
+        <servlet-class>Servlets.ModificarTFIServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
         <url-pattern>/Index</url-pattern>
@@ -287,6 +291,10 @@
     <servlet-mapping>
         <servlet-name>ModificarTPServlet</servlet-name>
         <url-pattern>/ModificarTPServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ModificarTFIServlet</servlet-name>
+        <url-pattern>/ModificarTFIServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

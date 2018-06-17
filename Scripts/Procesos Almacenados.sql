@@ -101,15 +101,16 @@ EXEC pa_Alumnos_Curso_TP_Uno @id = ?
 /*------------------------------------------------------------------------------------------------------------------------*/
 
 go
-CREATE PROC pa_Alumnos_Curso_TFI_Todo
+alter PROC pa_Alumnos_Curso_TFI_Todo
 as
 SELECT DISTINCT ta.id_tp_alumno, a.id_alumno, a.legajo, a.nombre, a.apellido, c.nombre 'curso', c.seccion, tp.id_tp, tp.nombre 'tp', tp.fecha_entrega, ta.fecha_entregado
 FROM Tp_Alumnos ta JOIN Alumnos a ON (ta.id_alumno = a.id_alumno) 
 					JOIN Trabajos_Practicos tp ON (ta.id_tp = tp.id_tp)
-					JOIN Cursos c ON (a.id_curso = c.id_curso)
+					JOIN Cursos c ON (a.id_curso = c.id_curso) 
 WHERE ta.visible = 1 AND a.visible = 1 AND tp.visible = 1 AND c.visible = 1 AND ta.id_tp = 6
 ORDER BY a.apellido, a.nombre, tp.nombre
 
+go
 EXEC pa_Alumnos_Curso_TFI_Todo
 /*------------------------------------------------------------------------------------------------------------------------*/
 

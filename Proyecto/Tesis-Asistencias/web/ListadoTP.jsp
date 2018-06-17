@@ -24,7 +24,7 @@
                     <tr>
                         <th scope="col" colspan="2">Alumno</th>
                         <th scope="col" colspan="2">Materia</th>
-                        <th scope="col" rowspan="2">TrabajoPractico</th>
+                        <th scope="col" rowspan="2">Trabajo Practico</th>
                         <th scope="col" colspan="2">Fecha</th>
                         <th scope="col" rowspan="2">Estado</th>
                         <th scope="col" rowspan="2"></th>

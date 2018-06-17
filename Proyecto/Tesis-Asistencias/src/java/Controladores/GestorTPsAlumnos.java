@@ -270,7 +270,7 @@ public class GestorTPsAlumnos {
                vm.setTp(query.getString("tp"));
                vm.setfEntrega(query.getDate("fecha_entrega"));
                vm.setfEntregado(query.getDate("fecha_entregado"));
-               vm.setEstado(query.getString("estado"));
+               vm.setNota(query.getInt("nota"));
                lista.add(vm);
            }
            query.close();

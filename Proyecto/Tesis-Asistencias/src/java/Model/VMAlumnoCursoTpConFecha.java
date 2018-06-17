@@ -22,6 +22,7 @@ public class VMAlumnoCursoTpConFecha extends VMAlumnosCursosCondiciones{
     boolean estadoBool;
     boolean presentado;
     boolean x;
+    int nota;
 
     public VMAlumnoCursoTpConFecha() {
     }
@@ -35,6 +36,14 @@ public class VMAlumnoCursoTpConFecha extends VMAlumnosCursosCondiciones{
         this.estado = estado;
     }
 
+    public int getNota() {
+        return nota;
+    }
+
+    public void setNota(int nota) {
+        this.nota = nota;
+    }
+    
     public void setX(boolean x) {
         this.x = x;
     }
