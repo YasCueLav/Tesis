@@ -14,13 +14,13 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-        <a class="nav-link" href="/Tesis-Asistencias/AltaAsistenciaServlet">Asistencia <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item"><%--AltaEntregaTPServlet   --%>
-        <a class="nav-link" href="/Tesis-Asistencias/EntregaTpDecisionServlet">Entrega TP <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/Tesis-Asistencias/AltaAsistenciaServlet">Asistencia<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/Tesis-Asistencias/AltaCalificacionServlet">Notas Parciales <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/Tesis-Asistencias/EntregaTpDecisionServlet">Entrega TP<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/Tesis-Asistencias/AltaCalificacionServlet">Notas Examenes<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/Tesis-Asistencias/ListadosAlumnosCondicinesServlet">Condicion<span class="sr-only">(current)</span></a>
@@ -41,11 +41,24 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="/Tesis-Asistencias/ListadoAsistenciasServlet">Asistencias</a>
-            <a class="dropdown-item" href="/Tesis-Asistencias/ListadoAlumnosServlet">Alumnos</a>
             <a class="dropdown-item" href="/Tesis-Asistencias/ListadoJustificativosServlet">Justificativos</a>
-            <a class="dropdown-item" href="/Tesis-Asistencias/ListadoCalificacionesServlet">Notas</a>
+            <a class="dropdown-item" href="/Tesis-Asistencias/ListadoAlumnosServlet">Alumnos</a>
+            <a class="dropdown-item" href="/Tesis-Asistencias/ListadoCalificacionesServlet">Notas Examenes</a>
+            
         </div>
         </li>
+        <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+          Consultas
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/Tesis-Asistencias/ListadoAsistenciasEspecificoServlet">Cantidad Ausencias</a>
+          <a class="dropdown-item" href="/Tesis-Asistencias/ListadoTPServlet">Entrega TP</a>
+          <a class="dropdown-item" href="/Tesis-Asistencias/ListadoTFIServlet">Entrega TFI</a>
+          <a class="dropdown-item" href="/Tesis-Asistencias/"></a>
+          <a class="dropdown-item" href=""></a>
+        </div>
+      </li>
         <%--<li class="nav-item">
                 <a class="nav-link" href="/Tesis-Asistencias/AltaJustificativo">Justificativo<span class="sr-only">(current)</span></a>
             </li>

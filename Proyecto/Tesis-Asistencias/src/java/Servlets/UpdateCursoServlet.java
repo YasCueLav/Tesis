@@ -5,10 +5,17 @@
  */
 package Servlets;
 
+import Controladores.GestorCondiciones;
 import Controladores.GestorCursos;
+import Controladores.GestorExamenes;
+import Controladores.GestorTPs;
+import Model.Condiciones;
 import Model.Cursos;
+import Model.TPs;
+import Model.VMTipoExamenExamen;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -107,7 +114,24 @@ public class UpdateCursoServlet extends HttpServlet {
         
         boolean cargo = gcu.modificarCurso(c);
         if (cargo) {
-            getServletContext().getRequestDispatcher("/Exito.jsp").forward(request, response);
+            GestorExamenes ge = new GestorExamenes();
+            ArrayList<VMTipoExamenExamen> examen = ge.obtenerTodosExamenes();
+            
+            GestorTPs gt = new GestorTPs();
+            ArrayList<TPs> tp = gt.obtenerTPs();
+
+            GestorCondiciones gc = new GestorCondiciones();
+            ArrayList<Condiciones> condicion = gc.obtenerCondiciones();
+            
+            GestorCursos g = new GestorCursos();
+            ArrayList<Cursos> curso = g.obtenerCursos();
+            
+            request.setAttribute("tp", tp);
+            request.setAttribute("examen", examen);
+            request.setAttribute("condicion", condicion);
+            request.setAttribute("curso", curso);
+            
+            getServletContext().getRequestDispatcher("/ListadoSoporte.jsp").forward(request, response);
         } else {
             getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
         }

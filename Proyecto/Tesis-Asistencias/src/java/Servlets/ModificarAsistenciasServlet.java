@@ -6,7 +6,9 @@
 package Servlets;
 
 import Controladores.GestorAsistencias;
+import Controladores.GestorCursos;
 import Model.Asistencias;
+import Model.Cursos;
 import Model.VMAsistenciaAlumnoCurso;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -108,7 +110,16 @@ public class ModificarAsistenciasServlet extends HttpServlet {
             }
             boolean cargo = ga.modificarAsistencias(a);
             if (cargo) {
-                getServletContext().getRequestDispatcher("/Exito.jsp").forward(request, response);
+                GestorAsistencias g = new GestorAsistencias();
+                ArrayList<VMAsistenciaAlumnoCurso> alumno = g.obtenerAsistenciasAlumnoCursoTodos();
+
+                GestorCursos gc = new GestorCursos();
+                ArrayList<Cursos> curso = gc.obtenerCursos();
+
+                request.setAttribute("curso", curso);
+                request.setAttribute("alumno", alumno);
+            
+                getServletContext().getRequestDispatcher("/ListadoAsistencias.jsp").forward(request, response);
             } else {
                 getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
             }

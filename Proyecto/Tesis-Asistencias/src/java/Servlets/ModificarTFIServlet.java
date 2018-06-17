@@ -5,9 +5,9 @@
  */
 package Servlets;
 
-import Controladores.GestorAsistencias;
-import Model.Justificativo;
-import Model.VMAsistenciaAlmunoJustificativo;
+import Controladores.GestorTPsAlumnos;
+import Model.TpsAlumnos;
+import Model.VMAlumnoCursoTpConFecha;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Yasmin
  */
-public class UpdateJustificativoServlet extends HttpServlet {
+public class ModificarTFIServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,10 +32,10 @@ public class UpdateJustificativoServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    int id=0;
+     int id=0;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        id = Integer.parseInt(request.getParameter("idAsistencia"));
+        id = Integer.parseInt(request.getParameter("idAlumno"));
         response.setContentType("text/html;charset=UTF-8");
     }
 
@@ -52,31 +52,39 @@ public class UpdateJustificativoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int m = 0;
-        m = Integer.parseInt(request.getParameter("estado"));
-        id = Integer.parseInt(request.getParameter("idAsistencia"));
+        id = Integer.parseInt(request.getParameter("idTpAlumno"));
+        m = Integer.parseInt(request.getParameter("tipo"));
         
         HttpSession mySession = request.getSession();
         boolean isLogged = (boolean) mySession.getAttribute("inicio");
         if (isLogged) {
-            GestorAsistencias ga;
+            GestorTPsAlumnos gt;
+            GestorTPsAlumnos g;
+            TpsAlumnos t;
             switch (m){
                 case 1: 
-                    ga = new GestorAsistencias();
-                    VMAsistenciaAlmunoJustificativo justi = ga.obtenerJustificativoAlumnoAsistenciasTodos(id);
+                    g =new GestorTPsAlumnos();
+                    t = g.obtenerTPsAlumnos(id);
                     
-                    request.setAttribute("justi", justi);
-                    
-                    getServletContext().getRequestDispatcher("/UpdateJustificativo.jsp").forward(request, response);
+                    gt = new GestorTPsAlumnos();
+                    ArrayList<VMAlumnoCursoTpConFecha> tp = gt.obtenerAlumnosCursoTfiUno(t.getIdAlumno());
+
+                    request.setAttribute("tp", tp);
+
+                    getServletContext().getRequestDispatcher("/ModificarTFI.jsp").forward(request, response);
                     break;
                 case 2:
-                    ga = new GestorAsistencias();
-                    boolean ca = ga.elimniarJustificativo(id);
+                    g =new GestorTPsAlumnos();
+                    t = g.obtenerTPsAlumnos(id);
+                    
+                    gt = new GestorTPsAlumnos();
+                    boolean ca = gt.EliminarTFI(t.getIdAlumno());
+                    
                     if (ca) {
                         getServletContext().getRequestDispatcher("/Exito.jsp").forward(request, response);
                     }else{
                         getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
                     }
-                    
                     break;
                     
                 default:
@@ -100,21 +108,40 @@ public class UpdateJustificativoServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //Justificativo
-        GestorAsistencias ga = new GestorAsistencias();
-        Justificativo j = new Justificativo();
-        j.setIdAsistencias(id);
-        j.setTexto(request.getParameter("Justificativo"));
+        GestorTPsAlumnos gt = new GestorTPsAlumnos();
+        VMAlumnoCursoTpConFecha tpa = new VMAlumnoCursoTpConFecha();
         
-        boolean cargo = ga.modificarJustificativo(j);
-        if (cargo) {
-            GestorAsistencias g = new GestorAsistencias();
-            ArrayList<VMAsistenciaAlmunoJustificativo> justi = g.obtenerJustificativoAlumnoAsistencias();
+        boolean cargar = false;
         
-            request.setAttribute("justi", justi);
+        tpa.setIdAlumno(id);
+        
+        int alum = Integer.parseInt(request.getParameter("IdAlumno"));
+        
+        String presentado = request.getParameter(""+alum);
+        if (presentado.equals("Si")) {
+            tpa.setPresentado(1);
+            tpa.setNota(Integer.parseInt(request.getParameter("Nota")));
+        } else if (presentado.equals("No")){
+            tpa.setPresentado(0);
+            tpa.setNota(0);
+        }
+        
+        String p = request.getParameter("FechaS");
+        if (p.equals("S")) {
+            tpa.setFechaS(request.getParameter("Fecha"));
+            cargar = gt.modificarTfiAlumnosConfecha(tpa);
+        } else if (p.equals("N")){
+            cargar = gt.modificarTfiAlumnos(tpa);
+        }
+        
+        if (cargar) {
+            GestorTPsAlumnos g = new GestorTPsAlumnos();
+            ArrayList<VMAlumnoCursoTpConFecha> alumno = g.obtenerAlumnosCursoTfiTodo();
             
-            getServletContext().getRequestDispatcher("/ListadoJustificativos.jsp").forward(request, response);
-        } else {
+            request.setAttribute("alumno", alumno);
+            
+            getServletContext().getRequestDispatcher("/ListadoTFI.jsp").forward(request, response);
+        }else{
             getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
         }
         processRequest(request, response);

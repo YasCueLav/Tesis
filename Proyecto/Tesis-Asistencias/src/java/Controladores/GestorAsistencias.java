@@ -7,6 +7,8 @@ package Controladores;
 
 import Model.Asistencias;
 import Model.Justificativo;
+import Model.ParametroCondicion;
+import Model.VMAlumnosCursoInasistencias;
 import Model.VMAlumnosCursos;
 import Model.VMAsistenciaAlmunoJustificativo;
 import Model.VMAsistenciaAlumnoCurso;
@@ -124,6 +126,33 @@ public class GestorAsistencias {
         try {
             Statement stmt = conn.createStatement();
             ResultSet query = stmt.executeQuery("SELECT a.id_asistencia,al.id_alumno,al.legajo,al.apellido,al.nombre,c.seccion,a.esta_Precente,a.obligatoria, a.fecha_registro FROM  Asistencias a JOIN Alumnos al ON (a.id_alumno = al.id_alumno) JOIN Cursos c ON (al.id_curso = c.id_curso) WHERE a.visible = 1 AND al.visible = 1 AND c.visible = 1");
+            while (query.next()) {
+                VMAsistenciaAlumnoCurso vm = new VMAsistenciaAlumnoCurso();
+                vm.setIdAsistencias(query.getInt("id_asistencia"));
+                vm.setIdAlumno(query.getInt("id_alumno"));
+                vm.setLegajo(query.getInt("legajo"));
+                vm.setApellido(query.getString("apellido"));
+                vm.setNombre(query.getString("nombre"));
+                vm.setDivicionCurso(query.getString("seccion"));
+                vm.setEstaPresente(query.getBoolean("esta_Precente"));
+                vm.setFechaObligatoria(query.getBoolean("obligatoria"));
+                vm.setFechaReguistro(query.getDate("fecha_registro"));
+                lista.add(vm);
+            }
+            query.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+        return lista;
+    }
+    
+    public ArrayList<VMAsistenciaAlumnoCurso> obtenerAsistenciasAlumnoCursoTodosXLegajo (int leg) {
+        ArrayList<VMAsistenciaAlumnoCurso> lista = new ArrayList<>();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet query = stmt.executeQuery("SELECT a.id_asistencia,al.id_alumno,al.legajo,al.apellido,al.nombre,c.seccion,a.esta_Precente,a.obligatoria, a.fecha_registro FROM  Asistencias a JOIN Alumnos al ON (a.id_alumno = al.id_alumno) JOIN Cursos c ON (al.id_curso = c.id_curso) WHERE a.visible = 1 AND al.visible = 1 AND c.visible = 1 AND al.legajo = "+leg);
             while (query.next()) {
                 VMAsistenciaAlumnoCurso vm = new VMAsistenciaAlumnoCurso();
                 vm.setIdAsistencias(query.getInt("id_asistencia"));
@@ -367,4 +396,33 @@ public class GestorAsistencias {
         return modifico;
     }
     
+//AUSENCIAS
+    public VMAlumnosCursoInasistencias obtenerCantidadAusencias( int id) {
+        VMAlumnosCursoInasistencias vm = new VMAlumnosCursoInasistencias();
+        try {
+            AccesoDatos ad = new AccesoDatos();
+            Connection con = DriverManager.getConnection(ad.getConn_string(), ad.getUser(), ad.getPass());
+            PreparedStatement stmt = con.prepareStatement("EXEC pa_Alumnos_Curso_Asistencias @idAlumno = ?");
+            stmt.setInt(1, id);
+            ResultSet query = stmt.executeQuery();
+                if(query.next()){
+                    vm.setIdAlumno(query.getInt("id_alumno"));
+                    vm.setLegajo(query.getInt("legajo"));
+                    vm.setNombre(query.getString("nombre"));
+                    vm.setApellido(query.getString("apellido"));
+                    vm.setNombreCurso(query.getString("curso"));
+                    vm.setDivicionCurso(query.getString("seccion"));
+                    vm.setTotalAsistencias(query.getInt("AsistenciasTomadas"));
+                    vm.setTotalAsistenciasObligatoria(query.getInt("AsistenciasTotalesObligatoria"));
+                    vm.setCantAusenciasG(query.getInt("InasistenciasTotales"));
+                    vm.setCantAusenciasO(query.getInt("InasistenciasTotalesObligatorias"));
+                }
+            query.close();
+            stmt.close();
+            con.close();
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+        return vm;
+    }
 }

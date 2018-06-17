@@ -5,9 +5,8 @@
  */
 package Servlets;
 
-import Controladores.GestorAsistencias;
-import Model.Justificativo;
-import Model.VMAsistenciaAlmunoJustificativo;
+import Controladores.GestorTPsAlumnos;
+import Model.VMAlumnoCursoTpConFecha;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -21,7 +20,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Yasmin
  */
-public class UpdateJustificativoServlet extends HttpServlet {
+public class ListadoTPServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,10 +31,8 @@ public class UpdateJustificativoServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    int id=0;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        id = Integer.parseInt(request.getParameter("idAsistencia"));
         response.setContentType("text/html;charset=UTF-8");
     }
 
@@ -51,38 +48,15 @@ public class UpdateJustificativoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int m = 0;
-        m = Integer.parseInt(request.getParameter("estado"));
-        id = Integer.parseInt(request.getParameter("idAsistencia"));
-        
         HttpSession mySession = request.getSession();
         boolean isLogged = (boolean) mySession.getAttribute("inicio");
         if (isLogged) {
-            GestorAsistencias ga;
-            switch (m){
-                case 1: 
-                    ga = new GestorAsistencias();
-                    VMAsistenciaAlmunoJustificativo justi = ga.obtenerJustificativoAlumnoAsistenciasTodos(id);
-                    
-                    request.setAttribute("justi", justi);
-                    
-                    getServletContext().getRequestDispatcher("/UpdateJustificativo.jsp").forward(request, response);
-                    break;
-                case 2:
-                    ga = new GestorAsistencias();
-                    boolean ca = ga.elimniarJustificativo(id);
-                    if (ca) {
-                        getServletContext().getRequestDispatcher("/Exito.jsp").forward(request, response);
-                    }else{
-                        getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
-                    }
-                    
-                    break;
-                    
-                default:
-                    getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
-                    break;
-            }
+            GestorTPsAlumnos gt = new GestorTPsAlumnos();
+            ArrayList<VMAlumnoCursoTpConFecha> alumno = gt.obtenerAlumnosCursoTpTodos();
+            
+            request.setAttribute("alumno", alumno);
+            
+            getServletContext().getRequestDispatcher("/ListadoTP.jsp").forward(request, response);
         } else {
             getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
         }
@@ -100,23 +74,6 @@ public class UpdateJustificativoServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //Justificativo
-        GestorAsistencias ga = new GestorAsistencias();
-        Justificativo j = new Justificativo();
-        j.setIdAsistencias(id);
-        j.setTexto(request.getParameter("Justificativo"));
-        
-        boolean cargo = ga.modificarJustificativo(j);
-        if (cargo) {
-            GestorAsistencias g = new GestorAsistencias();
-            ArrayList<VMAsistenciaAlmunoJustificativo> justi = g.obtenerJustificativoAlumnoAsistencias();
-        
-            request.setAttribute("justi", justi);
-            
-            getServletContext().getRequestDispatcher("/ListadoJustificativos.jsp").forward(request, response);
-        } else {
-            getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
-        }
         processRequest(request, response);
     }
 

@@ -5,10 +5,17 @@
  */
 package Servlets;
 
+import Controladores.GestorCondiciones;
+import Controladores.GestorCursos;
+import Controladores.GestorExamenes;
 import Controladores.GestorTPs;
+import Model.Condiciones;
+import Model.Cursos;
 import Model.TPs;
+import Model.VMTipoExamenExamen;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -99,14 +106,31 @@ public class UpdateTPServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         GestorTPs gt = new GestorTPs();
-        TPs tp = new TPs();
-        tp.setIdTp(id);
-        tp.setNombreTp(request.getParameter("TrabajoP"));
+        TPs tps = new TPs();
+        tps.setIdTp(id);
+        tps.setNombreTp(request.getParameter("TrabajoP"));
         
-        boolean c = gt.ModificarTP(tp);
+        boolean c = gt.ModificarTP(tps);
         
         if (c) {
-            getServletContext().getRequestDispatcher("/Exito.jsp").forward(request, response);
+            GestorExamenes ge = new GestorExamenes();
+            ArrayList<VMTipoExamenExamen> examen = ge.obtenerTodosExamenes();
+            
+            GestorTPs g = new GestorTPs();
+            ArrayList<TPs> tp = g.obtenerTPs();
+
+            GestorCondiciones gc = new GestorCondiciones();
+            ArrayList<Condiciones> condicion = gc.obtenerCondiciones();
+            
+            GestorCursos gcu = new GestorCursos();
+            ArrayList<Cursos> curso = gcu.obtenerCursos();
+            
+            request.setAttribute("tp", tp);
+            request.setAttribute("examen", examen);
+            request.setAttribute("condicion", condicion);
+            request.setAttribute("curso", curso);
+            
+            getServletContext().getRequestDispatcher("/ListadoSoporte.jsp").forward(request, response);
         }else{
             getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
         }

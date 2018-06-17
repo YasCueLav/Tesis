@@ -7,6 +7,7 @@ package Controladores;
 
 import Model.Estado;
 import Model.TpsAlumnos;
+import Model.VMAlumnoCursoTpConFecha;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -59,7 +60,7 @@ public class GestorTPsAlumnos {
     public TpsAlumnos obtenerTPsAlumnos (int id) {
         TpsAlumnos ta = new TpsAlumnos();
         try {
-            PreparedStatement stmt = conn.prepareStatement("select * from Alumnos where id_tp_alumno = ? and visible = 1");
+            PreparedStatement stmt = conn.prepareStatement("select * from Tp_Alumnos where visible = 1 and id_tp_alumno = ?");
             stmt.setInt(1, id);
             ResultSet query = stmt.executeQuery();
             if (query.next()) {
@@ -77,25 +78,6 @@ public class GestorTPsAlumnos {
         }
         return ta;
     }
-    
-//TERMINAR
-    /*public boolean modificarTPsAlumnos (TpsAlumnos ta) {
-        boolean modifico = true;
-        try {
-            PreparedStatement stmt = conn.prepareStatement("");
-            stmt.setInt(1, ta.getIdTpAlumno());
-            stmt.setInt(2, ta.getIdTp());
-            stmt.setInt(3, ta.getIdAlumno());
-            stmt.setBoolean(4, ta.isPresentado());
-            stmt.executeUpdate();
-            stmt.close();
-            conn.close();
-        } catch (SQLException ex) {
-            System.out.println(ex);
-            modifico = false;
-        }
-        return modifico;
-    }*/
     
     public boolean agregarTPsAlumnos (ArrayList<TpsAlumnos> tpsAlumnos) {
         boolean inserto = true;
@@ -175,5 +157,225 @@ public class GestorTPsAlumnos {
             System.out.println(e);
         }
         return lista;
+    }
+/*--------------------------------------------------------------------------------------------*/
+    public ArrayList<VMAlumnoCursoTpConFecha> obtenerAlumnosCursoTpTodos (){
+        ArrayList<VMAlumnoCursoTpConFecha> lista = new ArrayList<>();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet query = stmt.executeQuery("EXEC pa_Alumnos_Curso_TP_Todos");
+            while (query.next()){
+                VMAlumnoCursoTpConFecha vm = new VMAlumnoCursoTpConFecha();
+                vm.setIdTpAlumno(query.getInt("id_tp_alumno"));
+                vm.setIdAlumno(query.getInt("id_alumno"));
+                vm.setLegajo(query.getInt("legajo"));
+                vm.setNombre(query.getString("nombre"));
+                vm.setApellido(query.getString("apellido"));
+                vm.setNombreCurso(query.getString("curso"));
+                vm.setDivicionCurso(query.getString("seccion"));
+                vm.setTp(query.getString("tp"));
+                vm.setfEntrega(query.getDate("fecha_entrega"));
+                vm.setfEntregado(query.getDate("fecha_entregado"));
+                vm.setEstado(query.getString("estado"));
+                lista.add(vm);
+            }
+            query.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return lista;
+    }
+    
+    public ArrayList<VMAlumnoCursoTpConFecha> obtenerAlumnosCursoTpUno (int id){
+       ArrayList<VMAlumnoCursoTpConFecha> lista = new ArrayList<>();
+       try {
+           Statement stmt = conn.createStatement();
+           ResultSet query = stmt.executeQuery("EXEC pa_Alumnos_Curso_TP_Uno @id = "+ id);
+           while (query.next()){
+               VMAlumnoCursoTpConFecha vm = new VMAlumnoCursoTpConFecha();
+               vm.setIdTpAlumno(query.getInt("id_tp_alumno"));
+               vm.setIdAlumno(query.getInt("id_alumno"));
+               vm.setLegajo(query.getInt("legajo"));
+               vm.setNombre(query.getString("nombre"));
+               vm.setApellido(query.getString("apellido"));
+               vm.setNombreCurso(query.getString("curso"));
+               vm.setDivicionCurso(query.getString("seccion"));
+               vm.setTp(query.getString("tp"));
+               vm.setPresentado(query.getInt("presentado"));
+               vm.setfEntrega(query.getDate("fecha_entrega"));
+               vm.setfEntregado(query.getDate("fecha_entregado"));
+               vm.setIdEstado(query.getInt("id_estado"));
+               vm.setEstado(query.getString("estado"));
+               lista.add(vm);
+           }
+           query.close();
+           stmt.close();
+           conn.close();
+       } catch (SQLException e) {
+           System.out.println(e);
+       }
+       return lista;
+   }
+    
+    public boolean modificarTPsAlumnos (TpsAlumnos ta) {
+        boolean modifico = true;
+        try {
+            PreparedStatement stmt = conn.prepareStatement("EXEC pa__Editar_TP_Sin_Fecha @estado = ?, @presentado = ?, @id = ?");
+            stmt.setInt(1, ta.getIdEstado());
+            stmt.setBoolean(2, ta.isPresentado());
+            stmt.setInt(3, ta.getIdTpAlumno());
+            stmt.executeUpdate();
+            stmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            modifico = false;
+        }
+        return modifico;
+    }
+    
+    public boolean modificarTPsAlumnosConfecha (TpsAlumnos ta) {
+        boolean modifico = true;
+        try {
+            PreparedStatement stmt = conn.prepareStatement("EXEC pa__Editar_TP @fecha = ?, @id = ?, @estado = ?, @presentado = ?");
+            stmt.setString(1, ta.getFecha());
+            stmt.setInt(2, ta.getIdTpAlumno());
+            stmt.setInt(3, ta.getIdEstado());
+            stmt.setBoolean(4, ta.isPresentado());
+            stmt.executeUpdate();
+            stmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            modifico = false;
+        }
+        return modifico;
+    }
+/*--------------------------------------------------------------------------------------------*/
+    public ArrayList<VMAlumnoCursoTpConFecha> obtenerAlumnosCursoTfiTodo (){
+       ArrayList<VMAlumnoCursoTpConFecha> lista = new ArrayList<>();
+       try {
+           Statement stmt = conn.createStatement();
+           ResultSet query = stmt.executeQuery("EXEC pa_Alumnos_Curso_TFI_Todo");
+           while (query.next()){
+               VMAlumnoCursoTpConFecha vm = new VMAlumnoCursoTpConFecha();
+               vm.setIdTpAlumno(query.getInt("id_tp_alumno"));
+               vm.setIdAlumno(query.getInt("id_alumno"));
+               vm.setLegajo(query.getInt("legajo"));
+               vm.setNombre(query.getString("nombre"));
+               vm.setApellido(query.getString("apellido"));
+               vm.setNombreCurso(query.getString("curso"));
+               vm.setDivicionCurso(query.getString("seccion"));
+               vm.setTp(query.getString("tp"));
+               vm.setfEntrega(query.getDate("fecha_entrega"));
+               vm.setfEntregado(query.getDate("fecha_entregado"));
+               vm.setNota(query.getInt("nota"));
+               lista.add(vm);
+           }
+           query.close();
+           stmt.close();
+           conn.close();
+       } catch (SQLException e) {
+           System.out.println(e);
+       }
+       return lista;
+   }
+
+    public ArrayList<VMAlumnoCursoTpConFecha> obtenerAlumnosCursoTfiUno ( int id){
+        ArrayList<VMAlumnoCursoTpConFecha> lista = new ArrayList<>();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet query = stmt.executeQuery("EXEC pa_Alumnos_Curso_TFI_uno @idAlumno = "+ id);
+            while (query.next()){
+                VMAlumnoCursoTpConFecha vm = new VMAlumnoCursoTpConFecha();
+                vm.setIdTpAlumno(query.getInt("id_tp_alumno"));
+                vm.setIdAlumno(query.getInt("id_alumno"));
+                vm.setLegajo(query.getInt("legajo"));
+                vm.setNombre(query.getString("nombre"));
+                vm.setApellido(query.getString("apellido"));
+                vm.setNombreCurso(query.getString("curso"));
+                vm.setDivicionCurso(query.getString("seccion"));
+                vm.setTp(query.getString("tp"));
+                vm.setPresentado(query.getInt("presentado"));
+                vm.setfEntrega(query.getDate("fecha_entrega"));
+                vm.setfEntregado(query.getDate("fecha_entregado"));
+                vm.setNota(query.getInt("nota"));
+                lista.add(vm);
+            }
+            query.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return lista;
+    }
+    
+    public boolean modificarTfiAlumnos (VMAlumnoCursoTpConFecha ta) {
+        boolean modifico = true;
+        try {
+            PreparedStatement stmt = conn.prepareStatement("EXEC pa__Editar_TFI_Sin_Fecha @presentado = ?, @nota = ?, @id = ?");
+            stmt.setBoolean(1, ta.isPresentado());
+            stmt.setInt(2, ta.getNota());
+            stmt.setInt(3, ta.getIdAlumno());
+            stmt.executeUpdate();
+            stmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            modifico = false;
+        }
+        return modifico;
+    }
+    
+    public boolean modificarTfiAlumnosConfecha (VMAlumnoCursoTpConFecha ta) {
+        boolean modifico = true;
+        try {
+            PreparedStatement stmt = conn.prepareStatement("EXEC pa__Editar_TFI_Fecha @fecha = ?, @presentado = ?, @nota = ?, @id = ?");
+            stmt.setString(1, ta.getFechaS());
+            stmt.setBoolean(2, ta.isPresentado());
+            stmt.setInt(3, ta.getNota());
+            stmt.setInt(4, ta.getIdAlumno());
+            stmt.executeUpdate();
+            stmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            modifico = false;
+        }
+        return modifico;
+    }
+//--------------------------------------------------------------
+    public boolean EliminarTFI (int id) {
+        boolean modifico = true;
+        try {
+            PreparedStatement stmt = conn.prepareStatement("XEC pa_Eliminar_TP_TFI  @idAlumno = ?");
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+            stmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            modifico = false;
+        }
+        return modifico;
+    }
+    
+    public boolean EliminarTP (int id, int tp) {
+        boolean modifico = true;
+        try {
+            PreparedStatement stmt = conn.prepareStatement("EXEC pa_Eliminar_TP @tp = ?,  @idAlumno = ?");
+            stmt.setInt(1, tp);
+            stmt.setInt(2, id);
+            stmt.executeUpdate();
+            stmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            modifico = false;
+        }
+        return modifico;
     }
 }

@@ -124,6 +124,30 @@
         <servlet-name>ListadosAlumnosCondicinesServlet</servlet-name>
         <servlet-class>Servlets.ListadosAlumnosCondicinesServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ListadoAsistenciasEspecificoServlet</servlet-name>
+        <servlet-class>Servlets.ListadoAsistenciasEspecificoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AusenciasListadoAlumnoServlet</servlet-name>
+        <servlet-class>Servlets.AusenciasListadoAlumnoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListadoTPServlet</servlet-name>
+        <servlet-class>Servlets.ListadoTPServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListadoTFIServlet</servlet-name>
+        <servlet-class>Servlets.ListadoTFIServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ModificarTPServlet</servlet-name>
+        <servlet-class>Servlets.ModificarTPServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ModificarTFIServlet</servlet-name>
+        <servlet-class>Servlets.ModificarTFIServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
         <url-pattern>/Index</url-pattern>
@@ -247,6 +271,30 @@
     <servlet-mapping>
         <servlet-name>ListadosAlumnosCondicinesServlet</servlet-name>
         <url-pattern>/ListadosAlumnosCondicinesServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListadoAsistenciasEspecificoServlet</servlet-name>
+        <url-pattern>/ListadoAsistenciasEspecificoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AusenciasListadoAlumnoServlet</servlet-name>
+        <url-pattern>/AusenciasListadoAlumnoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListadoTPServlet</servlet-name>
+        <url-pattern>/ListadoTPServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListadoTFIServlet</servlet-name>
+        <url-pattern>/ListadoTFIServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ModificarTPServlet</servlet-name>
+        <url-pattern>/ModificarTPServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ModificarTFIServlet</servlet-name>
+        <url-pattern>/ModificarTFIServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
