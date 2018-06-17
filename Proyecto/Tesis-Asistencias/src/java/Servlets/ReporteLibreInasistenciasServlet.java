@@ -5,12 +5,14 @@
  */
 package Servlets;
 
+import Controladores.GestorAsistencias;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -27,8 +29,10 @@ public class ReporteLibreInasistenciasServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    int le =0;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        le = Integer.parseInt(request.getParameter("legajo"));
         response.setContentType("text/html;charset=UTF-8");
     }
 
@@ -44,6 +48,55 @@ public class ReporteLibreInasistenciasServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        try{
+            le = Integer.parseInt(request.getParameter("legajo"));
+            HttpSession mySession = request.getSession();
+            boolean isLogged = (boolean) mySession.getAttribute("inicio");
+            if (isLogged) {
+                if (le != 0) {
+//                    GestorAsistencias ga = new GestorAsistencias();
+//                    ArrayList<VMAsistenciaAlumnoCurso> alumno = ga.obtenerAsistenciasAlumnoCursoTodosXLegajo(le);
+
+//                    request.setAttribute("alumno", alumno);
+
+                    getServletContext().getRequestDispatcher("/ListadoAsistencias.jsp").forward(request, response);
+                }else{
+//                    GestorAsistencias ga = new GestorAsistencias();
+//                    ArrayList<VMAsistenciaAlumnoCurso> alumno = ga.obtenerAsistenciasAlumnoCursoTodos();
+
+//                    request.setAttribute("alumno", alumno);
+
+                    getServletContext().getRequestDispatcher("/ListadoAsistencias.jsp").forward(request, response);
+                }
+            } else {
+                getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
+            }
+        }
+        catch (NumberFormatException e){
+            System.out.println(e);
+        }
+        le = 0;
+        HttpSession mySession = request.getSession();
+        boolean isLogged = (boolean) mySession.getAttribute("inicio");
+        if (isLogged) {
+            if (le != 0) {
+//                GestorAsistencias ga = new GestorAsistencias();
+//                ArrayList<VMAsistenciaAlumnoCurso> alumno = ga.obtenerAsistenciasAlumnoCursoTodosXLegajo(le);
+                
+//                request.setAttribute("alumno", alumno);
+                
+                getServletContext().getRequestDispatcher("/ReporteLibreInasistencias.jsp").forward(request, response);
+            }else{
+//                GestorAsistencias ga = new GestorAsistencias();
+//                ArrayList<VMAsistenciaAlumnoCurso> alumno = ga.obtenerAsistenciasAlumnoCursoTodos();
+
+//                request.setAttribute("alumno", alumno);
+
+                getServletContext().getRequestDispatcher("/ReporteLibreInasistencias.jsp").forward(request, response);
+            }
+        } else {
+            getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
+        }
         processRequest(request, response);
     }
 
