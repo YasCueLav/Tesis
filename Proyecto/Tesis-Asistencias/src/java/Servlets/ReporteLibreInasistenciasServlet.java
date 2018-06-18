@@ -53,7 +53,7 @@ public class ReporteLibreInasistenciasServlet extends HttpServlet {
         boolean isLogged = (boolean) mySession.getAttribute("inicio");
         if (isLogged) {
             GestorAlumnos ga = new GestorAlumnos();
-            ArrayList <VMAlumnosCursosCondiciones> alumno = ga.obtenerAlumnoLibres();
+            ArrayList <VMAlumnosCursosCondiciones> alumno = ga.obtenerAlumnoLibresAusencia();
             
             request.setAttribute("alumno", alumno);
 

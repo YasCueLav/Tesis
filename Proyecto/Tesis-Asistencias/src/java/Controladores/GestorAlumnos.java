@@ -240,11 +240,123 @@ public class GestorAlumnos {
         return lista;
     }
 //Nuevo
-    public ArrayList<VMAlumnosCursosCondiciones> obtenerAlumnoLibres() {
+    public ArrayList<VMAlumnosCursosCondiciones> obtenerAlumnoLibresAusencia() {
         ArrayList<VMAlumnosCursosCondiciones> lista = new ArrayList<>();
         try {
             Statement stmt = conn.createStatement();
             ResultSet query = stmt.executeQuery("SELECT al.id_alumno, al.legajo, al.apellido, al.nombre, c.id_curso, c.nombre 'nombrecurso', c.seccion, co.id_condicion, co.condicion, al.fecha_ingreso  FROM Alumnos al join Cursos c ON (al.id_curso = c.id_curso) join Condiciones co ON (al.id_condicion = co.id_condicion) WHERE al.visible = 1 AND c.visible = 1 AND co.visible = 1  AND co.id_condicion = 5");
+            while (query.next()) {
+                VMAlumnosCursosCondiciones vw = new VMAlumnosCursosCondiciones();
+                vw.setIdAlumno(query.getInt("id_alumno"));
+                vw.setLegajo(query.getInt("legajo"));
+                vw.setApellido(query.getString("apellido"));
+                vw.setNombre(query.getString("nombre"));
+                vw.setIdCurso(query.getInt("id_curso"));
+                vw.setNombreCurso(query.getString("nombrecurso"));
+                vw.setDivicionCurso(query.getString("seccion"));
+                vw.setIdcondicion(query.getInt("id_condicion"));
+                vw.setCondicion(query.getString("condicion"));
+                vw.setFecha(query.getDate("fecha_ingreso"));
+                lista.add(vw);
+            }
+            query.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+        return lista;
+    }
+//Nuevo
+    public ArrayList<VMAlumnosCursosCondiciones> obtenerAlumnoLibreNoCumplimiento() {
+        ArrayList<VMAlumnosCursosCondiciones> lista = new ArrayList<>();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet query = stmt.executeQuery("SELECT al.id_alumno, al.legajo, al.apellido, al.nombre, c.id_curso, c.nombre 'nombrecurso', c.seccion, co.id_condicion, co.condicion, al.fecha_ingreso  FROM Alumnos al join Cursos c ON (al.id_curso = c.id_curso) join Condiciones co ON (al.id_condicion = co.id_condicion) WHERE al.visible = 1 AND c.visible = 1 AND co.visible = 1  AND co.id_condicion = 4");
+            while (query.next()) {
+                VMAlumnosCursosCondiciones vw = new VMAlumnosCursosCondiciones();
+                vw.setIdAlumno(query.getInt("id_alumno"));
+                vw.setLegajo(query.getInt("legajo"));
+                vw.setApellido(query.getString("apellido"));
+                vw.setNombre(query.getString("nombre"));
+                vw.setIdCurso(query.getInt("id_curso"));
+                vw.setNombreCurso(query.getString("nombrecurso"));
+                vw.setDivicionCurso(query.getString("seccion"));
+                vw.setIdcondicion(query.getInt("id_condicion"));
+                vw.setCondicion(query.getString("condicion"));
+                vw.setFecha(query.getDate("fecha_ingreso"));
+                lista.add(vw);
+            }
+            query.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+        return lista;
+    }
+//Nuevo
+    public ArrayList<VMAlumnosCursosCondiciones> obtenerAlumnoRegular() {
+        ArrayList<VMAlumnosCursosCondiciones> lista = new ArrayList<>();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet query = stmt.executeQuery("SELECT al.id_alumno, al.legajo, al.apellido, al.nombre, c.id_curso, c.nombre 'nombrecurso', c.seccion, co.id_condicion, co.condicion, al.fecha_ingreso  FROM Alumnos al join Cursos c ON (al.id_curso = c.id_curso) join Condiciones co ON (al.id_condicion = co.id_condicion) WHERE al.visible = 1 AND c.visible = 1 AND co.visible = 1  AND co.id_condicion = 3");
+            while (query.next()) {
+                VMAlumnosCursosCondiciones vw = new VMAlumnosCursosCondiciones();
+                vw.setIdAlumno(query.getInt("id_alumno"));
+                vw.setLegajo(query.getInt("legajo"));
+                vw.setApellido(query.getString("apellido"));
+                vw.setNombre(query.getString("nombre"));
+                vw.setIdCurso(query.getInt("id_curso"));
+                vw.setNombreCurso(query.getString("nombrecurso"));
+                vw.setDivicionCurso(query.getString("seccion"));
+                vw.setIdcondicion(query.getInt("id_condicion"));
+                vw.setCondicion(query.getString("condicion"));
+                vw.setFecha(query.getDate("fecha_ingreso"));
+                lista.add(vw);
+            }
+            query.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+        return lista;
+    }
+//Nuevo
+    public ArrayList<VMAlumnosCursosCondiciones> obtenerAlumnoAprobadoDirecto() {
+        ArrayList<VMAlumnosCursosCondiciones> lista = new ArrayList<>();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet query = stmt.executeQuery("SELECT al.id_alumno, al.legajo, al.apellido, al.nombre, c.id_curso, c.nombre 'nombrecurso', c.seccion, co.id_condicion, co.condicion, al.fecha_ingreso  FROM Alumnos al join Cursos c ON (al.id_curso = c.id_curso) join Condiciones co ON (al.id_condicion = co.id_condicion) WHERE al.visible = 1 AND c.visible = 1 AND co.visible = 1  AND co.id_condicion = 1");
+            while (query.next()) {
+                VMAlumnosCursosCondiciones vw = new VMAlumnosCursosCondiciones();
+                vw.setIdAlumno(query.getInt("id_alumno"));
+                vw.setLegajo(query.getInt("legajo"));
+                vw.setApellido(query.getString("apellido"));
+                vw.setNombre(query.getString("nombre"));
+                vw.setIdCurso(query.getInt("id_curso"));
+                vw.setNombreCurso(query.getString("nombrecurso"));
+                vw.setDivicionCurso(query.getString("seccion"));
+                vw.setIdcondicion(query.getInt("id_condicion"));
+                vw.setCondicion(query.getString("condicion"));
+                vw.setFecha(query.getDate("fecha_ingreso"));
+                lista.add(vw);
+            }
+            query.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+        return lista;
+    }
+//Nuevo
+    public ArrayList<VMAlumnosCursosCondiciones> obtenerAlumnoPromocionSistemas() {
+        ArrayList<VMAlumnosCursosCondiciones> lista = new ArrayList<>();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet query = stmt.executeQuery("SELECT al.id_alumno, al.legajo, al.apellido, al.nombre, c.id_curso, c.nombre 'nombrecurso', c.seccion, co.id_condicion, co.condicion, al.fecha_ingreso  FROM Alumnos al join Cursos c ON (al.id_curso = c.id_curso) join Condiciones co ON (al.id_condicion = co.id_condicion) WHERE al.visible = 1 AND c.visible = 1 AND co.visible = 1  AND co.id_condicion = 2");
             while (query.next()) {
                 VMAlumnosCursosCondiciones vw = new VMAlumnosCursosCondiciones();
                 vw.setIdAlumno(query.getInt("id_alumno"));
