@@ -164,6 +164,10 @@
         <servlet-name>ReporteLibreAplazoServlet</servlet-name>
         <servlet-class>Servlets.ReporteLibreAplazoServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ReportePromocionSUServlet</servlet-name>
+        <servlet-class>Servlets.ReportePromocionSUServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
         <url-pattern>/Index</url-pattern>
@@ -327,6 +331,10 @@
     <servlet-mapping>
         <servlet-name>ReporteLibreAplazoServlet</servlet-name>
         <url-pattern>/ReporteLibreAplazoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReportePromocionSUServlet</servlet-name>
+        <url-pattern>/ReportePromocionSUServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
