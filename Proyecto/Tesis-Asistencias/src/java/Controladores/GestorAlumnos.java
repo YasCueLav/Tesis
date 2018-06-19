@@ -2,6 +2,7 @@ package Controladores;
 
 import Model.Alumno;
 import Model.ParametroCondicion;
+import Model.VMALumnoCursoPromedios;
 import Model.VMAlumnosCursos;
 import Model.VMAlumnosCursosCondiciones;
 import java.sql.Connection;
@@ -379,5 +380,33 @@ public class GestorAlumnos {
         }
         return lista;
     }
+//Nuevo
+    public ArrayList<VMALumnoCursoPromedios> obtenerAlumnoDatosVs( int id) {
+        ArrayList<VMALumnoCursoPromedios> lista = new ArrayList<>();
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet query = stmt.executeQuery("EXEC pa_Alumnos_Datos @idAlumno = "+id);
+            while (query.next()) {
+                VMALumnoCursoPromedios vw = new VMALumnoCursoPromedios();
+                vw.setIdAlumno(query.getInt("Alumno"));
+                vw.setLegajo(query.getInt("legajo"));
+                vw.setApellido(query.getString("apellido"));
+                vw.setNombre(query.getString("nombre"));
+                vw.setIdCurso(query.getInt("Curso"));
+                vw.setNombreCurso(query.getString("nombreCurso"));
+                vw.setDivicionCurso(query.getString("divicion"));
+                vw.setAsistenciaTotal(query.getInt("AsistenciasTomadas"));
+                vw.setAistenciaAlumno(query.getInt("CantidadAsistio"));
+                vw.setNotaExamen(query.getDouble("NotaParcial"));
+                vw.setNotaTFI(query.getDouble("NotaTFI"));
+                lista.add(vw);
+            }
+            query.close();
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+        return lista;
+    }
 }
-

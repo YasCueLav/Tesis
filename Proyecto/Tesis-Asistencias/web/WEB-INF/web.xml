@@ -168,6 +168,18 @@
         <servlet-name>ReportePromocionSUServlet</servlet-name>
         <servlet-class>Servlets.ReportePromocionSUServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ListadoPromedioNotaServlet</servlet-name>
+        <servlet-class>Servlets.ListadoPromedioNotaServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListadoPorsentajeAsistenciasServlet</servlet-name>
+        <servlet-class>Servlets.ListadoPorsentajeAsistenciasServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListadoTPEntregadosServlet</servlet-name>
+        <servlet-class>Servlets.ListadoTPEntregadosServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
         <url-pattern>/Index</url-pattern>
@@ -335,6 +347,18 @@
     <servlet-mapping>
         <servlet-name>ReportePromocionSUServlet</servlet-name>
         <url-pattern>/ReportePromocionSUServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListadoPromedioNotaServlet</servlet-name>
+        <url-pattern>/ListadoPromedioNotaServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListadoPorsentajeAsistenciasServlet</servlet-name>
+        <url-pattern>/ListadoPorsentajeAsistenciasServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListadoTPEntregadosServlet</servlet-name>
+        <url-pattern>/ListadoTPEntregadosServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

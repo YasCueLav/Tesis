@@ -21,7 +21,6 @@
               <li class="page-item"><a class="page-link" href="/Tesis-Asistencias/?condi=4">Porsentajes Asistencias</a></li>
               <li class="page-item"><a class="page-link" href="/Tesis-Asistencias/?condi=4">Promedio Notas</a></li>
               <li class="page-item"><a class="page-link" href="/Tesis-Asistencias/?condi=4">TPs Entregados</a></li>
-              <%--<li class="page-item"><a class="page-link" href="#">Next</a></li>--%>
             </ul>
         </nav>
         <h1>Alumnos Libre por no Cumplimiento</h1>

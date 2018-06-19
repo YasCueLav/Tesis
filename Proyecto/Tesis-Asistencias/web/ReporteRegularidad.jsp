@@ -22,7 +22,6 @@
                   <li class="page-item"><a class="page-link" href="/Tesis-Asistencias/?condi=3">Porsentajes Asistencias</a></li>
                   <li class="page-item"><a class="page-link" href="/Tesis-Asistencias/?condi=3">Promedio Notas</a></li>
                   <li class="page-item"><a class="page-link" href="/Tesis-Asistencias/?condi=3">TPs Entregados</a></li>
-                  <%--<li class="page-item"><a class="page-link" href="#">Next</a></li>--%>
                 </ul>
             </nav>
                 

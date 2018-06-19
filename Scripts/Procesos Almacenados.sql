@@ -16,7 +16,7 @@ GO
 CREATE PROC pa_Parametros_Para_Condiciones
 @idAlumno int
 as
-SELECT DISTINCT (SELECT id_alumno from Alumnos where id_alumno = @idAlumno) 'Alumno',
+SELECT DISTINCT (SELECT id_alumno FROM Alumnos WHERE id_alumno = @idAlumno) 'Alumno',
 		(SELECT count(*) FROM Asistencias WHERE id_alumno = @idAlumno  AND visible = 1) 'AsistenciasTomadas', 
 		(SELECT count(*) FROM Asistencias WHERE id_alumno = @idAlumno AND esta_Precente = 'true' AND visible = 1) 'CantidadAsistio',
 		(SELECT n.nota FROM Notas n JOIN  Examenes e ON (n.id_examen = e.id_examen) 
@@ -24,9 +24,9 @@ SELECT DISTINCT (SELECT id_alumno from Alumnos where id_alumno = @idAlumno) 'Alu
 			WHERE n.visible = 1 AND e.visible = 1 AND te.visible = 1 AND n.id_examen = 1 AND te.id_tipo_examen = 1 AND n.id_alumno = @idAlumno) 'NotaParcial',
 		(SELECT count(*) FROM Trabajos_Practicos WHERE visible = 1) 'TpAEntregar',
 		(SELECT count(*) FROM Tp_Alumnos ta JOIN Trabajos_Practicos tp ON (ta.id_tp = tp.id_tp) 
-			WHERE  ta.visible = 1 AND  tp.visible = 1 /*AND tp.id_tp != 6 AND tp.fecha_entrega = ta.fecha_entregado*/ AND ta.id_alumno = @idAlumno) 'TpEntregadoEnFecha',
+			WHERE  ta.visible = 1 AND  tp.visible = 1 AND tp.id_tp != 6 AND tp.fecha_entrega = ta.fecha_entregado AND ta.id_alumno = @idAlumno) 'TpEntregadoEnFecha',
 		(SELECT DISTINCT n.nota FROM Tp_Alumnos ta JOIN Trabajos_Practicos tp ON (ta.id_tp = tp.id_tp) JOIN Notas n ON (n.id_tp = ta.id_tp) 
-			WHERE ta.visible = 1 AND  tp.visible = 1 AND n.visible = 1 AND tp.id_tp = 6  /*AND tp.fecha_entrega = ta.fecha_entregado*/ 
+			WHERE ta.visible = 1 AND  tp.visible = 1 AND n.visible = 1 AND tp.id_tp = 6  AND tp.fecha_entrega = ta.fecha_entregado 
 								AND ta.id_alumno = @idAlumno AND n.id_alumno = @idAlumno AND n.id_nota = (SELECT MAX(nota.id_nota) 
 									FROM Trabajos_Practicos tp JOIN Notas nota ON (nota.id_tp = tp.id_tp)  where tp.id_tp = 6 and nota.id_alumno = @idAlumno)) 'NotaTFI'
 FROM Asistencias asi JOIN Alumnos a ON (a.id_alumno = asi.id_alumno) 
@@ -37,7 +37,7 @@ FROM Asistencias asi JOIN Alumnos a ON (a.id_alumno = asi.id_alumno)
 							JOIN Trabajos_Practicos tp ON (ta.id_tp = tp.id_tp)
 WHERE asi.visible = 1 AND a.visible = 1 AND n.visible = 1 AND e.visible = 1 AND te.visible = 1 AND ta.visible = 1 AND tp.visible = 1
 
-EXEC pa_Parametros_Para_Condiciones @idAlumno = ?
+EXEC pa_Parametros_Para_Condiciones @idAlumno = 1
 /*------------------------------------------------------------------------------------------------------------------------*/
 
 go
@@ -206,3 +206,30 @@ UPDATE Tp_Alumnos SET visible = 0
 WHERE id_tp = @tp AND id_alumno = @idAlumno 
 
 EXEC pa_Eliminar_TP @tp = 1,  @idAlumno = 3
+/*------------------------------------------------------------------------------------------------------------------------*/
+go
+CREATE PROC pa_Alumnos_Datos
+@idAlumno int
+as
+SELECT DISTINCT (SELECT id_alumno FROM Alumnos WHERE id_alumno = @idAlumno) 'Alumno',
+				(SELECT legajo FROM Alumnos WHERE id_alumno = @idAlumno) 'legajo',
+				(SELECT nombre FROM Alumnos WHERE id_alumno = @idAlumno)'nombre',
+				(SELECT apellido FROM Alumnos WHERE id_alumno = @idAlumno)'apellido',
+				(SELECT cur.id_curso FROM Alumnos alum JOIN Cursos cur ON (alum.id_curso = cur.id_curso) WHERE alum.id_alumno = @idAlumno) 'Curso',
+				(SELECT cur.nombre FROM Alumnos alum JOIN Cursos cur ON (alum.id_curso = cur.id_curso) WHERE alum.id_alumno = @idAlumno) 'nombreCurso',
+				(SELECT cur.seccion FROM Alumnos alum JOIN Cursos cur ON (alum.id_curso = cur.id_curso) WHERE alum.id_alumno = @idAlumno) 'divicion',
+				(SELECT count(*) FROM Asistencias WHERE id_alumno = @idAlumno  AND visible = 1) 'AsistenciasTomadas', 
+				(SELECT count(*) FROM Asistencias WHERE id_alumno = @idAlumno AND esta_Precente = 'true' AND visible = 1) 'CantidadAsistio',
+				(SELECT DISTINCT n.nota FROM Tp_Alumnos ta JOIN Trabajos_Practicos tp ON (ta.id_tp = tp.id_tp) JOIN Notas n ON (n.id_tp = ta.id_tp) 
+					WHERE ta.visible = 1 AND  tp.visible = 1 AND n.visible = 1 AND tp.id_tp = 6  AND tp.fecha_entrega = ta.fecha_entregado 
+										AND ta.id_alumno = @idAlumno AND n.id_alumno = @idAlumno AND n.id_nota = (SELECT MAX(nota.id_nota) 
+											FROM Trabajos_Practicos tp JOIN Notas nota ON (nota.id_tp = tp.id_tp)  where tp.id_tp = 6 and nota.id_alumno = @idAlumno)) 'NotaTFI'
+FROM Asistencias asi JOIN Alumnos a ON (a.id_alumno = asi.id_alumno) 
+							JOIN Notas n ON (n.id_alumno = a.id_alumno) 
+							JOIN  Examenes e ON (n.id_examen = e.id_examen) 
+							JOIN Tipos_Examenes te ON (e.id_tipo_examen = te.id_tipo_examen)
+							JOIN Tp_Alumnos ta ON (a.id_alumno = ta.id_alumno )
+							JOIN Trabajos_Practicos tp ON (ta.id_tp = tp.id_tp)
+WHERE asi.visible = 1 AND a.visible = 1 AND n.visible = 1 AND e.visible = 1 AND te.visible = 1 AND ta.visible = 1 AND tp.visible = 1
+
+EXEC pa_Alumnos_Datos @idAlumno = 1

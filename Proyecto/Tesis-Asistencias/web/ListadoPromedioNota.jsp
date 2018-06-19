@@ -1,7 +1,8 @@
 <%-- 
-    Document   : ReporteAprobacionDirecta
-    Created on : 17/06/2018, 17:38:35
+    Document   : ListadoPromedioNota
+    Created on : 19/06/2018, 10:54:28
     Author     : Yasmin
+obtenerAlumnoDatosVs
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -10,36 +11,28 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Aprobacion Directa</title>
+        <title>Promedio Notas</title>
         <jsp:include page="Links.jsp"></jsp:include>
     </head>
     <body>
         <jsp:include page="Menu.jsp"></jsp:include>
         <div>
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                  <li class="page-item"><a class="page-link" href="/Tesis-Asistencias/ReporteAprobacionDirectaServlet">Listado</a></li>
-                  <li class="page-item"><a class="page-link" href="/Tesis-Asistencias/ListadoPromedioNotaServlet">Promedio Notas</a></li>
-                  <li class="page-item"><a class="page-link" href="/Tesis-Asistencias/ListadoPorsentajeAsistenciasServlet">Porsentajes Asistencias</a></li>
-                  <li class="page-item"><a class="page-link" href="/Tesis-Asistencias/ListadoTPEntregadosServlet">TPs Entregados</a></li>
-                </ul>
-            </nav>
-        
-            <h1>Alumnos con Aprobacion Directa</h1>
+            <h1>Promedio Notas</h1>
             
             <table class="table table-striped" name="tabla">
                 <thead>
                     <tr>
                         <th scope="col" colspan="2">Alumno</th>
                         <th scope="col" colspan="2">Materia</th>
-                        <th scope="col">Condicion</th>
+                        <th scope="col" colspan="3">Nota</th>
                     </tr>
                     <tr>
                         <th scope="col">legajo</th>
                         <th scope="col">Apellido, Nombre</th>
                         <th scope="col">Curso</th>
                         <th scope="col">Divicion</th>
-                        <th scope="col"></th>
+                        <th scope="col">Examen</th>
+                        <th scope="col">Promedio</th>
                     </tr>
                 </thead>
                 <div>
@@ -50,7 +43,8 @@
                                 <td>${a.getApellido()} ${a.getNombre()}</tdh>
                                 <td>${a.getNombreCurso()}</td>
                                 <td>${a.getDivicionCurso()}</td>
-                                <td>${a.getCondicion()}</td>
+                                <td>${a.get()}</td>
+                                <td>${a.get()}</td>
                             </tr>
                         </c:forEach>
                     </tbody>
