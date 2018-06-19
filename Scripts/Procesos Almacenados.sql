@@ -96,7 +96,7 @@ FROM Tp_Alumnos ta JOIN Alumnos a ON (ta.id_alumno = a.id_alumno)
 WHERE ta.visible = 1 AND a.visible = 1 AND tp.visible = 1 AND e.visible = 1 AND c.visible = 1 AND  ta.id_tp_alumno = @id
 ORDER BY a.apellido, a.nombre, tp.nombre 
 
-EXEC pa_Alumnos_Curso_TP_Uno @id = ?
+EXEC pa_Alumnos_Curso_TP_Uno @id = 1
 
 /*------------------------------------------------------------------------------------------------------------------------*/
 
@@ -133,7 +133,7 @@ WHERE ta.visible = 1 AND a.visible = 1 AND tp.visible = 1 AND c.visible = 1 AND 
 			(SELECT MAX(tpa.id_tp_alumno) FROM Tp_Alumnos tpa WHERE tpa.id_alumno = a.id_alumno AND tpa.id_tp = 6)
 ORDER BY a.apellido, a.nombre, tp.nombre
 
-EXEC pa_Alumnos_Curso_TFI_uno @idAlumno = ?
+EXEC pa_Alumnos_Curso_TFI_uno @idAlumno = 1
 
 /*------------------------------------------------------------------------------------------------------------------------*/
 
@@ -208,7 +208,7 @@ WHERE id_tp = @tp AND id_alumno = @idAlumno
 EXEC pa_Eliminar_TP @tp = 1,  @idAlumno = 3
 /*------------------------------------------------------------------------------------------------------------------------*/
 go
-alter PROC pa_Alumnos_Datos
+CREATE PROC pa_Alumnos_Datos
 @idAlumno int
 as
 SELECT DISTINCT (SELECT id_alumno FROM Alumnos WHERE id_alumno = @idAlumno) 'Alumno',
