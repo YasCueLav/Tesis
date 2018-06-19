@@ -14,7 +14,9 @@ public class VMALumnoCursoPromedios extends VMAlumnosCursos{
     double notaTFI;
     int asistenciaTotal;
     int aistenciaAlumno;
-
+    double promedioNotas;
+    double promedioAsis;
+    
     public VMALumnoCursoPromedios() {
     }
 
@@ -25,6 +27,23 @@ public class VMALumnoCursoPromedios extends VMAlumnosCursos{
         this.aistenciaAlumno = aistenciaAlumno;
     }
 
+    public double getPromedioNotas() {
+        return promedioNotas;
+    }
+
+    public double getPromedioAsis() {
+        return promedioAsis;
+    }
+
+    public void setPromedioNotas(double promedioNotas) {
+        this.promedioNotas = promedioNotas;
+    }
+
+    public void setPromedioAsis(double promedioAsis) {
+        this.promedioAsis = promedioAsis;
+    }
+
+    
     public double getNotaExamen() {
         return notaExamen;
     }

@@ -43,8 +43,8 @@ obtenerAlumnoDatosVs
                                 <td>${a.getApellido()} ${a.getNombre()}</tdh>
                                 <td>${a.getNombreCurso()}</td>
                                 <td>${a.getDivicionCurso()}</td>
-                                <td>${a.get()}</td>
-                                <td>${a.get()}</td>
+                                <td>${a.getNotaExamen()}</td>
+                                <td>${a.getPromedioNotas()}</td>
                             </tr>
                         </c:forEach>
                     </tbody>
