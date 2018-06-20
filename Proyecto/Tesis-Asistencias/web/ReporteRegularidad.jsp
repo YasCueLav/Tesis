@@ -18,10 +18,10 @@
         <div>
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
-                  <li class="page-item"><a class="page-link" href="/Tesis-Asistencias/ReporteRegularidadServlet">Listado</a></li>
-                  <li class="page-item"><a class="page-link" href="/Tesis-Asistencias/?condi=3">Porsentajes Asistencias</a></li>
-                  <li class="page-item"><a class="page-link" href="/Tesis-Asistencias/?condi=3">Promedio Notas</a></li>
-                  <li class="page-item"><a class="page-link" href="/Tesis-Asistencias/?condi=3">TPs Entregados</a></li>
+                  <li class="page-item"><a class="page-link" href="/Tesis-Asistencias/ReporteAprobacionDirectaServlet">Listado</a></li>
+                  <li class="page-item"><a class="page-link" href="/Tesis-Asistencias/ListadoPromedioNotaServlet?condi=3">Promedio Notas</a></li>
+                  <li class="page-item"><a class="page-link" href="/Tesis-Asistencias/ListadoPorsentajeAsistenciasServlet?condi=3">Porsentajes Asistencias</a></li>
+                  <li class="page-item"><a class="page-link" href="/Tesis-Asistencias/ListadoTPEntregadosServlet?condi=3">TPs Entregados</a></li>
                 </ul>
             </nav>
                 

@@ -381,25 +381,25 @@ public class GestorAlumnos {
         return lista;
     }
 //Nuevo
-    public ArrayList<VMALumnoCursoPromedios> obtenerAlumnoDatosVs( int id) {
-        ArrayList<VMALumnoCursoPromedios> lista = new ArrayList<>();
+    public VMALumnoCursoPromedios obtenerAlumnoDatosVs( int id) {
+        VMALumnoCursoPromedios lista = new VMALumnoCursoPromedios();
         try {
             Statement stmt = conn.createStatement();
             ResultSet query = stmt.executeQuery("EXEC pa_Alumnos_Datos @idAlumno = "+id);
             while (query.next()) {
-                VMALumnoCursoPromedios vw = new VMALumnoCursoPromedios();
-                vw.setIdAlumno(query.getInt("Alumno"));
-                vw.setLegajo(query.getInt("legajo"));
-                vw.setApellido(query.getString("apellido"));
-                vw.setNombre(query.getString("nombre"));
-                vw.setIdCurso(query.getInt("Curso"));
-                vw.setNombreCurso(query.getString("nombreCurso"));
-                vw.setDivicionCurso(query.getString("divicion"));
-                vw.setAsistenciaTotal(query.getInt("AsistenciasTomadas"));
-                vw.setAistenciaAlumno(query.getInt("CantidadAsistio"));
-                vw.setNotaExamen(query.getDouble("NotaParcial"));
-                vw.setNotaTFI(query.getDouble("NotaTFI"));
-                lista.add(vw);
+                //VMALumnoCursoPromedios vw = new VMALumnoCursoPromedios();
+                lista.setIdAlumno(query.getInt("Alumno"));
+                lista.setLegajo(query.getInt("legajo"));
+                lista.setApellido(query.getString("apellido"));
+                lista.setNombre(query.getString("nombre"));
+                lista.setIdCurso(query.getInt("Curso"));
+                lista.setNombreCurso(query.getString("nombreCurso"));
+                lista.setDivicionCurso(query.getString("divicion"));
+                lista.setAsistenciaTotal(query.getInt("AsistenciasTomadas"));
+                lista.setAistenciaAlumno(query.getInt("CantidadAsistio"));
+                lista.setNotaExamen(query.getDouble("NotaParcial"));
+                lista.setNotaTFI(query.getDouble("NotaTFI"));
+                //lista.add(vw);
             }
             query.close();
             stmt.close();
@@ -409,4 +409,32 @@ public class GestorAlumnos {
         }
         return lista;
     }
+    /*
+    public ArrayList<ParametroCondicion> obtenerParametrosCondiciones (int[] id) {
+        ArrayList<ParametroCondicion> lista = new ArrayList<>();
+        try {
+            PreparedStatement stmt = conn.prepareStatement("EXEC pa_Parametros_Para_Condiciones @idAlumno = ?");
+            for (int i = 0; i < id.length; i++) {
+                stmt.setInt(1, id[i]);
+                ResultSet query = stmt.executeQuery();
+                ParametroCondicion pc = new ParametroCondicion();
+                if (query.next()) {
+                    pc.setIdAlmno(query.getInt("Alumno"));
+                    pc.setTotalAsistencias(query.getInt("AsistenciasTomadas"));
+                    pc.setCantiAsistio(query.getInt("CantidadAsistio"));
+                    pc.setNotaParcial(query.getDouble("NotaParcial"));
+                    pc.setCantiTpAEntregar(query.getInt("TpAEntregar"));
+                    pc.setCantiTpEntregados(query.getInt("TpEntregadoEnFecha"));
+                    pc.setNotaTFI(query.getDouble("NotaTFI"));
+                    
+                }
+                query.close();
+                lista.add(pc);
+            }
+            stmt.close();
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    */
 }

@@ -5,12 +5,17 @@
  */
 package Servlets;
 
+import Controladores.GestorAlumnos;
+import Model.VMALumnoCursoPromedios;
+import Model.VMAlumnosCursosCondiciones;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -27,21 +32,11 @@ public class ListadoPorsentajeAsistenciasServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    int condi;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        condi = Integer.parseInt(request.getParameter("condi"));
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ListadoPorsentajeAsistenciasServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ListadoPorsentajeAsistenciasServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -56,6 +51,105 @@ public class ListadoPorsentajeAsistenciasServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        condi = Integer.parseInt(request.getParameter("condi"));
+        
+        HttpSession mySession = request.getSession();
+        boolean isLogged = (boolean) mySession.getAttribute("inicio");
+        if (isLogged) {
+            GestorAlumnos ga;
+            GestorAlumnos g;
+            ArrayList <VMAlumnosCursosCondiciones> alum;
+            ArrayList<VMALumnoCursoPromedios> alumno;
+            VMALumnoCursoPromedios p;
+            
+            switch (condi){
+                case 1: //APROBADO DIRECTO
+                    g = new GestorAlumnos();
+                    ga = new GestorAlumnos();
+                    
+                    alum = ga.obtenerAlumnoAprobadoDirecto();
+                    alumno = new ArrayList<>();
+                    
+                    p = new VMALumnoCursoPromedios();
+                    
+                    for (VMAlumnosCursosCondiciones vm : alum) {
+                        if(vm.getIdcondicion() == 1){
+                            p = ga.obtenerAlumnoDatosVs(vm.getIdAlumno());
+                            alumno.add(p);
+                        }
+                    }
+                    request.setAttribute("alumno", alumno);
+
+                    getServletContext().getRequestDispatcher("/ListadoPromedioNota.jsp").forward(request, response);
+                    break;
+                    
+                case 2://Promosion SU
+                    g = new GestorAlumnos();
+                    ga = new GestorAlumnos();
+                    
+                    alum = ga.obtenerAlumnoAprobadoDirecto();
+                    alumno = new ArrayList<>();
+                    
+                    p = new VMALumnoCursoPromedios();
+                    
+                    for (VMAlumnosCursosCondiciones vm : alum) {
+                        if(vm.getIdcondicion() == 2){
+                            p = ga.obtenerAlumnoDatosVs(vm.getIdAlumno());
+                            alumno.add(p);
+                        }
+                    }
+                    request.setAttribute("alumno", alumno);
+
+                    getServletContext().getRequestDispatcher("/ListadoPromedioNota.jsp").forward(request, response);
+                    break;
+                    
+                case 3://Regular
+                    g = new GestorAlumnos();
+                    ga = new GestorAlumnos();
+                    
+                    alum = ga.obtenerAlumnoAprobadoDirecto();
+                    alumno = new ArrayList<>();
+                    
+                    p = new VMALumnoCursoPromedios();
+                    
+                    for (VMAlumnosCursosCondiciones vm : alum) {
+                        if(vm.getIdcondicion() == 3){
+                            p = ga.obtenerAlumnoDatosVs(vm.getIdAlumno());
+                            alumno.add(p);
+                        }
+                    }
+                    request.setAttribute("alumno", alumno);
+
+                    getServletContext().getRequestDispatcher("/ListadoPromedioNota.jsp").forward(request, response);
+                    break;
+                    
+                case 4://Libre x No Cumplimeiento
+                    g = new GestorAlumnos();
+                    ga = new GestorAlumnos();
+                    
+                    alum = ga.obtenerAlumnoAprobadoDirecto();
+                    alumno = new ArrayList<>();
+                    
+                    p = new VMALumnoCursoPromedios();
+                    
+                    for (VMAlumnosCursosCondiciones vm : alum) {
+                        if(vm.getIdcondicion() == 4){
+                            p = ga.obtenerAlumnoDatosVs(vm.getIdAlumno());
+                            alumno.add(p);
+                        }
+                    }
+                    request.setAttribute("alumno", alumno);
+
+                    getServletContext().getRequestDispatcher("/ListadoPromedioNota.jsp").forward(request, response);
+                    break;
+                    
+                default:
+                    getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
+                    break;
+            }
+        } else {
+            getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
+        }
         processRequest(request, response);
     }
 

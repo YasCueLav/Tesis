@@ -7,6 +7,7 @@ package Servlets;
 
 import Controladores.GestorAlumnos;
 import Model.VMALumnoCursoPromedios;
+import Model.VMAlumnosCursosCondiciones;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -31,8 +32,10 @@ public class ListadoPromedioNotaServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    int condi =0;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        condi = Integer.parseInt(request.getParameter("condi"));
         response.setContentType("text/html;charset=UTF-8");
     }
 
@@ -48,15 +51,102 @@ public class ListadoPromedioNotaServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        condi = Integer.parseInt(request.getParameter("condi"));
+        
         HttpSession mySession = request.getSession();
         boolean isLogged = (boolean) mySession.getAttribute("inicio");
         if (isLogged) {
-            GestorAlumnos ga = new GestorAlumnos();
-            ArrayList<VMALumnoCursoPromedios> alumno = ga.obtenerAlumnoDatosVs(0);
+            GestorAlumnos ga;
+            GestorAlumnos g;
+            ArrayList <VMAlumnosCursosCondiciones> alum;
+            ArrayList<VMALumnoCursoPromedios> alumno;
+            VMALumnoCursoPromedios p;
             
-            request.setAttribute("alumno", alumno);
-            
-            getServletContext().getRequestDispatcher("/ListadoPromedioNota.jsp").forward(request, response);
+            switch (condi){
+                case 1: //APROBADO DIRECTO
+                    g = new GestorAlumnos();
+                    ga = new GestorAlumnos();
+                    
+                    alum = ga.obtenerAlumnoAprobadoDirecto();
+                    alumno = new ArrayList<>();
+                    
+                    p = new VMALumnoCursoPromedios();
+                    
+                    for (VMAlumnosCursosCondiciones vm : alum) {
+                        if(vm.getIdcondicion() == 1){
+                            p = ga.obtenerAlumnoDatosVs(vm.getIdAlumno());
+                            alumno.add(p);
+                        }
+                    }
+                    request.setAttribute("alumno", alumno);
+
+                    getServletContext().getRequestDispatcher("/ListadoPromedioNota.jsp").forward(request, response);
+                    break;
+                    
+                case 2://Promosion SU
+                    g = new GestorAlumnos();
+                    ga = new GestorAlumnos();
+                    
+                    alum = ga.obtenerAlumnoAprobadoDirecto();
+                    alumno = new ArrayList<>();
+                    
+                    p = new VMALumnoCursoPromedios();
+                    
+                    for (VMAlumnosCursosCondiciones vm : alum) {
+                        if(vm.getIdcondicion() == 2){
+                            p = ga.obtenerAlumnoDatosVs(vm.getIdAlumno());
+                            alumno.add(p);
+                        }
+                    }
+                    request.setAttribute("alumno", alumno);
+
+                    getServletContext().getRequestDispatcher("/ListadoPromedioNota.jsp").forward(request, response);
+                    break;
+                    
+                case 3://Regular
+                    g = new GestorAlumnos();
+                    ga = new GestorAlumnos();
+                    
+                    alum = ga.obtenerAlumnoAprobadoDirecto();
+                    alumno = new ArrayList<>();
+                    
+                    p = new VMALumnoCursoPromedios();
+                    
+                    for (VMAlumnosCursosCondiciones vm : alum) {
+                        if(vm.getIdcondicion() == 3){
+                            p = ga.obtenerAlumnoDatosVs(vm.getIdAlumno());
+                            alumno.add(p);
+                        }
+                    }
+                    request.setAttribute("alumno", alumno);
+
+                    getServletContext().getRequestDispatcher("/ListadoPromedioNota.jsp").forward(request, response);
+                    break;
+                    
+                case 4://Libre x No Cumplimeiento
+                    g = new GestorAlumnos();
+                    ga = new GestorAlumnos();
+                    
+                    alum = ga.obtenerAlumnoAprobadoDirecto();
+                    alumno = new ArrayList<>();
+                    
+                    p = new VMALumnoCursoPromedios();
+                    
+                    for (VMAlumnosCursosCondiciones vm : alum) {
+                        if(vm.getIdcondicion() == 4){
+                            p = ga.obtenerAlumnoDatosVs(vm.getIdAlumno());
+                            alumno.add(p);
+                        }
+                    }
+                    request.setAttribute("alumno", alumno);
+
+                    getServletContext().getRequestDispatcher("/ListadoPromedioNota.jsp").forward(request, response);
+                    break;
+                    
+                default:
+                    getServletContext().getRequestDispatcher("/Problema.jsp").forward(request, response);
+                    break;
+            }
         } else {
             getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
         }

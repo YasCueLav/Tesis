@@ -16,13 +16,13 @@
     <body>
         <jsp:include page="Menu.jsp"></jsp:include>
         <nav aria-label="Page navigation example">
-            <ul class="pagination">
-              <li class="page-item"><a class="page-link" href="/Tesis-Asistencias/ReportePromocionSUServlet">Listado</a></li>
-              <li class="page-item"><a class="page-link" href="/Tesis-Asistencias/?condi=4">Porsentajes Asistencias</a></li>
-              <li class="page-item"><a class="page-link" href="/Tesis-Asistencias/?condi=4">Promedio Notas</a></li>
-              <li class="page-item"><a class="page-link" href="/Tesis-Asistencias/?condi=4">TPs Entregados</a></li>
-            </ul>
-        </nav>
+                <ul class="pagination">
+                  <li class="page-item"><a class="page-link" href="/Tesis-Asistencias/ReporteAprobacionDirectaServlet">Listado</a></li>
+                  <li class="page-item"><a class="page-link" href="/Tesis-Asistencias/ListadoPromedioNotaServlet?condi=2">Promedio Notas</a></li>
+                  <li class="page-item"><a class="page-link" href="/Tesis-Asistencias/ListadoPorsentajeAsistenciasServlet?condi=2">Porsentajes Asistencias</a></li>
+                  <li class="page-item"><a class="page-link" href="/Tesis-Asistencias/ListadoTPEntregadosServlet?condi=2">TPs Entregados</a></li>
+                </ul>
+            </nav>
         <h1>Alumnos con Promocion de Sistemas de Unidades</h1>
         <div>
             <table class="table table-striped" name="tabla">

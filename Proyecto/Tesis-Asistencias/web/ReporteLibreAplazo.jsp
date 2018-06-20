@@ -15,14 +15,14 @@
     </head>
     <body>
         <jsp:include page="Menu.jsp"></jsp:include>
-        <nav aria-label="Page navigation example">
-            <ul class="pagination">
-              <li class="page-item"><a class="page-link" href="/Tesis-Asistencias/ReporteLibreAplazoServlet">Listado</a></li>
-              <li class="page-item"><a class="page-link" href="/Tesis-Asistencias/?condi=4">Porsentajes Asistencias</a></li>
-              <li class="page-item"><a class="page-link" href="/Tesis-Asistencias/?condi=4">Promedio Notas</a></li>
-              <li class="page-item"><a class="page-link" href="/Tesis-Asistencias/?condi=4">TPs Entregados</a></li>
-            </ul>
-        </nav>
+        <<nav aria-label="Page navigation example">
+                <ul class="pagination">
+                  <li class="page-item"><a class="page-link" href="/Tesis-Asistencias/ReporteAprobacionDirectaServlet">Listado</a></li>
+                  <li class="page-item"><a class="page-link" href="/Tesis-Asistencias/ListadoPromedioNotaServlet?condi=4">Promedio Notas</a></li>
+                  <li class="page-item"><a class="page-link" href="/Tesis-Asistencias/ListadoPorsentajeAsistenciasServlet?condi=4">Porsentajes Asistencias</a></li>
+                  <li class="page-item"><a class="page-link" href="/Tesis-Asistencias/ListadoTPEntregadosServlet?condi=4">TPs Entregados</a></li>
+                </ul>
+            </nav>
         <h1>Alumnos Libre por no Cumplimiento</h1>
         <div>
             <table class="table table-striped" name="tabla">
