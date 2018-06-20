@@ -24,7 +24,7 @@ obtenerAlumnoDatosVs
                     <tr>
                         <th scope="col" colspan="2">Alumno</th>
                         <th scope="col" colspan="2">Materia</th>
-                        <th scope="col" colspan="3">Nota</th>
+                        <th scope="col" colspan="2">Nota</th>
                     </tr>
                     <tr>
                         <th scope="col">legajo</th>

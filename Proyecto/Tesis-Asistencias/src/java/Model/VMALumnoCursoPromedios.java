@@ -5,6 +5,8 @@
  */
 package Model;
 
+import java.sql.Date;
+
 /**
  *
  * @author Yasmin
@@ -16,6 +18,8 @@ public class VMALumnoCursoPromedios extends VMAlumnosCursos{
     int aistenciaAlumno;
     double promedioNotas;
     double promedioAsis;
+    Date fechaEntrega;
+    Date fechaEntregado;
     
     public VMALumnoCursoPromedios() {
     }
@@ -27,6 +31,22 @@ public class VMALumnoCursoPromedios extends VMAlumnosCursos{
         this.aistenciaAlumno = aistenciaAlumno;
     }
 
+    public Date getFechaEntrega() {
+        return fechaEntrega;
+    }
+
+    public Date getFechaEntregado() {
+        return fechaEntregado;
+    }
+
+    public void setFechaEntrega(Date fechaEntrega) {
+        this.fechaEntrega = fechaEntrega;
+    }
+
+    public void setFechaEntregado(Date fechaEntregado) {
+        this.fechaEntregado = fechaEntregado;
+    }
+    
     public double getPromedioNotas() {
         return promedioNotas;
     }

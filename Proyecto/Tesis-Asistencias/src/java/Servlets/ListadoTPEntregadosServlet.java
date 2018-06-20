@@ -6,7 +6,9 @@
 package Servlets;
 
 import Controladores.GestorAlumnos;
+import Controladores.GestorTPsAlumnos;
 import Model.VMALumnoCursoPromedios;
+import Model.VMAlumnoCursoTpConFecha;
 import Model.VMAlumnosCursosCondiciones;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -58,19 +60,24 @@ public class ListadoTPEntregadosServlet extends HttpServlet {
         if (isLogged) {
             GestorAlumnos ga;
             GestorAlumnos g;
-            ArrayList <VMAlumnosCursosCondiciones> alum;
+            GestorTPsAlumnos gt;
+            
             ArrayList<VMALumnoCursoPromedios> alumno;
+            ArrayList <VMAlumnosCursosCondiciones> alum;
+            //ArrayList<VMAlumnoCursoTpConFecha> a;
             VMALumnoCursoPromedios p;
             
             switch (condi){
                 case 1: //APROBADO DIRECTO
                     g = new GestorAlumnos();
                     ga = new GestorAlumnos();
+                    gt = new GestorTPsAlumnos();
                     
                     alum = ga.obtenerAlumnoAprobadoDirecto();
                     alumno = new ArrayList<>();
                     
                     p = new VMALumnoCursoPromedios();
+                    //a = gt.obtenerAlumnosCursoTpTodos();
                     
                     for (VMAlumnosCursosCondiciones vm : alum) {
                         if(vm.getIdcondicion() == 1){
@@ -78,8 +85,16 @@ public class ListadoTPEntregadosServlet extends HttpServlet {
                             alumno.add(p);
                         }
                     }
+                    
                     request.setAttribute("alumno", alumno);
 
+                    /*
+                    GestorTPsAlumnos gt = new GestorTPsAlumnos();
+                    ArrayList<VMAlumnoCursoTpConFecha> 
+                    a = gt.obtenerAlumnosCursoTpTodos();
+            
+                    */
+                    
                     getServletContext().getRequestDispatcher("/ListadoPromedioNota.jsp").forward(request, response);
                     break;
                     
