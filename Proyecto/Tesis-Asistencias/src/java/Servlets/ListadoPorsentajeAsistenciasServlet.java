@@ -105,7 +105,7 @@ public class ListadoPorsentajeAsistenciasServlet extends HttpServlet {
                     g = new GestorAlumnos();
                     ga = new GestorAsistencias();
                     
-                    a = g.obtenerAlumnoAprobadoDirecto();
+                    a = g.obtenerAlumnoPromocionSistemas();
                     alumno = new ArrayList<>();
                     
                     p = new VMAlumnosCursoInasistencias();
@@ -135,7 +135,7 @@ public class ListadoPorsentajeAsistenciasServlet extends HttpServlet {
                     g = new GestorAlumnos();
                     ga = new GestorAsistencias();
                     
-                    a = g.obtenerAlumnoAprobadoDirecto();
+                    a = g.obtenerAlumnoRegular();
                     alumno = new ArrayList<>();
                     
                     p = new VMAlumnosCursoInasistencias();
@@ -165,7 +165,7 @@ public class ListadoPorsentajeAsistenciasServlet extends HttpServlet {
                     g = new GestorAlumnos();
                     ga = new GestorAsistencias();
                     
-                    a = g.obtenerAlumnoAprobadoDirecto();
+                    a = g.obtenerAlumnoLibreNoCumplimiento();
                     alumno = new ArrayList<>();
                     
                     p = new VMAlumnosCursoInasistencias();

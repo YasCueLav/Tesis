@@ -94,7 +94,7 @@ public class ListadoPromedioNotaServlet extends HttpServlet {
                     g = new GestorAlumnos();
                     ga = new GestorAlumnos();
                     
-                    alum = ga.obtenerAlumnoAprobadoDirecto();
+                    alum = ga.obtenerAlumnoPromocionSistemas();
                     alumno = new ArrayList<>();
                     
                     p = new VMALumnoCursoPromedios();
@@ -118,7 +118,7 @@ public class ListadoPromedioNotaServlet extends HttpServlet {
                     g = new GestorAlumnos();
                     ga = new GestorAlumnos();
                     
-                    alum = ga.obtenerAlumnoAprobadoDirecto();
+                    alum = ga.obtenerAlumnoRegular();
                     alumno = new ArrayList<>();
                     
                     p = new VMALumnoCursoPromedios();
@@ -142,7 +142,7 @@ public class ListadoPromedioNotaServlet extends HttpServlet {
                     g = new GestorAlumnos();
                     ga = new GestorAlumnos();
                     
-                    alum = ga.obtenerAlumnoAprobadoDirecto();
+                    alum = ga.obtenerAlumnoLibreNoCumplimiento();
                     alumno = new ArrayList<>();
                     
                     p = new VMALumnoCursoPromedios();

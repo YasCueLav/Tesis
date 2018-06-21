@@ -49,10 +49,10 @@
                                 <td> ${a.getApellido()}, ${a.getNombre()}</td>
                                 <td>${a.getNombreCurso()}</td>
                                 <td>${a.getDivicionCurso()}</td>
-                                <td>${a.getTotalAsistencias}</td>
-                                <td>${a.getTotalAsistenciasObligatoria}</td>
-                                <td>${a.getPromedioAsis}</td>
-                                <td>${a.getPromedioAsisObligatoria}</td>
+                                <td>${a.getTotalAsistencias()}</td>
+                                <td>${a.getTotalAsistenciasObligatoria()}</td>
+                                <td>${a.getPromedioAsis()}</td>
+                                <td>${a.getPromedioAsisObligatoria()}</td>
                             </tr>
                         </c:forEach>
                     </tbody>
