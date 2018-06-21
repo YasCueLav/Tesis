@@ -17,6 +17,8 @@ public class VMAlumnosCursoInasistencias extends VMAlumnosCursosCondiciones {
     int totalAsistenciasObligatoria;
     int cantAusenciasG;
     int cantAusenciasO;
+    double promedioAsis;
+    double promedioAsisObligatoria;
 
     public VMAlumnosCursoInasistencias() {
     }
@@ -29,6 +31,23 @@ public class VMAlumnosCursoInasistencias extends VMAlumnosCursosCondiciones {
         this.cantAusenciasO = cantAusenciasO;
     }
 
+    public double getPromedioAsis() {
+        return promedioAsis;
+    }
+
+    public double getPromedioAsisObligatoria() {
+        return promedioAsisObligatoria;
+    }
+
+    public void setPromedioAsis(double promedioAsis) {
+        this.promedioAsis = promedioAsis;
+    }
+
+    public void setPromedioAsisObligatoria(double promedioAsisObligatoria) {
+        this.promedioAsisObligatoria = promedioAsisObligatoria;
+    }
+
+    
     public int getIdAsistencias() {
         return idAsistencias;
     }

@@ -16,9 +16,13 @@ obtenerAlumnoDatosVs
     </head>
     <body>
         <jsp:include page="Menu.jsp"></jsp:include>
-        <div>
-            <h1>Promedio Notas</h1>
-            
+        <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                  <li class="page-item"><a class="page-link" href="/Tesis-Asistencias/${t.getTxt()}">Volver</a></li>
+                </ul>
+        </nav>
+        <h1>Promedio Notas</h1>
+        <div>    
             <table class="table table-striped" name="tabla">
                 <thead>
                     <tr>

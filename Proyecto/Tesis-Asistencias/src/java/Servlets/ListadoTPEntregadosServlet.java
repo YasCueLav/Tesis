@@ -7,6 +7,7 @@ package Servlets;
 
 import Controladores.GestorAlumnos;
 import Controladores.GestorTPsAlumnos;
+import Model.TextoSolitario;
 import Model.VMALumnoCursoPromedios;
 import Model.VMAlumnoCursoTpConFecha;
 import Model.VMAlumnosCursosCondiciones;
@@ -58,44 +59,38 @@ public class ListadoTPEntregadosServlet extends HttpServlet {
         HttpSession mySession = request.getSession();
         boolean isLogged = (boolean) mySession.getAttribute("inicio");
         if (isLogged) {
+            TextoSolitario t;
+            
             GestorAlumnos ga;
             GestorAlumnos g;
-            GestorTPsAlumnos gt;
             
             ArrayList<VMALumnoCursoPromedios> alumno;
             ArrayList <VMAlumnosCursosCondiciones> alum;
-            //ArrayList<VMAlumnoCursoTpConFecha> a;
             VMALumnoCursoPromedios p;
             
             switch (condi){
                 case 1: //APROBADO DIRECTO
                     g = new GestorAlumnos();
                     ga = new GestorAlumnos();
-                    gt = new GestorTPsAlumnos();
                     
                     alum = ga.obtenerAlumnoAprobadoDirecto();
                     alumno = new ArrayList<>();
                     
                     p = new VMALumnoCursoPromedios();
-                    //a = gt.obtenerAlumnosCursoTpTodos();
                     
                     for (VMAlumnosCursosCondiciones vm : alum) {
                         if(vm.getIdcondicion() == 1){
-                            p = ga.obtenerAlumnoDatosVs(vm.getIdAlumno());
+                            p = ga.obtenerAlumnoDatosVsTP(vm.getIdAlumno());
                             alumno.add(p);
                         }
                     }
                     
+                    t = new TextoSolitario("ReporteAprobacionDirectaServlet");
+                    request.setAttribute("t", t);
+                                        
                     request.setAttribute("alumno", alumno);
-
-                    /*
-                    GestorTPsAlumnos gt = new GestorTPsAlumnos();
-                    ArrayList<VMAlumnoCursoTpConFecha> 
-                    a = gt.obtenerAlumnosCursoTpTodos();
-            
-                    */
                     
-                    getServletContext().getRequestDispatcher("/ListadoPromedioNota.jsp").forward(request, response);
+                    getServletContext().getRequestDispatcher("/ListadoTPEntregados.jsp").forward(request, response);
                     break;
                     
                 case 2://Promosion SU
@@ -109,13 +104,17 @@ public class ListadoTPEntregadosServlet extends HttpServlet {
                     
                     for (VMAlumnosCursosCondiciones vm : alum) {
                         if(vm.getIdcondicion() == 2){
-                            p = ga.obtenerAlumnoDatosVs(vm.getIdAlumno());
+                            p = ga.obtenerAlumnoDatosVsTP(vm.getIdAlumno());
                             alumno.add(p);
                         }
                     }
+                    
+                    t = new TextoSolitario("ReportePromocionSUServlet");
+                    request.setAttribute("t", t);
+                    
                     request.setAttribute("alumno", alumno);
 
-                    getServletContext().getRequestDispatcher("/ListadoPromedioNota.jsp").forward(request, response);
+                    getServletContext().getRequestDispatcher("/ListadoTPEntregados.jsp").forward(request, response);
                     break;
                     
                 case 3://Regular
@@ -129,13 +128,17 @@ public class ListadoTPEntregadosServlet extends HttpServlet {
                     
                     for (VMAlumnosCursosCondiciones vm : alum) {
                         if(vm.getIdcondicion() == 3){
-                            p = ga.obtenerAlumnoDatosVs(vm.getIdAlumno());
+                            p = ga.obtenerAlumnoDatosVsTP(vm.getIdAlumno());
                             alumno.add(p);
                         }
                     }
+                    
+                    t = new TextoSolitario("ReporteRegularidadServlet");
+                    request.setAttribute("t", t);
+                    
                     request.setAttribute("alumno", alumno);
 
-                    getServletContext().getRequestDispatcher("/ListadoPromedioNota.jsp").forward(request, response);
+                    getServletContext().getRequestDispatcher("/ListadoTPEntregados.jsp").forward(request, response);
                     break;
                     
                 case 4://Libre x No Cumplimeiento
@@ -149,13 +152,17 @@ public class ListadoTPEntregadosServlet extends HttpServlet {
                     
                     for (VMAlumnosCursosCondiciones vm : alum) {
                         if(vm.getIdcondicion() == 4){
-                            p = ga.obtenerAlumnoDatosVs(vm.getIdAlumno());
+                            p = ga.obtenerAlumnoDatosVsTP(vm.getIdAlumno());
                             alumno.add(p);
                         }
                     }
+                    
+                    t = new TextoSolitario("ReporteLibreAplazoServlet");
+                    request.setAttribute("t", t);
+                    
                     request.setAttribute("alumno", alumno);
 
-                    getServletContext().getRequestDispatcher("/ListadoPromedioNota.jsp").forward(request, response);
+                    getServletContext().getRequestDispatcher("/ListadoTPEntregados.jsp").forward(request, response);
                     break;
                     
                 default:

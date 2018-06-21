@@ -6,6 +6,7 @@
 package Servlets;
 
 import Controladores.GestorAlumnos;
+import Model.TextoSolitario;
 import Model.VMALumnoCursoPromedios;
 import Model.VMAlumnosCursosCondiciones;
 import java.io.IOException;
@@ -56,6 +57,8 @@ public class ListadoPromedioNotaServlet extends HttpServlet {
         HttpSession mySession = request.getSession();
         boolean isLogged = (boolean) mySession.getAttribute("inicio");
         if (isLogged) {
+            TextoSolitario t;
+            
             GestorAlumnos ga;
             GestorAlumnos g;
             ArrayList <VMAlumnosCursosCondiciones> alum;
@@ -78,6 +81,10 @@ public class ListadoPromedioNotaServlet extends HttpServlet {
                             alumno.add(p);
                         }
                     }
+                    
+                    t = new TextoSolitario("ReporteAprobacionDirectaServlet");
+                    request.setAttribute("t", t);
+                    
                     request.setAttribute("alumno", alumno);
 
                     getServletContext().getRequestDispatcher("/ListadoPromedioNota.jsp").forward(request, response);
@@ -98,6 +105,10 @@ public class ListadoPromedioNotaServlet extends HttpServlet {
                             alumno.add(p);
                         }
                     }
+                    
+                    t = new TextoSolitario("ReportePromocionSUServlet");
+                    request.setAttribute("t", t);
+                    
                     request.setAttribute("alumno", alumno);
 
                     getServletContext().getRequestDispatcher("/ListadoPromedioNota.jsp").forward(request, response);
@@ -118,6 +129,10 @@ public class ListadoPromedioNotaServlet extends HttpServlet {
                             alumno.add(p);
                         }
                     }
+                    
+                    t = new TextoSolitario("ReporteRegularidadServlet");
+                    request.setAttribute("t", t);
+                    
                     request.setAttribute("alumno", alumno);
 
                     getServletContext().getRequestDispatcher("/ListadoPromedioNota.jsp").forward(request, response);
@@ -138,6 +153,10 @@ public class ListadoPromedioNotaServlet extends HttpServlet {
                             alumno.add(p);
                         }
                     }
+                    
+                    t = new TextoSolitario("ReporteLibreAplazoServlet");
+                    request.setAttribute("t", t);
+                    
                     request.setAttribute("alumno", alumno);
 
                     getServletContext().getRequestDispatcher("/ListadoPromedioNota.jsp").forward(request, response);

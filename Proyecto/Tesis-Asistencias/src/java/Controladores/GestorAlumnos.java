@@ -409,32 +409,32 @@ public class GestorAlumnos {
         }
         return lista;
     }
-    /*
-    public ArrayList<ParametroCondicion> obtenerParametrosCondiciones (int[] id) {
-        ArrayList<ParametroCondicion> lista = new ArrayList<>();
+//Nuevo
+    public VMALumnoCursoPromedios obtenerAlumnoDatosVsTP ( int id) {
+        VMALumnoCursoPromedios lista = new VMALumnoCursoPromedios();
         try {
-            PreparedStatement stmt = conn.prepareStatement("EXEC pa_Parametros_Para_Condiciones @idAlumno = ?");
-            for (int i = 0; i < id.length; i++) {
-                stmt.setInt(1, id[i]);
-                ResultSet query = stmt.executeQuery();
-                ParametroCondicion pc = new ParametroCondicion();
-                if (query.next()) {
-                    pc.setIdAlmno(query.getInt("Alumno"));
-                    pc.setTotalAsistencias(query.getInt("AsistenciasTomadas"));
-                    pc.setCantiAsistio(query.getInt("CantidadAsistio"));
-                    pc.setNotaParcial(query.getDouble("NotaParcial"));
-                    pc.setCantiTpAEntregar(query.getInt("TpAEntregar"));
-                    pc.setCantiTpEntregados(query.getInt("TpEntregadoEnFecha"));
-                    pc.setNotaTFI(query.getDouble("NotaTFI"));
-                    
-                }
-                query.close();
-                lista.add(pc);
+            Statement stmt = conn.createStatement();
+            ResultSet query = stmt.executeQuery("EXEC pa_Alumnos_Datos_TP  @idAlumno = "+id);
+            while (query.next()) {
+                lista.setIdAlumno(query.getInt("id_alumno"));
+                lista.setLegajo(query.getInt("legajo"));
+                lista.setApellido(query.getString("apellido"));
+                lista.setNombre(query.getString("nombre"));
+                lista.setIdCurso(query.getInt("Curso"));
+                lista.setNombreCurso(query.getString("nombreCurso"));
+                lista.setDivicionCurso(query.getString("seccion"));
+                lista.setTp(query.getString("tp"));
+                lista.setPresentado(query.getBoolean("presentado"));
+                lista.setFechaEntrega(query.getDate("fecha_entrega"));
+                lista.setFechaEntregado(query.getDate("fecha_entregado"));
+                lista.setEsatdo(query.getString("estado"));
             }
+            query.close();
             stmt.close();
             conn.close();
-        } catch (SQLException ex) {
-            System.out.println(ex);
+        } catch (SQLException e) {
+            System.out.println(e.toString());
         }
-    */
+        return lista;
+    }
 }

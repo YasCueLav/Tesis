@@ -20,6 +20,9 @@ public class VMALumnoCursoPromedios extends VMAlumnosCursos{
     double promedioAsis;
     Date fechaEntrega;
     Date fechaEntregado;
+    String tp;
+    String esatdo;
+    boolean presentado;
     
     public VMALumnoCursoPromedios() {
     }
@@ -31,6 +34,31 @@ public class VMALumnoCursoPromedios extends VMAlumnosCursos{
         this.aistenciaAlumno = aistenciaAlumno;
     }
 
+    public String getTp() {
+        return tp;
+    }
+
+    public String getEsatdo() {
+        return esatdo;
+    }
+
+    public boolean isPresentado() {
+        return presentado;
+    }
+
+    public void setTp(String tp) {
+        this.tp = tp;
+    }
+
+    public void setEsatdo(String esatdo) {
+        this.esatdo = esatdo;
+    }
+
+    public void setPresentado(boolean presentado) {
+        this.presentado = presentado;
+    }
+
+    
     public Date getFechaEntrega() {
         return fechaEntrega;
     }

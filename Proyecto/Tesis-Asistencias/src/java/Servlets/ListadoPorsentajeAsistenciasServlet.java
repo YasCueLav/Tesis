@@ -6,7 +6,10 @@
 package Servlets;
 
 import Controladores.GestorAlumnos;
+import Controladores.GestorAsistencias;
+import Model.TextoSolitario;
 import Model.VMALumnoCursoPromedios;
+import Model.VMAlumnosCursoInasistencias;
 import Model.VMAlumnosCursosCondiciones;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -56,91 +59,136 @@ public class ListadoPorsentajeAsistenciasServlet extends HttpServlet {
         HttpSession mySession = request.getSession();
         boolean isLogged = (boolean) mySession.getAttribute("inicio");
         if (isLogged) {
-            GestorAlumnos ga;
+            TextoSolitario t;
+            
+            GestorAsistencias ga;
             GestorAlumnos g;
-            ArrayList <VMAlumnosCursosCondiciones> alum;
-            ArrayList<VMALumnoCursoPromedios> alumno;
-            VMALumnoCursoPromedios p;
+            ArrayList <VMAlumnosCursosCondiciones> a;
+            ArrayList<VMAlumnosCursoInasistencias> alumno;
+            VMAlumnosCursoInasistencias p;
+            
+            double porcentajeT = 0;
+            double porcentajeO = 0;
             
             switch (condi){
                 case 1: //APROBADO DIRECTO
                     g = new GestorAlumnos();
-                    ga = new GestorAlumnos();
+                    ga = new GestorAsistencias();
                     
-                    alum = ga.obtenerAlumnoAprobadoDirecto();
+                    a = g.obtenerAlumnoAprobadoDirecto();
                     alumno = new ArrayList<>();
                     
-                    p = new VMALumnoCursoPromedios();
+                    p = new VMAlumnosCursoInasistencias();
                     
-                    for (VMAlumnosCursosCondiciones vm : alum) {
+                    for (VMAlumnosCursosCondiciones vm : a) {
                         if(vm.getIdcondicion() == 1){
-                            p = ga.obtenerAlumnoDatosVs(vm.getIdAlumno());
+                            p = ga.obtenerCantidadAusencias(vm.getIdAlumno());
+                            porcentajeT = (p.getCantAusenciasG() * 100)/p.getTotalAsistencias();
+                            porcentajeO = (p.getCantAusenciasO() * 100)/p.getTotalAsistenciasObligatoria();
+                            
+                            p.setPromedioAsis(porcentajeT);
+                            p.setPromedioAsis(porcentajeO);
+                            
                             alumno.add(p);
                         }
                     }
+                    
+                    t = new TextoSolitario("ReporteAprobacionDirectaServlet");
+                    request.setAttribute("t", t);
+                    
                     request.setAttribute("alumno", alumno);
-
-                    getServletContext().getRequestDispatcher("/ListadoPromedioNota.jsp").forward(request, response);
+                    
+                    getServletContext().getRequestDispatcher("/ListadoPorsentajeAsistencias.jsp").forward(request, response);
                     break;
                     
                 case 2://Promosion SU
                     g = new GestorAlumnos();
-                    ga = new GestorAlumnos();
+                    ga = new GestorAsistencias();
                     
-                    alum = ga.obtenerAlumnoAprobadoDirecto();
+                    a = g.obtenerAlumnoAprobadoDirecto();
                     alumno = new ArrayList<>();
                     
-                    p = new VMALumnoCursoPromedios();
+                    p = new VMAlumnosCursoInasistencias();
                     
-                    for (VMAlumnosCursosCondiciones vm : alum) {
+                    for (VMAlumnosCursosCondiciones vm : a) {
                         if(vm.getIdcondicion() == 2){
-                            p = ga.obtenerAlumnoDatosVs(vm.getIdAlumno());
+                            p = ga.obtenerCantidadAusencias(vm.getIdAlumno());
+                            porcentajeT = (p.getCantAusenciasG() * 100)/p.getTotalAsistencias();
+                            porcentajeO = (p.getCantAusenciasO() * 100)/p.getTotalAsistenciasObligatoria();
+                            
+                            p.setPromedioAsis(porcentajeT);
+                            p.setPromedioAsis(porcentajeO);
+                            
                             alumno.add(p);
                         }
                     }
+                    
+                    t = new TextoSolitario("ReportePromocionSUServlet");
+                    request.setAttribute("t", t);
+                    
                     request.setAttribute("alumno", alumno);
 
-                    getServletContext().getRequestDispatcher("/ListadoPromedioNota.jsp").forward(request, response);
+                    getServletContext().getRequestDispatcher("/ListadoPorsentajeAsistencias.jsp").forward(request, response);
                     break;
                     
                 case 3://Regular
                     g = new GestorAlumnos();
-                    ga = new GestorAlumnos();
+                    ga = new GestorAsistencias();
                     
-                    alum = ga.obtenerAlumnoAprobadoDirecto();
+                    a = g.obtenerAlumnoAprobadoDirecto();
                     alumno = new ArrayList<>();
                     
-                    p = new VMALumnoCursoPromedios();
+                    p = new VMAlumnosCursoInasistencias();
                     
-                    for (VMAlumnosCursosCondiciones vm : alum) {
+                    for (VMAlumnosCursosCondiciones vm : a) {
                         if(vm.getIdcondicion() == 3){
-                            p = ga.obtenerAlumnoDatosVs(vm.getIdAlumno());
+                            p = ga.obtenerCantidadAusencias(vm.getIdAlumno());
+                            porcentajeT = (p.getCantAusenciasG() * 100)/p.getTotalAsistencias();
+                            porcentajeO = (p.getCantAusenciasO() * 100)/p.getTotalAsistenciasObligatoria();
+                            
+                            p.setPromedioAsis(porcentajeT);
+                            p.setPromedioAsis(porcentajeO);
+                            
                             alumno.add(p);
                         }
                     }
+                    
+                    t = new TextoSolitario("ReporteRegularidadServlet");
+                    request.setAttribute("t", t);
+                    
                     request.setAttribute("alumno", alumno);
 
-                    getServletContext().getRequestDispatcher("/ListadoPromedioNota.jsp").forward(request, response);
+                    getServletContext().getRequestDispatcher("/ListadoPorsentajeAsistencias.jsp").forward(request, response);
                     break;
                     
                 case 4://Libre x No Cumplimeiento
                     g = new GestorAlumnos();
-                    ga = new GestorAlumnos();
+                    ga = new GestorAsistencias();
                     
-                    alum = ga.obtenerAlumnoAprobadoDirecto();
+                    a = g.obtenerAlumnoAprobadoDirecto();
                     alumno = new ArrayList<>();
                     
-                    p = new VMALumnoCursoPromedios();
+                    p = new VMAlumnosCursoInasistencias();
                     
-                    for (VMAlumnosCursosCondiciones vm : alum) {
+                    for (VMAlumnosCursosCondiciones vm : a) {
                         if(vm.getIdcondicion() == 4){
-                            p = ga.obtenerAlumnoDatosVs(vm.getIdAlumno());
+                            p = ga.obtenerCantidadAusencias(vm.getIdAlumno());
+                            porcentajeT = (p.getCantAusenciasG() * 100)/p.getTotalAsistencias();
+                            porcentajeO = (p.getCantAusenciasO() * 100)/p.getTotalAsistenciasObligatoria();
+                            
+                            p.setPromedioAsis(porcentajeT);
+                            p.setPromedioAsis(porcentajeO);
+                            
                             alumno.add(p);
                         }
                     }
+                    
+                    t = new TextoSolitario("ReporteLibreAplazoServlet");
+                    request.setAttribute("t", t);
+                    
                     request.setAttribute("alumno", alumno);
 
-                    getServletContext().getRequestDispatcher("/ListadoPromedioNota.jsp").forward(request, response);
+                    getServletContext().getRequestDispatcher("/ListadoPorsentajeAsistencias.jsp").forward(request, response);
                     break;
                     
                 default:

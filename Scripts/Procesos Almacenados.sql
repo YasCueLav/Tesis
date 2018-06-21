@@ -236,3 +236,22 @@ WHERE asi.visible = 1 AND a.visible = 1 AND n.visible = 1 AND e.visible = 1 AND 
 
 
 EXEC pa_Alumnos_Datos @idAlumno = 1
+/*------------------------------------------------------------------------------------------------------------------------*/
+go
+CREATE PROC pa_Alumnos_Datos_TP
+@idAlumno int
+as
+SELECT DISTINCT ta.id_tp_alumno, a.id_alumno, a.legajo, a.nombre, a.apellido, c.id_curso 'Curso' ,c.nombre 'nombreCurso', c.seccion, tp.nombre 'tp',
+			ta.presentado ,tp.fecha_entrega, ta.fecha_entregado, e.estado
+FROM Tp_Alumnos ta JOIN Alumnos a ON (ta.id_alumno = a.id_alumno) 
+					JOIN Trabajos_Practicos tp ON (ta.id_tp = tp.id_tp) 
+					JOIN Estados e ON (ta.id_estado = e.id_estado) 
+					JOIN Cursos c ON (a.id_curso = c.id_curso)
+WHERE ta.visible = 1 AND a.visible = 1 AND tp.visible = 1 AND e.visible = 1 AND c.visible = 1 AND  a.id_alumno = @idAlumno
+ORDER BY tp.nombre 
+
+EXEC pa_Alumnos_Datos_TP  @idAlumno = 1
+
+/*------------------------------------------------------------------------------------------------------------------------*/
+
+
