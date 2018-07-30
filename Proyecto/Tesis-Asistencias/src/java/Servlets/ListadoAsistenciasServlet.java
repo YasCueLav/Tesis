@@ -52,7 +52,6 @@ public class ListadoAsistenciasServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
         try{
             le = Integer.parseInt(request.getParameter("legajo"));
             HttpSession mySession = request.getSession();

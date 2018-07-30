@@ -17,11 +17,30 @@ public class VMAlumnosCursos {
     String nombre;
     String apellido;
     int idCurso;
+    String nombreCurso;
     String divicionCurso;
 
     public VMAlumnosCursos() {
     }
 
+    public VMAlumnosCursos(int idAlumno, int legajo, String nombre, String apellido, int idCurso, String nombreCurso, String divicionCurso) {
+        this.idAlumno = idAlumno;
+        this.legajo = legajo;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.idCurso = idCurso;
+        this.nombreCurso = nombreCurso;
+        this.divicionCurso = divicionCurso;
+    }
+
+    public String getNombreCurso() {
+        return nombreCurso;
+    }
+
+    public void setNombreCurso(String nombreCurso) {
+        this.nombreCurso = nombreCurso;
+    }
+    
     public int getIdAlumno() {
         return idAlumno;
     }

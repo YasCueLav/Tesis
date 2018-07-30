@@ -14,6 +14,6 @@
     </head>
     <body>
         <jsp:include page="Menu.jsp"></jsp:include>
-        <h1>Bien</h1>
+        <h1></h1>
     </body>
 </html>

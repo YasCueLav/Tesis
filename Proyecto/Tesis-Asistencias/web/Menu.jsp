@@ -55,8 +55,17 @@
           <a class="dropdown-item" href="/Tesis-Asistencias/ListadoAsistenciasEspecificoServlet">Cantidad Ausencias</a>
           <a class="dropdown-item" href="/Tesis-Asistencias/ListadoTPServlet">Entrega TP</a>
           <a class="dropdown-item" href="/Tesis-Asistencias/ListadoTFIServlet">Entrega TFI</a>
-          <a class="dropdown-item" href="/Tesis-Asistencias/"></a>
-          <a class="dropdown-item" href=""></a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+          Reportes
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/Tesis-Asistencias/ReporteAprobacionDirectaServlet">Aprobado Directo</a>
+          <a class="dropdown-item" href="/Tesis-Asistencias/ReporteRegularidadServlet">Regular</a>
+          <a class="dropdown-item" href="/Tesis-Asistencias/ReporteLibreAplazoServlet">Libre x Aplazo</a>
+          <a class="dropdown-item" href="/Tesis-Asistencias/ReporteLibreInasistenciasServlet">Libre x Ausencias</a>
         </div>
       </li>
         <%--<li class="nav-item">

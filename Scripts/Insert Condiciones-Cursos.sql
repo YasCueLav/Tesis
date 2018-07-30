@@ -23,23 +23,23 @@ INSERT INTO Cursos
 VALUES ('Integración','1v2',1)
 
 ----INSERT TPs----
-INSERT INTO Trabajos_Practicos (nombre, visible)
-VALUES ('Trabajo Practico 1',1)
+INSERT INTO Trabajos_Practicos (nombre, fecha_entrega, visible)
+VALUES ('Trabajo Practico 1','2018/04/14' ,1)
 
-INSERT INTO Trabajos_Practicos (nombre, visible)
-VALUES ('Trabajo Practico 2',1)
+INSERT INTO Trabajos_Practicos (nombre, fecha_entrega, visible)
+VALUES ('Trabajo Practico 2','2018/04/14' ,1)
 
-INSERT INTO Trabajos_Practicos (nombre, visible)
-VALUES ('Trabajo Practico 3',1)
+INSERT INTO Trabajos_Practicos (nombre, fecha_entrega, visible)
+VALUES ('Trabajo Practico 3','2018/04/14' ,1)
 
-INSERT INTO Trabajos_Practicos (nombre, visible)
-VALUES ('Trabajo Practico 4',1)
+INSERT INTO Trabajos_Practicos (nombre, fecha_entrega, visible)
+VALUES ('Trabajo Practico 4','2018/04/14' ,1)
 
-INSERT INTO Trabajos_Practicos (nombre, visible)
-VALUES ('Trabajo Practico 5',1)
+INSERT INTO Trabajos_Practicos (nombre, fecha_entrega, visible)
+VALUES ('Trabajo Practico 5','2018/04/14' ,1)
 
-INSERT INTO Trabajos_Practicos (nombre, visible)
-VALUES ('Trabajo Practico Final Integrador',1)
+INSERT INTO Trabajos_Practicos (nombre, fecha_entrega, visible)
+VALUES ('Trabajo Practico Final Integrador','2018/04/14' ,1)
 
 ----INSERT Tipo Examen----
 INSERT INTO Tipos_Examenes
@@ -48,7 +48,7 @@ VALUES ('Parcial',1)
 INSERT INTO Tipos_Examenes
 VALUES ('Recuperatorio',1)
 
-----INSERT Tipo Examen----
+----INSERT Examenes----
 SET LANGUAGE 'Español'
 INSERT INTO Examenes (id_tipo_examen,examen,fecha_examen,visible)
 VALUES (1,'Siestemas de Unidades','11/05/2018',1)

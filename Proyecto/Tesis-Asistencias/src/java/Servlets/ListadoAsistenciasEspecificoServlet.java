@@ -37,8 +37,10 @@ public class ListadoAsistenciasEspecificoServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    int le =0;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        le = Integer.parseInt(request.getParameter("legajo"));
         response.setContentType("text/html;charset=UTF-8");
     }
 
@@ -54,25 +56,102 @@ public class ListadoAsistenciasEspecificoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        try{
+            le = Integer.parseInt(request.getParameter("legajo"));
+            HttpSession mySession = request.getSession();
+            boolean isLogged = (boolean) mySession.getAttribute("inicio");
+            if (isLogged) {
+                GestorAsistencias ga;
+                GestorAlumnos g;
+                if (le != 0) {
+                    ga = new GestorAsistencias();
+                    g = new GestorAlumnos();    
+
+                    ArrayList<Alumno> a;
+                    if (le != 0) {
+                        a = g.obtenerAlumnosxLegajo(le);
+                    } else{
+                        a = g.obtenerAlumnos();
+                    }
+
+                    ArrayList<VMAlumnosCursoInasistencias> alumno = new ArrayList<>();
+
+                    for (Alumno vm : a) {
+                        VMAlumnosCursoInasistencias p = ga.obtenerCantidadAusencias(vm.getIdAlumno());
+                        alumno.add(p);
+                    }
+
+                    request.setAttribute("alumno", alumno);
+
+                    getServletContext().getRequestDispatcher("/ListadoAsistenciasEspecifico.jsp").forward(request, response);
+                }else{//Ya
+                    ga = new GestorAsistencias();
+                    g = new GestorAlumnos();
+                    
+                    ArrayList<Alumno> a = g.obtenerAlumnos();
+                    ArrayList<VMAlumnosCursoInasistencias> alumno = new ArrayList<>();
+
+                    for (Alumno vm : a) {
+                        VMAlumnosCursoInasistencias p = ga.obtenerCantidadAusencias(vm.getIdAlumno());
+                        alumno.add(p);
+                    }
+                    request.setAttribute("alumno", alumno);
+
+                    getServletContext().getRequestDispatcher("/ListadoAsistenciasEspecifico.jsp").forward(request, response);
+                }
+            } else {
+                getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
+            }
+        }
+        catch (NumberFormatException e){
+            System.out.println(e);
+        }
+        le = 0;
         HttpSession mySession = request.getSession();
         boolean isLogged = (boolean) mySession.getAttribute("inicio");
         if (isLogged) {
-            GestorAsistencias ga = new GestorAsistencias();
-            
-            GestorAlumnos g = new GestorAlumnos();
-            ArrayList<Alumno> a = g.obtenerAlumnos();
-            ArrayList<VMAlumnosCursoInasistencias> alumno = new ArrayList<>();
-            
-            for (Alumno vm : a) {
-                VMAlumnosCursoInasistencias p = ga.obtenerCantidadAusencias(vm.getIdAlumno());
-                alumno.add(p);
-            }
-            request.setAttribute("alumno", alumno);
-            
-            getServletContext().getRequestDispatcher("/ListadoAsistenciasEspecifico.jsp").forward(request, response);
+            GestorAsistencias ga;
+            GestorAlumnos g;
+            if (le != 0) {
+                ga = new GestorAsistencias();
+                g = new GestorAlumnos();    
+
+                ArrayList<Alumno> a;
+                if (le != 0) {
+                    a = g.obtenerAlumnosxLegajo(le);
+                } else{
+                    a = g.obtenerAlumnos();
+                }
+
+                ArrayList<VMAlumnosCursoInasistencias> alumno = new ArrayList<>();
+
+                for (Alumno vm : a) {
+                    VMAlumnosCursoInasistencias p = ga.obtenerCantidadAusencias(vm.getIdAlumno());
+                    alumno.add(p);
+                }
+
+                request.setAttribute("alumno", alumno);
+
+                getServletContext().getRequestDispatcher("/ListadoAsistenciasEspecifico.jsp").forward(request, response);
+            }else{//ya
+                ga = new GestorAsistencias();
+                g = new GestorAlumnos();
+                
+                ArrayList<Alumno> a = g.obtenerAlumnos();
+                ArrayList<VMAlumnosCursoInasistencias> alumno = new ArrayList<>();
+
+                for (Alumno vm : a) {
+                    VMAlumnosCursoInasistencias p = ga.obtenerCantidadAusencias(vm.getIdAlumno());
+                    alumno.add(p);
+                }
+                request.setAttribute("alumno", alumno);
+
+                getServletContext().getRequestDispatcher("/ListadoAsistenciasEspecifico.jsp").forward(request, response);
+                }
         } else {
             getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
-        }        processRequest(request, response);
+        }
+        processRequest(request, response);
     }
 
     /**

@@ -107,20 +107,26 @@ public class ListadosAlumnosCondicinesServlet extends HttpServlet {
             entregadosTP = pc.getCantiTpEntregados();
             notaTFI = pc.getNotaTFI();
             
-            if(todosTP >= entregadosTP){
+            if(todosTP <= entregadosTP){
                 if(asistencia >= 80){
                     if(notaParcial >= 8){
                         if (notaTFI >= 8){
                             cargo[j] = gc.modificarCondicionAlumno(1, alu);
                         }
-                    } else if (notaParcial >= 7) {
+                    } //else 
+                    if (notaParcial >= 7) {
                         if (notaTFI >= 7){
                             cargo[j] = gc.modificarCondicionAlumno(2, alu);
                         }
-                    } else if (notaParcial >= 4) {
+                    } //else 
+                    if (notaParcial >= 4) {
                         if (notaTFI >= 7){
                             cargo[j] = gc.modificarCondicionAlumno(3, alu);
+                        }else{
+                            cargo[j] = gc.modificarCondicionAlumno(4, alu);
                         }
+                    }else{
+                        cargo[j] = gc.modificarCondicionAlumno(4, alu);
                     }
                 }else{
                     cargo[j] = gc.modificarCondicionAlumno(5, alu);

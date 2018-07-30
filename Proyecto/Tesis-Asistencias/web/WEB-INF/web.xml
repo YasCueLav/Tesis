@@ -148,6 +148,38 @@
         <servlet-name>ModificarTFIServlet</servlet-name>
         <servlet-class>Servlets.ModificarTFIServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ReporteAprobacionDirectaServlet</servlet-name>
+        <servlet-class>Servlets.ReporteAprobacionDirectaServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ReporteRegularidadServlet</servlet-name>
+        <servlet-class>Servlets.ReporteRegularidadServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ReporteLibreInasistenciasServlet</servlet-name>
+        <servlet-class>Servlets.ReporteLibreInasistenciasServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ReporteLibreAplazoServlet</servlet-name>
+        <servlet-class>Servlets.ReporteLibreAplazoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ReportePromocionSUServlet</servlet-name>
+        <servlet-class>Servlets.ReportePromocionSUServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListadoPromedioNotaServlet</servlet-name>
+        <servlet-class>Servlets.ListadoPromedioNotaServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListadoPorsentajeAsistenciasServlet</servlet-name>
+        <servlet-class>Servlets.ListadoPorsentajeAsistenciasServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListadoTPEntregadosServlet</servlet-name>
+        <servlet-class>Servlets.ListadoTPEntregadosServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
         <url-pattern>/Index</url-pattern>
@@ -295,6 +327,38 @@
     <servlet-mapping>
         <servlet-name>ModificarTFIServlet</servlet-name>
         <url-pattern>/ModificarTFIServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReporteAprobacionDirectaServlet</servlet-name>
+        <url-pattern>/ReporteAprobacionDirectaServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReporteRegularidadServlet</servlet-name>
+        <url-pattern>/ReporteRegularidadServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReporteLibreInasistenciasServlet</servlet-name>
+        <url-pattern>/ReporteLibreInasistenciasServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReporteLibreAplazoServlet</servlet-name>
+        <url-pattern>/ReporteLibreAplazoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReportePromocionSUServlet</servlet-name>
+        <url-pattern>/ReportePromocionSUServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListadoPromedioNotaServlet</servlet-name>
+        <url-pattern>/ListadoPromedioNotaServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListadoPorsentajeAsistenciasServlet</servlet-name>
+        <url-pattern>/ListadoPorsentajeAsistenciasServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListadoTPEntregadosServlet</servlet-name>
+        <url-pattern>/ListadoTPEntregadosServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
