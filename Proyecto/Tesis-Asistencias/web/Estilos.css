@@ -10,3 +10,7 @@ Estilos
 */
 
 #invisible { display : none; }
+
+#centro_img_inicio { 
+    margin-left: 14em;
+}

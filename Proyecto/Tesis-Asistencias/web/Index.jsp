@@ -2,6 +2,7 @@
     Document   : Index
     Created on : 18/04/2018, 16:00:40
     Author     : Yasmin
+LogoInicioSP-JPG
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -14,6 +15,6 @@
     </head>
     <body>
         <jsp:include page="Menu.jsp"></jsp:include>
-        <h1></h1>
+        <img src="LogoInicioSP-JPG.jpg" id="centro_img_inicio" class="img-fluid" >
     </body>
 </html>
