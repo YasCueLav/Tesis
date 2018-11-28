@@ -10,7 +10,24 @@ Estilos
 */
 
 #invisible { display : none; }
-
+/*ININIO*/
 #centro_img_inicio { 
     margin-left: 14em;
+}
+/*LOGIN*/
+#iniciosesion{
+    margin-top: 2em;
+    margin-left: 5em;
+    margin-right: 5em;
+    margin-bottom: 2em;
+    /*color: white;*/
+}
+iniciosesionBordes
+#iniciosecionTitle{
+    color: black;
+}
+
+#iniciosecionButton{
+    font-size:medium;
+    font-weight: 600;
 }
