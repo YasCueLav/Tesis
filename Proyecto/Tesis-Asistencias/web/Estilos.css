@@ -12,22 +12,43 @@ Estilos
 #invisible { display : none; }
 /*ININIO*/
 #centro_img_inicio { 
-    margin-left: 14em;
+    margin-left: 15em;
 }
 /*LOGIN*/
 #iniciosesion{
-    margin-top: 2em;
-    margin-left: 5em;
-    margin-right: 5em;
-    margin-bottom: 2em;
-    /*color: white;*/
+    margin-top: 1em;
+    margin-left: 22.5em;
+    margin-right: 30em;
+    /*margin-bottom: 1em;
+    color: white;*/
 }
-iniciosesionBordes
+
 #iniciosecionTitle{
+    margin-top: 0.5em;
+    margin-left: 8em;
+    margin-right: 15em;
     color: black;
+}
+#iniciosesionForm{
+    margin-top: 1em;
+    margin-left: 3em;
+    margin-right: 3em;
+    margin-bottom: 1em;
+    /*color: white;*/
 }
 
 #iniciosecionButton{
+    margin-top: 18px;
     font-size:medium;
     font-weight: 600;
+    padding: 5px 191px;
+}
+
+#titulo-menor{
+    font-weight: 600;
+    font-size: large;
+}
+/*GENERALES*/
+#fondo-Color{
+    background-color: whitesmoke;
 }

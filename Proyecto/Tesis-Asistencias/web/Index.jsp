@@ -15,6 +15,6 @@ LogoInicioSP-JPG
     </head>
     <body>
         <jsp:include page="Menu.jsp"></jsp:include>
-        <img src="LogoInicioSP-JPG.jpg" id="centro_img_inicio" class="img-fluid" >
+        <img src="LogoInicioSP.png" id="centro_img_inicio" class="img-fluid" >
     </body>
 </html>
