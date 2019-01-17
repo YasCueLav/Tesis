@@ -8,12 +8,17 @@ and open the template in the editor.
     Author     : Yasmin
 Estilos
 */
-
+/*GENERALES*/
+#fondo-Color{
+    background-color: whitesmoke;
+}
 #invisible { display : none; }
+
 /*ININIO*/
 #centro_img_inicio { 
     margin-left: 15em;
 }
+
 /*LOGIN*/
 #iniciosesion{
     margin-top: 1em;
@@ -22,7 +27,6 @@ Estilos
     /*margin-bottom: 1em;
     color: white;*/
 }
-
 #iniciosecionTitle{
     margin-top: 0.5em;
     margin-left: 8em;
@@ -36,19 +40,21 @@ Estilos
     margin-bottom: 1em;
     /*color: white;*/
 }
-
 #iniciosecionButton{
     margin-top: 18px;
     font-size:medium;
     font-weight: 600;
     padding: 5px 191px;
 }
-
 #titulo-menor{
     font-weight: 600;
     font-size: large;
 }
-/*GENERALES*/
-#fondo-Color{
-    background-color: whitesmoke;
+
+/*ALTA ASISTENCIAS*/
+#bordesGenerales{
+    margin-top: 1em;
+    margin-left: 3em;
+    margin-right: 3em;
 }
+

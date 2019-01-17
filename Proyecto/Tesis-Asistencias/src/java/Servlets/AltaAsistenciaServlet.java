@@ -5,6 +5,7 @@
  */
 package Servlets;
 
+import Controladores.Fecha;
 import Controladores.GestorAlumnos;
 import Controladores.GestorAsistencias;
 import Model.Alumno;
@@ -42,6 +43,12 @@ public class AltaAsistenciaServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
     }
 
+    private ArrayList<Fecha> cargarFechas(){
+        ArrayList<Fecha> lista = new ArrayList<>();
+                
+                
+        return lista;
+    }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -59,7 +66,21 @@ public class AltaAsistenciaServlet extends HttpServlet {
         if (isLogged) {
             GestorAlumnos ga = new GestorAlumnos();
             ArrayList<VMAlumnosCursos> alumno = ga.obtenerAlumnoCurso();
+            
+            Fecha f = new Fecha();
+            
+            /*DIA
+            ArrayList<Integer> d = f.caragaDia();*/
+            /*MES
+            ArrayList<Integer> m = f.caragaMes();*/
+            /*AÑO
+            ArrayList<Integer> a = f.caragaAnio();*/
+            /*
+            request.setAttribute("d", d);
+            request.setAttribute("m", m);
+            request.setAttribute("a", a);*/
             request.setAttribute("alumno", alumno);
+            
             getServletContext().getRequestDispatcher("/AltaAsistencia.jsp").forward(request, response);
         } else {
             getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
@@ -120,6 +141,8 @@ public class AltaAsistenciaServlet extends HttpServlet {
         processRequest(request, response);
     }
 
+    
+    
     /**
      * Returns a short description of the servlet.
      *
@@ -129,4 +152,5 @@ public class AltaAsistenciaServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+    
 }

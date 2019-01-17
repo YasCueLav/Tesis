@@ -15,10 +15,31 @@
     </head>
     <body>
         <jsp:include page="Menu.jsp"></jsp:include>
-        <div>
+        <div id="bordesGenerales">
             <h2>Asistencia día </h2>
             <form action="AltaAsistenciaServlet" method="POST">
-                <h5><input type="date" name="fechaHoy" value=""> <input type="checkbox" name="FechaObligatoria" value="false"> Fecha Obligatoria</h5>
+                <h5>
+                    <%--<input type="date" name="fechaHoy" value=""> 
+                    <div class="form-group">
+                    <label for="exampleFormControlSelect1">Curso</label>
+                    <select class="form-control" name="Curso">
+                        <option>Selecione el Curso...</option>
+                        <c:forEach items="${cu}" var="c">
+                            <option value="${c.getIdCursos()}"> ${c.getNombreCurso()}, ${c.getSeccionCurso()}</option>
+                        </c:forEach>
+                    </select>
+                </div>
+                    --%>
+                    <div class="form-group">
+                        <select class="form-control" name="Curso">
+                        <option>día</option>
+                        <c:forEach items="${d}" var="d">
+                            <option value="${d.getDia}"> ${d.getDia}</option>
+                        </c:forEach>
+                    </select>
+                    </div>
+                    
+                    <input type="checkbox" name="FechaObligatoria" value="false"> Fecha Obligatoria</h5>
                 <br>
                 <table class="table table-striped" name="tabla">
                   <thead>
