@@ -54,7 +54,21 @@ Estilos
 /*ALTA ASISTENCIAS*/
 #bordesGenerales{
     margin-top: 1em;
-    margin-left: 3em;
-    margin-right: 3em;
+    margin-left: 5em;
+    margin-right: 5em;
+}
+#colorRadio{
+    color: #ee6903;
+    font-weight: 600;
 }
 
+/*FECHA*/
+#dia{
+    
+}
+#mes{
+    
+}
+#anio{
+    
+}

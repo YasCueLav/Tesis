@@ -5,7 +5,6 @@
  */
 package Servlets;
 
-import Controladores.Fecha;
 import Controladores.GestorAlumnos;
 import Controladores.GestorAsistencias;
 import Model.Alumno;
@@ -43,12 +42,7 @@ public class AltaAsistenciaServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
     }
 
-    private ArrayList<Fecha> cargarFechas(){
-        ArrayList<Fecha> lista = new ArrayList<>();
-                
-                
-        return lista;
-    }
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -67,18 +61,6 @@ public class AltaAsistenciaServlet extends HttpServlet {
             GestorAlumnos ga = new GestorAlumnos();
             ArrayList<VMAlumnosCursos> alumno = ga.obtenerAlumnoCurso();
             
-            Fecha f = new Fecha();
-            
-            /*DIA
-            ArrayList<Integer> d = f.caragaDia();*/
-            /*MES
-            ArrayList<Integer> m = f.caragaMes();*/
-            /*AÑO
-            ArrayList<Integer> a = f.caragaAnio();*/
-            /*
-            request.setAttribute("d", d);
-            request.setAttribute("m", m);
-            request.setAttribute("a", a);*/
             request.setAttribute("alumno", alumno);
             
             getServletContext().getRequestDispatcher("/AltaAsistencia.jsp").forward(request, response);
@@ -100,6 +82,10 @@ public class AltaAsistenciaServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        String dia="";
+        String mes="";
+        String anio="";
+        
         GestorAsistencias ga = new GestorAsistencias();
 
         String[] ids = request.getParameterValues("IdAlumno");
@@ -116,6 +102,12 @@ public class AltaAsistenciaServlet extends HttpServlet {
             Asistencias a = new Asistencias();
             a.setIdAlumno(Integer.parseInt(ids[i])); 
                         
+            dia = request.getParameter("dia");
+            mes = request.getParameter("mes");
+            anio = request.getParameter("anio");
+            
+            a.setFechaString(anio+"/"+mes+"/"+dia);
+            
             String presente = request.getParameter(""+a.getIdAlumno());
             if (presente.equals("P")) {
                 a.setEstaPresente(1);
