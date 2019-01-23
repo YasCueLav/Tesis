@@ -13,20 +13,24 @@
         <jsp:include page="Links.jsp"></jsp:include>
         <title>Lista</title>
     </head>
-    <body>
+    <body id="fondo-Color">
         <jsp:include page="Menu.jsp"></jsp:include>
-        <h2>Listados</h2>
+        <div  id="bordesGenerales">
+            <h2>Listados</h2>
         
-        <h5>Listados de Alumnos con Codiciones</h5>
-        <div>
+            <h5>Listados de Alumnos con Codiciones</h5>
+            </br>
             <form action="ListadosAlumnosCondicinesServlet" method="POST">
-                <label>Actualizar Regularidad</label><input type="submit" value="Actualizar" class="btn btn-primary">
+                
+                <label id="tamLetraListCon">Actualizar Regularidad</label> <input type="submit" value="Actualizar" class="btn btn-primary" id="tamBotonActualizarCon">
+                </br></br>
+                
                 <table class="table table-striped" name="tabla">
                     <thead>
                         <tr>
-                            <th scope="col">legajo</th>
-                            <th scope="col">Apellido, Nombre</th>
-                            <th scope="col">Curso - Divicion</th>
+                            <th scope="col" width="50">legajo</th>
+                            <th scope="col" width="300">Apellido, Nombre</th>
+                            <th scope="col"  width="100">Curso - Divicion</th>
                             <th scope="col">Condicion</th>
                         </tr>
                     </thead>

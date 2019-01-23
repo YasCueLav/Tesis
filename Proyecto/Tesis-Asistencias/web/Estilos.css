@@ -103,4 +103,14 @@ Estilos
     font-weight: 600;
 }
 
-
+/*LISTADOSALUMNOSCONDICIONES*/
+#tamLetraListCon{
+    font-size: large;
+    font-weight: 500;
+}
+#tamBotonActualizarCon{
+    margin-left: 0.5em;
+    padding: 5px 15px;
+    font-size: large;
+    font-weight: 500;
+}
