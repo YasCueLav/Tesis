@@ -114,3 +114,19 @@ Estilos
     font-size: large;
     font-weight: 500;
 }
+
+/*ALTA ALUMNO*/
+#divDistanciaNomForm{
+    float: left;
+    margin-left: 1em;
+}
+
+#divDistanciaApeForm{
+    float: left;
+}
+#ejem{
+    clear: left;
+}
+#tamLbl{
+    padding: 6px 205px;
+}
