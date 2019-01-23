@@ -15,13 +15,15 @@
     </head>
     <body>
         <jsp:include page="Menu.jsp"></jsp:include>
-        <div>
-            <button type="button" class="btn btn-primary btn-lg" >
+        <div id="bordesEspecificoGenerales">
+            <button type="button" class="btn btn-primary btn-lg" id="BototnTP">
                 <a id="Link" href="/Tesis-Asistencias/AltaEntregaTPServlet" style="color: white">Entrega TP</a> 
             </button>
-            <button type="button" class="btn btn-secondary btn-lg">
+            <div>
+            <button type="button" class="btn btn-secondary btn-lg" id="BototnTFI">
                 <a id="Link" href="/Tesis-Asistencias/AltaEntregaTFIServlet" style="color: white">Entrega TFI</a>
             </button>
+            </div>
         </div>
     </body>
 </html>

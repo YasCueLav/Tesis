@@ -105,8 +105,7 @@ public class AltaEntregaTPServlet extends HttpServlet {
             tpa.setIdAlumno(Integer.parseInt(ids[i]));
             String entregado = request.getParameter(""+tpa.getIdAlumno());
             String estado = request.getParameter("Estado"+tpa.getIdAlumno());
-            
-            
+                        
             dia = request.getParameter("dia");
             mes = request.getParameter("mes");
             anio = request.getParameter("anio");

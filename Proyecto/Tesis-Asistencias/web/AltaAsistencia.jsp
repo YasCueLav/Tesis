@@ -18,7 +18,7 @@
         <div id="bordesGenerales">
             <h2>Asistencia día </h2>
             <form action="AltaAsistenciaServlet" method="POST">
-                <h5>
+                <h6>
                     <%--<input type="number" id="dia" value="1" min="1" max="31">
                     <input type="number" id="mes" value="1" min="1" max="12">
                     <input type="number" id="anio" value="1990" min="1990" max="2020">--%>
@@ -101,15 +101,14 @@
                         <option value="2022">2022</option>
                       </select>
                     <input type="checkbox" name="FechaObligatoria" value="false"> Fecha Obligatoria
-                </h5>
+                </h6>
                 <br>
-                
                 <table class="table table-striped" name="tabla">
                   <thead>
                         <tr>
-                          <th scope="col">legajo</th>
-                          <th scope="col">Asistio?</th>
-                          <th scope="col">Apellido, Nombre</th>
+                          <th scope="col" width="50">legajo</th>
+                          <th scope="col" width="100">Asistio?</th>
+                          <th scope="col" width="300">Apellido, Nombre</th>
                           <th scope="col">Divicion</th>
                         </tr>
                   </thead>

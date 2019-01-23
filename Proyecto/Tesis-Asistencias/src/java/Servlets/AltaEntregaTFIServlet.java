@@ -99,12 +99,20 @@ public class AltaEntregaTFIServlet extends HttpServlet {
         String[] nota = request.getParameterValues("Nota");
         
         String fecha = request.getParameter("Fecha");
-               
+                   
+        String dia="";
+        String mes="";
+        String anio="";
+              
         for (int i = 0; i < ids.length; i++) {
             
             TpsAlumnos tpa = new TpsAlumnos();
             Notas n = new Notas();
-
+            
+            dia = request.getParameter("dia");
+            mes = request.getParameter("mes");
+            anio = request.getParameter("anio");
+            
             tpa.setIdTp(idTp);
             tpa.setIdAlumno(Integer.parseInt(ids[i]));
             String entregado = request.getParameter(""+tpa.getIdAlumno());
@@ -115,7 +123,7 @@ public class AltaEntregaTFIServlet extends HttpServlet {
                 tpa.setPresentado(0);
                 n.setNota(0);
             }
-            tpa.setFecha(fecha);
+            tpa.setFecha(anio+"/"+mes+"/"+dia);
             
             //n.setNota(Double.parseDouble(nota[i]));
             n.setIdAlumno(Integer.parseInt(ids[i]));

@@ -110,10 +110,10 @@
                 <table class="table table-striped">
                     <thead>
                       <tr>
-			  <th scope="col">legajo</th>
-			  <th scope="col">Apellido, Nombre</th>
-			  <th scope="col">Divicion</th>
-			  <th scope="col">Entregado?</th>
+			  <th scope="col" width="50">legajo</th>
+			  <th scope="col" width="300">Apellido, Nombre</th>
+			  <th scope="col" width="60">Divicion</th>
+			  <th scope="col" width="100">Entregado?</th>
 			  <th scope="col">Estado TP</th>
 			</tr>
 		  </thead>
