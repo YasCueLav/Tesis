@@ -1,5 +1,6 @@
 package Model;
 
+import com.sun.xml.rpc.processor.modeler.j2ee.xml.string;
 import java.sql.Date;
 
 /**
@@ -16,6 +17,7 @@ public class Alumno {
     int grupo;
     Date fechaIngreso;
     boolean visible;
+    String fechaS;
 
     public Alumno() {
     }
@@ -106,4 +108,13 @@ public class Alumno {
             this.visible = false;
         }
     }   
+
+    public String getFechaS() {
+        return fechaS;
+    }
+
+    public void setFechaS(String fechaS) {
+        this.fechaS = fechaS;
+    }
+    
 }
