@@ -16,7 +16,7 @@
     <body id="fondo-Color">
         <jsp:include page="Menu.jsp"></jsp:include>
         <div id="bordesGenerales">
-            <h2>Asistencia día </h2>
+            <h1>Asistencia día </h1>
             <form action="AltaAsistenciaServlet" method="POST">
                 <h6>
                     <%--<input type="number" id="dia" value="1" min="1" max="31">

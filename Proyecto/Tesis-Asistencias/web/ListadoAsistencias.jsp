@@ -13,30 +13,31 @@
         <title>Listado Asistencia</title>
         <jsp:include page="Links.jsp"></jsp:include>
     </head>
-    <body>
+    <body id="fondo-Color">
         <jsp:include page="Menu.jsp"></jsp:include>
-        <div>
-            <h2>Listado Asistencia</h2>
+        <div id="bordesGenerales">
+            <h1>Listado Asistencia</h1>
             <br>
             <form action="ListadoAsistenciasServlet" method="POST">
                 <div>
-                    <input type="number" name="Legajo" value="0">
-                    <select name="Curso">
+                    <input type="number" name="Legajo" value="0" id="tamLegajoLBL">
+                    
+                    <select name="Curso" id="tamcursoCMB">
                         <option value="0">Seleccione un curso ...</option>
                         <c:forEach items="${curso}" var="c">
                             <option name="IdCurso" value="${c.getIdCursos()}">${c.getIdCursos()}-${c.getNombreCurso()}/${c.getSeccionCurso()}</option>
                         </c:forEach>
                     </select>
-                    <input type="submit" value="Filtrar" class="btn btn-primary" name="Boton">
+                    <input type="submit" value="Filtrar" class="btn btn-primary" name="Boton" >
                 </div>
                 </br>
             </form>
             <table class="table table-striped" name="tabla">
                 <thead>
                     <tr>
-                        <th scope="col">legajo</th>
-                        <th scope="col">Apellido, Nombre</th>
-                        <th scope="col">Divicion</th>
+                        <th scope="col" width="50">Legajo</th>
+                        <th scope="col" width="300">Apellido, Nombre</th>
+                        <th scope="col" >Divicion</th>
                         <th scope="col">Fecha</th>
                         <th scope="col">Obligatoria</th>
                         <th scope="col">Asistio?</th>
@@ -65,7 +66,7 @@
                                     <td>P</td>
                                 </c:if>
 
-                                <td>
+                                <td id="letraNegrita">
                                     <a id="Link" href="/Tesis-Asistencias/ModificarAsistenciasServlet?idAsistencia=${a.getIdAsistencias()}">Editar</a>
                                     <c:if test="${!a.isEstaPresente()}">
                                         /<a id="Link" href="/Tesis-Asistencias/AltaJustificativoServlet?idAsistencia=${a.getIdAsistencias()}">Justificar</a>

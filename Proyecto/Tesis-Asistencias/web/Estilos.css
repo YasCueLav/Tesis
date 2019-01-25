@@ -130,3 +130,16 @@ Estilos
 #tamLbl{
     padding: 6px 205px;
 }
+
+/*LISTADO ASISTENCIAS*/
+#tamLegajoLBL{
+    height: 25px;
+    width: 135px;
+}
+#tamcursoCMB{
+    height: 25px;
+    width: 200px;
+}
+#letraNegrita{
+    font-weight: 700;
+}

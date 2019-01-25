@@ -16,7 +16,7 @@
     <body id="fondo-Color">
         <jsp:include page="Menu.jsp"></jsp:include>
         <div  id="bordesGenerales">
-            <h2>Listados</h2>
+            <h1>Listados</h1>
         
             <h5>Listados de Alumnos con Codiciones</h5>
             </br>
