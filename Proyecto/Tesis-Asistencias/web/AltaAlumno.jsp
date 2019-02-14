@@ -22,8 +22,6 @@
             </br>
             <form action="AltaAlumnoServlet" method="POST">
                 
-                <input type="date" name="Fecha">
-                
                 <select name="dia">
                         <option value="">Día</option>
                         <option value="1">1</option>

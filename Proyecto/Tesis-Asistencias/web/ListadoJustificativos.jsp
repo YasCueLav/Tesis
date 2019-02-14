@@ -13,18 +13,21 @@
         <jsp:include page="Links.jsp"></jsp:include>
         <title>Listado</title>
     </head>
-    <body>
+    <body id="fondo-Color">
         <jsp:include page="Menu.jsp"></jsp:include>
         
-        <h2>Listado de Justificativos de Inasistencias</h2>
-        <div>
+        <div id="bordesGenerales">
+            <h1>Listado de Justificativos de Inasistencias</h1>
+            
+            </br>
+            
             <table class="table table-striped" name="tabla">
                 <thead>
                     <tr>
-                        <th scope="col">Legajo</th>
-                        <th scope="col">Apellido, Nombre</th>
-                        <th scope="col">Fecha Inasistencia</th>
-                        <th scope="col">Justificativo</th>
+                        <th scope="col" width="50">Legajo</th>
+                        <th scope="col" width="300">Apellido, Nombre</th>
+                        <th scope="col" width="200">Fecha Inasistencia</th>
+                        <th scope="col" width="100">Justificativo</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
@@ -36,7 +39,7 @@
                                 <th>${j.getApellido()} ${j.getNombre()}</th>
                                 <td> ${j.getFecha()}</td>
                                 <td> ${j.getTexto()}</td>
-                                <td>
+                                <td id="letraNegrita">
                                     <a id="Link" href="/Tesis-Asistencias/UpdateJustificativoServlet?idAsistencia=${j.getIdAsistencias()}&estado=1">Editar</a> / 
                                     <a id="Link" href="/Tesis-Asistencias/UpdateJustificativoServlet?idAsistencia=${j.getIdAsistencias()}&estado=2">Eliminar</a>
                                 </td>

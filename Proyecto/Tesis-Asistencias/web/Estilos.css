@@ -143,3 +143,12 @@ Estilos
 #letraNegrita{
     font-weight: 700;
 }
+
+/*LISTADOS CALIFICACIONES*/
+#centrarConTabla{
+    text-align: center;
+}
+#bordesCeldas{
+    /*border-right: #9999ff 1px solid;*/
+    border: black 1px solid;
+}

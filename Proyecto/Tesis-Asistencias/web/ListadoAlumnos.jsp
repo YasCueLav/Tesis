@@ -13,17 +13,18 @@
         <jsp:include page="Links.jsp"></jsp:include>
         <title>Lista</title>
     </head>
-    <body>
+    <body id="fondo-Color">
         <jsp:include page="Menu.jsp"></jsp:include>
-        <h2>Listados</h2>
+        <div id="bordesGenerales">
+            <h1>Listados</h1>
         
-        <h5>Listados de Alumnos</h5>
-        <div>
+            <h5>Listados de Alumnos</h5>
+            </br>
             <table class="table table-striped" name="tabla">
                 <thead>
                     <tr>
                         <th scope="col">legajo</th>
-                        <th scope="col">Apellido, Nombre</th>
+                        <th scope="col" width="300">Apellido, Nombre</th>
                         <th scope="col">Curso - Divicion</th>
                         <th scope="col">Condicion</th>
                         <th scope="col">Grupo</th>
@@ -41,7 +42,7 @@
                                 <td>${a.getCondicion()}</td>
                                 <td>${a.getGrupo()}</td>
                                 <td>${a.getFecha()}</td>
-                                <td>
+                                <td id="letraNegrita">
                                     <a id="Link" href="/Tesis-Asistencias/ModificarAlumnosServlet?idAlumno=${a.getIdAlumno()}&tipo=1">Editar</a> / 
                                     <a id="Link" href="/Tesis-Asistencias/ModificarAlumnosServlet?idAlumno=${a.getIdAlumno()}&tipo=2">Eliminar</a>
                                 </td>
