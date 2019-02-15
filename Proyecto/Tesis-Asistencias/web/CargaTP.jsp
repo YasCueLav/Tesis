@@ -18,7 +18,6 @@
         <div id="bordesGenerales">
             <h1>Carga Trabajo Practico</h1>
             </br>
-            
             <form action="CargaTPServlet" method="POST">
                 <div class="form-group">
                   <label for="exampleFormControlInput1">Nombre Trabajo Pracico</label>
