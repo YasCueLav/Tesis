@@ -13,21 +13,21 @@
         <jsp:include page="Links.jsp"></jsp:include>
         <title>Listado</title>
     </head>
-    <body>
+    <body id="fondo-Color">
         <jsp:include page="Menu.jsp"></jsp:include>
-        
+        <div id="bordesGenerales">
+            
         <h1>Listado de entregas de trabajos final Integrador</h1>
-        
-        <div>
+        </br>
             <table class="table table-striped" name="tabla">
                 <thead>
-                    <tr>
-                        <th scope="col" colspan="2">Alumno</th>
-                        <th scope="col" colspan="2">Materia</th>
-                        <th scope="col" rowspan="2">Trabajo Final Intgrador</th>
-                        <th scope="col" colspan="2">Fecha</th>
-                        <th scope="col" rowspan="2">Nota</th>
-                        <th scope="col" rowspan="2"></th>
+                    <tr id="centrarConTabla">
+                        <th scope="col" colspan="2" id="bordesCeldas">Alumno</th>
+                        <th scope="col" colspan="2" id="bordesCeldas">Materia</th>
+                        <th scope="col" rowspan="2" id="bordesCeldasSuperior">Trabajo Final Intgrador</th>
+                        <th scope="col" colspan="2" id="bordesCeldas">Fecha</th>
+                        <th scope="col" rowspan="2" id="bordesCeldasSuperior">Nota</th>
+                        <th scope="col" rowspan="2" id="bordesCeldasSuperior"></th>
                     </tr>
                     <tr>
                         <th scope="col">legajo</th>
@@ -50,7 +50,7 @@
                                 <td>${a.getfEntrega()}</td>
                                 <td>${a.getfEntregado()}</td>
                                 <td>${a.getNota()}</td>
-                                <td>
+                                <td id="letraNegrita">
                                     <a id="Link" href="/Tesis-Asistencias/ModificarTFIServlet?idTpAlumno=${a.getIdTpAlumno()}&tipo=1">Modificar</a> /
                                     <a id="Link" href="/Tesis-Asistencias/ModificarTFIServlet?idTpAlumno=${a.getIdTpAlumno()}&tipo=2">Eliminar</a>
                                 </td>
