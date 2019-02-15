@@ -13,16 +13,18 @@
         <jsp:include page="Links.jsp"></jsp:include>
         <title>Nueva Condicion</title>
     </head>
-    <body>
+    <body id="fondo-Color">
         <jsp:include page="Menu.jsp"></jsp:include>
-        <h1>Carga Condicion Academica</h1>
-        
-        <div>
+        <div id="bordesGenerales">
+            <h1>Carga Condicion Academica</h1>
+            </br>
+            
             <form action="CargaCondicionesServlet" method="POST">
                 <div class="form-group">
                   <label for="exampleFormControlInput1">Nombre Condicion</label>
-                  <input class="form-control" type="text" name="Condicion" placeholder="">
+                  <input class="form-control" type="text" name="Condicion" placeholder="Regular">
                 </div>
+                
                 <input type="submit" value="Cargar" class="btn btn-primary">
             </form>
         </div>
