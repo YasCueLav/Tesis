@@ -52,9 +52,9 @@
                                 <td>${a.getNombreCurso()}</td>
                                 <td>${a.getDivicionCurso()}</td>
                                 <td>${a.getTp()}</td>
-                                <td>${a.getfEntrega()}</td>
-                                <td>${a.getfEntregado()}</td>
-                                <td>${a.getEstado()}</td>
+                                <td>${a.getFechaEntrega()}</td>
+                                <td>${a.getFechaEntregado()}</td>
+                                <td>${a.getEsatdo()}</td>
                             </tr>
                         </c:forEach>
                     </tbody>
