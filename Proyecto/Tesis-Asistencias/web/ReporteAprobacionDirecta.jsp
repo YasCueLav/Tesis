@@ -15,9 +15,8 @@
     </head>
     <body id="fondo-Color">
         <jsp:include page="Menu.jsp"></jsp:include>
-        <div id="bordesGenerales">
-            
-            <nav aria-label="Page navigation example">
+        
+        <nav aria-label="Page navigation example" id="bordesnabegacion">
                 <ul class="pagination">
                   <li class="page-item"><a class="page-link" href="/Tesis-Asistencias/ReporteAprobacionDirectaServlet">Listado</a></li>
                   <li class="page-item"><a class="page-link" href="/Tesis-Asistencias/ListadoPromedioNotaServlet?condi=1">Promedio Notas</a></li>
@@ -26,6 +25,8 @@
                 </ul>
             </nav>
         
+            <div id="bordesGenerales">
+                
             <h1>Alumnos con Aprobacion Directa</h1>
             </br>
             

@@ -32,6 +32,7 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="/Tesis-Asistencias/ListadosAlumnosCondicinesServlet">Actualizar</a>
                 <a class="dropdown-item" href="/Tesis-Asistencias/ReporteAprobacionDirectaServlet">Aprobado Directo</a>
+                <a class="dropdown-item" href="/Tesis-Asistencias/ReportePromocionSUServlet">Promosion Sistemas de Unidades</a>
                 <a class="dropdown-item" href="/Tesis-Asistencias/ReporteRegularidadServlet">Regular</a>
                 <a class="dropdown-item" href="/Tesis-Asistencias/ReporteLibreAplazoServlet">Libre x Aplazo</a>
                 <a class="dropdown-item" href="/Tesis-Asistencias/ReporteLibreInasistenciasServlet">Libre x Ausencias</a>

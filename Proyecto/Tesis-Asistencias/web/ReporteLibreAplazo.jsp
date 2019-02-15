@@ -13,9 +13,9 @@
         <title>Libre</title>
         <jsp:include page="Links.jsp"></jsp:include>
     </head>
-    <body>
+    <body id="fondo-Color">
         <jsp:include page="Menu.jsp"></jsp:include>
-        <nav aria-label="Page navigation example">
+        <nav aria-label="Page navigation example" id="bordesnabegacion">
                 <ul class="pagination">
                   <li class="page-item"><a class="page-link" href="/Tesis-Asistencias/ReporteAprobacionDirectaServlet">Listado</a></li>
                   <li class="page-item"><a class="page-link" href="/Tesis-Asistencias/ListadoPromedioNotaServlet?condi=4">Promedio Notas</a></li>
@@ -23,14 +23,18 @@
                   <li class="page-item"><a class="page-link" href="/Tesis-Asistencias/ListadoTPEntregadosServlet?condi=4">TPs Entregados</a></li>
                 </ul>
             </nav>
-        <h1>Alumnos Libre por no Cumplimiento</h1>
-        <div>
+        
+        <div id="bordesGenerales">
+            
+            <h1>Alumnos Libre por no Cumplimiento</h1>
+            </br>
+        
             <table class="table table-striped" name="tabla">
                 <thead>
                     <tr>
-                        <th scope="col" colspan="2">Alumno</th>
-                        <th scope="col" colspan="2">Materia</th>
-                        <th scope="col">Condicion</th>
+                        <th scope="col" colspan="2" id="bordesCeldas">Alumno</th>
+                        <th scope="col" colspan="2" id="bordesCeldas">Materia</th>
+                        <th scope="col" id="bordesCeldas">Condicion</th>
                     </tr>
                     <tr>
                         <th scope="col">legajo</th>
