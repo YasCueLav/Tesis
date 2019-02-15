@@ -13,23 +13,26 @@
         <title>Entrega TP</title>
         <jsp:include page="Links.jsp"></jsp:include>
     </head>
-    <body>
+    <body id="fondo-Color">
         <jsp:include page="Menu.jsp"></jsp:include>
-        <nav aria-label="Page navigation example">
+        <nav aria-label="Page navigation example" id="bordesnabegacion">
                 <ul class="pagination">
                   <li class="page-item"><a class="page-link" href="/Tesis-Asistencias/${t.getTxt()}">Volver</a></li>
                 </ul>
         </nav>
-        <h1>Trabajos Practicos Entregados</h1>
-        <div>
+        
+        <div id="bordesGenerales">
+            <h1>Trabajos Practicos Entregados</h1>
+            </br>
+            
             <table class="table table-striped" name="tabla">
                 <thead>
                     <tr>
-                        <th scope="col" colspan="2">Alumno</th>
-                        <th scope="col" colspan="2">Materia</th>
-                        <th scope="col" rowspan="2">Trabajo Practico</th>
-                        <th scope="col" colspan="2">Fecha</th>
-                        <th scope="col" rowspan="2">Estado</th>
+                        <th scope="col" colspan="2" id="bordesCeldas">Alumno</th>
+                        <th scope="col" colspan="2" id="bordesCeldas">Materia</th>
+                        <th scope="col" rowspan="2" id="bordesCeldasSuperior">Trabajo Practico</th>
+                        <th scope="col" colspan="2" id="bordesCeldas">Fecha</th>
+                        <th scope="col" rowspan="2" id="bordesCeldasSuperior">Estado</th>
                     </tr>
                     <tr>
                         <th scope="col">legajo</th>
