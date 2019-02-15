@@ -149,6 +149,12 @@ Estilos
     text-align: center;
 }
 #bordesCeldas{
-    /*border-right: #9999ff 1px solid;*/
     border: black 1px solid;
 }
+
+/*LISTADO TP*/
+#bordesCeldasSuperior{
+    border-top: black 1px solid;
+    vertical-align: middle;
+}
+
