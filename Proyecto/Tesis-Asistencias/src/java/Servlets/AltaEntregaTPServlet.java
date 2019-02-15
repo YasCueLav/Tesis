@@ -93,7 +93,11 @@ public class AltaEntregaTPServlet extends HttpServlet {
                 
         String[] ids = request.getParameterValues("IdAlumno");
         String fecha = request.getParameter("Fecha");
-               
+             
+        String dia="";
+        String mes="";
+        String anio="";
+        
         for (int i = 0; i < ids.length; i++) {
             
             TpsAlumnos tpa = new TpsAlumnos();
@@ -101,6 +105,11 @@ public class AltaEntregaTPServlet extends HttpServlet {
             tpa.setIdAlumno(Integer.parseInt(ids[i]));
             String entregado = request.getParameter(""+tpa.getIdAlumno());
             String estado = request.getParameter("Estado"+tpa.getIdAlumno());
+                        
+            dia = request.getParameter("dia");
+            mes = request.getParameter("mes");
+            anio = request.getParameter("anio");
+            
             if (entregado.equals("Si")) {
                 tpa.setPresentado(1);
                 if (estado.equals("A")) {
@@ -114,7 +123,7 @@ public class AltaEntregaTPServlet extends HttpServlet {
                 tpa.setPresentado(0);
                 tpa.setIdEstado(1);
             }
-            tpa.setFecha(fecha);
+            tpa.setFecha(anio+"/"+mes+"/"+dia);
             
             //String estado = request.getParameter("Estado"+tpa.getIdAlumno());
             

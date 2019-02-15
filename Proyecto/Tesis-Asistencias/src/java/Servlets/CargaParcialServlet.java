@@ -81,9 +81,13 @@ public class CargaParcialServlet extends HttpServlet {
         
         Examenes e = new Examenes();
         
+        String dia = request.getParameter("dia");
+        String mes = request.getParameter("mes");
+        String anio = request.getParameter("anio");
+        
         e.setIdTipoExamne(Integer.parseInt(request.getParameter("TipoExamen")));
         e.setExamenNombre(request.getParameter("Examen"));
-        e.setFecha(request.getParameter("Fecha"));
+        e.setFecha(anio+"/"+mes+"/"+dia);
         
         boolean cargo = ge.agregarExamen(e);
         if (cargo) {

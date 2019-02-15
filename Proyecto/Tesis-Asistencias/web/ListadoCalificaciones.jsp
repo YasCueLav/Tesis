@@ -13,17 +13,17 @@
         <jsp:include page="Links.jsp"></jsp:include>
         <title>Listado</title>
     </head>
-    <body>
+    <body id="fondo-Color">
         <jsp:include page="Menu.jsp"></jsp:include>
-        
-        <h1>Listado Calificacion</h1>
-        
-        <div>
+        <div id="bordesGenerales">
+            <h1>Listado Calificacion</h1>
+            </br>
+            
             <table class="table table-striped" name="tabla">
                 <thead>
                     <tr>
                         <th scope="col">Legajo</th>
-                        <th scope="col">Apellido, Nombre</th>
+                        <th scope="col" width="300">Apellido, Nombre</th>
                         <th scope="col">Curso - Divicion</th>
                         <th scope="col">Tipo Examen</th>
                         <th scope="col">Examen</th>
@@ -41,7 +41,7 @@
                                 <td>${e.getTipoExamen()}</td>
                                 <td>${e.getExamen()}</td>
                                 <td>${e.getNota()}</td>
-                                <td>
+                                <td id="letraNegrita">
                                     <a id="Link" href="/Tesis-Asistencias/ModificarCalificacionesServlet?idNota=${e.getIdNota()}&estado=1">Editar</a> / 
                                     <a id="Link" href="/Tesis-Asistencias/ModificarCalificacionesServlet?idNota=${e.getIdNota()}&estado=2">Eliminar</a>
                                 </td>

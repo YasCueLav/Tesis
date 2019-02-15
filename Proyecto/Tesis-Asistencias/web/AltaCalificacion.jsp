@@ -13,10 +13,12 @@
         <jsp:include page="Links.jsp"></jsp:include>
         <title>Cargar Notas Examenes</title>
     </head>
-    <body>
+    <body id="fondo-Color">
         <jsp:include page="Menu.jsp"></jsp:include>
-        <h1>Cargar Notas Examenes</h1>
-        <div>
+        <div id="bordesGenerales">
+            
+            <h1>Cargar Notas Examenes</h1>
+            
             <form action="AltaCalificacionServlet" method="POST">
                 
                 <select name="Examen">
@@ -32,15 +34,16 @@
                      <option name="IdCurso" value="${c.getIdCursos()}">${c.getIdCursos()}-${c.getNombreCurso()}/${c.getSeccionCurso()}</option>
                 </c:forEach>
                 </select>
-                <input type="submit" value="Filtrar" class="btn btn-primary" name="Boton">
+                <input type="submit" value="Filtrar" class="btn btn-primary" name="Boton" id="botonFiltrar">
                 </br>
-                
+                </br>
+
                 <table class="table table-striped">
                 <thead>
                     <tr>
-                      <th scope="col">legajo</th>
-                      <th scope="col">Apellido, Nombre</th>
-                      <th scope="col">Divicion</th>
+                      <th scope="col" width="50">legajo</th>
+                      <th scope="col" width="300">Apellido, Nombre</th>
+                      <th scope="col" width="60">Divicion</th>
                       <th scope="col">Nota</th>
                     </tr>
                 </thead>

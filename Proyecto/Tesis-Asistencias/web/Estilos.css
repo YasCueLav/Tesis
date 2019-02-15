@@ -8,5 +8,158 @@ and open the template in the editor.
     Author     : Yasmin
 Estilos
 */
-
+/*GENERALES*/
+#fondo-Color{
+    background-color: whitesmoke;
+}
 #invisible { display : none; }
+
+#bordesGenerales{
+    margin-top: 1em;
+    margin-left: 5em;
+    margin-right: 5em;
+}
+
+/*ININIO*/
+#centro_img_inicio { 
+    margin-left: 15em;
+}
+
+/*LOGIN*/
+#iniciosesion{
+    margin-top: 1em;
+    margin-left: 22.5em;
+    margin-right: 30em;
+    /*margin-bottom: 1em;
+    color: white;*/
+}
+#iniciosecionTitle{
+    margin-top: 0.5em;
+    margin-left: 8em;
+    margin-right: 15em;
+    color: black;
+}
+#iniciosesionForm{
+    margin-top: 1em;
+    margin-left: 3em;
+    margin-right: 3em;
+    margin-bottom: 1em;
+    /*color: white;*/
+}
+#iniciosecionButton{
+    margin-top: 18px;
+    font-size:medium;
+    font-weight: 600;
+    padding: 5px 191px;
+}
+#titulo-menor{
+    font-weight: 600;
+    font-size: large;
+}
+
+
+/*ALTA ASISTENCIAS*/
+#colorRadio{
+    color: #ee6903;
+    font-weight: 600;
+}
+#colorRadioDos{
+    font-weight: 600;
+}
+
+/*FECHA*/
+#dia{
+    
+}
+#mes{
+    
+}
+#anio{
+    
+}
+
+/*DECICION TP*/
+#bordesEspecificoGenerales{
+    margin-top: 3em;
+    margin-left: 5em;
+    margin-right: 5em;
+}
+#BototnTP{
+    padding: 50px 125px;
+    font-size: xx-large;
+    font-weight: 700;
+}
+#BototnTFI{
+    margin-top: 1.5em;
+    padding: 50px 125px;
+    font-size: xx-large;
+    font-weight: 700;
+}
+
+/*ALTA CALIFICACIONES*/
+#botonFiltrar{
+    margin-left: 0.5em;
+    font-size: large;
+    font-weight: 600;
+}
+
+/*LISTADOSALUMNOSCONDICIONES*/
+#tamLetraListCon{
+    font-size: large;
+    font-weight: 500;
+}
+#tamBotonActualizarCon{
+    margin-left: 0.5em;
+    padding: 5px 15px;
+    font-size: large;
+    font-weight: 500;
+}
+
+/*ALTA ALUMNO*/
+#divDistanciaNomForm{
+    float: left;
+    margin-left: 1em;
+}
+
+#divDistanciaApeForm{
+    float: left;
+}
+#ejem{
+    clear: left;
+}
+#tamLbl{
+    padding: 6px 205px;
+}
+
+/*LISTADO ASISTENCIAS*/
+#tamLegajoLBL{
+    height: 25px;
+    width: 135px;
+}
+#tamcursoCMB{
+    height: 25px;
+    width: 200px;
+}
+#letraNegrita{
+    font-weight: 700;
+}
+
+/*LISTADOS CALIFICACIONES*/
+#centrarConTabla{
+    text-align: center;
+}
+#bordesCeldas{
+    border: black 1px solid;
+}
+
+/*LISTADO TP*/
+#bordesCeldasSuperior{
+    border-top: black 1px solid;
+    vertical-align: middle;
+}
+
+/*LISTADO SOPORTE*/
+#letraNegritaCental{
+    font-weight: 700;
+    text-align: center;
+}

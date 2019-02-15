@@ -13,27 +13,28 @@
         <jsp:include page="Links.jsp"></jsp:include>
         <title>Listado</title>
     </head>
-    <body>
+    <body id="fondo-Color">
         <jsp:include page="Menu.jsp"></jsp:include>
-        <h1>Listado de Inasistencias</h1>
-        <div>
+       <div id="bordesGenerales"> 
+           <h1>Listado de Inasistencias</h1>
+        
             <form action="ListadoAsistenciasEspecificoServlet" method="POST">
                 <div>
-                    <input type="number" name="Legajo" value="0">
+                    <input type="number" name="Legajo" value="0" id="tamLegajoLBL">
                     <input type="submit" value="Filtrar" class="btn btn-primary" name="Boton">
                 </div>
                 </br>
             <table class="table table-striped" name="tabla">
                 <thead>
-					<tr>
-                        <th scope="col" colspan="2">Alumno</th>
-                        <th scope="col" colspan="2">Curso</th>
-                        <th scope="col" colspan="2">Cantidad de Ausencias</th>
-                        <th scope="col" rowspan="2"></th>
+                    <tr id="centrarConTabla">
+                        <th scope="col" colspan="2" width="600" id="bordesCeldas">Alumno</th>
+                        <th scope="col" colspan="2" width="300" id="bordesCeldas">Curso</th>
+                        <th scope="col" colspan="2" id="bordesCeldas">Cantidad de Ausencias</th>
+                        <th scope="col" ></th>
                     </tr>
                     <tr>
                         <th scope="col">legajo</th>
-                        <th scope="col">Apellido, Nombre</th>
+                        <th scope="col" width="300">Apellido, Nombre</th>
                         <th scope="col">Curso</th>
                         <th scope="col">Divicion</th>
                         <th scope="col">General</th>
@@ -50,7 +51,7 @@
                                 <td>${a.getDivicionCurso()}</td>
                                 <td>${a.getCantAusenciasG()}</td>
                                 <td>${a.getCantAusenciasO()}</td>
-                                <td>
+                                <td id="letraNegrita">
                                     <a id="Link" href="/Tesis-Asistencias/ListadoAsistenciasServlet?legajo=${a.getLegajo()}">Ver</a>
                                 </td>
                             </tr>

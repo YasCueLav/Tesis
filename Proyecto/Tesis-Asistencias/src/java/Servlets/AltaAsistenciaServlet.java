@@ -42,6 +42,7 @@ public class AltaAsistenciaServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
     }
 
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -59,7 +60,9 @@ public class AltaAsistenciaServlet extends HttpServlet {
         if (isLogged) {
             GestorAlumnos ga = new GestorAlumnos();
             ArrayList<VMAlumnosCursos> alumno = ga.obtenerAlumnoCurso();
+            
             request.setAttribute("alumno", alumno);
+            
             getServletContext().getRequestDispatcher("/AltaAsistencia.jsp").forward(request, response);
         } else {
             getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
@@ -79,6 +82,10 @@ public class AltaAsistenciaServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        String dia="";
+        String mes="";
+        String anio="";
+        
         GestorAsistencias ga = new GestorAsistencias();
 
         String[] ids = request.getParameterValues("IdAlumno");
@@ -95,6 +102,12 @@ public class AltaAsistenciaServlet extends HttpServlet {
             Asistencias a = new Asistencias();
             a.setIdAlumno(Integer.parseInt(ids[i])); 
                         
+            dia = request.getParameter("dia");
+            mes = request.getParameter("mes");
+            anio = request.getParameter("anio");
+            
+            a.setFechaString(anio+"/"+mes+"/"+dia);
+            
             String presente = request.getParameter(""+a.getIdAlumno());
             if (presente.equals("P")) {
                 a.setEstaPresente(1);
@@ -120,6 +133,8 @@ public class AltaAsistenciaServlet extends HttpServlet {
         processRequest(request, response);
     }
 
+    
+    
     /**
      * Returns a short description of the servlet.
      *
@@ -129,4 +144,5 @@ public class AltaAsistenciaServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+    
 }

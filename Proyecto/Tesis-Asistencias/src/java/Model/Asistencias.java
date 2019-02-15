@@ -19,6 +19,7 @@ public class Asistencias {
     boolean estaPresente;
     boolean fechaObligatoria;
     boolean visible;
+    String fechaString;
 
     public Asistencias() {
     }
@@ -102,6 +103,14 @@ public class Asistencias {
         } else {
             this.visible = false;
         }
+    }
+
+    public String getFechaString() {
+        return fechaString;
+    }
+
+    public void setFechaString(String fechaString) {
+        this.fechaString = fechaString;
     }
     
     

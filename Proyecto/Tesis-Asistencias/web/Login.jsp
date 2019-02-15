@@ -12,22 +12,25 @@
         <title>Inicio Sesión</title>
         <jsp:include page="Links.jsp"></jsp:include>
     </head>
-    <body>
+    <body id="fondo-Color">
         <jsp:include page="Menu.jsp"></jsp:include>
-        <div id="iniciosesion">
-            <h1> Inicio Sesión</h1>
+        
+        <h1 id="iniciosecionTitle">Inicio Sesión</h1>
+        <div id="iniciosesion" class="border border-secondary">
+            <div id="iniciosesionForm" >
+                <form action="Login" method="POST">
+                <div class="form-group">
+                  <label for="exampleInputEmail1" id="titulo-menor">Usuario</label>
+                  <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Usuario" name="mail">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1" id="titulo-menor">Contraseña</label>
+                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña" name="pass">
+                </div>
+                    <input type="submit" value="Iniciar" class="btn btn-primary" id="iniciosecionButton"/>
+                </form>
+            </div>
             
-            <form action="Login" method="POST">
-            <div class="form-group">
-              <label for="exampleInputEmail1">Usuario</label>
-              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Usuario" name="mail">
-            </div>
-            <div class="form-group">
-              <label for="exampleInputPassword1">Contraseña</label>
-              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña" name="pass">
-            </div>
-                <input type="submit" value="Iniciar" class="btn btn-primary"/>
-        </form>
         </div>
     </body>
 </html>

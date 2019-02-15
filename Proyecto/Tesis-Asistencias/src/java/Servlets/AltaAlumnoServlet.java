@@ -87,16 +87,24 @@ public class AltaAlumnoServlet extends HttpServlet {
         GestorAlumnos ga = new GestorAlumnos();
         Alumno alum = new Alumno();
         
-        String f = request.getParameter("Fecha");
-        System.out.println("FECHA --" + f);
+//        String dia="";
+//        String mes="";
+//        String anio="";
         
+//        String f = request.getParameter("Fecha");
+//        System.out.println("FECHA --" + f);
+        
+        String dia = request.getParameter("dia");
+        String mes = request.getParameter("mes");
+        String anio = request.getParameter("anio");
+
         alum.setLegajo(Integer.parseInt(request.getParameter("Legajo")));
         alum.setNombre(request.getParameter("Nombre"));
         alum.setApellido(request.getParameter("Apellido"));
         alum.setIdCurso(Integer.parseInt(request.getParameter("Curso")));
         alum.setIdCondicion(Integer.parseInt(request.getParameter("Condicion")));
         alum.setGrupo(Integer.parseInt(request.getParameter("Grupo")));
-        alum.setFechaIngreso(Date.valueOf(f));
+        alum.setFechaS(anio+"/"+mes+"/"+dia);
                 
         boolean cargo = ga.agregarAlumno(alum);
         

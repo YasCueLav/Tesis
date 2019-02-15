@@ -13,20 +13,22 @@
         <jsp:include page="Links.jsp"></jsp:include>
         <title>Nuevo Curso</title>
     </head>
-    <body>
+    <body id="fondo-Color">
         <jsp:include page="Menu.jsp"></jsp:include>
-        <h1>Carga Curso</h1>
-        
-        <div>
+        <div id="bordesGenerales">
+            <h1>Carga Curso</h1>
+            </br>
+            
             <form action="CargaCursoServlet" method="POST">
                 <div class="form-group">
                   <label for="exampleFormControlInput1">Nombre Curso</label>
-                  <input class="form-control" type="text" name="Curso" placeholder="">
+                  <input class="form-control" type="text" name="Curso" placeholder="Integracion I">
                 </div>
                 <div class="form-group">
                   <label for="exampleFormControlInput1">Seccion</label>
-                  <input class="form-control" type="text" name="Seccion" placeholder="">
+                  <input class="form-control" type="text" name="Seccion" placeholder="1V1">
                 </div>
+                
                 <input type="submit" value="Cargar" class="btn btn-primary">
             </form>
         </div>

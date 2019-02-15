@@ -178,7 +178,7 @@ public class GestorAlumnos {
             stmt.setInt(4, a.getIdCurso());
             stmt.setInt(5, a.getIdCondicion());
             stmt.setInt(6, a.getGrupo());
-            stmt.setDate(7, a.getFechaIngreso());
+            stmt.setString(7, a.getFechaS());
             stmt.executeUpdate();
             stmt.close();
             conn.close();

@@ -94,10 +94,13 @@
       <li class="nav-item active">
         <c:if test="${inicio}">
             <a class="nav-link" href="/Tesis-Asistencias/RevicionInicial.jsp" onclick="alert('Desconectado');" id="secion">
+                <img src="Login-out-white.png" id="" class="img-fluid" >
                 Cerrar Sesion<span class="sr-only">(current)</span></a>
         </c:if>
         <c:if test="${!inicio}">
-            <a class="nav-link" href="/Tesis-Asistencias/Login" id="secion">Iniciar Sesion<span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/Tesis-Asistencias/Login" id="secion">
+                <img src="Login-in-white.png" id="" class="img-fluid" >
+                Iniciar Sesion<span class="sr-only">(current)</span></a>
         </c:if>   
       </li>
     </ul>
