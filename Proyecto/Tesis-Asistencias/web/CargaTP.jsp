@@ -11,18 +11,20 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:include page="Links.jsp"></jsp:include>
-        <title>Nuevo Tp</title>
+        <title>Nuevo Trabajo Practico</title>
     </head>
-    <body>
+    <body id="fondo-Color">
         <jsp:include page="Menu.jsp"></jsp:include>
-        <h1>Carga TP</h1>
-        
-        <div>
+        <div id="bordesGenerales">
+            <h1>Carga Trabajo Practico</h1>
+            </br>
+            
             <form action="CargaTPServlet" method="POST">
                 <div class="form-group">
                   <label for="exampleFormControlInput1">Nombre Trabajo Pracico</label>
-                  <input class="form-control" type="text" name="TrabajoP" placeholder="">
+                  <input class="form-control" type="text" name="TrabajoP" placeholder="Trabajo Practico N°1">
                 </div>
+                
                 <input type="submit" value="Cargar" class="btn btn-primary">
             </form>
         </div>
