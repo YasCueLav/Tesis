@@ -163,3 +163,9 @@ Estilos
     font-weight: 700;
     text-align: center;
 }
+
+/*CONDICIONES*/
+#bordesnabegacion{
+    margin-left: 5em;
+    margin-right: 5em;
+}

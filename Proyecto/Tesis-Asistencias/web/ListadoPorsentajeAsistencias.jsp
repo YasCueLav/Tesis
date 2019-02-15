@@ -13,22 +13,25 @@
         <jsp:include page="Links.jsp"></jsp:include>
         <title>Listado</title>
     </head>
-    <body>
+    <body id="fondo-Color">
         <jsp:include page="Menu.jsp"></jsp:include>
-        <nav aria-label="Page navigation example">
+        <nav aria-label="Page navigation example" id="bordesnabegacion">
                 <ul class="pagination">
                   <li class="page-item"><a class="page-link" href="/Tesis-Asistencias/${t.getTxt()}">Volver</a></li>
                 </ul>
         </nav>
+        
+        <div id="bordesGenerales">   
         <h1>Listado de Inasistencias</h1>
-        <div>
+        </br>
+        
             <table class="table table-striped" name="tabla">
                 <thead>
                     <tr>
-                        <th scope="col" colspan="2">Alumno</th>
-                        <th scope="col" colspan="2">Materia</th>
-                        <th scope="col" colspan="2">Asistencias Tomadas</th>
-                        <th scope="col" colspan="2">Porcentaje de Asistencia</th>
+                        <th scope="col" colspan="2" id="bordesCeldas">Alumno</th>
+                        <th scope="col" colspan="2" id="bordesCeldas">Materia</th>
+                        <th scope="col" colspan="2" id="bordesCeldas">Asistencias Tomadas</th>
+                        <th scope="col" colspan="2" id="bordesCeldas">Porcentaje de Asistencia</th>
                     </tr>
                     <tr>
                         <th scope="col">legajo</th>

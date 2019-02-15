@@ -13,96 +13,74 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
+        
         <li class="nav-item">
-        <a class="nav-link" href="/Tesis-Asistencias/AltaAsistenciaServlet">Asistencia<span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/Tesis-Asistencias/EntregaTpDecisionServlet">Entrega TP<span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/Tesis-Asistencias/AltaCalificacionServlet">Notas Examenes<span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/Tesis-Asistencias/ListadosAlumnosCondicinesServlet">Condicion<span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-          Nuevo
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="/Tesis-Asistencias/AltaAlumnoServlet">Alumno</a>
-          <a class="dropdown-item" href="">cc</a>
-          <a class="dropdown-item" href="">bb</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown" >
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Listados
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="/Tesis-Asistencias/ListadoAsistenciasServlet">Asistencias</a>
-            <a class="dropdown-item" href="/Tesis-Asistencias/ListadoJustificativosServlet">Justificativos</a>
-            <a class="dropdown-item" href="/Tesis-Asistencias/ListadoAlumnosServlet">Alumnos</a>
-            <a class="dropdown-item" href="/Tesis-Asistencias/ListadoCalificacionesServlet">Notas Examenes</a>
-            
-        </div>
+            <a class="nav-link" href="/Tesis-Asistencias/AltaAsistenciaServlet">Asistencias<span class="sr-only">(current)</span></a>
         </li>
+	  
+        <li class="nav-item">
+            <a class="nav-link" href="/Tesis-Asistencias/EntregaTpDecisionServlet">Entrega Trabajos<span class="sr-only">(current)</span></a>
+        </li>
+	  
+        <li class="nav-item">
+            <a class="nav-link" href="/Tesis-Asistencias/AltaCalificacionServlet">Notas Examenes<span class="sr-only">(current)</span></a>
+        </li>
+	  
+	<li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+            Condiciones </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/Tesis-Asistencias/ListadosAlumnosCondicinesServlet">Actualizar</a>
+                <a class="dropdown-item" href="/Tesis-Asistencias/ReporteAprobacionDirectaServlet">Aprobado Directo</a>
+                <a class="dropdown-item" href="/Tesis-Asistencias/ReportePromocionSUServlet">Promosion Sistemas de Unidades</a>
+                <a class="dropdown-item" href="/Tesis-Asistencias/ReporteRegularidadServlet">Regular</a>
+                <a class="dropdown-item" href="/Tesis-Asistencias/ReporteLibreAplazoServlet">Libre x Aplazo</a>
+                <a class="dropdown-item" href="/Tesis-Asistencias/ReporteLibreInasistenciasServlet">Libre x Ausencias</a>
+            </div>
+        </li>
+	  
         <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-          Consultas
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="/Tesis-Asistencias/ListadoAsistenciasEspecificoServlet">Cantidad Ausencias</a>
-          <a class="dropdown-item" href="/Tesis-Asistencias/ListadoTPServlet">Entrega TP</a>
-          <a class="dropdown-item" href="/Tesis-Asistencias/ListadoTFIServlet">Entrega TFI</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-          Reportes
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="/Tesis-Asistencias/ReporteAprobacionDirectaServlet">Aprobado Directo</a>
-          <a class="dropdown-item" href="/Tesis-Asistencias/ReporteRegularidadServlet">Regular</a>
-          <a class="dropdown-item" href="/Tesis-Asistencias/ReporteLibreAplazoServlet">Libre x Aplazo</a>
-          <a class="dropdown-item" href="/Tesis-Asistencias/ReporteLibreInasistenciasServlet">Libre x Ausencias</a>
-        </div>
-      </li>
-        <%--<li class="nav-item">
-                <a class="nav-link" href="/Tesis-Asistencias/AltaJustificativo">Justificativo<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="">xe <span class="sr-only">(current)</span></a>
-            </li>--%>
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+            Consultas </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/Tesis-Asistencias/ListadoAsistenciasServlet">Asistencias</a>
+                <a class="dropdown-item" href="/Tesis-Asistencias/ListadoAsistenciasEspecificoServlet">Cantidad Ausencias</a>
+                <a class="dropdown-item" href="/Tesis-Asistencias/ListadoJustificativosServlet">Justificativos</a>
+                <a class="dropdown-item" href="/Tesis-Asistencias/ListadoCalificacionesServlet">Notas Examenes</a>
+                <a class="dropdown-item" href="/Tesis-Asistencias/ListadoTPServlet">Entrega TP</a>
+                <a class="dropdown-item" href="/Tesis-Asistencias/ListadoTFIServlet">Entrega TFI</a>
+                <a class="dropdown-item" href="/Tesis-Asistencias/ListadoAlumnosServlet">Alumnos</a>
+            </div>
+        </li>
       
         <li class="nav-item dropdown" >
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Sopotre
-            </a>
+              Sopotre </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                
-              <a class="dropdown-item" href="/Tesis-Asistencias/CargaParcialServlet">Carga Parcial</a>
-              <a class="dropdown-item" href="/Tesis-Asistencias/CargaTPServlet">Carga TP</a>
-              <a class="dropdown-item" href="/Tesis-Asistencias/CargaCondicionesServlet">Carga Condiciones</a>
-              <a class="dropdown-item" href="/Tesis-Asistencias/CargaCursoServlet">Carga Curso</a>
-              <a class="dropdown-item" href="/Tesis-Asistencias/ListadoSoporteServlet">Listado</a>
+                <a class="dropdown-item" href="/Tesis-Asistencias/AltaAlumnoServlet">Nuevo Alumno</a>
+                <a class="dropdown-item" href="/Tesis-Asistencias/ListadoSoporteServlet">Listado Soporte</a>
+                <a class="dropdown-item" href="/Tesis-Asistencias/CargaParcialServlet">Nuevo Examen</a>
+                <a class="dropdown-item" href="/Tesis-Asistencias/CargaTPServlet">Nuevo Tabajo Practico</a>
+                <a class="dropdown-item" href="/Tesis-Asistencias/CargaCondicionesServlet">Nuevo Condiciones</a>
+                <a class="dropdown-item" href="/Tesis-Asistencias/CargaCursoServlet">Nuevo Curso</a>
             </div>
         </li>
     </ul>
       
     <ul class="nav justify-content-end">
-      <li class="nav-item active">
-        <c:if test="${inicio}">
-            <a class="nav-link" href="/Tesis-Asistencias/RevicionInicial.jsp" onclick="alert('Desconectado');" id="secion">
-                <img src="Login-out-white.png" id="" class="img-fluid" >
-                Cerrar Sesion<span class="sr-only">(current)</span></a>
-        </c:if>
-        <c:if test="${!inicio}">
-            <a class="nav-link" href="/Tesis-Asistencias/Login" id="secion">
-                <img src="Login-in-white.png" id="" class="img-fluid" >
-                Iniciar Sesion<span class="sr-only">(current)</span></a>
-        </c:if>   
-      </li>
+        <li class="nav-item active">
+            <c:if test="${inicio}">
+                <a class="nav-link" href="/Tesis-Asistencias/RevicionInicial.jsp" onclick="alert('Desconectado');" id="secion">
+                    <img src="Login-out-white.png" id="" class="img-fluid" >
+                    Cerrar Sesion<span class="sr-only">(current)</span></a>
+            </c:if>
+            <c:if test="${!inicio}">
+                <a class="nav-link" href="/Tesis-Asistencias/Login" id="secion">
+                    <img src="Login-in-white.png" id="" class="img-fluid" >
+                    Iniciar Sesion<span class="sr-only">(current)</span></a>
+            </c:if>   
+        </li>
     </ul>
+      
   </div>
 </nav>

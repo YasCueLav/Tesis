@@ -13,17 +13,20 @@
         <title>Libre por Inasistencias</title>
         <jsp:include page="Links.jsp"></jsp:include>
     </head>
-    <body>
+    <body id="fondo-Color">
         <jsp:include page="Menu.jsp"></jsp:include>
-        <h1>Alumnos Libre por Inasistencias</h1>
-        <div>
+        <div id="bordesGenerales">
+            
+            <h1>Alumnos Libre por Inasistencias</h1>
+            </br>
+            
             <table class="table table-striped" name="tabla">
                 <thead>
                     <tr>
-                        <th scope="col" colspan="2">Alumno</th>
-                        <th scope="col" colspan="2">Materia</th>
-                        <th scope="col">Condicion</th>
-                        <th scope="col"></th>
+                        <th scope="col" colspan="2" id="bordesCeldas">Alumno</th>
+                        <th scope="col" colspan="2" id="bordesCeldas">Materia</th>
+                        <th scope="col" id="bordesCeldas">Condicion</th>
+                        <th scope="col" ></th>
                     </tr>
                     <tr>
                         <th scope="col">legajo</th>
@@ -42,7 +45,7 @@
                                 <td>${a.getNombreCurso()}</td>
                                 <td>${a.getDivicionCurso()}</td>
                                 <td>${a.getCondicion()}</td>
-                                <td>
+                                <td id="letraNegrita">
                                     <a id="Link" href="/Tesis-Asistencias/ListadoAsistenciasEspecificoServlet?legajo=${a.getLegajo()}">Ver</a>
                                 </td>
                             </tr>

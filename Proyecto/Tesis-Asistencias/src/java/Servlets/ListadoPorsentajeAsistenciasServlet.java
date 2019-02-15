@@ -105,13 +105,13 @@ public class ListadoPorsentajeAsistenciasServlet extends HttpServlet {
                     g = new GestorAlumnos();
                     ga = new GestorAsistencias();
                     
-                    a = g.obtenerAlumnoPromocionSistemas();
+                    a = g.obtenerAlumnoAprobadoDirecto();
                     alumno = new ArrayList<>();
                     
                     p = new VMAlumnosCursoInasistencias();
                     
                     for (VMAlumnosCursosCondiciones vm : a) {
-                        if(vm.getIdcondicion() == 2){
+                        if(vm.getIdcondicion() == 1){
                             p = ga.obtenerCantidadAusencias(vm.getIdAlumno());
                             porcentajeT = (p.getCantAusenciasG() * 100)/p.getTotalAsistencias();
                             porcentajeO = (p.getCantAusenciasO() * 100)/p.getTotalAsistenciasObligatoria();
@@ -127,7 +127,7 @@ public class ListadoPorsentajeAsistenciasServlet extends HttpServlet {
                     request.setAttribute("t", t);
                     
                     request.setAttribute("alumno", alumno);
-
+                    
                     getServletContext().getRequestDispatcher("/ListadoPorsentajeAsistencias.jsp").forward(request, response);
                     break;
                     
