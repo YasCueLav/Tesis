@@ -13,9 +13,10 @@
         <title>Aprobacion Directa</title>
         <jsp:include page="Links.jsp"></jsp:include>
     </head>
-    <body>
+    <body id="fondo-Color">
         <jsp:include page="Menu.jsp"></jsp:include>
-        <div>
+        <div id="bordesGenerales">
+            
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
                   <li class="page-item"><a class="page-link" href="/Tesis-Asistencias/ReporteAprobacionDirectaServlet">Listado</a></li>
@@ -26,13 +27,14 @@
             </nav>
         
             <h1>Alumnos con Aprobacion Directa</h1>
+            </br>
             
             <table class="table table-striped" name="tabla">
                 <thead>
                     <tr>
-                        <th scope="col" colspan="2">Alumno</th>
-                        <th scope="col" colspan="2">Materia</th>
-                        <th scope="col">Condicion</th>
+                        <th scope="col" colspan="2" id="bordesCeldas">Alumno</th>
+                        <th scope="col" colspan="2" id="bordesCeldas">Materia</th>
+                        <th scope="col" id="bordesCeldas">Condicion</th>
                     </tr>
                     <tr>
                         <th scope="col">legajo</th>
