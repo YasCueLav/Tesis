@@ -17,8 +17,8 @@
         <jsp:include page="Menu.jsp"></jsp:include>
         <div id="bordesGenerales">
             <h1>Listado Calificacion</h1>
-        
-        
+            </br>
+            
             <table class="table table-striped" name="tabla">
                 <thead>
                     <tr>

@@ -158,3 +158,8 @@ Estilos
     vertical-align: middle;
 }
 
+/*LISTADO SOPORTE*/
+#letraNegritaCental{
+    font-weight: 700;
+    text-align: center;
+}
