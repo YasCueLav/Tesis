@@ -20,6 +20,20 @@ Estilos
     margin-right: 5em;
 }
 
+#bordesMensajes{
+    margin-top: 5em;
+    margin-left: 22em;
+    margin-right: 15em;
+}
+
+#MensajeExito{
+    color: greenyellow;
+}
+
+#mensajeError{
+    color: red;
+}
+
 /*ININIO*/
 #centro_img_inicio { 
     margin-left: 15em;

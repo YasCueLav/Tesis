@@ -13,34 +13,33 @@
         <title>Modificar Alumno</title>
         <jsp:include page="Links.jsp"></jsp:include>
     </head>
-    <body>
+    <body id="fondo-Color">
         <jsp:include page="Menu.jsp"></jsp:include>
-        <div>
+        <div id="bordesGenerales">
             <h1>Modificar Alumno</h1>
-
-            <form action="ModificarAlumnosServlet" method="POST">
-                
-		<div class="form-group">
+            </br>
+            
+            <div class="form-group">
                     <label for="exampleFormControlInput1">Legajo</label>
-                    <input type="number" class="form-control" name="Legajo" min="0" placeholder="${alumno.getLegajo()}" value="${alumno.getLegajo()}">
+                    <input type="number" class="form-control" id="" name="Legajo" min="0" placeholder="${alumno.getLegajo()}" value="${alumno.getLegajo()}">
                 </div>
                 
-		<div class="form-group">
-                    <label for="exampleFormControlInput1">Nombre</label>
-                    <input type="text" class="form-control" name="Nombre" placeholder="${alumno.getNombre()}" value="${alumno.getNombre()}">
-                </div>
-                
-		<div class="form-group">
+                <div class="form-group" id="divDistanciaApeForm">
                     <label for="exampleFormControlInput1">Apellido</label>
-                    <input type="text" class="form-control" name="Apellido" placeholder="${alumno.getApellido()}" value="${alumno.getApellido()}">
+                    <input type="text" class="form-control" id="tamLbl" name="Apellido" placeholder="${alumno.getApellido()}" value="${alumno.getApellido()}">
                 </div>
                 
-                <div class="form-group">
+                <div class="form-group" id="divDistanciaNomForm">
+                    <label for="exampleFormControlInput1">Nombre</label>
+                    <input type="text" class="form-control" id="tamLbl" name="Nombre"  placeholder="${alumno.getNombre()}" value="${alumno.getNombre()}">
+                </div>
+                
+                <div class="form-group" id="ejem">
                     <label for="exampleFormControlSelect1">Curso</label>
-                    <select class="form-control" name="curso">
-                        <option value="0">Selecione el Curso...</option>
-                        <c:forEach items="${curso}" var="c">
-                            <option value="${c.getIdCursos()}"> ${c.getIdCursos()} // ${c.getNombreCurso()}, ${c.getSeccionCurso()}</option>
+                    <select class="form-control" name="Curso">
+                        <option>Selecione el Curso...</option>
+                        <c:forEach items="${cu}" var="c">
+                            <option value="${c.getIdCursos()}"> ${c.getNombreCurso()}, ${c.getSeccionCurso()}</option>
                         </c:forEach>
                     </select>
                 </div>
@@ -50,17 +49,18 @@
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Condicion</label>
                     <select name="Condicion" class="form-control">
-                        <option  value="0">Selecione la condicion...</option>
-                        <c:forEach items="${condicion}" var="co">
-                            <option value="${co.getIdCondicion()}" >${co.getIdCondicion()} // ${co.getCondicion()}</option>
+                        <option>Selecione la condicion...</option>
+                        <c:forEach items="${con}" var="co">
+                            <option value="${co.getIdCondicion()}" >${co.getCondicion()}</option>
                         </c:forEach>
                     </select>
                 </div>
                 
                 <div class="form-group">
                     <label for="exampleFormControlInput1">Grupo</label>
-                    <input type="number" class="form-control" name="Grupo" value="0"  min="0" placeholder="">
+                    <input type="number" class="form-control" name="Grupo" placeholder="0" value="0"  min="0">
                 </div>
+            
                 
                 <input type="submit" value="Cargar" class="btn btn-primary">
             </form>

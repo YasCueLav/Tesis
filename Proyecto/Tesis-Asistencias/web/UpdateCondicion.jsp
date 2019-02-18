@@ -13,12 +13,13 @@
         <jsp:include page="Links.jsp"></jsp:include>
         <title>Nueva Condicion</title>
     </head>
-    <body>
+    <body id="fondo-Color">
         <jsp:include page="Menu.jsp"></jsp:include>
-        <h1>Carga Condicion Academica</h1>
-        
-        <div>
+        <div id="bordesGenerales">
+            <h1>Carga Condicion Academica</h1>
             <h5>${condi.getCondicion()}</h5>
+        </br>
+        
             <form action="UpdateCondicionServlet" method="POST">
                 <div class="form-group">
                   <label for="exampleFormControlInput1">Nombre Condicion</label>

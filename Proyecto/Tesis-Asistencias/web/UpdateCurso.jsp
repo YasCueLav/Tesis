@@ -13,12 +13,13 @@
         <jsp:include page="Links.jsp"></jsp:include>
         <title>Modificar Curso</title>
     </head>
-    <body>
+    <body id="fondo-Color">
         <jsp:include page="Menu.jsp"></jsp:include>
-        <h1>Modificar Curso</h1>
-        
-        <div>
+       
+        <div id="bordesGenerales">
+            <h1>Modificar Curso</h1>
             <h5>${curso.getNombreCurso()} - ${curso.getSeccionCurso()}</h5>
+        </br>
         
             <form action="UpdateCursoServlet" method="POST">
                 <div class="form-group">

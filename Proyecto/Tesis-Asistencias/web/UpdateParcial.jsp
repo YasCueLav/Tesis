@@ -13,12 +13,14 @@
         <jsp:include page="Links.jsp"></jsp:include>
         <title>Modificar</title>
     </head>
-    <body>
+    <body id="fondo-Color">
         <jsp:include page="Menu.jsp"></jsp:include>
+        <div id="bordesGenerales">
+            
+            <h1>Modificar Examen</h1>
+            <h4>${ex.getTipoExamne()} ${ex.getExamenNombre()} -- ${ex.getFecha()}</h4>
+            </br>
         
-        <h1>Modificar Examen</h1>
-        <h4>${ex.getTipoExamne()} ${ex.getExamenNombre()} -- ${ex.getFecha()}</h4>
-        <div>
             <form action="UpdateParcialServlet" method="POST">
                 <div class="form-group">
                   <label for="exampleFormControlSelect1">Tipo Examen</label>

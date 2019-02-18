@@ -13,12 +13,12 @@
         <jsp:include page="Links.jsp"></jsp:include>
         <title>Modificar</title>
     </head>
-    <body>
+    <body id="fondo-Color">
         <jsp:include page="Menu.jsp"></jsp:include>
-        
+        <div id="bordesGenerales">
         <h1>Modificar Notas</h1>
+        </br>
         
-        <div>
             <form action="ModificarCalificacionesServlet" method="POST">
                 <table class="table table-striped">
                 <thead>

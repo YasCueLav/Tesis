@@ -12,9 +12,9 @@
         <title>ERROR</title>
         <jsp:include page="Links.jsp"></jsp:include>
     </head>
-    <body>
+    <body id="fondo-Color">
         <jsp:include page="Menu.jsp"></jsp:include>
-        <div>
+        <div id="bordesMensajes">
             <h1 id="mensajeError">No se ha podido realizar la acción</h1> 
         </div>  
     </body>

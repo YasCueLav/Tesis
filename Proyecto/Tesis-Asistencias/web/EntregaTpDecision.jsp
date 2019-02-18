@@ -13,7 +13,7 @@
         <jsp:include page="Links.jsp"></jsp:include>
         <title>TP</title>
     </head>
-    <body>
+    <body id="fondo-Color">
         <jsp:include page="Menu.jsp"></jsp:include>
         <div id="bordesEspecificoGenerales">
             <button type="button" class="btn btn-primary btn-lg" id="BototnTP">

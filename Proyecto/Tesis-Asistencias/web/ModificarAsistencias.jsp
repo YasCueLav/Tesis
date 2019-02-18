@@ -10,13 +10,16 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Editar Asistencia</title>
+        <title>Modificar Asistencia</title>
         <jsp:include page="Links.jsp"></jsp:include>
     </head>
-    <body>
+    <body id="fondo-Color">
         <jsp:include page="Menu.jsp"></jsp:include>
-        <div>
-            <h2>Editar Asistencia</h2>
+        <div id="bordesGenerales">
+            
+            <h2>Modificar Asistencia</h2>
+            </br>
+            
             <form action="ModificarAsistenciasServlet" method="POST">
                 
             <%--

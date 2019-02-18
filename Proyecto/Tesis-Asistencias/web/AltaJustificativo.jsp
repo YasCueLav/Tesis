@@ -13,15 +13,18 @@
     <jsp:include page="Links.jsp"></jsp:include>
     <title>Justificativo</title>
 </head>
-<body>
+<body id="fondo-Color">
     <jsp:include page="Menu.jsp"></jsp:include>
+    <div id="bordesGenerales">
         
-    <div>
         <h1>Registrar Justificativo</h1>
+        
         <h3>${alumno.getLegajo()} / ${alumno.getApellido()}, ${alumno.getNombre()}</h3>
+        </br>
+        
         <form action="AltaJustificativoServlet" method="POST">
             <div class="form-group">
-                <label for="exampleFormControlTextarea1">Justificativo de Ausencia</label>
+                <label for="exampleFormControlTextarea1"><h5>Justificativo de Ausencia</h5></label>
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="Justificativo" ></textarea>
             </div>
             <input type="submit" value="Cargar" class="btn btn-primary">

@@ -13,13 +13,17 @@
         <jsp:include page="Links.jsp"></jsp:include>
         <title>Modificar</title>
     </head>
-    <body>
+    <body id="fondo-Color">
         <jsp:include page="Menu.jsp"></jsp:include>
+        <div id="bordesGenerales">
         <h1>Modificar de Trabajos Final Integrador</h1>
-        <div>
+        
             <c:forEach items="${tp}" var="p">
                 <h3>${p.getLegajo()} -- ${p.getfEntregado()} </h3>
             </c:forEach>
+                
+            </br>
+                
             <form action="ModificarTFIServlet" method="POST">
                 <table class="table table-striped">
 		  <thead>
@@ -54,9 +58,9 @@
                     </tbody>
 		</table>
                 <div class="form-group">
-                    <label for="exampleFormControlInput1">Fecha Entregado</label>
-                    Si<input type="radio" name="FechaS" value="S"> - 
-                    No<input type="radio" name="FechaS" value="N" checked="true">
+                    <label for="exampleFormControlInput1">Fecha Entregado  .</label>
+                    Si <input type="radio" name="FechaS" value="S"> - 
+                    No <input type="radio" name="FechaS" value="N" checked="true">
                     <input type="date" name="Fecha"> 
                 </div>
 		<input type="submit" value="Cargar" class="btn btn-primary">

@@ -51,7 +51,7 @@
                                 <td>${a.getfEntregado()}</td>
                                 <td>${a.getNota()}</td>
                                 <td id="letraNegrita">
-                                    <a id="Link" href="/Tesis-Asistencias/ModificarTFIServlet?idTpAlumno=${a.getIdTpAlumno()}&tipo=1">Modificar</a> /
+                                    <a id="Link" href="/Tesis-Asistencias/ModificarTFIServlet?idTpAlumno=${a.getIdTpAlumno()}&tipo=1">Editar</a> /
                                     <a id="Link" href="/Tesis-Asistencias/ModificarTFIServlet?idTpAlumno=${a.getIdTpAlumno()}&tipo=2">Eliminar</a>
                                 </td>
                             </tr>
