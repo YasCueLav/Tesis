@@ -128,7 +128,7 @@
                                     No <input type="radio" name="${a.getIdAlumno()}" value="No" checked="true">
                                 </td>
                                 <td id="colorRadioDos">
-                                    <input type="number" name="Nota" value="0">
+                                    <input type="number" name="Nota" value="0" placeholder="0">
                                 </td>
                             </tr>
                         </c:forEach>

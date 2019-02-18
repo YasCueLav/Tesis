@@ -3,10 +3,13 @@
     Created on : 19/04/2018, 17:54:53
     Author     : Yasmin
 --%>
+
+
+        <link rel="icon" href="G logo.png" type="image/png">
 <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    
 <!-- jQuery library
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 -->

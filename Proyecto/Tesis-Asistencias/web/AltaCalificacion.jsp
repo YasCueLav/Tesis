@@ -53,7 +53,7 @@
                             <th><input type="hidden" value="${a.getIdAlumno()}" name="IdAlumno"> ${a.getLegajo()}</th>
                             <td>${a.getApellido()}, ${a.getNombre()} </td>
                             <td>${a.getDivicionCurso()}</td>
-                            <td><input type="number" name="NumeoNota"></td>
+                            <td><input type="number" name="NumeoNota" value="0" placeholder="0"></td>
                         </tr>
                     </c:forEach>
                 </tbody>
