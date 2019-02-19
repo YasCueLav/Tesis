@@ -11,13 +11,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:include page="Links.jsp"></jsp:include>
-        <title>Modificar</title>
+        <title>Modificar Examen</title>
     </head>
     <body id="fondo-Color">
         <jsp:include page="Menu.jsp"></jsp:include>
         <div id="bordesGenerales">
             
             <h1>Modificar Examen</h1>
+            
             <h4>${ex.getTipoExamne()} ${ex.getExamenNombre()} -- ${ex.getFecha()}</h4>
             </br>
         
@@ -40,7 +41,7 @@
                     No<input type="radio" name="FechaS" value="N" checked="true">
                     <input type="date" name="Fecha" placeholder="${ex.getFecha()}" value="${ex.getFecha()}"> 
                 </div>
-                <input type="submit" value="Cargar" class="btn btn-primary">
+                <input type="submit" value="Cargar" class="btn btn-primary" id="BotronCarga">
             </form>
         </div>
     </body>

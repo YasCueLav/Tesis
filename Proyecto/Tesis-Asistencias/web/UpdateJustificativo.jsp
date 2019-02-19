@@ -28,7 +28,7 @@ justi
                     <label for="exampleFormControlTextarea1">Justificativo de Ausencia</label>
                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="10" cols="30" name="Justificativo" placeholder="${justi.getTexto()}" value="${justi.getTexto()}"></textarea>
                 </div>
-                <input type="submit" value="Cargar" class="btn btn-primary">
+                <input type="submit" value="Cargar" class="btn btn-primary" id="BotronCarga">
             </form>
         </div>
     </body>

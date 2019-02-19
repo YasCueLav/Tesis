@@ -27,10 +27,10 @@
                   <input class="form-control" type="text" name="Curso" placeholder="${curso.getNombreCurso()}" value="${curso.getNombreCurso()}">
                 </div>
                 <div class="form-group">
-                  <label for="exampleFormControlInput1">Seccion</label>
+                  <label for="exampleFormControlInput1">Sección</label>
                   <input class="form-control" type="text" name="Seccion" placeholder="${curso.getSeccionCurso()}" value="${curso.getSeccionCurso()}">
                 </div>
-                <input type="submit" value="Cargar" class="btn btn-primary">
+                <input type="submit" value="Cargar" class="btn btn-primary" id="BotronCarga">
             </form>
         </div>
     </body>

@@ -11,21 +11,21 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:include page="Links.jsp"></jsp:include>
-        <title>Nueva Condicion</title>
+        <title>Nueva Condición</title>
     </head>
     <body id="fondo-Color">
         <jsp:include page="Menu.jsp"></jsp:include>
         <div id="bordesGenerales">
-            <h1>Carga Condicion Academica</h1>
+            <h1>Carga Condición Académica</h1>
             <h5>${condi.getCondicion()}</h5>
         </br>
         
             <form action="UpdateCondicionServlet" method="POST">
                 <div class="form-group">
-                  <label for="exampleFormControlInput1">Nombre Condicion</label>
+                  <label for="exampleFormControlInput1">Nombre Condición</label>
                   <input class="form-control" type="text" name="Condicion" placeholder="${condi.getCondicion()}" value="${condi.getCondicion()}">
                 </div>
-                <input type="submit" value="Cargar" class="btn btn-primary">
+                <input type="submit" value="Cargar" class="btn btn-primary" id="BotronCarga">
             </form>
         </div>
     </body>
