@@ -28,6 +28,7 @@
                   <input class="form-control" type="text" name="TrabajoP" placeholder="${trabPrac.getNombreTp()}" value="${trabPrac.getNombreTp()}">
                 </div>
                 <input type="submit" value="Cargar" class="btn btn-primary" id="BotronCarga">
+                <div id="mp"></div>
             </form>
         </div>
     </body>

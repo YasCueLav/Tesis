@@ -30,6 +30,7 @@
                 </div>
                 
                 <input type="submit" value="Cargar" class="btn btn-primary" id="BotronCarga">
+                <div id="mp"></div>
             </form>
         </div>
     </body>

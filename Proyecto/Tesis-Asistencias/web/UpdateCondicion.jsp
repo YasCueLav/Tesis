@@ -26,6 +26,7 @@
                   <input class="form-control" type="text" name="Condicion" placeholder="${condi.getCondicion()}" value="${condi.getCondicion()}">
                 </div>
                 <input type="submit" value="Cargar" class="btn btn-primary" id="BotronCarga">
+                <div id="mp"></div>
             </form>
         </div>
     </body>

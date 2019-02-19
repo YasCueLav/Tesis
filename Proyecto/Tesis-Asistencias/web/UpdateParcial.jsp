@@ -42,6 +42,7 @@
                     <input type="date" name="Fecha" placeholder="${ex.getFecha()}" value="${ex.getFecha()}"> 
                 </div>
                 <input type="submit" value="Cargar" class="btn btn-primary" id="BotronCarga">
+                <div id="mp"></div>
             </form>
         </div>
     </body>
