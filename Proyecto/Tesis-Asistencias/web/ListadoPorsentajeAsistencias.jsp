@@ -34,10 +34,10 @@
                         <th scope="col" colspan="2" id="bordesCeldas">Porcentaje de Asistencia</th>
                     </tr>
                     <tr>
-                        <th scope="col">legajo</th>
+                        <th scope="col">Legajo</th>
                         <th scope="col">Apellido, Nombre</th>
                         <th scope="col">Curso</th>
-                        <th scope="col">Divicion</th>
+                        <th scope="col">División </th>
                         <th scope="col">Totales</th>
                         <th scope="col">Obligatorias</th>
                         <th scope="col">Totales</th>

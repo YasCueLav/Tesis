@@ -11,21 +11,21 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:include page="Links.jsp"></jsp:include>
-        <title>Nuevo Trabajo Practico</title>
+        <title>Nuevo Trabajo Práctico </title>
     </head>
     <body id="fondo-Color">
         <jsp:include page="Menu.jsp"></jsp:include>
         <div id="bordesGenerales">
-            <h1>Carga Trabajo Practico</h1>
+            <h1>Carga Trabajo Práctico</h1>
             </br>
             
             <form action="CargaTPServlet" method="POST">
                 <div class="form-group">
-                  <label for="exampleFormControlInput1">Nombre Trabajo Pracico</label>
-                  <input class="form-control" type="text" name="TrabajoP" placeholder="Trabajo Practico N°1">
+                  <label for="exampleFormControlInput1">Nombre Trabajo Práctico</label>
+                  <input class="form-control" type="text" name="TrabajoP" placeholder="Trabajo Práctico N°1">
                 </div>
                 
-                <input type="submit" value="Cargar" class="btn btn-primary">
+                <input type="submit" value="Cargar" class="btn btn-primary" id="BotronCarga">
             </form>
         </div>
     </body>

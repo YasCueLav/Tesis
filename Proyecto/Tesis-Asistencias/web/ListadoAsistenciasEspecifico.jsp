@@ -33,10 +33,10 @@
                         <th scope="col" ></th>
                     </tr>
                     <tr>
-                        <th scope="col">legajo</th>
+                        <th scope="col">Legajo</th>
                         <th scope="col" width="300">Apellido, Nombre</th>
                         <th scope="col">Curso</th>
-                        <th scope="col">Divicion</th>
+                        <th scope="col">División </th>
                         <th scope="col">General</th>
                         <th scope="col">Obligatorias</th>
                     </tr>

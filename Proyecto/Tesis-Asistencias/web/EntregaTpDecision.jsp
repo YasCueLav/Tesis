@@ -11,7 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:include page="Links.jsp"></jsp:include>
-        <title>TP</title>
+        <title>Trabajo Práctico </title>
     </head>
     <body id="fondo-Color">
         <jsp:include page="Menu.jsp"></jsp:include>

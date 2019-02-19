@@ -38,11 +38,11 @@
                 <table class="table table-striped" name="tabla">
                   <thead>
                         <tr>
-                          <th scope="col">legajo</th>
+                          <th scope="col">Legajo</th>
                           <th scope="col">Apellido, Nombre</th>
-                          <th scope="col">Divicion</th>
+                          <th scope="col">División</th>
                           <th scope="col">Fecha</th>
-                          <th scope="col">Asistio?</th>
+                          <th scope="col">Asistió?</th>
                         </tr>
                   </thead>
                     <div>
@@ -66,7 +66,7 @@
                           </tbody>
                     </div>
                 </table>
-                <input type="submit" value="Cargar" class="btn btn-primary">
+                <input type="submit" value="Cargar" class="btn btn-primary" id="BotronCarga">
             </form>
         </div>
     </body>

@@ -17,14 +17,14 @@
         <jsp:include page="Menu.jsp"></jsp:include>
         <div id="bordesGenerales">
             
-        <h1>Listado de entregas de trabajos Practicos</h1>
+        <h1>Listado de entregas de trabajos prácticos</h1>
         </br>
             <table class="table table-striped" name="tabla">
                 <thead>
                     <tr id="centrarConTabla">
                         <th scope="col" colspan="2" id="bordesCeldas">Alumno</th>
                         <th scope="col" colspan="2" id="bordesCeldas">Materia</th>
-                        <th scope="col" rowspan="2" id="bordesCeldasSuperior">Trabajo Practico</th>
+                        <th scope="col" rowspan="2" id="bordesCeldasSuperior">Trabajo Prácticos </th>
                         <th scope="col" colspan="2" id="bordesCeldas">Fecha</th>
                         <th scope="col" rowspan="2" id="bordesCeldasSuperior">Estado</th>
                         <th scope="col" rowspan="2" id="bordesCeldasSuperior"></th>
@@ -33,7 +33,7 @@
                         <th scope="col">Legajo</th>
                         <th scope="col">Apellido, Nombre</th>
                         <th scope="col">Curso</th>
-                        <th scope="col">Divicion</th>
+                        <th scope="col">División</th>
                         <th scope="col">de Entrega</th>
                         <th scope="col">Entregado</th>
                     </tr>

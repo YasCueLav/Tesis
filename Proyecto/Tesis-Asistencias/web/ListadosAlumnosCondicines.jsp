@@ -18,7 +18,7 @@
         <div  id="bordesGenerales">
             <h1>Listados</h1>
         
-            <h5>Listados de Alumnos con Codiciones</h5>
+            <h5>Listados de Alumnos con Condiciones </h5>
             </br>
             <form action="ListadosAlumnosCondicinesServlet" method="POST">
                 
@@ -28,10 +28,10 @@
                 <table class="table table-striped" name="tabla">
                     <thead>
                         <tr>
-                            <th scope="col" width="50">legajo</th>
+                            <th scope="col" width="50">Legajo</th>
                             <th scope="col" width="300">Apellido, Nombre</th>
-                            <th scope="col"  width="100">Curso - Divicion</th>
-                            <th scope="col">Condicion</th>
+                            <th scope="col"  width="100">Curso - División</th>
+                            <th scope="col">Condición</th>
                         </tr>
                     </thead>
                     <div>

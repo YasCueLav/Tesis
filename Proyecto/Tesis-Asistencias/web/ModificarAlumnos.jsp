@@ -37,7 +37,7 @@
                 <div class="form-group" id="ejem">
                     <label for="exampleFormControlSelect1">Curso</label>
                     <select class="form-control" name="Curso">
-                        <option>Selecione el Curso...</option>
+                        <option>Seleccione el Curso...</option>
                         <c:forEach items="${cu}" var="c">
                             <option value="${c.getIdCursos()}"> ${c.getNombreCurso()}, ${c.getSeccionCurso()}</option>
                         </c:forEach>
@@ -47,9 +47,9 @@
                 </br>
                 
                 <div class="form-group">
-                    <label for="exampleFormControlSelect1">Condicion</label>
+                    <label for="exampleFormControlSelect1">Condición </label>
                     <select name="Condicion" class="form-control">
-                        <option>Selecione la condicion...</option>
+                        <option>Seleccione la condición ...</option>
                         <c:forEach items="${con}" var="co">
                             <option value="${co.getIdCondicion()}" >${co.getCondicion()}</option>
                         </c:forEach>
@@ -62,7 +62,7 @@
                 </div>
             
                 
-                <input type="submit" value="Cargar" class="btn btn-primary">
+                <input type="submit" value="Cargar" class="btn btn-primary" id="BotronCarga">
             </form>
         </div>
     </body>

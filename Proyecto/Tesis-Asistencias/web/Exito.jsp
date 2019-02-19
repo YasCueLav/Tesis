@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Exito</title>
+        <title>Éxito</title>
         <jsp:include page="Links.jsp"></jsp:include>
     </head>
     <body id="fondo-Color">

@@ -28,9 +28,9 @@
                 <table class="table table-striped">
 		  <thead>
 			<tr>
-			  <th scope="col">legajo</th>
+			  <th scope="col">Legajo</th>
 			  <th scope="col">Apellido, Nombre</th>
-			  <th scope="col">Divicion</th>
+			  <th scope="col">División</th>
 			  <th scope="col">Entregado?</th>
 			  <th scope="col">Nota</th>
 			</tr>
@@ -63,7 +63,7 @@
                     No <input type="radio" name="FechaS" value="N" checked="true">
                     <input type="date" name="Fecha"> 
                 </div>
-		<input type="submit" value="Cargar" class="btn btn-primary">
+		<input type="submit" value="Cargar" class="btn btn-primary" id="BotronCarga">
             </form>
         </div>
     </body>

@@ -19,7 +19,7 @@
             <h1>Listados</h1>
             </br>
             
-            <h4>Listados de Examenes</h4>
+            <h4>Listados de Exámenes </h4>
             
             <div>
                 <table class="table table-striped" name="tabla">
@@ -48,13 +48,13 @@
             </div>
             </br>
             
-            <h4>Listados de Trabajos Practicos</h4>
+            <h4>Listados de Trabajos Prácticos </h4>
             
             <div>
                 <table class="table table-striped" name="tabla">
                     <thead>
                         <tr>
-                            <th scope="col">Trabjao Practico</th>
+                            <th scope="col">Trabjao Prácticos </th>
                             <th scope="col"></th>
                         </tr>
                     </thead>
@@ -80,7 +80,7 @@
                 <table class="table table-striped" name="tabla">
                     <thead>
                         <tr>
-                            <th scope="col">Condicion</th>
+                            <th scope="col">Condición </th>
                             <th scope="col"></th>
                         </tr>
                     </thead>
@@ -107,7 +107,7 @@
                     <thead>
                         <tr>
                             <th scope="col" width="500">Nombre</th>
-                            <th scope="col" width="300">Seccion</th>
+                            <th scope="col" width="300">Sección </th>
                             <th scope="col"></th>
                         </tr>
                     </thead>

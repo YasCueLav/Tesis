@@ -16,7 +16,7 @@
     <body id="fondo-Color">
         <jsp:include page="Menu.jsp"></jsp:include>
         <div id="bordesGenerales">
-        <h1>Modificar de Trabajos Practicos</h1>
+        <h1>Modificar de Trabajos Prácticos</h1>
         
         <c:forEach items="${tp}" var="p">
             <h3>${p.getLegajo()} -- ${p.getfEntregado()} </h3>
@@ -27,9 +27,9 @@
                 <table class="table table-striped">
 		  <thead>
 			<tr>
-			  <th scope="col">legajo</th>
+			  <th scope="col">Legajo</th>
 			  <th scope="col">Apellido, Nombre</th>
-			  <th scope="col">Divicion</th>
+			  <th scope="col">Divición</th>
 			  <th scope="col">Entregado?</th>
 			  <th scope="col">Estado TP</th>
 			</tr>
@@ -79,7 +79,7 @@
                     No <input type="radio" name="FechaS" value="N" checked="true">
                     <input type="date" name="Fecha"> 
                 </div>
-		<input type="submit" value="Cargar" class="btn btn-primary">
+		<input type="submit" value="Cargar" class="btn btn-primary" id="BotronCarga">
             </form>
         </div>
     </body>

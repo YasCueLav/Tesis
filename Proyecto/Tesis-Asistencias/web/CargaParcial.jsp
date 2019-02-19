@@ -11,20 +11,20 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:include page="Links.jsp"></jsp:include>
-        <title>Nuevo Examene</title>
+        <title>Nuevo Examen </title>
     </head>
     <body id="fondo-Color">
         <jsp:include page="Menu.jsp"></jsp:include>
         <div id="bordesGenerales">
 
-            <h1>Carga Examen</h1>
+            <h1>Carga Examen </h1>
             </br>
 
             <form action="CargaParcialServlet" method="POST">
                 <div class="form-group">
                   <label for="exampleFormControlSelect1">Tipo de Examen</label>
                   <select class="form-control" id="exampleFormControlSelect1" name="TipoExamen">
-                      <option>Selecione Tipo de Examen...</option>
+                      <option>Seleccione Tipo de Examen...</option>
                     <c:forEach items="${tipoexamen}" var="e">
                          <option name="IdTipoEx" value="${e.getIdTipoExamne()}">${e.getTipoExamen()}</option>
                     </c:forEach>
@@ -118,7 +118,7 @@
                       </select>
                 </div>
                     
-                <input type="submit" value="Cargar" class="btn btn-primary">
+                <input type="submit" value="Cargar" class="btn btn-primary" id="BotronCarga">
             </form>
         </div>
     </body>

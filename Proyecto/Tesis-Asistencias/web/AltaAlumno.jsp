@@ -120,7 +120,7 @@
                 <div class="form-group" id="ejem">
                     <label for="exampleFormControlSelect1">Curso</label>
                     <select class="form-control" name="Curso">
-                        <option>Selecione el Curso...</option>
+                        <option>Seleccione el Curso...</option>
                         <c:forEach items="${cu}" var="c">
                             <option value="${c.getIdCursos()}"> ${c.getNombreCurso()}, ${c.getSeccionCurso()}</option>
                         </c:forEach>
@@ -132,7 +132,7 @@
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Condicion</label>
                     <select name="Condicion" class="form-control">
-                        <option>Selecione la condicion...</option>
+                        <option>Seleccione la condicion...</option>
                         <c:forEach items="${con}" var="co">
                             <option value="${co.getIdCondicion()}" >${co.getCondicion()}</option>
                         </c:forEach>
@@ -144,7 +144,7 @@
                     <input type="number" class="form-control" name="Grupo" value="0"  min="0">
                 </div>
                 
-                <input type="submit" value="Cargar" class="btn btn-primary">
+                <input type="submit" value="Cargar" class="btn btn-primary" id="BotronCarga">
             </form>
         </div>
     </body>

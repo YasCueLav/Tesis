@@ -27,7 +27,7 @@
                 <label for="exampleFormControlTextarea1"><h5>Justificativo de Ausencia</h5></label>
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="Justificativo" ></textarea>
             </div>
-            <input type="submit" value="Cargar" class="btn btn-primary">
+            <input type="submit" value="Cargar" class="btn btn-primary" id="BotronCarga">
         </form>
     </div>
 </body>

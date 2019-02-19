@@ -23,9 +23,9 @@
                 <table class="table table-striped">
                 <thead>
                     <tr>
-                      <th scope="col">legajo</th>
+                      <th scope="col">Legajo</th>
                       <th scope="col">Apellido, Nombre</th>
-                      <th scope="col">Divicion</th>
+                      <th scope="col">División</th>
                       <th scope="col">Nota</th>
                     </tr>
                 </thead>
@@ -40,7 +40,7 @@
                     </c:forEach>
                 </tbody>
                 </table>
-                <input type="submit" value="Cargar" class="btn btn-primary" name="Boton">
+                <input type="submit" value="Cargar" class="btn btn-primary" name="Boton" id="BotronCarga">
             </form>
         </div>
     </body>

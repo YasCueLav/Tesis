@@ -17,7 +17,7 @@
         <jsp:include page="Menu.jsp"></jsp:include>
         <div id="bordesGenerales">
             
-        <h1>Listado de entregas de trabajos final Integrador</h1>
+        <h1>Listado de entregas de trabajos final integrador</h1>
         </br>
             <table class="table table-striped" name="tabla">
                 <thead>
@@ -30,10 +30,10 @@
                         <th scope="col" rowspan="2" id="bordesCeldasSuperior"></th>
                     </tr>
                     <tr>
-                        <th scope="col">legajo</th>
+                        <th scope="col">Legajo</th>
                         <th scope="col">Apellido, Nombre</th>
                         <th scope="col">Curso</th>
-                        <th scope="col">Divicion</th>
+                        <th scope="col">División </th>
                         <th scope="col">de Entrega</th>
                         <th scope="col">Entregado</th>
                     </tr>
