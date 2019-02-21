@@ -16,9 +16,8 @@
     <body id="fondo-Color">
         <jsp:include page="Menu.jsp"></jsp:include>
         <div id="bordesGenerales">
-            <h1>Listados</h1>
+            <h1>Listados de Alumnos</h1>
         
-            <h5>Listados de Alumnos</h5>
             </br>
             <table class="table table-striped" name="tabla">
                 <thead>
