@@ -383,6 +383,13 @@ INSERT INTO Tp_Alumnos (id_alumno, id_tp,presentado,fecha_entregado, id_estado ,
 INSERT INTO Tp_Alumnos (id_alumno, id_tp,presentado,fecha_entregado, id_estado ,visible) VALUES (6, 5,1,'2018/10/12',2,1)
 INSERT INTO Tp_Alumnos (id_alumno, id_tp,presentado,fecha_entregado, id_estado ,visible) VALUES (7, 5,1,'2018/10/12',2,1)
 INSERT INTO Tp_Alumnos (id_alumno, id_tp,presentado,fecha_entregado, id_estado ,visible) VALUES (8, 5,1,'2018/10/12',2,1)
+--6
+INSERT INTO Tp_Alumnos (id_alumno, id_tp,presentado,fecha_entregado, id_estado ,visible) VALUES (1, 6,1,'2018/11/02',1,1)
+INSERT INTO Tp_Alumnos (id_alumno, id_tp,presentado,fecha_entregado, id_estado ,visible) VALUES (3, 6,1,'2018/11/02',1,1)
+INSERT INTO Tp_Alumnos (id_alumno, id_tp,presentado,fecha_entregado, id_estado ,visible) VALUES (5, 6,1,'2018/11/02',1,1)
+INSERT INTO Tp_Alumnos (id_alumno, id_tp,presentado,fecha_entregado, id_estado ,visible) VALUES (6, 6,1,'2018/11/02',1,1)
+INSERT INTO Tp_Alumnos (id_alumno, id_tp,presentado,fecha_entregado, id_estado ,visible) VALUES (7, 6,1,'2018/11/02',1,1)
+INSERT INTO Tp_Alumnos (id_alumno, id_tp,presentado,fecha_entregado, id_estado ,visible) VALUES (8, 6,1,'2018/11/02',1,1)
 
 Condicion
 --AD 1
@@ -398,3 +405,29 @@ UPDATE Alumnos SET id_condicion = 4 WHERE id_alumno = 7
 --LxA 5
 UPDATE Alumnos SET id_condicion = 5 WHERE id_alumno = 2
 UPDATE Alumnos SET id_condicion = 5 WHERE id_alumno = 4
+
+JUSTIFICATIVOS
+/*
+2 =>34/58/82
+*3 =>99/115
+4 =>52/60/68/76/84/116/124/148/156/164/172/180/188/196/204/212
+*-5 =>37/101/125/141
+*-6 =>38/150
+*-/7 =>87/143
+*8 =>80/152 */
+
+INSERT INTO Justificativos (id_asistencia,obserbaciones,visible) VALUES (34,'Certificado medio entregado',1)
+INSERT INTO Justificativos (id_asistencia,obserbaciones,visible) VALUES (58,'Ausencia justificada',1)
+INSERT INTO Justificativos (id_asistencia,obserbaciones,visible) VALUES (82,'Certificado medio entregado',1)
+INSERT INTO Justificativos (id_asistencia,obserbaciones,visible) VALUES (99,'Certificado medio entregado',1)
+INSERT INTO Justificativos (id_asistencia,obserbaciones,visible) VALUES (115,'Ausencia justificada',1)
+INSERT INTO Justificativos (id_asistencia,obserbaciones,visible) VALUES (37,'Ausencia justificada',1)
+INSERT INTO Justificativos (id_asistencia,obserbaciones,visible) VALUES (101,'Certificado medio entregado',1)
+INSERT INTO Justificativos (id_asistencia,obserbaciones,visible) VALUES (125,'Ausencia justificada',1)
+INSERT INTO Justificativos (id_asistencia,obserbaciones,visible) VALUES (141,'Certificado medio entregado',1)
+INSERT INTO Justificativos (id_asistencia,obserbaciones,visible) VALUES (38,'Certificado medio entregado',1)
+INSERT INTO Justificativos (id_asistencia,obserbaciones,visible) VALUES (150,'Ausencia justificada',1)
+INSERT INTO Justificativos (id_asistencia,obserbaciones,visible) VALUES (87,'Certificado medio entregado',1)
+INSERT INTO Justificativos (id_asistencia,obserbaciones,visible) VALUES (143,'Ausencia justificada',1)
+INSERT INTO Justificativos (id_asistencia,obserbaciones,visible) VALUES (80,'Certificado medio entregado',1)
+INSERT INTO Justificativos (id_asistencia,obserbaciones,visible) VALUES (152,'Ausencia justificada',1)

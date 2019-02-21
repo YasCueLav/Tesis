@@ -101,17 +101,14 @@ EXEC pa_Alumnos_Curso_TP_Uno @id = 1
 /*------------------------------------------------------------------------------------------------------------------------*/
 
 go
-CREATE PROC pa_Alumnos_Curso_TFI_Todo
+alter PROC pa_Alumnos_Curso_TFI_Todo
 as
-SELECT DISTINCT ta.id_tp_alumno, a.id_alumno, a.legajo, a.nombre, a.apellido, c.nombre 'curso', c.seccion, 
-		tp.id_tp, tp.nombre 'tp', tp.fecha_entrega, ta.fecha_entregado,
-			( SELECT n.nota FROM Alumnos al JOIN Notas n ON (al.id_alumno = n.id_alumno) WHERE al.id_alumno = a.id_alumno AND n.id_tp = 6 AND n.id_nota = 
-				(SELECT MAX(nota.id_nota) FROM Alumnos alum JOIN Notas nota ON (alum.id_alumno = nota.id_alumno) WHERE alum.id_alumno = a.id_alumno AND nota.id_tp = 6)) 'nota'
+SELECT ta.id_tp_alumno, ta.id_alumno, a.legajo, a.nombre, a.apellido, c.nombre 'curso', c.seccion, tp.nombre 'tp', tp.fecha_entrega, ta.fecha_entregado ,n.nota
 FROM Tp_Alumnos ta JOIN Alumnos a ON (ta.id_alumno = a.id_alumno) 
 					JOIN Trabajos_Practicos tp ON (ta.id_tp = tp.id_tp)
-					JOIN Cursos c ON (a.id_curso = c.id_curso) 
-WHERE ta.visible = 1 AND a.visible = 1 AND tp.visible = 1 AND c.visible = 1 AND ta.id_tp = 6 AND ta.id_tp_alumno = 
-															(SELECT MAX(tpa.id_tp_alumno) FROM Tp_Alumnos tpa WHERE tpa.id_alumno = a.id_alumno AND tpa.id_tp = 6)
+					JOIN Cursos c ON (a.id_curso = c.id_curso)
+					JOIN Notas n ON (a.id_alumno = n.id_alumno)
+WHERE ta.visible = 1 AND a.visible = 1 AND tp.visible = 1 AND c.visible = 1 AND n.visible = 1 AND n.id_tp = 6 AND tp.id_tp = 6
 ORDER BY a.apellido, a.nombre, tp.nombre
 
 go

@@ -120,9 +120,14 @@ public class UpdateParcialServlet extends HttpServlet {
         e.setIdExamen(id);
         e.setIdTipoExamne(Integer.parseInt(request.getParameter("TipoExamen")));
         e.setExamenNombre(request.getParameter("Examen"));
+        
+        String dia = request.getParameter("dia");
+        String mes = request.getParameter("mes");
+        String anio = request.getParameter("anio");
+            
         String presente = request.getParameter("FechaS");
             if (presente.equals("S")) {
-                e.setFecha(request.getParameter("Fecha"));
+                e.setFecha(request.getParameter(anio+"/"+mes+"/"+dia));
                 cargar = ge.modificarExamenConFecha(e);
             } else if (presente.equals("N")){
                 cargar = ge.modificarExamenSinFecha(e);
