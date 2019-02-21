@@ -162,9 +162,13 @@ public class ModificarTPServlet extends HttpServlet {
             tpa.setIdEstado(1);
         }
         
+        String dia = request.getParameter("dia");
+        String mes = request.getParameter("mes");
+        String anio = request.getParameter("anio");
+        
         String p = request.getParameter("FechaS");
         if (p.equals("S")) {
-            tpa.setFecha(request.getParameter("Fecha"));
+            tpa.setFecha(request.getParameter(anio+"/"+mes+"/"+dia));
             cargar = gt.modificarTPsAlumnosConfecha(tpa);
         } else if (p.equals("N")){
             cargar = gt.modificarTPsAlumnos(tpa);

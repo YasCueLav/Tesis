@@ -11,9 +11,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:include page="Links.jsp"></jsp:include>
-        <title>TP</title>
+        <title>Trabajo Práctico </title>
     </head>
-    <body>
+    <body id="fondo-Color">
         <jsp:include page="Menu.jsp"></jsp:include>
         <div id="bordesEspecificoGenerales">
             <button type="button" class="btn btn-primary btn-lg" id="BototnTP">

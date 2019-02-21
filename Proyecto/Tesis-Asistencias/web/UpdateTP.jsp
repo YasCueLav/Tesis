@@ -13,18 +13,22 @@
         <jsp:include page="Links.jsp"></jsp:include>
         <title>Modificar TP</title>
     </head>
-    <body>
+    <body id="fondo-Color">
         <jsp:include page="Menu.jsp"></jsp:include>
-        <h1>Modificar TP</h1>
+        <div id="bordesGenerales">
+            
+            <h1>Modificar Trabajo Práctico</h1>
         
-        <div>
             <h5>${trabPrac.getNombreTp()}</h5>
+            </br>
+            
             <form action="UpdateTPServlet" method="POST">
                 <div class="form-group">
-                  <label for="exampleFormControlInput1">Nombre Trabajo Pracico</label>
+                  <label for="exampleFormControlInput1">Nombre Trabajo Práctico</label>
                   <input class="form-control" type="text" name="TrabajoP" placeholder="${trabPrac.getNombreTp()}" value="${trabPrac.getNombreTp()}">
                 </div>
-                <input type="submit" value="Cargar" class="btn btn-primary">
+                <input type="submit" value="Cargar" class="btn btn-primary" id="BotronCarga">
+                <div id="mp"></div>
             </form>
         </div>
     </body>

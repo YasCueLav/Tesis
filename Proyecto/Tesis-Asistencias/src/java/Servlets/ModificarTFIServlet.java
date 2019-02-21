@@ -126,9 +126,13 @@ public class ModificarTFIServlet extends HttpServlet {
             tpa.setNota(0);
         }
         
+        String dia = request.getParameter("dia");
+        String mes = request.getParameter("mes");
+        String anio = request.getParameter("anio");
+        
         String p = request.getParameter("FechaS");
         if (p.equals("S")) {
-            tpa.setFechaS(request.getParameter("Fecha"));
+            tpa.setFechaS(request.getParameter(anio+"/"+mes+"/"+dia));
             cargar = gt.modificarTfiAlumnosConfecha(tpa);
         } else if (p.equals("N")){
             cargar = gt.modificarTfiAlumnos(tpa);

@@ -9,12 +9,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Exito</title>
+        <title>Éxito</title>
         <jsp:include page="Links.jsp"></jsp:include>
     </head>
-    <body>
+    <body id="fondo-Color">
         <jsp:include page="Menu.jsp"></jsp:include>
-        <div>
+        <div id="bordesMensajes">
             <h1 id="MensajeExito">Se ha realizado la acción con éxito</h1>
         </div>
     </body>

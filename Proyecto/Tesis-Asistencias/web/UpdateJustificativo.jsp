@@ -14,20 +14,22 @@ justi
         <jsp:include page="Links.jsp"></jsp:include>
         <title>Modificar Justificativo</title>
     </head>
-    <body>
+    <body id="fondo-Color">
         <jsp:include page="Menu.jsp"></jsp:include>
         
-        <div>
+        <div id="bordesGenerales">
             <h1>Modificar Justificativo</h1>
             
             <h3>${justi.getLegajo()} / ${justi.getApellido()}, ${justi.getNombre()}</h3>
-            
+            </br>
+        
             <form action="UpdateJustificativoServlet" method="POST">
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">Justificativo de Ausencia</label>
                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="10" cols="30" name="Justificativo" placeholder="${justi.getTexto()}" value="${justi.getTexto()}"></textarea>
                 </div>
-                <input type="submit" value="Cargar" class="btn btn-primary">
+                <input type="submit" value="Cargar" class="btn btn-primary" id="BotronCarga">
+                <div id="mp"></div>
             </form>
         </div>
     </body>

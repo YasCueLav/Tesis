@@ -16,19 +16,18 @@
     <body id="fondo-Color">
         <jsp:include page="Menu.jsp"></jsp:include>
         <div id="bordesGenerales">
-            <h1>Listados</h1>
+            <h1>Listados de Alumnos</h1>
         
-            <h5>Listados de Alumnos</h5>
             </br>
             <table class="table table-striped" name="tabla">
                 <thead>
                     <tr>
-                        <th scope="col">legajo</th>
+                        <th scope="col">Legajo</th>
                         <th scope="col" width="300">Apellido, Nombre</th>
-                        <th scope="col">Curso - Divicion</th>
-                        <th scope="col">Condicion</th>
+                        <th scope="col">Curso - División </th>
+                        <th scope="col">Condición </th>
                         <th scope="col">Grupo</th>
-                        <th scope="col">Fecha de ingreso</th>
+                        <th scope="col">Fecha de Ingreso</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>

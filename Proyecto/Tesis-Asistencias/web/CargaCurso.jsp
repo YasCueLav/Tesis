@@ -25,11 +25,12 @@
                   <input class="form-control" type="text" name="Curso" placeholder="Integracion I">
                 </div>
                 <div class="form-group">
-                  <label for="exampleFormControlInput1">Seccion</label>
+                  <label for="exampleFormControlInput1">Sección </label>
                   <input class="form-control" type="text" name="Seccion" placeholder="1V1">
                 </div>
                 
-                <input type="submit" value="Cargar" class="btn btn-primary">
+                <input type="submit" value="Cargar" class="btn btn-primary" id="BotronCarga">
+                <div id="mp"></div>
             </form>
         </div>
     </body>

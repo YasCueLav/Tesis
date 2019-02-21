@@ -22,7 +22,7 @@
         </nav>
         
         <div id="bordesGenerales">
-            <h1>Trabajos Practicos Entregados</h1>
+            <h1>Trabajo Práctico Entregados</h1>
             </br>
             
             <table class="table table-striped" name="tabla">
@@ -30,15 +30,15 @@
                     <tr>
                         <th scope="col" colspan="2" id="bordesCeldas">Alumno</th>
                         <th scope="col" colspan="2" id="bordesCeldas">Materia</th>
-                        <th scope="col" rowspan="2" id="bordesCeldasSuperior">Trabajo Practico</th>
+                        <th scope="col" rowspan="2" id="bordesCeldasSuperior">Trabajo Práctico</th>
                         <th scope="col" colspan="2" id="bordesCeldas">Fecha</th>
                         <th scope="col" rowspan="2" id="bordesCeldasSuperior">Estado</th>
                     </tr>
                     <tr>
-                        <th scope="col">legajo</th>
+                        <th scope="col">Legajo</th>
                         <th scope="col">Apellido, Nombre</th>
                         <th scope="col">Curso</th>
-                        <th scope="col">Divicion</th>
+                        <th scope="col">División </th>
                         <th scope="col">de Entrega</th>
                         <th scope="col">Entregado</th>
                     </tr>

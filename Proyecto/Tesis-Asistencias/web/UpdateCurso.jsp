@@ -13,12 +13,13 @@
         <jsp:include page="Links.jsp"></jsp:include>
         <title>Modificar Curso</title>
     </head>
-    <body>
+    <body id="fondo-Color">
         <jsp:include page="Menu.jsp"></jsp:include>
-        <h1>Modificar Curso</h1>
-        
-        <div>
+       
+        <div id="bordesGenerales">
+            <h1>Modificar Curso</h1>
             <h5>${curso.getNombreCurso()} - ${curso.getSeccionCurso()}</h5>
+        </br>
         
             <form action="UpdateCursoServlet" method="POST">
                 <div class="form-group">
@@ -26,10 +27,11 @@
                   <input class="form-control" type="text" name="Curso" placeholder="${curso.getNombreCurso()}" value="${curso.getNombreCurso()}">
                 </div>
                 <div class="form-group">
-                  <label for="exampleFormControlInput1">Seccion</label>
+                  <label for="exampleFormControlInput1">Sección</label>
                   <input class="form-control" type="text" name="Seccion" placeholder="${curso.getSeccionCurso()}" value="${curso.getSeccionCurso()}">
                 </div>
-                <input type="submit" value="Cargar" class="btn btn-primary">
+                <input type="submit" value="Cargar" class="btn btn-primary" id="BotronCarga">
+                <div id="mp"></div>
             </form>
         </div>
     </body>

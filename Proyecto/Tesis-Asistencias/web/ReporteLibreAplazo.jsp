@@ -18,8 +18,8 @@
         <nav aria-label="Page navigation example" id="bordesnabegacion">
                 <ul class="pagination">
                   <li class="page-item"><a class="page-link" href="/Tesis-Asistencias/ReporteAprobacionDirectaServlet">Listado</a></li>
-                  <li class="page-item"><a class="page-link" href="/Tesis-Asistencias/ListadoPromedioNotaServlet?condi=4">Promedio Notas</a></li>
-                  <li class="page-item"><a class="page-link" href="/Tesis-Asistencias/ListadoPorsentajeAsistenciasServlet?condi=4">Porsentajes Asistencias</a></li>
+                  <li class="page-item"><a class="page-link" href="/Tesis-Asistencias/ListadoPromedioNotaServlet?condi=4">Promedios Notas</a></li>
+                  <li class="page-item"><a class="page-link" href="/Tesis-Asistencias/ListadoPorsentajeAsistenciasServlet?condi=4">Porcentajes Asistencias</a></li>
                   <li class="page-item"><a class="page-link" href="/Tesis-Asistencias/ListadoTPEntregadosServlet?condi=4">TPs Entregados</a></li>
                 </ul>
             </nav>
@@ -34,13 +34,13 @@
                     <tr>
                         <th scope="col" colspan="2" id="bordesCeldas">Alumno</th>
                         <th scope="col" colspan="2" id="bordesCeldas">Materia</th>
-                        <th scope="col" id="bordesCeldas">Condicion</th>
+                        <th scope="col" id="bordesCeldas">Condición</th>
                     </tr>
                     <tr>
-                        <th scope="col">legajo</th>
+                        <th scope="col">Legajo</th>
                         <th scope="col">Apellido, Nombre</th>
                         <th scope="col">Curso</th>
-                        <th scope="col">Divicion</th>
+                        <th scope="col">Division</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>

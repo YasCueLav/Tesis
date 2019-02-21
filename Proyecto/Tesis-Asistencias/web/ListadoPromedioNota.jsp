@@ -34,10 +34,10 @@ obtenerAlumnoDatosVs
                         <th scope="col" colspan="2" id="bordesCeldas">Nota</th>
                     </tr>
                     <tr>
-                        <th scope="col">legajo</th>
+                        <th scope="col">Legajo</th>
                         <th scope="col">Apellido, Nombre</th>
                         <th scope="col">Curso</th>
-                        <th scope="col">Divicion</th>
+                        <th scope="col">División</th>
                         <th scope="col">Examen</th>
                         <th scope="col">Promedio</th>
                     </tr>

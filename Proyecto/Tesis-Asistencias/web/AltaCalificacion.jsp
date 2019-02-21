@@ -11,13 +11,13 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:include page="Links.jsp"></jsp:include>
-        <title>Cargar Notas Examenes</title>
+        <title>Cargar Notas Exámenes </title>
     </head>
     <body id="fondo-Color">
         <jsp:include page="Menu.jsp"></jsp:include>
         <div id="bordesGenerales">
             
-            <h1>Cargar Notas Examenes</h1>
+            <h1>Cargar Notas Exámenes </h1>
             
             <form action="AltaCalificacionServlet" method="POST">
                 
@@ -34,16 +34,16 @@
                      <option name="IdCurso" value="${c.getIdCursos()}">${c.getIdCursos()}-${c.getNombreCurso()}/${c.getSeccionCurso()}</option>
                 </c:forEach>
                 </select>
-                <input type="submit" value="Filtrar" class="btn btn-primary" name="Boton" id="botonFiltrar">
+                <input type="submit" value="Filtrar" class="btn btn-primary" name="Boton">
                 </br>
                 </br>
 
                 <table class="table table-striped">
                 <thead>
                     <tr>
-                      <th scope="col" width="50">legajo</th>
+                      <th scope="col" width="50">Legajo</th>
                       <th scope="col" width="300">Apellido, Nombre</th>
-                      <th scope="col" width="60">Divicion</th>
+                      <th scope="col" width="60">División</th>
                       <th scope="col">Nota</th>
                     </tr>
                 </thead>
@@ -53,12 +53,13 @@
                             <th><input type="hidden" value="${a.getIdAlumno()}" name="IdAlumno"> ${a.getLegajo()}</th>
                             <td>${a.getApellido()}, ${a.getNombre()} </td>
                             <td>${a.getDivicionCurso()}</td>
-                            <td><input type="number" name="NumeoNota"></td>
+                            <td><input type="number" name="NumeoNota" value="0" placeholder="0"></td>
                         </tr>
                     </c:forEach>
                 </tbody>
                 </table>
-                <input type="submit" value="Cargar" class="btn btn-primary" name="Boton">
+                <input type="submit" value="Cargar" class="btn btn-primary" name="Boton" id="BotronCarga">
+                <div id="mp"></div>
             </form>
         </div>
     </body>

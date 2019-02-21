@@ -13,19 +13,19 @@
         <jsp:include page="Links.jsp"></jsp:include>
         <title>Modificar</title>
     </head>
-    <body>
+    <body id="fondo-Color">
         <jsp:include page="Menu.jsp"></jsp:include>
-        
+        <div id="bordesGenerales">
         <h1>Modificar Notas</h1>
+        </br>
         
-        <div>
             <form action="ModificarCalificacionesServlet" method="POST">
                 <table class="table table-striped">
                 <thead>
                     <tr>
-                      <th scope="col">legajo</th>
+                      <th scope="col">Legajo</th>
                       <th scope="col">Apellido, Nombre</th>
-                      <th scope="col">Divicion</th>
+                      <th scope="col">División</th>
                       <th scope="col">Nota</th>
                     </tr>
                 </thead>
@@ -40,7 +40,8 @@
                     </c:forEach>
                 </tbody>
                 </table>
-                <input type="submit" value="Cargar" class="btn btn-primary" name="Boton">
+                <input type="submit" value="Cargar" class="btn btn-primary" name="Boton" id="BotronCarga">
+                <div id="mp"></div>
             </form>
         </div>
     </body>

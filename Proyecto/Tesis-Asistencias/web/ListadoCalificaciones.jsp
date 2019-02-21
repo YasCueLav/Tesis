@@ -16,7 +16,7 @@
     <body id="fondo-Color">
         <jsp:include page="Menu.jsp"></jsp:include>
         <div id="bordesGenerales">
-            <h1>Listado Calificacion</h1>
+            <h1>Listado Calificación </h1>
             </br>
             
             <table class="table table-striped" name="tabla">
@@ -24,7 +24,7 @@
                     <tr>
                         <th scope="col">Legajo</th>
                         <th scope="col" width="300">Apellido, Nombre</th>
-                        <th scope="col">Curso - Divicion</th>
+                        <th scope="col">Curso - División </th>
                         <th scope="col">Tipo Examen</th>
                         <th scope="col">Examen</th>
                         <th scope="col">Nota</th>

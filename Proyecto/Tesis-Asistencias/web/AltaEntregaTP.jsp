@@ -11,7 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:include page="Links.jsp"></jsp:include>
-        <title>Entrega TP</title>
+        <title>Entrega Trabajos Prácticos</title>
     </head>
     <body id="fondo-Color">
         <jsp:include page="Menu.jsp"></jsp:include>
@@ -22,7 +22,7 @@
             <form action="AltaEntregaTPServlet" method="POST">
                 <div>
                     <select name="Tp">
-                    <option>Seleccione un Trabajo Practico ...</option>
+                    <option>Seleccione un Trabajos Prácticos ...</option>
                     <c:forEach items="${tp}" var="t">
                         <option value="${t.getIdTp()}">${t.getNombreTp()}</option>
                     </c:forEach>
@@ -110,9 +110,9 @@
                 <table class="table table-striped">
                     <thead>
                       <tr>
-			  <th scope="col" width="50">legajo</th>
+			  <th scope="col" width="50">Legajo</th>
 			  <th scope="col" width="300">Apellido, Nombre</th>
-			  <th scope="col" width="60">Divicion</th>
+			  <th scope="col" width="60">División </th>
 			  <th scope="col" width="100">Entregado?</th>
 			  <th scope="col">Estado TP</th>
 			</tr>
@@ -136,7 +136,8 @@
                         </c:forEach>
                     </tbody>
 		</table>
-		<input type="submit" value="Cargar" class="btn btn-primary">
+		<input type="submit" value="Cargar" class="btn btn-primary" id="BotronCarga">
+                <div id="mp"></div>
             </form>
         </div>
     </body>

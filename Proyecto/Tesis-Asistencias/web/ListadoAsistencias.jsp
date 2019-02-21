@@ -40,7 +40,7 @@
                         <th scope="col" >Divicion</th>
                         <th scope="col">Fecha</th>
                         <th scope="col">Obligatoria</th>
-                        <th scope="col">Asistio?</th>
+                        <th scope="col">Asistió?</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>

@@ -134,8 +134,70 @@ public class ListadosAlumnosCondicinesServlet extends HttpServlet {
             }else{
                 cargo[j] = gc.modificarCondicionAlumno(4, alu);
             }
+            
             j++;
         }
+        
+       ///////////////////////////////////////////////////////////////////////// 
+       /*
+        //PROMOCION DIRECTA //
+            if (asistencia >= 80){
+                if (notaParcial >= 8){
+                    if(todosTP <= entregadosTP) {
+                        if (notaTFI >= 8) {
+                            cargo[j] = gc.modificarCondicionAlumno(1, alu);
+                            j++;
+                            continue;
+                        }
+                    }
+                }
+            }
+
+             //PROMOCION SISTEMA DE UNIDADES //
+            if (asistencia >= 80){
+                if (notaParcial >= 7){
+                    if(todosTP <= entregadosTP) {
+                        if (notaTFI >= 7) {
+                            cargo[j] = gc.modificarCondicionAlumno(2, alu);
+                            j++;
+                            continue;
+                        }
+                    }
+                }
+            }
+
+             //REGULAR //
+            if (asistencia >= 80){
+                if (notaParcial >= 4){
+                    if(todosTP <= entregadosTP) {
+                        if (notaTFI >= 7) {
+                            cargo[j] = gc.modificarCondicionAlumno(3, alu);
+                            j++;
+                            continue;
+                        }
+                    }
+                }
+            }
+
+             //LIBRE X NO CUMPLIMIENTO //
+            if(todosTP >entregadosTP) {
+                cargo[j] = gc.modificarCondicionAlumno(4, alu);
+                j++;
+                continue;
+            }
+
+             //lIBRE X AUSENCIAS //
+            if (asistencia < 80){
+                cargo[j] = gc.modificarCondicionAlumno(5, alu);
+                j++;
+            }else{
+                j++;
+            }
+
+             //j++;
+        }*/
+
+        ////////////////////////////////////////////////////////////////////////
         int bien = 0;
         for (int i = 0; i < cargo.length; i++) {
             if(cargo[i]){

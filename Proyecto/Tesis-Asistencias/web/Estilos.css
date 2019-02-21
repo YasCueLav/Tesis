@@ -12,12 +12,37 @@ Estilos
 #fondo-Color{
     background-color: whitesmoke;
 }
-#invisible { display : none; }
-
+#invisible { 
+    display : none; 
+}
 #bordesGenerales{
     margin-top: 1em;
     margin-left: 5em;
     margin-right: 5em;
+}
+#bordesMensajes{
+    margin-top: 5em;
+    margin-left: 22em;
+    margin-right: 15em;
+}
+#MensajeExito{
+    color: greenyellow;
+}
+#mensajeError{
+    color: red;
+}
+
+#BotronCarga{
+    margin-top: 5px;
+    margin-left: 250px;
+    margin-right: 50px;
+    /*font-size: medium;
+    font-weight: 600;*/
+    padding: 10px 290px;
+}
+#mp{
+    
+    margin-top: 50px;
 }
 
 /*ININIO*/
@@ -67,7 +92,7 @@ Estilos
     font-weight: 600;
 }
 
-/*FECHA*/
+/*FECHA
 #dia{
     
 }
@@ -76,7 +101,7 @@ Estilos
 }
 #anio{
     
-}
+}*/
 
 /*DECICION TP*/
 #bordesEspecificoGenerales{
@@ -120,7 +145,6 @@ Estilos
     float: left;
     margin-left: 1em;
 }
-
 #divDistanciaApeForm{
     float: left;
 }

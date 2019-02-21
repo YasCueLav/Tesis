@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Alta Asistencia</title>
+        <title>Asistencia</title>
         <jsp:include page="Links.jsp"></jsp:include>
     </head>
     <body id="fondo-Color">
@@ -106,10 +106,10 @@
                 <table class="table table-striped" name="tabla">
                   <thead>
                         <tr>
-                          <th scope="col" width="50">legajo</th>
-                          <th scope="col" width="100">Asistio?</th>
+                          <th scope="col" width="50">Legajo</th>
+                          <th scope="col" width="100">Asistió?</th>
                           <th scope="col" width="300">Apellido, Nombre</th>
-                          <th scope="col">Divicion</th>
+                          <th scope="col">División </th>
                         </tr>
                   </thead>
                     <div>
@@ -135,7 +135,8 @@
                           </tbody>
                     </div>
                 </table>
-                <input type="submit" value="Cargar" class="btn btn-primary">
+                <input type="submit" value="Cargar" class="btn btn-primary" id="BotronCarga">
+                <div id="mp"></div>
             </form>
             
         </div>

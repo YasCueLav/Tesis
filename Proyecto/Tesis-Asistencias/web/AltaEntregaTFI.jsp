@@ -22,7 +22,7 @@
             <form action="AltaEntregaTFIServlet" method="POST">
                 <div>
                     <select name="Tp">
-                    <option>Seleccione un Trabajo Practico ...</option>
+                    <option>Seleccione un Trabajo Práctico ...</option>
                     <c:forEach items="${tp}" var="t">
                         <option value="${t.getIdTp()}">${t.getNombreTp()}</option>
                     </c:forEach>
@@ -110,9 +110,9 @@
                 <table class="table table-striped" width="520">
 		  <thead>
 			<tr>
-			  <th scope="col" width="50">legajo</th>
+			  <th scope="col" width="50">Legajo</th>
 			  <th scope="col" width="300">Apellido, Nombre</th>
-			  <th scope="col" width="60">Divicion</th>
+			  <th scope="col" width="60">División </th>
 			  <th scope="col" width="100">Entregado?</th>
 			  <th scope="col" >Nota</th>
 			</tr>
@@ -128,13 +128,14 @@
                                     No <input type="radio" name="${a.getIdAlumno()}" value="No" checked="true">
                                 </td>
                                 <td id="colorRadioDos">
-                                    <input type="number" name="Nota" value="0">
+                                    <input type="number" name="Nota" value="0" placeholder="0" >
                                 </td>
                             </tr>
                         </c:forEach>
                     </tbody>
 		</table>
-		<input type="submit" value="Cargar" class="btn btn-primary">
+		<input type="submit" value="Cargar" class="btn btn-primary" id="BotronCarga">
+                <div id="mp"></div>
             </form>
         </div>
     </body>

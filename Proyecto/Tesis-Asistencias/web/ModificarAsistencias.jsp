@@ -10,13 +10,16 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Editar Asistencia</title>
+        <title>Modificar Asistencia</title>
         <jsp:include page="Links.jsp"></jsp:include>
     </head>
-    <body>
+    <body id="fondo-Color">
         <jsp:include page="Menu.jsp"></jsp:include>
-        <div>
-            <h2>Editar Asistencia</h2>
+        <div id="bordesGenerales">
+            
+            <h2>Modificar Asistencia</h2>
+            </br>
+            
             <form action="ModificarAsistenciasServlet" method="POST">
                 
             <%--
@@ -35,11 +38,11 @@
                 <table class="table table-striped" name="tabla">
                   <thead>
                         <tr>
-                          <th scope="col">legajo</th>
+                          <th scope="col">Legajo</th>
                           <th scope="col">Apellido, Nombre</th>
-                          <th scope="col">Divicion</th>
+                          <th scope="col">División</th>
                           <th scope="col">Fecha</th>
-                          <th scope="col">Asistio?</th>
+                          <th scope="col">Asistió?</th>
                         </tr>
                   </thead>
                     <div>
@@ -63,8 +66,9 @@
                           </tbody>
                     </div>
                 </table>
-                <input type="submit" value="Cargar" class="btn btn-primary">
-            </form>
+                <input type="submit" value="Cargar" class="btn btn-primary" id="BotronCarga">
+                <div id="mp"></div>
+        </form>
         </div>
     </body>
 </html>
