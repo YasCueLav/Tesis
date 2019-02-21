@@ -18,8 +18,8 @@
         <div id="bordesGenerales">
             
             <h1>Modificar Examen</h1>
-            
-            <h4>${ex.getTipoExamne()} ${ex.getExamenNombre()} -- ${ex.getFecha()}</h4>
+            <h4>Parcial Siestemas de Unidades -- 2018-05-11</h4>
+            <%--<h4>${ex.getTipoExamne()} ${ex.getExamenNombre()} -- ${ex.getFecha()}</h4>--%>
             </br>
         
             <form action="UpdateParcialServlet" method="POST">

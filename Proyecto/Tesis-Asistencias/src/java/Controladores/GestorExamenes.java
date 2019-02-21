@@ -109,6 +109,12 @@ public class GestorExamenes {
                 vm.setTipoExamne(query.getString("tipo_examen"));
                 vm.setExamenNombre(query.getString("examen"));
                 vm.setFecha(query.getDate("fecha_examen"));
+                /*int idExamen;
+    int idTipoExamen;
+    String TipoExamne;
+    String examenNombre;
+    Date fecha;
+    boolean visible;*/
             query.close();
             stmt.close();
             conn.close();

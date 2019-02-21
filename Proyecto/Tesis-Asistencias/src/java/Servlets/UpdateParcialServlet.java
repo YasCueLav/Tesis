@@ -66,6 +66,7 @@ public class UpdateParcialServlet extends HttpServlet {
         boolean isLogged = (boolean) mySession.getAttribute("inicio");
         if (isLogged) {
             GestorExamenes ge;
+            id = Integer.parseInt(request.getParameter("idExamen"));
             switch (m){
                 case 1: 
                     GestorTiposExamenes gte = new GestorTiposExamenes();
