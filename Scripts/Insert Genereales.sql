@@ -383,3 +383,18 @@ INSERT INTO Tp_Alumnos (id_alumno, id_tp,presentado,fecha_entregado, id_estado ,
 INSERT INTO Tp_Alumnos (id_alumno, id_tp,presentado,fecha_entregado, id_estado ,visible) VALUES (6, 5,1,'2018/10/12',2,1)
 INSERT INTO Tp_Alumnos (id_alumno, id_tp,presentado,fecha_entregado, id_estado ,visible) VALUES (7, 5,1,'2018/10/12',2,1)
 INSERT INTO Tp_Alumnos (id_alumno, id_tp,presentado,fecha_entregado, id_estado ,visible) VALUES (8, 5,1,'2018/10/12',2,1)
+
+Condicion
+--AD 1
+UPDATE Alumnos SET id_condicion = 1 WHERE id_alumno = 3
+UPDATE Alumnos SET id_condicion = 1 WHERE id_alumno = 8
+--PUS 2
+UPDATE Alumnos SET id_condicion = 2 WHERE id_alumno = 5
+UPDATE Alumnos SET id_condicion = 2 WHERE id_alumno = 6
+--R 3
+UPDATE Alumnos SET id_condicion = 3 WHERE id_alumno = 1
+--LxNC 4
+UPDATE Alumnos SET id_condicion = 4 WHERE id_alumno = 7
+--LxA 5
+UPDATE Alumnos SET id_condicion = 5 WHERE id_alumno = 2
+UPDATE Alumnos SET id_condicion = 5 WHERE id_alumno = 4

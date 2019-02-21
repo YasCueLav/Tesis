@@ -383,6 +383,8 @@ public class GestorAlumnos {
 //Nuevo
     public VMALumnoCursoPromedios obtenerAlumnoDatosVs( int id) {
         VMALumnoCursoPromedios lista = new VMALumnoCursoPromedios();
+        double t =0 ;
+        double n =0 ;
         try {
             Statement stmt = conn.createStatement();
             ResultSet query = stmt.executeQuery("EXEC pa_Alumnos_Datos @idAlumno = "+id);
@@ -398,7 +400,10 @@ public class GestorAlumnos {
                 lista.setAsistenciaTotal(query.getInt("AsistenciasTomadas"));
                 lista.setAistenciaAlumno(query.getInt("CantidadAsistio"));
                 lista.setNotaExamen(query.getDouble("NotaParcial"));
+                n = query.getDouble("NotaParcial");
                 lista.setNotaTFI(query.getDouble("NotaTFI"));
+                t = query.getDouble("NotaTFI");
+                lista.setPromedioNotas( (n + t)/2);
                 //lista.add(vw);
             }
             query.close();

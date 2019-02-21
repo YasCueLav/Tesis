@@ -71,14 +71,14 @@ public class ListadoTPEntregadosServlet extends HttpServlet {
             switch (condi){
                 case 1: //APROBADO DIRECTO
                     g = new GestorAlumnos();
-                    ga = new GestorAlumnos();
                     
-                    alum = ga.obtenerAlumnoAprobadoDirecto();
+                    alum = g.obtenerAlumnoAprobadoDirecto();
                     alumno = new ArrayList<>();
                     
                     p = new VMALumnoCursoPromedios();
                     
                     for (VMAlumnosCursosCondiciones vm : alum) {
+                        ga = new GestorAlumnos();
                         if(vm.getIdcondicion() == 1){
                             p = ga.obtenerAlumnoDatosVsTP(vm.getIdAlumno());
                             alumno.add(p);
@@ -95,14 +95,14 @@ public class ListadoTPEntregadosServlet extends HttpServlet {
                     
                 case 2://Promosion SU
                     g = new GestorAlumnos();
-                    ga = new GestorAlumnos();
                     
-                    alum = ga.obtenerAlumnoPromocionSistemas();
+                    alum = g.obtenerAlumnoPromocionSistemas();
                     alumno = new ArrayList<>();
                     
                     p = new VMALumnoCursoPromedios();
                     
                     for (VMAlumnosCursosCondiciones vm : alum) {
+                        ga = new GestorAlumnos();
                         if(vm.getIdcondicion() == 2){
                             p = ga.obtenerAlumnoDatosVsTP(vm.getIdAlumno());
                             alumno.add(p);
@@ -119,14 +119,14 @@ public class ListadoTPEntregadosServlet extends HttpServlet {
                     
                 case 3://Regular
                     g = new GestorAlumnos();
-                    ga = new GestorAlumnos();
                     
-                    alum = ga.obtenerAlumnoRegular();
+                    alum = g.obtenerAlumnoRegular();
                     alumno = new ArrayList<>();
                     
                     p = new VMALumnoCursoPromedios();
                     
                     for (VMAlumnosCursosCondiciones vm : alum) {
+                        ga = new GestorAlumnos();
                         if(vm.getIdcondicion() == 3){
                             p = ga.obtenerAlumnoDatosVsTP(vm.getIdAlumno());
                             alumno.add(p);
@@ -143,14 +143,14 @@ public class ListadoTPEntregadosServlet extends HttpServlet {
                     
                 case 4://Libre x No Cumplimeiento
                     g = new GestorAlumnos();
-                    ga = new GestorAlumnos();
                     
-                    alum = ga.obtenerAlumnoLibreNoCumplimiento();
+                    alum = g.obtenerAlumnoLibreNoCumplimiento();
                     alumno = new ArrayList<>();
                     
                     p = new VMALumnoCursoPromedios();
                     
                     for (VMAlumnosCursosCondiciones vm : alum) {
+                       ga = new GestorAlumnos();
                         if(vm.getIdcondicion() == 4){
                             p = ga.obtenerAlumnoDatosVsTP(vm.getIdAlumno());
                             alumno.add(p);

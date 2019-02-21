@@ -134,6 +134,7 @@ public class ListadosAlumnosCondicinesServlet extends HttpServlet {
             }else{
                 cargo[j] = gc.modificarCondicionAlumno(4, alu);
             }
+            
             j++;
         }
         
